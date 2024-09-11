@@ -1,0 +1,203 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace RM_MST
+{
+    // The world manager.
+    public class WorldManager : GameplayManager
+    {
+        public const int STAGE_COUNT = 9;
+
+        // the instance of the class.
+        private static WorldManager instance;
+
+        // Gets set to 'true' when the singleton has been instanced.
+        // This isn't needed, but it helps with the clarity.
+        private static bool instanced = false;
+
+        // The world user interface.
+        // public WorldUI worldUI;
+
+        // Constructor
+        private WorldManager()
+        {
+            // ...
+        }
+
+        // Awake is called when the script is being loaded
+        protected override void Awake()
+        {
+            // If the instance hasn't been set, set it to this object.
+            if (instance == null)
+            {
+                instance = this;
+            }
+            // If the instance isn't this, destroy the game object.
+            else if (instance != this)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            // Run code for initialization.
+            if (!instanced)
+            {
+                instanced = true;
+            }
+        }
+
+        // Start is called before the first frame update
+        protected override void Start()
+        {
+            base.Start();
+        }
+
+        // Gets the instance.
+        public static WorldManager Instance
+        {
+            get
+            {
+                // Checks if the instance exists.
+                if (instance == null)
+                {
+                    // Tries to find the instance.
+                    instance = FindObjectOfType<WorldManager>(true);
+
+
+                    // The instance doesn't already exist.
+                    if (instance == null)
+                    {
+                        // Generate the instance.
+                        GameObject go = new GameObject("WorldManager (singleton)");
+                        instance = go.AddComponent<WorldManager>();
+                    }
+
+                }
+
+                // Return the instance.
+                return instance;
+            }
+        }
+
+        // Returns 'true' if the object has been initialized.
+        public static bool Instantiated
+        {
+            get
+            {
+                return instanced;
+            }
+        }
+
+        // SAVING/LOADING
+        // Generates the save data or the game.
+        public MST_GameData GenerateSaveData()
+        {
+            // The data.
+            MST_GameData data = new MST_GameData();
+
+            // TODO: implement.
+
+            return data;
+        }
+
+        // Saves the data for the game.
+        public bool SaveGame()
+        {
+            // If the LOL Manager does not exist, return false.
+            if (!LOLManager.Instantiated)
+            {
+                Debug.LogError("The LOL Manager does not exist.");
+                return false;
+            }
+
+            // Gets the save system.
+            SaveSystem saveSys = LOLManager.Instance.saveSystem;
+
+            // Checks if the save system exists.
+            if (saveSys == null)
+            {
+                Debug.LogError("The save system could not be found.");
+                return false;
+            }
+
+
+            // Set the world manager.
+            if (saveSys.worldManager == null)
+                saveSys.worldManager = this;
+
+            // Saves the game.
+            bool result = saveSys.SaveGame();
+
+            // Return result.
+            return result;
+        }
+
+        // Loads data, and return a 'bool' to show it was successful.
+        public bool LoadGame()
+        {
+            // If the LOL Manager does not exist, return false.
+            if (!LOLManager.Instantiated)
+            {
+                Debug.LogError("The LOL Manager does not exist.");
+                return false;
+            }
+
+            // Gets the save system.
+            SaveSystem saveSys = LOLManager.Instance.saveSystem;
+
+            // Checks if the save system exists.
+            if (saveSys == null)
+            {
+                Debug.LogError("The save system could not be found.");
+                return false;
+            }
+
+
+            // Gets the loaded data.
+            MST_GameData loadedData = saveSys.loadedData;
+
+            // No data to load.
+            if (loadedData == null)
+            {
+                Debug.LogError("The save data does not exist.");
+                return false;
+            }
+
+            // Data invalid.
+            if (loadedData.valid == false)
+            {
+                Debug.LogError("The save data is invalid.");
+                return false;
+            }
+
+            // Game complete
+            if (loadedData.complete)
+            {
+                // Changed from assertion to normal log.
+                // Debug.LogAssertion("The game was completed, so the data hasn't been loaded.");
+                Debug.Log("The game was completed, so the data hasn't been loaded.");
+                return false;
+            }
+
+            // The data has been loaded successfully.
+            return true;
+        }
+
+        // Update is called once per frame
+        protected override void Update()
+        {
+            base.Update();
+        }
+
+        // This function is called when the MonoBehaviour will be destroyed.
+        private void OnDestroy()
+        {
+            // If the saved instance is being deleted, set 'instanced' to false.
+            if (instance == this)
+            {
+                instanced = false;
+            }
+        }
+    }
+}
