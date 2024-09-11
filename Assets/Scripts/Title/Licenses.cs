@@ -111,7 +111,6 @@ namespace RM_MST
             // Change button settings.
             EnableAllCreditButtons();
             bgmButton.interactable = false;
-            sfxButton.Select();
         }
 
         // Shows the SFX credits.
@@ -128,24 +127,6 @@ namespace RM_MST
             // Change button settings.
             EnableAllCreditButtons();
             sfxButton.interactable = false;
-
-            // Determiens which button to enable based on the prior credits selected.
-            if (oldCredits == bgmCredits)
-            {
-                // Selects the BGM button.
-                bgmButton.Select();
-            }
-            else if (oldCredits == fontsCredits)
-            {
-                // Selects the font button.
-                fontsButton.Select();
-            }
-            else
-            {
-                // Selects the BGM button by default.
-                bgmButton.Select();
-            }
-
         }
 
         // Shows the font credits.
@@ -159,7 +140,6 @@ namespace RM_MST
             // Change button settings.
             EnableAllCreditButtons();
             fontsButton.interactable = false;
-            sfxButton.Select();
         }
 
         // Gets the current credits.

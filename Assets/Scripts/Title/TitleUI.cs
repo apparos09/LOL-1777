@@ -69,6 +69,9 @@ namespace RM_MST
             // Save the save text as the save feedback text.
             if(LOLManager.Instantiated)
                 LOLManager.Instance.saveSystem.feedbackText = saveText;
+
+            // Opens the title window at the start.
+            OpenWindow(titleWindow);
         }
 
         // Starts the new game.

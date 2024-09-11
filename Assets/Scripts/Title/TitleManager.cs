@@ -25,6 +25,9 @@ namespace RM_MST
         // The title audio for the game.
         public TitleAudio titleAudio;
 
+        // The scene loaded when start is selected.
+        public string startScene = "WorldScene";
+
         // Constructor
         private TitleManager()
         {
@@ -171,7 +174,7 @@ namespace RM_MST
         public void StartGame()
         {
             // TODO: add transition.
-            SceneManager.LoadScene("WorldScene");
+            SceneManager.LoadScene(startScene);
         }
 
         // Starts a new game.

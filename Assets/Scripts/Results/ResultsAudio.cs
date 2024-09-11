@@ -7,6 +7,7 @@ namespace RM_MST
     // The results audio.
     public class ResultsAudio : MST_GameAudio
     {
+        [Header("Results")]
         // Manager
         public ResultsManager manager;
 

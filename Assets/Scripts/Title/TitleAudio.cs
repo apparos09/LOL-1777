@@ -7,6 +7,7 @@ namespace RM_MST
     // The audio for the title screen.
     public class TitleAudio : MST_GameAudio
     {
+        [Header("Title")]
         // Manager
         public TitleManager manager;
 

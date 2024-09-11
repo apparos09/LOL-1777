@@ -8,6 +8,7 @@ namespace RM_MST
     // Game audio for the MST project.
     public class MST_GameAudio : GameAudio
     {
+        [Header("MST")]
         // The button (menu) SFX.
         public AudioClip buttonMenuSfx;
 

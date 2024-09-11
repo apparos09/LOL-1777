@@ -26,8 +26,8 @@ namespace RM_MST
             if (text == null)
                 text = GetComponent<TMP_Text>();
 
-            // If the SDK is initialized.
-            if (LOLSDK.Instance.IsInitialized && text != null)
+            // If the SDK is initialized, the text is set, and the key is set.
+            if (LOLSDK.Instance.IsInitialized && text != null && key != "")
             {
                 text.text = LOLManager.Instance.GetLanguageText(key);
             }
