@@ -37,28 +37,31 @@ namespace util
         // The arguments 'clipStart' and 'clipEnd' are used for the BGM looper.
         public void PlayBackgroundMusic(AudioClip bgmClip, float clipStart, float clipEnd)
         {
-            // If the looper has been set, change it thorugh that.
-            if (bgmLooper != null)
+            if (bgmSource != null)
             {
-                // Stop the audio and set the clip. This puts the audio at its start.
-                bgmLooper.StopAudio(true);
-                bgmLooper.audioSource.clip = bgmClip;
+                // If the looper has been set, change it thorugh that.
+                if (bgmLooper != null)
+                {
+                    // Stop the audio and set the clip. This puts the audio at its start.
+                    bgmLooper.StopAudio(true);
+                    bgmLooper.audioSource.clip = bgmClip;
 
-                // Sets the start and end for the BGM.
-                bgmLooper.clipStart = clipStart;
-                bgmLooper.clipEnd = clipEnd;
+                    // Sets the start and end for the BGM.
+                    bgmLooper.clipStart = clipStart;
+                    bgmLooper.clipEnd = clipEnd;
 
-                // Play the BGM through the looper
-                bgmLooper.PlayAudio(true);
-            }
-            else // No looper, so change settings normally.
-            {
-                // Stops the BGM source and sets the current clip.
-                bgmSource.Stop();
-                bgmSource.clip = bgmClip;
+                    // Play the BGM through the looper
+                    bgmLooper.PlayAudio(true);
+                }
+                else // No looper, so change settings normally.
+                {
+                    // Stops the BGM source and sets the current clip.
+                    bgmSource.Stop();
+                    bgmSource.clip = bgmClip;
 
-                // Play the BGM with the normal settings.
-                bgmSource.Play();
+                    // Play the BGM with the normal settings.
+                    bgmSource.Play();
+                }
             }
 
         }
@@ -73,41 +76,50 @@ namespace util
         // If 'stopAudio' is 'true', then the BGM is stopped before playing the one shot.
         public void PlayBackgroundMusicOneShot(AudioClip bgmClip, bool stopCurrAudio = true)
         {
-            // If the current audio should be stopped.
-            if (stopCurrAudio)
-                bgmSource.Stop();
+            if (bgmSource != null)
+            {
+                // If the current audio should be stopped.
+                if (stopCurrAudio)
+                    bgmSource.Stop();
 
-            bgmSource.PlayOneShot(bgmClip);
+                bgmSource.PlayOneShot(bgmClip);
+            }
+
         }
 
         // Stops the provided background music.
         public void StopBackgroundMusic()
         {
-            bgmSource.Stop();
+            if (bgmSource != null)
+                bgmSource.Stop();
         }
 
         // Plays the sound effect.
         public void PlaySoundEffect(AudioClip sfxClip)
         {
-            bgmSource.PlayOneShot(sfxClip);
+            if (sfxSource != null)
+                sfxSource.PlayOneShot(sfxClip);
         }
 
         // Stops the sound effect source.
         public void StopSoundEffect()
         {
-            sfxSource.Stop();
+            if (sfxSource != null)
+                sfxSource.Stop();
         }
 
         // Plays the voice clip.
         public void PlayVoice(AudioClip vceClip)
         {
-            vceSource.PlayOneShot(vceClip);
+            if (vceSource != null)
+                vceSource.PlayOneShot(vceClip);
         }
 
         // Stops the voice clip.
         public void StopVoice()
         {
-            vceSource.Stop();
+            if (vceSource != null)
+                vceSource.Stop();
         }
     }
 }

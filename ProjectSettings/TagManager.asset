@@ -8,6 +8,7 @@ TagManager:
   - SFX
   - VCE
   - TTS
+  - Manager
   layers:
   - Default
   - TransparentFX
