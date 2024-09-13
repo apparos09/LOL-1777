@@ -29,6 +29,9 @@ namespace RM_MST
         // The player in the world.
         public PlayerWorld playerWorld;
 
+        // The world area.
+        public WorldArea worldArea;
+
         // The game complete event.
         public GameCompleteEvent gameCompleteEvent;
 

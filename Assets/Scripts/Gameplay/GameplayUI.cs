@@ -21,6 +21,10 @@ namespace RM_MST
         public GameSettingsUI settingsUI;
 
         [Header("Tutorial")]
+
+        // The tutorial UI.
+        public TutorialUI tutorialUI;
+
         // The text box panel.
         public Image tutorialPanel;
 
@@ -30,7 +34,9 @@ namespace RM_MST
         // Start is called before the first frame update
         protected virtual void Start()
         {
-            // ...
+            // If the tutorial UI is not set, set it.
+            if (tutorialUI == null)
+                tutorialUI = TutorialUI.Instance;
         }
 
         // TUTORIAL //

@@ -23,7 +23,7 @@ namespace RM_MST
         public Tutorials tutorials;
 
         // The tutorial text box.
-        public TextBox textBox;
+        public TutorialTextBox textBox;
 
         [Header("Diagram")]
         // The text box image object.
@@ -35,30 +35,11 @@ namespace RM_MST
 
         [Header("Diagram/Images")]
         
+        // TODO: take this out.
+
         // The alpha 0 sprite. Used to hide the diagram if there's no image.
         [Tooltip("Used to hide the text box diagram image.")]
         public Sprite alpha0Sprite;
-
-        [Header("Digram/Images/Geometry")]
-        public Sprite entryBlockSprite;
-        public Sprite goalBlockSprite;
-        public Sprite blockSprite;
-        public Sprite hazardBlockSprite;
-        public Sprite limitedBlockSprite;
-        public Sprite phaseBlockSprite;
-        public Sprite portalBlockSprite;
-        public Sprite switchBlockSprite;
-        public Sprite buttonBlockSprite;
-
-        [Header("Diagram/Images/Enemy")]
-        public Sprite stationaryEnemySprite;
-        public Sprite barEnemySprite;
-        public Sprite copyEnemySprite;
-        public Sprite finalBossEnemySprite;
-
-        [Header("Diagram/Images/Items")]
-        public Sprite keyItemSprite;
-        public Sprite weaponItemSprite;
 
         // Constructor
         private TutorialUI()
@@ -84,9 +65,9 @@ namespace RM_MST
             // Run code for initialization.
             if (!instanced)
             {
-                textBox.OnTextBoxOpenedAddCallback(OnTextBoxOpened);
-                textBox.OnTextBoxClosedAddCallback(OnTextBoxClosed);
-                textBox.OnTextBoxFinishedAddCallback(OnTextBoxFinished);
+                textBox.textBox.OnTextBoxOpenedAddCallback(OnTextBoxOpened);
+                textBox.textBox.OnTextBoxClosedAddCallback(OnTextBoxClosed);
+                textBox.textBox.OnTextBoxFinishedAddCallback(OnTextBoxFinished);
 
                 instanced = true;
             }
@@ -165,13 +146,13 @@ namespace RM_MST
         public bool IsTutorialRunning()
         {
             // If the textbox is isible, then the tutorial is active.
-            return textBox.IsVisible();
+            return textBox.textBox.IsVisible();
         }
 
         // Starts a tutorial.
         public void StartTutorial()
         {
-            textBox.SetPage(0);
+            textBox.textBox.SetPage(0);
             OpenTextBox();
         }
 
@@ -179,11 +160,11 @@ namespace RM_MST
         public void RestartTutorial()
         {
             // Gets the pages from the text box.
-            List<Page> pages = textBox.pages;
+            List<Page> pages = textBox.textBox.pages;
 
             // Ends the tutorial, sets the textbox pages, and starts the tutorial again.
             EndTutorial();
-            textBox.pages = pages;
+            textBox.textBox.pages = pages;
             StartTutorial();
         }
 
@@ -194,7 +175,7 @@ namespace RM_MST
             if(IsTutorialRunning())
             {
                 // Sets to the last page and closes the text box.
-                textBox.SetPage(textBox.GetPageCount() - 1);
+                textBox.textBox.SetPage(textBox.textBox.GetPageCount() - 1);
                 CloseTextBox();
             }
         }
@@ -217,23 +198,23 @@ namespace RM_MST
         {
             // If the pages should be cleared.
             if (clearPages)
-                textBox.ClearPages();
+                textBox.textBox.ClearPages();
 
             // Adds pages to the end of the text box.
-            textBox.pages.AddRange(pages);
+            textBox.textBox.pages.AddRange(pages);
 
         }
 
         // Opens Text Box
         public void OpenTextBox()
         {
-            textBox.Open();
+            textBox.textBox.Open();
         }
 
         // Closes the Text Box
         public void CloseTextBox()
         {
-            textBox.Close();
+            textBox.textBox.Close();
         }
 
         // Text box operations.
@@ -258,7 +239,7 @@ namespace RM_MST
         private void OnTextBoxFinished()
         {
             // Remove all the pages.
-            textBox.ClearPages();
+            textBox.textBox.ClearPages();
 
             // These should be handled by the pages.
             // // Clear the diagram and hides it.
