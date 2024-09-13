@@ -39,11 +39,12 @@ namespace RM_MST
         public override void InitalizeEvent()
         {
             // Make the stage unavailable from the start.
-            stageWorld.SetStageAvailable(false);
+            if(!CheckStageAvailable())
+                stageWorld.SetStageAvailable(false);
         }
 
-        // Updates the event.
-        public override void UpdateEvent()
+        // Checks if the stage is available.
+        public bool CheckStageAvailable()
         {
             // Checks if all stages have been cleared.
             bool allCleared = true;
@@ -65,6 +66,15 @@ namespace RM_MST
 
             // Sets the cleared parameter.
             cleared = allCleared;
+
+            // Returns the result.
+            return cleared;
+        }
+
+        // Updates the event.
+        public override void UpdateEvent()
+        {
+            CheckStageAvailable();
         }
 
         // Completes the event.

@@ -78,6 +78,10 @@ namespace RM_MST
 
             // TODO: check for save data first.
 
+            // Sets the world UI.
+            if (worldUI == null)
+                worldUI = WorldUI.Instance;
+
             // If the gameplay info has been instantiated.
             if (GameplayInfo.Instantiated)
             {

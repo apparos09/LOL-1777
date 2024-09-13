@@ -14,9 +14,11 @@ namespace RM_MST
         // This isn't needed, but it helps with the clarity.
         private static bool instanced = false;
 
+        [Header("World UI")]
         // The world manager.
         public WorldManager worldManager;
 
+        [Header("Stage UI")]
         // The stage world UI.
         public StageWorldUI stageWorldUI;
 
@@ -46,6 +48,23 @@ namespace RM_MST
             {
                 instanced = true;
             }
+        }
+
+        // Start is called before the first frame update
+        protected override void Start()
+        {
+            base.Start();
+
+            // Sets the world manager.
+            if (worldManager == null)
+                worldManager = WorldManager.Instance;
+
+            // Sets the tutorial isntance.
+            if (tutorialUI == null)
+                tutorialUI = TutorialUI.Instance;
+
+            // Hide the stage world UI.
+            HideStageWorldUI(true);
         }
 
         // Gets the instance.
@@ -82,16 +101,6 @@ namespace RM_MST
             {
                 return instanced;
             }
-        }
-
-        // Start is called before the first frame update
-        protected override void Start()
-        {
-            base.Start();
-
-            // Sets the world manager.
-            if(worldManager == null)
-                worldManager = instance.worldManager;
         }
 
         // Returns 'true' if the stage world UI is active.

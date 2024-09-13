@@ -2,6 +2,7 @@ using SimpleJSON;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 namespace RM_MST
 {
@@ -17,6 +18,9 @@ namespace RM_MST
 
         // The sprite renderer for the the challenger.
         public SpriteRenderer spriteRenderer;
+
+        // The name text.
+        public TMP_Text nameText;
 
         // The stage sprite.
         public Sprite stageSprite;
@@ -36,7 +40,8 @@ namespace RM_MST
         public int difficulty = 0;
 
         // Gets set to 'true' when the stage has been cleared.
-        private bool cleared = false;
+        // TODO: make this private when not testing.
+        public bool cleared = false;
 
         // Shows if the stage is available.
         private bool available = true;
@@ -61,6 +66,10 @@ namespace RM_MST
                 // Tries to get the component (no longer checks children for misinput concerns).
                 spriteRenderer = GetComponent<SpriteRenderer>();
             }
+
+            // Sets the stage text.
+            if(nameText != null)
+                nameText.text = stageName;
 
             // If there is no description, generate one.
             if(stageDesc == "")

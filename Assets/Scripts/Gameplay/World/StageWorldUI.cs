@@ -24,11 +24,11 @@ namespace RM_MST
 
         [Header("Images")]
 
-        // The renderer of the stage art.
-        public Image stageRenderer;
-
         // The background of the UI.
         public Image background;
+
+        // The renderer of the stage art.
+        public Image stageRenderer;
 
         [Header("Text")]
 
