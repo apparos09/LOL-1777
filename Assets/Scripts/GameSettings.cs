@@ -18,6 +18,9 @@ namespace RM_MST
         // This isn't needed, but it helps with the clarity.
         private static bool instanced = false;
 
+        // If this is the lol build, set it to 'true'. If it's the promo build, set this to false.
+        public const bool IS_LOL_BUILD = true;
+
         [Header("Settings")]
 
         // Use the text-to-speech options.

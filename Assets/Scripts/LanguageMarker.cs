@@ -20,9 +20,10 @@ namespace RM_MST
         [HideInInspector]
         public Color noLoadColor = Color.red;
 
-        // If the text colour should be changed. This has been set to 'false' for the promo build.
+        // If the text colour should be changed.
+        // TODO: set this to 'false' when creating the promo build.
         // This should really have been a regular variable that could be edited.
-        public const bool CHANGE_TEXT_COLOR = false;
+        public const bool CHANGE_TEXT_COLOR = GameSettings.IS_LOL_BUILD;
 
         // The constructor
         private LanguageMarker()

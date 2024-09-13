@@ -30,6 +30,10 @@ namespace RM_MST
             if (LOLSDK.Instance.IsInitialized && text != null && key != "")
             {
                 text.text = LOLManager.Instance.GetLanguageText(key);
+
+                // Text is blank, so mark the text to show that the translation failed.
+                if(text.text == "")
+                    LanguageMarker.Instance.MarkText(text);
             }
             else
             {

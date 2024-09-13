@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.EditorTools;
 using UnityEngine;
 
 namespace RM_MST
@@ -8,8 +9,19 @@ namespace RM_MST
 // This is used for UI.
     public class TextToSpeechCollider : MonoBehaviour
     {
+        // The game settings.
+        public GameSettings gameSettings;
+
         // The speak key for the text-to-speech.
         public string speakKey = "";
+
+        // Start is called before the first frame update
+        void Start()
+        {
+            // Settings
+            if (gameSettings == null)
+                gameSettings = GameSettings.Instance;
+        }
 
         // // OnMouseDown is called when the user has pressed the mouse button while over the GUIElement or Collider.
         // private void OnMouseDown()
@@ -26,8 +38,11 @@ namespace RM_MST
         // Speaks the text.
         public void SpeakText()
         {
-            if(speakKey != "")
+            // If the speak key is set, and the game is set to use text-to-speech.
+            if(speakKey != "" && gameSettings.UseTextToSpeech)
+            {
                 TextToSpeech.Instance.SpeakText(speakKey);
+            }
         }
     }
 }
