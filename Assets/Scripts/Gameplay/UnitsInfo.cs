@@ -4,30 +4,23 @@ using UnityEngine;
 
 namespace RM_MST
 {
-    // The world UI.
-    public class WorldUI : GameplayUI
+    // The units info.
+    public class UnitsInfo : MonoBehaviour
     {
+        // TODO: implement units.
+
+        // The measurement units.
+        public enum units { none, weightImperial, lengthImperial, time, lengthMetric, weightMetric, capacity }
+
         // The singleton instance.
-        private static WorldUI instance;
+        private static UnitsInfo instance;
 
         // Gets set to 'true' when the singleton has been instanced.
         // This isn't needed, but it helps with the clarity.
         private static bool instanced = false;
 
-        // The world manager.
-        public WorldManager worldManager;
-
-        // The stage world UI.
-        public StageWorldUI stageWorldUI;
-
-        // Constructor
-        private WorldUI()
-        {
-            // ...
-        }
-
         // Awake is called when the script is being loaded
-        protected virtual void Awake()
+        void Awake()
         {
             // If the instance hasn't been set, set it to this object.
             if (instance == null)
@@ -48,8 +41,14 @@ namespace RM_MST
             }
         }
 
+        // Start is called before the first frame update
+        void Start()
+        {
+
+        }
+
         // Gets the instance.
-        public static WorldUI Instance
+        public static UnitsInfo Instance
         {
             get
             {
@@ -57,15 +56,15 @@ namespace RM_MST
                 if (instance == null)
                 {
                     // Tries to find the instance.
-                    instance = FindObjectOfType<WorldUI>(true);
+                    instance = FindObjectOfType<UnitsInfo>(true);
 
 
                     // The instance doesn't already exist.
                     if (instance == null)
                     {
                         // Generate the instance.
-                        GameObject go = new GameObject("World UI (singleton)");
-                        instance = go.AddComponent<WorldUI>();
+                        GameObject go = new GameObject("Units Info (singleton)");
+                        instance = go.AddComponent<UnitsInfo>();
                     }
 
                 }
@@ -84,59 +83,74 @@ namespace RM_MST
             }
         }
 
-        // Start is called before the first frame update
-        protected override void Start()
+        // Gets the units as a string.
+        public string UnitsToString(units unitsType)
         {
-            base.Start();
+            // TODO: implement, and include shorthands.
 
-            // Sets the world manager.
-            if(worldManager == null)
-                worldManager = instance.worldManager;
-        }
-
-        // Returns 'true' if the stage world UI is active.
-        public bool IsStageWorldUIActive()
-        {
-            return stageWorldUI.isActiveAndEnabled;
-        }
-
-        // Show the stage world UI.
-        public void ShowStageWorldUI(StageWorld stageWorld, int index)
-        {
-            stageWorldUI.SetStageWorld(stageWorld, index);
-            stageWorldUI.gameObject.SetActive(true);
-        }
-
-        // Hide the stage world UI.
-        public void HideStageWorldUI(bool clearUI)
-        {
-            // If the UI should be cleared.
-            if(clearUI)
+            // Checks the units type.
+            switch (unitsType)
             {
-                stageWorldUI.ClearStageWorld();
+                case units.weightImperial: // Weight Imperial
+                    break;
+
+                case units.lengthImperial: // Length Imperial
+                    break;
+
+                case units.time: // Time
+                    break;
+
+                case units.lengthMetric: // Metric
+                    break;
+
+                case units.weightMetric: // Weight
+                    break;
+
+                case units.capacity: // Capacity
+                    break;
             }
 
-            // Hids the stage world UI.
-            stageWorldUI.gameObject.SetActive(false);
+            return string.Empty;
         }
 
-        // Starts the stage in the world UI.
-        public void StartStage(StageWorld stage)
+        // Gets the units group name.
+        public string GetUnitsGroupName(units unitsType)
         {
-            worldManager.ToStage(stage);
+            // TODO: implement.
+
+            return "";
         }
 
-        // Rejects the stage in the world UI.
-        public void RejectStage()
+        // Gets the units group name key.
+        public string GetUnitsGroupNameKey(units unitsType)
         {
-            HideStageWorldUI(true);
+            // TODO: implement.
+
+            return "";
+        }
+
+        // Gets the units group description.
+        public string GetUnitsGroupDescription(units unitsType)
+        {
+            // TODO: implement.
+
+            return "";
+        }
+
+        // Gets the units group description key.
+        public string GetUnitsGroupDescriptionKey(units unitsType)
+        {
+            // TODO: implement.
+
+            return "";
         }
 
         // Update is called once per frame
-        protected override void Update()
+        void Update()
         {
-            base.Update();
+
         }
+
 
         // This function is called when the MonoBehaviour will be destroyed.
         private void OnDestroy()

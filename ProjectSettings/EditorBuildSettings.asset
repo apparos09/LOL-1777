@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ResultsScene.unity
     guid: 84059a4eafd630b458f11a29875d1752
+  - enabled: 1
+    path: Assets/Scenes/WorldSceneDebug.unity
+    guid: dcba48807f80107449c4622d906dc4d7
+  - enabled: 1
+    path: Assets/Scenes/StageSceneDebug.unity
+    guid: 9f15b94135c95a440baedc4d158f0cd2
   m_configObjects: {}

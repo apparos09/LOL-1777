@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace RM_MST
 {
@@ -14,8 +15,14 @@ namespace RM_MST
         // This isn't needed, but it helps with the clarity.
         private static bool instanced = false;
 
-        // The world user interface.
-        // public WorldUI worldUI;
+        // The stage user interface.
+        public StageUI stageUI;
+
+        // The stage.
+        public Stage stage;
+
+        // The world scene.
+        public string worldScene = "WorldScene";
 
         // Constructor
         private StageManager()
@@ -49,6 +56,16 @@ namespace RM_MST
         protected override void Start()
         {
             base.Start();
+
+            // If the gameplay info has been instantiated.
+            if (GameplayInfo.Instantiated)
+            {
+                GameplayInfo gameInfo = GameplayInfo.Instance;
+
+                // Load info into the world if it exists.
+                if (gameInfo.hasStageInfo)
+                    gameInfo.LoadStageInfo(this);
+            }
         }
 
         // Gets the instance.
@@ -85,6 +102,14 @@ namespace RM_MST
             {
                 return instanced;
             }
+        }
+
+        // Goes to the world.
+        public void ToWorld()
+        {
+            // Saves the stage info and goes into the world.
+            GameplayInfo.Instance.SaveStageInfo(this);
+            SceneManager.LoadScene(worldScene);
         }
 
        

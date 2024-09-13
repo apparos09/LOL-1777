@@ -9,16 +9,21 @@ namespace RM_MST
     public class Tutorials : MonoBehaviour
     {
         [System.Serializable]
-        public struct TutorialData
+        public class TutorialData
         {
-            // ...
+            // TODO: implement.
         }
 
         // The tutorial types.
+        // TODO: add the rest.
         public enum tutorialType
         {
-            none
+            none, weightImperial, lengthImperial, time, lengthMetric, weightMetric, capacity
         };
+
+
+        // The tutorial type count.
+        public const int TUTORIAL_TYPE_COUNT = 7;
 
         // The singleton instance.
         private static Tutorials instance;
@@ -33,15 +38,21 @@ namespace RM_MST
         // The tutorials UI.
         public TutorialUI tutorialsUI;
 
-        // The tutorial type count.
-        public const int TUTORIAL_TYPE_COUNT = 18;
-
         // The cleared tutorials.
         public List<tutorialType> clearedTutorials = new List<tutorialType>();
 
         // If 'true', the tutorials object constantly checks for starting tutorials.
         [Tooltip("Constant check for tutorial start.")]
         public bool constantTutorialStartCheck = true;
+
+        [Header("Tutorials")]
+        public bool clearedWeightImperial;
+        public bool clearedLengthImperial;
+        public bool clearedTime;
+
+        public bool clearedLengthMetric;
+        public bool clearedWeightMetric;
+        public bool clearedCapcity;
 
         // Constructor
         private Tutorials()

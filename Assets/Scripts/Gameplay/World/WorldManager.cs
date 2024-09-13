@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace RM_MST
 {
     // The world manager.
     public class WorldManager : GameplayManager
     {
+        // The stage count.
         public const int STAGE_COUNT = 9;
 
         // the instance of the class.
@@ -16,8 +19,26 @@ namespace RM_MST
         // This isn't needed, but it helps with the clarity.
         private static bool instanced = false;
 
+        // Set to 'true' when the late start function has been called.
+        private bool calledLateStart = false;
+
+        [Header("World")]
         // The world user interface.
-        // public WorldUI worldUI;
+        public WorldUI worldUI;
+
+        // The player in the world.
+        public PlayerWorld playerWorld;
+
+        // The game complete event.
+        public GameCompleteEvent gameCompleteEvent;
+
+        [Header("Area")]
+
+        // The stage list.
+        public List<StageWorld> stages = new List<StageWorld>();
+
+        // The stage scene.
+        public string stageScene = "StageScene";
 
         // Constructor
         private WorldManager()
@@ -51,6 +72,41 @@ namespace RM_MST
         protected override void Start()
         {
             base.Start();
+
+            // TODO: check for save data first.
+
+            // If the gameplay info has been instantiated.
+            if (GameplayInfo.Instantiated)
+            {
+                GameplayInfo gameInfo = GameplayInfo.Instance;
+
+                // Load info into the world if it exists.
+                if (gameInfo.hasWorldInfo)
+                    gameInfo.LoadWorldInfo(this);
+            }
+
+            // If there are no stages in the stage list.
+            if(stages.Count == 0)
+            {
+                // Finds all the stages in the world and puts them in the list.
+                stages = new List<StageWorld>(FindObjectsOfType<StageWorld>(true));
+            }
+
+        }
+
+        // The function called after the start function.
+        protected void LateStart()
+        {
+            // Late start has been called.
+            calledLateStart = true;
+
+            // The game complete event is set.
+            if(gameCompleteEvent != null)
+            {
+                // Checks game complete to see if the game is finished.
+                if(!gameCompleteEvent.cleared)
+                    gameCompleteEvent.CheckGameComplete();
+            }
         }
 
         // Gets the instance.
@@ -87,6 +143,12 @@ namespace RM_MST
             {
                 return instanced;
             }
+        }
+
+        // Gets the stage index.
+        public int GetStageWorldIndex(StageWorld stage)
+        {
+            return -1;
         }
 
         // SAVING/LOADING
@@ -184,10 +246,26 @@ namespace RM_MST
             return true;
         }
 
+
+        // Goes to the stage.
+        public void ToStage(StageWorld stageWorld)
+        {
+            // Saves the world info and goes into the stage.
+            GameplayInfo.Instance.SaveWorldInfo(this);
+            SceneManager.LoadScene(stageScene);
+
+        }
+
         // Update is called once per frame
         protected override void Update()
         {
             base.Update();
+
+            // If late start has not been called, call it.
+            if(!calledLateStart)
+            {
+                LateStart();
+            }
         }
 
         // This function is called when the MonoBehaviour will be destroyed.
