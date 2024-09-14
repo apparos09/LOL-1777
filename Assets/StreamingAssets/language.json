@@ -45,7 +45,51 @@
     "unt_weightMetric_dsc": "Milligrams (mg), Grams (g) Kilograms (kg)",
 
     "unt_capacity_nme": "Capacity",
-    "unt_capacity_dsc": "Liters (l), Milliliters (ml)"
+    "unt_capacity_dsc": "Liters (l), Milliliters (ml)",
+
+
+
+    "unt_inches_nme": "Inches",
+    "unt_inches_sbl": "in",
+    "unt_feet_nme": "Feet",
+    "unt_feet_sbl": "ft",
+    "unt_yards_nme": "Yards",
+    "unt_yards_sbl": "yd",
+
+    "unt_millimeters_nme": "Millimeters",
+    "unt_millimeters_sbl": "mm",
+    "unt_centimeters_nme": "Centimeters",
+    "unt_centimeters_sbl": "cm",
+    "unt_decimeters_nme": "Decimeters",
+    "unt_decimeters_sbl": "dm",
+    "unt_meters_nme": "Meters",
+    "unt_meters_sbl": "m",
+    "unt_kilometers_nme": "Kilometers",
+    "unt_kilometers_sbl": "km",
+
+    "unt_pounds_nme": "Pounds",
+    "unt_pounds_sbl": "lbs",
+    "unt_ounces_nme": "Ounces",
+    "unt_ounces_sbl": "oz",
+    "unt_milligrams_nme": "Milligrams",
+    "unt_milligrams_sbl": "mg",
+    "unt_grams_nme": "Grams",
+    "unt_grams_sbl": "g",
+    "unt_kilograms_nme": "Kilograms",
+    "unt_kilograms_sbl": "kg",
+
+    "unt_seconds_nme": "Seconds",
+    "unt_seconds_sbl": "secs",
+    "unt_minutes_nme": "Minutes",
+    "unt_minutes_sbl": "mins",
+    "unt_hours_nme": "Hours",
+    "unt_hours_sbl": "hrs",
+
+    "unt_milliliters_nme": "Millileters",
+    "unt_milliliters_sbl": "mL",
+    "unt_liters_nme": "Liters",
+    "unt_liters_sbl": "l"
+
   }
 
 }

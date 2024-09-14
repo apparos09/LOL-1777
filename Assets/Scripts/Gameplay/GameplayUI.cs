@@ -12,13 +12,13 @@ namespace RM_MST
         // The gameplay manager.
         public GameplayManager gameManager;
 
-        [Header("Menu")]
-        // The text box panel.
-        public Image menuPanel;
+        [Header("Windows/Menus")]
+        // The window panel.
+        public Image windowPanel;
 
         // The settings UI.
         // TODO: add quit button.
-        public GameSettingsUI settingsUI;
+        public GameSettingsUI gameSettingsUI;
 
         [Header("Tutorial")]
 
@@ -34,9 +34,16 @@ namespace RM_MST
         // Start is called before the first frame update
         protected virtual void Start()
         {
+            // If the game manager isn't set, try to find it.
+            if(gameManager == null)
+                gameManager = FindObjectOfType<GameplayManager>();
+
             // If the tutorial UI is not set, set it.
             if (tutorialUI == null)
                 tutorialUI = TutorialUI.Instance;
+
+            // Closes all windows by default.
+            CloseAllWindows();
         }
 
         // TUTORIAL //
@@ -92,46 +99,31 @@ namespace RM_MST
         }
 
         // WINDOWS //
-        // Opens the settings.
-        public void OpenSettings()
+        // Checks if a window is open.
+        public virtual bool IsWindowOpen()
         {
-            settingsUI.gameObject.SetActive(true);
-            OnWindowOpened(settingsUI.gameObject);
-        }
+            // Only checks the settings window here.
+            bool open = gameSettingsUI.gameObject.activeSelf;
 
-        // Closes the settings.
-        public void CloseSettings()
-        {
-            // Close the settings window.
-            settingsUI.gameObject.SetActive(false);
-            OnWindowClosed();
-
-            // Close all the windows.
-            // CloseAllWindows();
-        }
-
-        // Toggles the settings on and off.
-        public void ToggleSettings()
-        {
-            // If the settings is active, close it.
-            if(settingsUI.gameObject.activeSelf) 
-            {
-                CloseSettings();
-            }
-            else // Open the settings.
-            {
-                OpenSettings();
-            }
+            return open;
         }
 
         // Closes all the windows.
         public virtual void CloseAllWindows()
         {
             // Settings
-            settingsUI.gameObject.SetActive(false);
+            gameSettingsUI.gameObject.SetActive(false);
             
             // On Window Closed
             OnWindowClosed();
+        }
+
+        // Opens the provided window.
+        public virtual void OpenWindow(GameObject window)
+        {
+            CloseAllWindows();
+            window.gameObject.SetActive(true);
+            OnWindowOpened(window);
         }
 
         // Called when a window is opened.
@@ -139,17 +131,12 @@ namespace RM_MST
         {
             gameManager.PauseGame();
 
-            // Turns off the settings window if it wasn't the one that got turned on.
-            if (window != settingsUI.gameObject)
-                settingsUI.gameObject.SetActive(false);
-
             // Enables the menu panel to block the UI under it.
-            if (menuPanel != null)
-                menuPanel.gameObject.SetActive(true);
-
+            if (windowPanel != null)
+                windowPanel.gameObject.SetActive(true);
 
             // If the tutorial text box is open.
-            if(IsTutorialTextBoxOpen() && tutorialPanel.gameObject.activeSelf)
+            if(IsTutorialTextBoxOpen() && tutorialPanel != null)
             {
                 // Turns off the tutorial panel so that they aren't overlayed.
                 tutorialPanel.gameObject.SetActive(false);
@@ -173,24 +160,16 @@ namespace RM_MST
             }
 
             // Disables the tutorial panel.
-            if(menuPanel != null)
-                menuPanel.gameObject.SetActive(false);
+            if(windowPanel != null)
+                windowPanel.gameObject.SetActive(false);
 
             // If the tutorial text box is open.
             if (IsTutorialTextBoxOpen())
             {
                 // Turns on the tutorial panel since the menu panel isn't showing now.
-                tutorialPanel.gameObject.SetActive(true);
+                if(tutorialPanel != null)
+                    tutorialPanel.gameObject.SetActive(true);
             }
-        }
-
-        // Checks if a window is open.
-        public virtual bool IsWindowOpen()
-        {
-            // Only checks the settings window here.
-            bool open = settingsUI.gameObject.activeSelf;
-
-            return open;
         }
 
         // Update is called once per frame

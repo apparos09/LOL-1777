@@ -104,6 +104,12 @@ namespace RM_MST
             }
             else
             {
+                // // Prints an error message if the translation failed.
+                // if(Application.isEditor)
+                // {
+                //     Debug.LogError("The LOL SDK has not been initialized. Translation failed.");
+                // }
+
                 // If the text should be marked if failed.
                 if (markIfFailed)
                     MarkText(text);

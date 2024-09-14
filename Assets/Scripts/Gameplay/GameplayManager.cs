@@ -37,6 +37,10 @@ namespace RM_MST
         // Start is called before the first frame update
         protected virtual void Start()
         {
+            // If the game UI isn't set, try to find it.
+            if(gameUI == null)
+                gameUI = FindObjectOfType<GameplayUI>();
+
             // For some reason, when coming back from the match scene this is listed as 'missing'.
 
             // Creates/gets the game info instance.

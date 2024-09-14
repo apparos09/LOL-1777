@@ -14,13 +14,21 @@ namespace RM_MST
         // This isn't needed, but it helps with the clarity.
         private static bool instanced = false;
 
-        [Header("World UI")]
+        [Header("WorldUI")]
         // The world manager.
         public WorldManager worldManager;
 
-        [Header("Stage UI")]
+        [Header("WorldUI/StageUI")]
         // The stage world UI.
         public StageWorldUI stageWorldUI;
+
+        [Header("WorldUI/Windows")]
+
+        // The units info window.
+        public UnitsInfoMenu unitsInfoMenu;
+
+        // The save window.
+        public GameObject saveWindow;
 
         // Constructor
         private WorldUI()
@@ -103,6 +111,48 @@ namespace RM_MST
             }
         }
 
+        // WINDOWS //
+        // Checks if a window is open.
+        public override bool IsWindowOpen()
+        {
+            // Gets the windows.
+            List<GameObject> windows = new List<GameObject>
+            {
+                gameSettingsUI.gameObject,
+                unitsInfoMenu.gameObject,
+                saveWindow
+            };
+
+            // Only checks the settings window here.
+            bool open = false;
+
+            // Goes through all windows.
+            foreach(GameObject window in windows)
+            {
+                // Window is active.
+                if(window.activeSelf)
+                {
+                    open = true;
+                    break;
+                }
+            }
+
+            // Result.
+            return open;
+        }
+
+        // Closes all the windows.
+        public override void CloseAllWindows()
+        {
+            // Close windows in this script.
+            unitsInfoMenu.gameObject.SetActive(false);
+            saveWindow.SetActive(false);
+
+            base.CloseAllWindows();
+        }
+
+
+        // STAGE UI
         // Returns 'true' if the stage world UI is active.
         public bool IsStageWorldUIActive()
         {

@@ -45,6 +45,10 @@ namespace RM_MST
         public Button prevButton;
         public Button nextButton;
 
+        // Loads the entries on enable if true.
+        // This is false by default so that it's called from Start() first.
+        private bool loadEntriesOnEnable = false;
+
         [Header("Groups")]
         // Measurement groups
         public bool clearedWeightImperial;
@@ -63,13 +67,18 @@ namespace RM_MST
             if (unitsInfo == null)
                 unitsInfo = UnitsInfo.Instance;
 
+            // Loads the entries, and sets it to do this on enable.
+            // OnEnable is triggered before start.
             LoadEntries();
+            loadEntriesOnEnable = true;
         }
 
-        // Loads entries on enable.
+        // This function is called when the object becomes enabled and active.
         private void OnEnable()
         {
-            LoadEntries();
+            // Loads entries on enable.
+            if(loadEntriesOnEnable)
+                LoadEntries();
         }
 
         // Generates the units info entry.
@@ -82,8 +91,8 @@ namespace RM_MST
             newEntry.groupNameKey = UnitsInfo.GetUnitsGroupNameKey(unitsType);
 
             // Description
-            newEntry.groupDesc = unitsInfo.GetUnitsGroupName(unitsType);
-            newEntry.groupDescKey = UnitsInfo.GetUnitsGroupNameKey(unitsType);
+            newEntry.groupDesc = unitsInfo.GetUnitsGroupDescription(unitsType);
+            newEntry.groupDescKey = UnitsInfo.GetUnitsGroupDescriptionKey(unitsType);
 
             return newEntry;
         }
@@ -129,7 +138,7 @@ namespace RM_MST
             }
 
 
-            // Clears the list.
+            // Clears the list to make sure no old entries are left.
             entries.Clear();
 
             // Creating Entries
