@@ -34,7 +34,7 @@ namespace RM_MST
         public string stageDesc = "";
 
         // The units types for the stage.
-        public List<UnitsInfo.units> unitTypes = new List<UnitsInfo.units>();
+        public List<UnitsInfo.unitGroups> unitTypes = new List<UnitsInfo.unitGroups>();
 
         // The difficulty of the stage.
         public int difficulty = 0;

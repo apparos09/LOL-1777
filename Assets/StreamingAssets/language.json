@@ -26,7 +26,26 @@
     "kwd_ttsVolume": "Text-to-Speech (TTS) Volume",
     "kwd_mute": "Mute",
     "kwd_textToSpeech": "Text-to-Speech",
-    "kwd_tutorial": "Tutorial"
+    "kwd_tutorial": "Tutorial",
+
+
+    "unt_lengthImperial_nme": "Length (Imperial)",
+    "unt_lengthImperial_dsc": "Inches (in), Feet (ft), Yards (yd)",
+
+    "unt_weightImperial_nme": "Weight (Imperial)",
+    "unt_weightImperial_dsc": "Pounds (lb), Ounces (oz)",
+
+    "unt_time_nme": "Time",
+    "unt_time_dsc": "Seconds (secs), Minutes (mins), Hours (hrs)",
+
+    "unt_lengthMetric_nme": "Length (Metric)",
+    "unt_lengthMetric_dsc": "Millimeters (mm), Centimeters (cm), Decimeters (dm), Meters (m), Kilometers (km)",
+
+    "unt_weightMetric_nme": "Weight (Metric)",
+    "unt_weightMetric_dsc": "Milligrams (mg), Grams (g) Kilograms (kg)",
+
+    "unt_capacity_nme": "Capacity",
+    "unt_capacity_dsc": "Liters (l), Milliliters (ml)"
   }
 
 }

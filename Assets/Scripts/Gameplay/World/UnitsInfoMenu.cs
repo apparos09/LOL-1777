@@ -13,7 +13,7 @@ namespace RM_MST
         public struct UnitsInfoEntry
         {
             // The units type.
-            public UnitsInfo.units unitsType;
+            public UnitsInfo.unitGroups unitsType;
 
             // The group the units belong to, and its key.
             public string groupName;
@@ -73,17 +73,17 @@ namespace RM_MST
         }
 
         // Generates the units info entry.
-        public UnitsInfoEntry GenerateUnitsInfoEntry(UnitsInfo.units unitsType)
+        public UnitsInfoEntry GenerateUnitsInfoEntry(UnitsInfo.unitGroups unitsType)
         {
             // A new entry.
             UnitsInfoEntry newEntry = new UnitsInfoEntry();
 
             newEntry.groupName = unitsInfo.GetUnitsGroupName(unitsType);
-            newEntry.groupNameKey = unitsInfo.GetUnitsGroupNameKey(unitsType);
+            newEntry.groupNameKey = UnitsInfo.GetUnitsGroupNameKey(unitsType);
 
             // Description
             newEntry.groupDesc = unitsInfo.GetUnitsGroupName(unitsType);
-            newEntry.groupDescKey = unitsInfo.GetUnitsGroupNameKey(unitsType);
+            newEntry.groupDescKey = UnitsInfo.GetUnitsGroupNameKey(unitsType);
 
             return newEntry;
         }
@@ -136,38 +136,38 @@ namespace RM_MST
             // Weight (Imperial)
             if(clearedWeightImperial)
             {
-                entries.Add(GenerateUnitsInfoEntry(UnitsInfo.units.weightImperial));
+                entries.Add(GenerateUnitsInfoEntry(UnitsInfo.unitGroups.weightImperial));
             }
 
             // Length (Imperial)
             if(clearedLengthImperial)
             {
-                entries.Add(GenerateUnitsInfoEntry(UnitsInfo.units.lengthImperial));
+                entries.Add(GenerateUnitsInfoEntry(UnitsInfo.unitGroups.lengthImperial));
             }
 
             // Time
             if(clearedTime)
             {
-                entries.Add(GenerateUnitsInfoEntry(UnitsInfo.units.time));
+                entries.Add(GenerateUnitsInfoEntry(UnitsInfo.unitGroups.time));
             }
 
             // Length (Metric)
             if(clearedLengthMetric)
             {
-                entries.Add(GenerateUnitsInfoEntry(UnitsInfo.units.lengthMetric));
+                entries.Add(GenerateUnitsInfoEntry(UnitsInfo.unitGroups.lengthMetric));
 
             }
 
             // Weight (Metric)
             if(clearedWeightMetric)
             {
-                entries.Add(GenerateUnitsInfoEntry(UnitsInfo.units.weightMetric));
+                entries.Add(GenerateUnitsInfoEntry(UnitsInfo.unitGroups.weightMetric));
             }
 
             // Capacity
             if(clearedCapcity)
             {
-                entries.Add(GenerateUnitsInfoEntry(UnitsInfo.units.capacity));
+                entries.Add(GenerateUnitsInfoEntry(UnitsInfo.unitGroups.capacity));
             }
             
             // Enabling/disabling the arrows
