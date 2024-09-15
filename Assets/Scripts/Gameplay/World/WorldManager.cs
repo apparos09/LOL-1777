@@ -262,8 +262,16 @@ namespace RM_MST
         {
             // Saves the world info and goes into the stage.
             GameplayInfo.Instance.SaveWorldInfo(this);
-            SceneManager.LoadScene(stageScene);
+            LoadStageScene();
 
+            // TODO: play to stage animation?
+
+        }
+
+        // Loads the stage scene.
+        public void LoadStageScene()
+        {
+            SceneManager.LoadScene(stageScene);
         }
 
         // Update is called once per frame

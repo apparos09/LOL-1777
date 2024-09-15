@@ -11,7 +11,7 @@ namespace RM_MST
     public class StageWorld : MonoBehaviour
     {
         // World manager.
-        public WorldManager manager;
+        public WorldManager worldManager;
 
         // The collider for the challenger.
         public new BoxCollider2D collider;
@@ -62,8 +62,8 @@ namespace RM_MST
         void Start()
         {
             // Manager.
-            if (manager == null)
-                manager = WorldManager.Instance;
+            if (worldManager == null)
+                worldManager = WorldManager.Instance;
 
             // Checks for the collider.
             if (collider == null)
@@ -141,11 +141,11 @@ namespace RM_MST
         private void OnMouseDown()
         {
             // Grabs the instance if it's not set.
-            if (manager == null)
-                manager = WorldManager.Instance;
+            if (worldManager == null)
+                worldManager = WorldManager.Instance;
 
             // Show the challenger prompt if no window is open, and if the tutorial text box isn't open.
-            if(!manager.worldUI.IsWindowOpen() && !manager.worldUI.IsTutorialTextBoxOpen())
+            if(!worldManager.worldUI.IsWindowOpen() && !worldManager.worldUI.IsTutorialTextBoxOpen())
             {
                 // Shows the challenge UI.
                 ShowStageWorldUI();
@@ -304,9 +304,30 @@ namespace RM_MST
                     // TODO: don't do this if the UI is active?
 
                     // Shows the selected stage.
-                    manager.worldUI.ShowStageWorldUI(this, manager.GetStageWorldIndex(this));
+                    worldManager.worldUI.ShowStageWorldUI(this, worldManager.GetStageWorldIndex(this));
                 }    
             }
+        }
+
+        // Generates the stage start information.
+        public GameplayInfo.StageStartInfo GenerateStageInfo()
+        {
+            // The stage start info.
+            GameplayInfo.StageStartInfo stageStartInfo = new GameplayInfo.StageStartInfo();
+
+            // Sets the name, units groups, and difficulty.
+            stageStartInfo.name = stageName;
+            stageStartInfo.unitGroups = unitGroups;
+            stageStartInfo.difficulty = difficulty;
+
+            // Gets the index for the stage start.
+            stageStartInfo.index = worldManager.GetStageWorldIndex(this);
+
+            // The info is valid to read from.
+            stageStartInfo.valid = true;
+
+            // Reutnrs the object.
+            return stageStartInfo;
         }
 
         // Update is called once per frame

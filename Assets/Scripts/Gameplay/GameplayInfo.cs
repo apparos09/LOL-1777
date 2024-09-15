@@ -7,6 +7,25 @@ namespace RM_MST
     // This script is used for game info that's shared between all scenes.
     public class GameplayInfo : MonoBehaviour
     {
+        // The information for starting a stage.
+        public struct StageStartInfo
+        {
+            // Valid - see if the stage start info is valid.
+            public bool valid;
+
+            // Name
+            public string name;
+
+            // Unit Groups
+            public List<UnitsInfo.unitGroups> unitGroups;
+
+            // Difficulty
+            public int difficulty;
+
+            // Index in the Stage List
+            public int index;
+        }
+
         // The singleton instance.
         private static GameplayInfo instance;
 
@@ -20,12 +39,15 @@ namespace RM_MST
         // The game score.
         public int gameScore = 0;
 
-        [Header("World Info")]
+        [Header("WorldInfo")]
 
         // If the class has world info.
         public bool hasWorldInfo = false;
 
-        [Header("Stage Info")]
+        // The stage start information.
+        public StageStartInfo stageStartInfo;
+
+        [Header("StageInfo")]
 
         // If the class has stage info.
         public bool hasStageInfo = false;
@@ -63,6 +85,9 @@ namespace RM_MST
         {
             // Don't destroy this game object on load.
             DontDestroyOnLoad(gameObject);
+
+            // Blank data to start.
+            stageStartInfo = new StageStartInfo();
         }
 
         // Gets the instance.
@@ -120,6 +145,16 @@ namespace RM_MST
         public void SaveWorldInfo(WorldManager worldManager)
         {
             SaveGameplayInfo(worldManager);
+
+            // Tries to grab the next stage.
+            StageWorld nextStage = worldManager.worldUI.stageWorldUI.stageWorld;
+
+            // Next stage is set.
+            if (nextStage != null)
+            {
+                // Generates the stage info and sets it.
+                stageStartInfo = nextStage.GenerateStageInfo();
+            }
 
             // There is world info.
             hasWorldInfo = true;

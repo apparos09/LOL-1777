@@ -249,6 +249,10 @@ PrefabInstance:
       propertyPath: reqStageWorlds.Array.data[0]
       value: 
       objectReference: {fileID: 1493222276}
+    - target: {fileID: 6622377654606349290, guid: db4b37199e3470e49a5c2ff2ef80e384, type: 3}
+      propertyPath: worldManager
+      value: 
+      objectReference: {fileID: 142188536}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -469,6 +473,10 @@ PrefabInstance:
       propertyPath: stageNameKey
       value: kwd_mix1
       objectReference: {fileID: 0}
+    - target: {fileID: 6622377654606349290, guid: db4b37199e3470e49a5c2ff2ef80e384, type: 3}
+      propertyPath: worldManager
+      value: 
+      objectReference: {fileID: 142188536}
     - target: {fileID: 6622377654606349290, guid: db4b37199e3470e49a5c2ff2ef80e384, type: 3}
       propertyPath: unitGroups.Array.size
       value: 2
@@ -812,6 +820,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6622377654606349290, guid: db4b37199e3470e49a5c2ff2ef80e384, type: 3}
+      propertyPath: worldManager
+      value: 
+      objectReference: {fileID: 142188536}
     - target: {fileID: 6622377654606349290, guid: db4b37199e3470e49a5c2ff2ef80e384, type: 3}
       propertyPath: unitGroups.Array.size
       value: 1

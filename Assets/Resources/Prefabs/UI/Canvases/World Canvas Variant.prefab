@@ -585,7 +585,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cf114e3cf2e7fde4b83818dd8bd227a8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c0861e875928561468026c2d8f487494, type: 3}
   m_Type: 2
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -594,7 +594,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 4
+  m_PixelsPerUnitMultiplier: 1
 --- !u!114 &8928378130909376739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1096,7 +1096,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cf114e3cf2e7fde4b83818dd8bd227a8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c0861e875928561468026c2d8f487494, type: 3}
   m_Type: 2
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1105,7 +1105,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 4
+  m_PixelsPerUnitMultiplier: 1
 --- !u!114 &8339220010964462147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1861,17 +1861,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e091c7d346c67944a2b179d5eb7eccd, type: 3}
---- !u!114 &2671452611193792849 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1387849982361933110, guid: 1e091c7d346c67944a2b179d5eb7eccd, type: 3}
-  m_PrefabInstance: {fileID: 3913704811216370791}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6748871017171806034 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7780121895344380725, guid: 1e091c7d346c67944a2b179d5eb7eccd, type: 3}
@@ -2495,7 +2484,6 @@ MonoBehaviour:
   windowPanel: {fileID: 1562984898422303780}
   gameSettingsUI: {fileID: 860983818998692564}
   tutorialUI: {fileID: 6748871017171806034}
-  tutorialPanel: {fileID: 2671452611193792849}
   worldManager: {fileID: 0}
   stageWorldUI: {fileID: 798173595517633425}
   unitsInfoMenu: {fileID: 1618309164583767552}
