@@ -28,10 +28,10 @@
     "kwd_textToSpeech": "Text-to-Speech",
     "kwd_tutorial": "Tutorial",
 
+    "kwd_units": "Units",
     "kwd_unitsInfo": "Units Info",
 
     "kwd_save": "Save",
-
 
     "unt_lengthImperial_nme": "Length (Imperial)",
     "unt_lengthImperial_dsc": "Inches (in), Feet (ft), Yards (yd)",
@@ -92,7 +92,14 @@
     "unt_milliliters_nme": "Millileters",
     "unt_milliliters_sbl": "mL",
     "unt_liters_nme": "Liters",
-    "unt_liters_sbl": "l"
+    "unt_liters_sbl": "l",
+
+    "kwd_all": "All",
+    "kwd_none": "None",
+
+    "kwd_mix1": "Mix 1",
+    "kwd_mix2": "Mix 2",
+    "kwd_mix3": "Mix 3"
 
   }
 

@@ -10,6 +10,8 @@ namespace RM_MST
     public class UnitsInfo : MonoBehaviour
     {
         // The measurement units.
+        public const int NUMBER_OF_UNIT_GROUPS = 7;
+
         public enum unitGroups { none, lengthImperial, weightImperial, time, lengthMetric, weightMetric, capacity }
 
         // The weight units.

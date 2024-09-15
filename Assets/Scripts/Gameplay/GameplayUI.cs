@@ -75,7 +75,8 @@ namespace RM_MST
         // Checks if the tutorial text box is open.
         public bool IsTutorialTextBoxOpen()
         {
-            return tutorialTextBox.textBox.IsVisible();
+            // Checks if it's visible normally, and in the hierachy.
+            return tutorialTextBox.textBox.IsVisible() && tutorialTextBox.textBox.IsVisibleInHierachy();
         }
 
         // Returns 'true' if the tutorial can be started.

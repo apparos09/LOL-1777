@@ -10,9 +10,6 @@ namespace util
         // The text for the page.
         public string text = "";
 
-        // The key for the text to be read with text-to-speech. This may differ from what the text actually says.
-        public string speakKey = "";
-
         // The callback for the page.
         public delegate void PageCallback();
 
@@ -26,33 +23,12 @@ namespace util
         public Page()
         {
             text = "";
-            speakKey = "";
         }
 
         // Adds a page with text.
         public Page(string text)
         {
             this.text = text;
-            speakKey = "";
-        }
-
-        // Adds a page with text and a speak key.
-        public Page(string text, string speakKey)
-        {
-            this.text = text;
-            this.speakKey = speakKey;
-        }
-
-        // Reads the page.
-        public void SpeakPage()
-        {
-            // TODO: read page using TTS
-        }
-
-        // Stops the page from being spoken.
-        public void StopSpeakingPage()
-        {
-            // TODO: stop reading page using TTS
         }
 
         // Add a callback for when the page is opened.
@@ -85,9 +61,6 @@ namespace util
             // Trigger the callbacks.
             if (pageOpenCallback != null)
                 pageOpenCallback();
-
-            // Use text-to-speech to speak the page content.
-            SpeakPage();
         }
 
         // Called when the page is closed.

@@ -23,12 +23,14 @@ namespace RM_MST
 
         [Header("Settings")]
 
+        // TODO: enable by default for submission build.
         // Use the text-to-speech options.
-        private bool useTTS = true;
+        private bool useTTS = false;
 
+        // TODO: enable by default for submission build.
         // Use the tutorial for the game.
         // This is only relevant when starting up the game scene.
-        private bool useTutorial = true; // Off by default to help with game scene testing.
+        private bool useTutorial = false; // Off by default to help with game scene testing.
 
         // Audio Tags
         // The tag for BGM objects.

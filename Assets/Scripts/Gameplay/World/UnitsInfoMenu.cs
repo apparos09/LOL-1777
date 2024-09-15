@@ -178,9 +178,19 @@ namespace RM_MST
             {
                 entries.Add(GenerateUnitsInfoEntry(UnitsInfo.unitGroups.capacity));
             }
-            
-            // Enabling/disabling the arrows
-            if(entries.Count > 1)
+
+            // Refreshes the info menu buttons.
+            RefreshButtons();
+
+            // Loads an entry.
+            SetEntry(0);
+        }
+
+        // Refreshes the buttons for the info menu.
+        public void RefreshButtons()
+        {
+            // Enabling/disabling the previous and next buttons.
+            if (entries.Count > 1)
             {
                 prevButton.interactable = true;
                 nextButton.interactable = true;
@@ -190,9 +200,6 @@ namespace RM_MST
                 prevButton.interactable = false;
                 nextButton.interactable = false;
             }
-
-            // Loads an entry.
-            SetEntry(0);
         }
 
         // Goes to the previous entry.

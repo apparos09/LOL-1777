@@ -22,7 +22,7 @@ namespace RM_MST
         // The stage world UI.
         public StageWorldUI stageWorldUI;
 
-        [Header("WorldUI/Windows")]
+        [Header("WorldUI/Options Windows")]
 
         // The units info window.
         public UnitsInfoMenu unitsInfoMenu;
@@ -164,6 +164,12 @@ namespace RM_MST
         {
             stageWorldUI.SetStageWorld(stageWorld, index);
             stageWorldUI.gameObject.SetActive(true);
+
+            // TODO: start the tutorial where applicable
+            // if(GameSettings.Instance.UseTutorial)
+            // {
+            // 
+            // }
         }
 
         // Hide the stage world UI.

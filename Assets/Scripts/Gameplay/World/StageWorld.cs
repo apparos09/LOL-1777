@@ -25,16 +25,28 @@ namespace RM_MST
         // The stage sprite.
         public Sprite stageSprite;
 
+        // Gets set to 'true' when late start has been called.
+        private bool calledLateStart = false;
+
         [Header("Info")]
 
         // The stage name.
         public string stageName = "";
 
+        // The stage name key.
+        public string stageNameKey = "";
+
+        // If 'true', the name text is automatically set.
+        public bool autoSetNameText = true;
+
         // The stage description.
         public string stageDesc = "";
 
+        // The stage description key.
+        public string stageDescKey = "";
+
         // The units types for the stage.
-        public List<UnitsInfo.unitGroups> unitTypes = new List<UnitsInfo.unitGroups>();
+        public List<UnitsInfo.unitGroups> unitGroups = new List<UnitsInfo.unitGroups>();
 
         // The difficulty of the stage.
         public int difficulty = 0;
@@ -66,14 +78,63 @@ namespace RM_MST
                 // Tries to get the component (no longer checks children for misinput concerns).
                 spriteRenderer = GetComponent<SpriteRenderer>();
             }
+        }
 
-            // Sets the stage text.
-            if(nameText != null)
+        // Called on the first update frame.
+        void LateStart()
+        {
+            UnitsInfo unitsInfo = UnitsInfo.Instance;
+
+            // NAME
+            // If the stage name and the key are empty, generate them.
+            if (stageName == "" && stageNameKey == "")
+            {
+                // Sets the name.
+                stageName = GenerateStageName();
+
+                // Sets the speak key to the first group.
+                if (unitGroups.Count > 0)
+                    stageNameKey = UnitsInfo.GetUnitsGroupNameKey(unitGroups[0]);
+            }
+            else
+            {
+                // If the name key is not empty, translate the name.
+                if(stageNameKey != "")
+                {
+                    if(LOLManager.IsLOLSDKInitialized())
+                        stageName = LOLManager.Instance.GetLanguageText(stageNameKey);
+                }
+            }
+
+            // Sets the stage text to the stage name.
+            if (nameText != null && autoSetNameText)
+            {
                 nameText.text = stageName;
+            }
 
-            // If there is no description, generate one.
-            if(stageDesc == "")
-                GenerateStageDescription();
+            // DESCRIPTION
+            // If the stage description and the key are empty, generate them.
+            if (stageDesc == "" && stageDescKey == "")
+            {
+                // Sets the description.
+                stageDesc = GenerateStageDescription();
+
+                // Sets the speak key to the first group.
+                if (unitGroups.Count > 0)
+                    stageDescKey = UnitsInfo.GetUnitsGroupDescriptionKey(unitGroups[0]);
+            }
+            else
+            {
+                // If the description key is not empty, translate the name.
+                if (stageDescKey != "")
+                {
+                    if (LOLManager.IsLOLSDKInitialized())
+                        stageDesc = LOLManager.Instance.GetLanguageText(stageDescKey);
+                }
+            }
+
+            // Late Start has been called.
+            calledLateStart = true;
         }
 
         // MouseDown
@@ -165,11 +226,70 @@ namespace RM_MST
             return available && cleared;
         }
 
-        // Generates the stage world description.
+        // Generates the info based on the type.
+        // 1 = Name, 2 = Description
+        private string GenerateStageInfo(int type)
+        {
+            // The temporary string.
+            string str = "";
+
+            // The units info.
+            UnitsInfo unitsInfo = UnitsInfo.Instance;
+
+            // The used groups.
+            List<UnitsInfo.unitGroups> usedGroups = new List<UnitsInfo.unitGroups>();
+
+            // TODO: you should probably have a better way to do this.
+            // Goes through all the unit groups.
+            for (int i = 0; i < unitGroups.Count; i++)
+            {
+                // If the group hasn't been used yet.
+                if (!usedGroups.Contains(unitGroups[i]))
+                {
+                    switch(type)
+                    {
+                        default:
+                        case 0:
+                        case 1: // Name
+                            str += unitsInfo.GetUnitsGroupName(unitGroups[i]);
+                            break;
+
+                        case 2: // Description
+                            str += unitsInfo.GetUnitsGroupDescription(unitGroups[i]);
+                            break;
+                    }
+                    
+                    str += ", ";
+
+                    // Add to the used groups.
+                    usedGroups.Add(unitGroups[i]);
+                }
+            }
+
+
+            // Group was used.
+            if(unitGroups.Count > 0)
+            {
+                // Remove the last two characters to get rid of the comma and space.
+                if (str.Length > 2)
+                    str = str.Remove(str.Length - 2, 2);
+            }
+            
+
+            // TODO: just say "all" if all groups are shown.
+            return str;
+        }
+
+        // Generates the stage world name. This does not set the name.
+        public string GenerateStageName()
+        {
+            return GenerateStageInfo(1);
+        }
+
+        // Generates the stage world description. This does not set the description.
         public string GenerateStageDescription()
         {
-            // TODO: generate a stage description based on the units type.
-            return stageDesc;
+            return GenerateStageInfo(2);
         }
 
         // Tries to show the challenge UI and loads in the content.
@@ -189,10 +309,12 @@ namespace RM_MST
             }
         }
 
-        //// Update is called once per frame
-        //void Update()
-        //{
-
-        //}
+        // Update is called once per frame
+        void Update()
+        {
+            // Calls late start.
+            if (!calledLateStart)
+                LateStart();
+        }
     }
 }

@@ -228,7 +228,9 @@ namespace RM_MST
         // Called when the text box is closed.
         private void OnTextBoxClosed()
         {
-            // ...
+            // NOTE: this may not be needed.
+            // // The tutorial has ended (at least for now), so allow the game to move again.
+            // tutorials.OnTutorialEnd();
         }
 
         // Called when the text box is finished.

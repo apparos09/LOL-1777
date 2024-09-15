@@ -98,10 +98,11 @@ MonoBehaviour:
   spriteRenderer: {fileID: 1140588440308432578}
   nameText: {fileID: 6478868057610281889}
   stageSprite: {fileID: 0}
-  stageName: ...
-  stageDesc: ...
-  unitTypes: 
+  stageName: 
+  stageDesc: 
+  unitGroups: 
   difficulty: 0
+  cleared: 0
 --- !u!114 &3414718615701894934
 MonoBehaviour:
   m_ObjectHideFlags: 0
