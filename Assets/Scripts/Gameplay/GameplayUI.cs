@@ -172,6 +172,12 @@ namespace RM_MST
             }
         }
 
+        // Goes to the title scene.
+        public virtual void ToTitleScene()
+        {
+            gameManager.ToTitleScene();
+        }
+
         // Update is called once per frame
         protected virtual void Update()
         {

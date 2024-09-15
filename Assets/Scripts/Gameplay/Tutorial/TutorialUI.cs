@@ -22,15 +22,11 @@ namespace RM_MST
         // The tutorials object.
         public Tutorials tutorials;
 
+        // The background panel.
+        public Image backgroundPanel;
+
         // The tutorial text box.
         public TutorialTextBox textBox;
-
-        [Header("Diagram")]
-        // The text box image object.
-        public GameObject textBoxDiagram;
-
-        // The text box image.
-        public Image textBoxDiagramImage;
 
 
         [Header("Diagram/Images")]
@@ -100,9 +96,9 @@ namespace RM_MST
                 tutorials = Tutorials.Instance;
 
             // If the text box is open, close it.
-            if(textBox.gameObject.activeSelf)
+            if(textBox.IsTextBoxVisible())
             {
-                textBox.gameObject.SetActive(false);
+                textBox.CloseTextBox();
             }
         }
 
@@ -250,31 +246,32 @@ namespace RM_MST
             tutorials.OnTutorialEnd();
         }
 
-        // Diagram
-        // Sets the diagram's visibility.
-        public void SetDiagramVisibility(bool visible)
-        {
-            textBoxDiagram.SetActive(visible);
-        }
-
-        // Show the diagram.
-        public void ShowDiagram()
-        {
-            SetDiagramVisibility(true);
-        }
-
-        // Hide the diagram.
-        public void HideDiagram()
-        {
-            SetDiagramVisibility(false);
-        }
-
-        // Clears the diagram.
-        public void ClearDiagram()
-        {
-            // Clear out the sprite.
-            textBoxDiagramImage.sprite = alpha0Sprite;
-        }
+        // TODO: replace diagram with table.
+        // // Diagram
+        // // Sets the diagram's visibility.
+        // public void SetDiagramVisibility(bool visible)
+        // {
+        //     textBoxDiagram.SetActive(visible);
+        // }
+        // 
+        // // Show the diagram.
+        // public void ShowDiagram()
+        // {
+        //     SetDiagramVisibility(true);
+        // }
+        // 
+        // // Hide the diagram.
+        // public void HideDiagram()
+        // {
+        //     SetDiagramVisibility(false);
+        // }
+        // 
+        // // Clears the diagram.
+        // public void ClearDiagram()
+        // {
+        //     // Clear out the sprite.
+        //     textBoxDiagramImage.sprite = alpha0Sprite;
+        // }
 
         // DIAGRAM IMAGES
         // Set diagram image by type.

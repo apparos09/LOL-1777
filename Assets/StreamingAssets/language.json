@@ -28,6 +28,10 @@
     "kwd_textToSpeech": "Text-to-Speech",
     "kwd_tutorial": "Tutorial",
 
+    "kwd_unitsInfo": "Units Info",
+
+    "kwd_save": "Save",
+
 
     "unt_lengthImperial_nme": "Length (Imperial)",
     "unt_lengthImperial_dsc": "Inches (in), Feet (ft), Yards (yd)",

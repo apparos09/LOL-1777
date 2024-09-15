@@ -191,6 +191,12 @@ namespace RM_MST
             HideStageWorldUI(true);
         }
 
+        // Saves the game.
+        public void SaveGame()
+        {
+            worldManager.SaveGame();
+        }
+
         // Update is called once per frame
         protected override void Update()
         {

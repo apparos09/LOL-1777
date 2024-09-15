@@ -164,8 +164,8 @@ namespace RM_MST
         }
 
         // SCENES //
-        // Go to the title scene.
-        public virtual void ToTitleScene()
+        // Called when leaving the scene.
+        protected virtual void OnGameEnd()
         {
             // Destroys 'DontDestroyOnLoad' Objects
             // Game Info
@@ -175,6 +175,13 @@ namespace RM_MST
             // Tutorial
             if (Tutorials.Instantiated)
                 Destroy(Tutorials.Instance.gameObject);
+        }
+        
+        // Go to the title scene.
+        public virtual void ToTitleScene()
+        {
+            // Called when the game is ending (to title or results).
+            OnGameEnd();
 
             // TODO: add loading screen.
             SceneManager.LoadScene("TitleScene");
@@ -183,18 +190,8 @@ namespace RM_MST
         // Go to the resultsscene.
         public virtual void ToResultsScene()
         {
-            // If the game info object exists, destroy it.
-            if (GameplayInfo.Instantiated)
-            {
-                Destroy(GameplayInfo.Instance.gameObject);
-            }
-
-            // If the tutorial object exists, destroy it.
-            if (Tutorials.Instantiated)
-            {
-                Destroy(Tutorials.Instance.gameObject);
-            }
-
+            // Called when the game is ending (to title or results).
+            OnGameEnd();
 
             // TODO: add loading screen.
             SceneManager.LoadScene("ResultsScene");

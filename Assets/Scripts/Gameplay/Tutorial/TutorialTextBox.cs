@@ -16,6 +16,25 @@ namespace RM_MST
         public Image speakerImage;
 
 
+        // OPEN/CLOSE Text Box
+        // If the text box is visible, return 'true'.
+        public bool IsTextBoxVisible()
+        {
+            return textBox.IsVisible();
+        }
+
+        // Opens the text box.
+        public void OpenTextBox()
+        {
+            textBox.Open();
+        }
+
+        // Closes the text box.
+        public void CloseTextBox()
+        {
+            textBox.Close();
+        }
+
         // SPEAKER //
         // Shows the speaker image.
         public void ShowSpeakerImage()

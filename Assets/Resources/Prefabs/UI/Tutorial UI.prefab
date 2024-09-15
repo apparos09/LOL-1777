@@ -51,6 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameUI: {fileID: 0}
   tutorials: {fileID: 0}
+  backgroundPanel: {fileID: 1387849982361933110}
   textBox: {fileID: 7945077343697285619}
   textBoxDiagram: {fileID: 0}
   textBoxDiagramImage: {fileID: 0}
@@ -156,6 +157,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 803cf5c20181dd9479e3ab89df04711b, type: 3}
+--- !u!114 &1387849982361933110 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7169901339883688067, guid: 803cf5c20181dd9479e3ab89df04711b, type: 3}
+  m_PrefabInstance: {fileID: 8125119845263623605}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5830747417119629831 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2317313738528221106, guid: 803cf5c20181dd9479e3ab89df04711b, type: 3}
