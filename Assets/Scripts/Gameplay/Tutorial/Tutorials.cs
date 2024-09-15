@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using util;
 
 namespace RM_MST
@@ -106,6 +108,22 @@ namespace RM_MST
             // Gets the tutorials object.
             if (tutorialsUI == null)
                 tutorialsUI = TutorialUI.Instance;
+
+            // Don't destroy this game object.
+            DontDestroyOnLoad(gameObject);
+        }
+
+
+        // This function is called when the object is enabled and active
+        private void OnEnable()
+        {
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+
+        // This function is called when the behaviour becomes disabled or inactive
+        private void OnDisable()
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
         }
 
         // Gets the instance.
@@ -142,6 +160,21 @@ namespace RM_MST
             {
                 return instanced;
             }
+        }
+
+        // Called when the scene is loaded.
+        public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            // If the game manager is not set, set it.
+            if (gameManager == null)
+            {
+                // Try to find the game manager.
+                gameManager = FindObjectOfType<GameplayManager>();
+            }
+
+            // Try to get the tutorials UI again.
+            if(tutorialsUI == null)
+                tutorialsUI = TutorialUI.Instance;
         }
 
         // Checks if a tutorial is running.
@@ -186,8 +219,10 @@ namespace RM_MST
 
             // Unfreeze the game if the game is not paused.
             if (!gameManager.IsGamePaused())
+            {
                 Time.timeScale = 1.0F;
-
+            }
+                
             // Ignore the current input for this frame in case the player is holding the space bar.
             // gameManager.player.IgnoreInputs(1);
         }
@@ -282,10 +317,21 @@ namespace RM_MST
         // Tutorial Loader
 
         // Loads the tutorial
-        private void LoadTutorial(ref List<Page> pages)
+        private void LoadTutorial(ref List<Page> pages, bool startTutorial = true)
         {
+            // The gameplay manager isn't set, try to find it.
+            if (gameManager == null)
+                gameManager = FindObjectOfType<GameplayManager>();
+
             // Loads pages for the tutorial.
-            tutorialsUI.LoadPages(ref pages, false);
+            if(gameManager != null && startTutorial) // If the game manager is set, start the tutorial.
+            {
+                gameManager.StartTutorial(pages);
+            }
+            else // No game manager, so just load the pages.
+            {
+                tutorialsUI.LoadPages(ref pages, false);
+            }
         }
 
         // Loads the tutorial of the provided type.
@@ -296,7 +342,7 @@ namespace RM_MST
 
 
         // Load the tutorial (template)
-        private void LoadTutorialTemplate()
+        private void LoadTutorialTemplate(bool startTutorial = true)
         {
             // Create the pages list.
             List<Page> pages = new List<Page>
@@ -308,7 +354,24 @@ namespace RM_MST
             // Change the display image when certain pages are opened using callbacks.
 
             // Loads the tutorial.
-            LoadTutorial(ref pages);
+            LoadTutorial(ref pages, startTutorial);
+        }
+
+        // Load test tutorial
+        public void LoadTutorialTest(bool startTutorial = true)
+        {
+            // Create the pages list.
+            List<Page> pages = new List<Page>
+            {
+                // Load the pages.
+                new MST_Page("This is a test."),
+                new MST_Page("This is only a test.")
+            };
+
+            // Change the display image when certain pages are opened using callbacks.
+
+            // Loads the tutorial.
+            LoadTutorial(ref pages, startTutorial);
         }
 
 

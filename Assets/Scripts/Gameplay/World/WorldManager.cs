@@ -114,6 +114,9 @@ namespace RM_MST
                 if(!gameCompleteEvent.cleared)
                     gameCompleteEvent.CheckGameComplete();
             }
+
+            // Loads the test tutorial.
+            // tutorials.LoadTutorialTest();
         }
 
         // Gets the instance.

@@ -22,7 +22,7 @@ namespace RM_MST
         // The tutorials object.
         public Tutorials tutorials;
 
-        // The background panel.
+        // The background panel used to block other buttons.
         public Image backgroundPanel;
 
         // The tutorial text box.
@@ -61,9 +61,9 @@ namespace RM_MST
             // Run code for initialization.
             if (!instanced)
             {
-                textBox.textBox.OnTextBoxOpenedAddCallback(OnTextBoxOpened);
-                textBox.textBox.OnTextBoxClosedAddCallback(OnTextBoxClosed);
-                textBox.textBox.OnTextBoxFinishedAddCallback(OnTextBoxFinished);
+                textBox.OnTextBoxOpenedAddCallback(OnTextBoxOpened);
+                textBox.OnTextBoxClosedAddCallback(OnTextBoxClosed);
+                textBox.OnTextBoxFinishedAddCallback(OnTextBoxFinished);
 
                 instanced = true;
             }
@@ -96,9 +96,9 @@ namespace RM_MST
                 tutorials = Tutorials.Instance;
 
             // If the text box is open, close it.
-            if(textBox.IsTextBoxVisible())
+            if(textBox.IsVisible())
             {
-                textBox.CloseTextBox();
+                textBox.Close();
             }
         }
 
@@ -142,13 +142,13 @@ namespace RM_MST
         public bool IsTutorialRunning()
         {
             // If the textbox is isible, then the tutorial is active.
-            return textBox.textBox.IsVisible();
+            return textBox.IsVisible();
         }
 
         // Starts a tutorial.
         public void StartTutorial()
         {
-            textBox.textBox.SetPage(0);
+            textBox.SetPage(0);
             OpenTextBox();
         }
 
@@ -156,11 +156,11 @@ namespace RM_MST
         public void RestartTutorial()
         {
             // Gets the pages from the text box.
-            List<Page> pages = textBox.textBox.pages;
+            List<Page> pages = textBox.pages;
 
             // Ends the tutorial, sets the textbox pages, and starts the tutorial again.
             EndTutorial();
-            textBox.textBox.pages = pages;
+            textBox.pages = pages;
             StartTutorial();
         }
 
@@ -171,7 +171,7 @@ namespace RM_MST
             if(IsTutorialRunning())
             {
                 // Sets to the last page and closes the text box.
-                textBox.textBox.SetPage(textBox.textBox.GetPageCount() - 1);
+                textBox.SetPage(textBox.GetPageCount() - 1);
                 CloseTextBox();
             }
         }
@@ -179,13 +179,17 @@ namespace RM_MST
         // Called when a tutorial is started.
         public void OnTutorialStart()
         {
-            // ...
+            // If there is a background panel, turn it on.
+            if(backgroundPanel != null)
+                backgroundPanel.gameObject.SetActive(true);
         }
 
         // Called when a tutorail ends.
         public void OnTutorialEnd()
         {
-            // ...
+            // If there is no background panel, turn it off.
+            if (backgroundPanel != null)
+                backgroundPanel.gameObject.SetActive(false);
         }
 
         // TEXT BOX
@@ -194,23 +198,23 @@ namespace RM_MST
         {
             // If the pages should be cleared.
             if (clearPages)
-                textBox.textBox.ClearPages();
+                textBox.ClearPages();
 
             // Adds pages to the end of the text box.
-            textBox.textBox.pages.AddRange(pages);
+            textBox.pages.AddRange(pages);
 
         }
 
         // Opens Text Box
         public void OpenTextBox()
         {
-            textBox.textBox.Open();
+            textBox.Open();
         }
 
         // Closes the Text Box
         public void CloseTextBox()
         {
-            textBox.textBox.Close();
+            textBox.Close();
         }
 
         // Text box operations.
@@ -237,7 +241,7 @@ namespace RM_MST
         private void OnTextBoxFinished()
         {
             // Remove all the pages.
-            textBox.textBox.ClearPages();
+            textBox.ClearPages();
 
             // These should be handled by the pages.
             // // Clear the diagram and hides it.

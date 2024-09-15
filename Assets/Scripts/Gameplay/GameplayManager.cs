@@ -25,6 +25,9 @@ namespace RM_MST
         // The mouse touch object.
         public MouseTouchInput mouseTouch;
 
+        // The tutorials object.
+        public Tutorials tutorials;
+
         // NOTE: GameInfo and Tutorial aren't listed here because they're singletons.
         // Having them be in the scene from the start caused issues, so I'm not going to have them.
 
@@ -52,15 +55,16 @@ namespace RM_MST
             //     Tutorial tutorial = Tutorial.Instance;
             // }
 
-            // Creates a tutorial instance.
-            Tutorials tutorial = Tutorials.Instance;
+            // Sets the tutorials object.
+            if (tutorials == null)
+                tutorials = Tutorials.Instance;
 
 
             // If the gameUI is set, check for the tutorial text box.
             if (gameUI != null)
             {
                 // If the tutorial text box is set...
-                if (gameUI.tutorialTextBox != null)
+                if (gameUI.tutorialUI.textBox != null)
                 {
                     // Adds the callbakcs from the tutorial text box.
                     // I don't think I need to remove them.
@@ -92,6 +96,20 @@ namespace RM_MST
         public virtual void SetGamePaused(bool paused)
         {
             gamePaused = paused;
+
+            // If the game is paused.
+            if(gamePaused)
+            {
+                Time.timeScale = 0;
+            }
+            else // If the game is not paused.
+            {
+                // If the tutorial is not running, set the time scale to 1.0F.
+                if (!IsTutorialRunning())
+                {
+                    Time.timeScale = 1.0F;
+                }
+            }
         }
 
         // Pauses the game.
@@ -139,6 +157,14 @@ namespace RM_MST
             return gameUI.IsTutorialTextBoxOpen();
         }
 
+        // Checks if the tutorial is running.
+        public bool IsTutorialRunning()
+        {
+            // Check this function.
+            return gameUI.IsTutorialRunning();
+            
+        }
+
         // Starts a tutorial using the provided pages.
         public virtual void StartTutorial(List<Page> pages)
         {
@@ -175,6 +201,9 @@ namespace RM_MST
             // Tutorial
             if (Tutorials.Instantiated)
                 Destroy(Tutorials.Instance.gameObject);
+
+            // Make sure the time scale is normal.
+            Time.timeScale = 1.0F;
         }
         
         // Go to the title scene.

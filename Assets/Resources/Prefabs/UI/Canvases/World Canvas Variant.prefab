@@ -1775,10 +1775,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tutorial UI
       objectReference: {fileID: 0}
-    - target: {fileID: 3894003072332713506, guid: 1e091c7d346c67944a2b179d5eb7eccd, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5892789359882824552, guid: 1e091c7d346c67944a2b179d5eb7eccd, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1865,15 +1861,15 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e091c7d346c67944a2b179d5eb7eccd, type: 3}
---- !u!114 &6346364028337343892 stripped
+--- !u!114 &2671452611193792849 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7945077343697285619, guid: 1e091c7d346c67944a2b179d5eb7eccd, type: 3}
+  m_CorrespondingSourceObject: {fileID: 1387849982361933110, guid: 1e091c7d346c67944a2b179d5eb7eccd, type: 3}
   m_PrefabInstance: {fileID: 3913704811216370791}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebc7d282edeb7644b989cfe570385579, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &6748871017171806034 stripped
@@ -2499,8 +2495,7 @@ MonoBehaviour:
   windowPanel: {fileID: 1562984898422303780}
   gameSettingsUI: {fileID: 860983818998692564}
   tutorialUI: {fileID: 6748871017171806034}
-  tutorialPanel: {fileID: 0}
-  tutorialTextBox: {fileID: 6346364028337343892}
+  tutorialPanel: {fileID: 2671452611193792849}
   worldManager: {fileID: 0}
   stageWorldUI: {fileID: 798173595517633425}
   unitsInfoMenu: {fileID: 1618309164583767552}

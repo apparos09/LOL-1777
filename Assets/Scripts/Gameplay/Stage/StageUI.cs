@@ -42,6 +42,12 @@ namespace RM_MST
             }
         }
 
+        // Start is called before the first frame update
+        protected override void Start()
+        {
+            base.Start();
+        }
+
         // Gets the instance.
         public static StageUI Instance
         {
@@ -76,12 +82,6 @@ namespace RM_MST
             {
                 return instanced;
             }
-        }
-
-        // Start is called before the first frame update
-        protected override void Start()
-        {
-            base.Start();
         }
 
         // Update is called once per frame

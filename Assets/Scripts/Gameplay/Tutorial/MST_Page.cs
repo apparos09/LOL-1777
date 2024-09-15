@@ -15,19 +15,25 @@ namespace RM_MST
         // Adds a page.
         public MST_Page() : base()
         {
-            // ...
+            // Adds the speak text callback.
+            AddSpeakTextCallback();
         }
 
         // Adds a page with text.
         public MST_Page(string text) : base(text)
         {
-           // ...
+            // Adds the speak text callback.
+            AddSpeakTextCallback();
         }
 
         // Adds a page with text and a speak key.
         public MST_Page(string text, string speakKey) : base(text)
         {
+            // Sets the speak key.
             this.speakKey = speakKey;
+
+            // Adds the speak text callback.
+            AddSpeakTextCallback();
         }
 
         // Speaks the text for the tutorial page.

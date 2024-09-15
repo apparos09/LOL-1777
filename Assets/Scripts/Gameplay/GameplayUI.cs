@@ -25,12 +25,6 @@ namespace RM_MST
         // The tutorial UI.
         public TutorialUI tutorialUI;
 
-        // The text box panel.
-        public Image tutorialPanel;
-
-        // The tutorial text box.
-        public TutorialTextBox tutorialTextBox;
-
         // Start is called before the first frame update
         protected virtual void Start()
         {
@@ -50,33 +44,36 @@ namespace RM_MST
         // Start tutorial
         public void StartTutorial(List<Page> pages)
         {
-            // Sets the pages and opens the text box.
-            tutorialTextBox.textBox.pages = pages;
-            tutorialTextBox.textBox.CurrentPageIndex = 0;
-            tutorialTextBox.textBox.Open();
+            // Loads the pages, sets the index to 0, and closes the textbox.
+            if(tutorialUI.textBox.IsVisible())
+            {
+                // Close the textbox.
+                tutorialUI.textBox.Close();
+            }
+
+            // Load the pages.
+            tutorialUI.LoadPages(ref pages, true);
+            tutorialUI.textBox.CurrentPageIndex = 0;
+            tutorialUI.textBox.Open();
         }
 
         // On Tutorial Start
         public virtual void OnTutorialStart()
         {
-            // Turn on the tutorial panel.
-            if(tutorialPanel != null)
-                tutorialPanel.gameObject.SetActive(true);
+            // ...
         }
 
         // On Tutorial End
         public virtual void OnTutorialEnd()
         {
-            // Turns off the tutorial panel.
-            if(tutorialPanel != null)
-                tutorialPanel.gameObject.SetActive(false);
+            // ...
         }
 
         // Checks if the tutorial text box is open.
         public bool IsTutorialTextBoxOpen()
         {
             // Checks if it's visible normally, and in the hierachy.
-            return tutorialTextBox.textBox.IsVisible() && tutorialTextBox.textBox.IsVisibleInHierachy();
+            return tutorialUI.textBox.IsVisible() && tutorialUI.textBox.IsVisibleInHierachy();
         }
 
         // Returns 'true' if the tutorial can be started.
@@ -85,18 +82,41 @@ namespace RM_MST
             return !IsTutorialTextBoxOpen();
         }
 
+        // Checks if the tutorial is running.
+        public bool IsTutorialRunning()
+        {
+            // Checks if the tutorial is instantiated.
+            if (Tutorials.Instantiated)
+            {
+                // Checks if the tutorial UI is not set to null.
+                if (tutorialUI != null)
+                {
+                    return IsTutorialTextBoxOpen();
+                }
+                else // No tutorial UI, so the tutorial cannot run.
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+                
+        }
+
         // Adds the tutorial text box open/close callbacks.
         public void AddTutorialTextBoxCallbacks(GameplayManager manager)
         {
-            tutorialTextBox.textBox.OnTextBoxOpenedAddCallback(manager.OnTutorialStart);
-            tutorialTextBox.textBox.OnTextBoxClosedAddCallback(manager.OnTutorialEnd);
+            tutorialUI.textBox.OnTextBoxOpenedAddCallback(manager.OnTutorialStart);
+            tutorialUI.textBox.OnTextBoxClosedAddCallback(manager.OnTutorialEnd);
         }
 
         // Removes the tutorial text box open/close callbacks.
         public void RemoveTutorialTextBoxCallbacks(GameplayManager manager)
         {
-            tutorialTextBox.textBox.OnTextBoxOpenedRemoveCallback(manager.OnTutorialStart);
-            tutorialTextBox.textBox.OnTextBoxClosedRemoveCallback(manager.OnTutorialEnd);
+            tutorialUI.textBox.OnTextBoxOpenedRemoveCallback(manager.OnTutorialStart);
+            tutorialUI.textBox.OnTextBoxClosedRemoveCallback(manager.OnTutorialEnd);
         }
 
         // WINDOWS //
@@ -130,6 +150,7 @@ namespace RM_MST
         // Called when a window is opened.
         public virtual void OnWindowOpened(GameObject window)
         {
+            // Pause the game.
             gameManager.PauseGame();
 
             // Enables the menu panel to block the UI under it.
@@ -137,39 +158,29 @@ namespace RM_MST
                 windowPanel.gameObject.SetActive(true);
 
             // If the tutorial text box is open.
-            if(IsTutorialTextBoxOpen() && tutorialPanel != null)
+            if(IsTutorialTextBoxOpen() && tutorialUI.backgroundPanel != null)
             {
                 // Turns off the tutorial panel so that they aren't overlayed.
-                tutorialPanel.gameObject.SetActive(false);
+                tutorialUI.backgroundPanel.gameObject.SetActive(false);
             }
         }
 
         // Called when a window is closed.
         public virtual void OnWindowClosed()
         {
-            // Checks for the tutorial text box.
-            if(tutorialTextBox != null)
-            {
-                // Unpause the game only if the tutorial textbox is closed.
-                if(!tutorialTextBox.textBox.IsVisible())
-                    gameManager.UnpauseGame();
-
-            }
-            else // Regular unpause.
-            {
-                gameManager.UnpauseGame();
-            }
+            // Unpause the game.
+            gameManager.UnpauseGame();
 
             // Disables the tutorial panel.
-            if(windowPanel != null)
+            if (windowPanel != null)
                 windowPanel.gameObject.SetActive(false);
 
             // If the tutorial text box is open.
             if (IsTutorialTextBoxOpen())
             {
                 // Turns on the tutorial panel since the menu panel isn't showing now.
-                if(tutorialPanel != null)
-                    tutorialPanel.gameObject.SetActive(true);
+                if(tutorialUI.backgroundPanel != null)
+                    tutorialUI.backgroundPanel.gameObject.SetActive(true);
             }
         }
 

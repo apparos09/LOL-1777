@@ -167,10 +167,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92d26c6d5582b9e49b5a4251aa28c54d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameUI: {fileID: 0}
+  gameUI: {fileID: 4185861477174107382}
   gameTime: 0
   gameScore: 0
   mouseTouch: {fileID: 0}
+  tutorials: {fileID: 0}
   stageUI: {fileID: 0}
   stage: {fileID: 0}
   worldScene: WorldScene
@@ -358,11 +359,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8568467190338195159, guid: e017c4a555637dc4398780904a9288ad, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 906850107}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e017c4a555637dc4398780904a9288ad, type: 3}
+--- !u!114 &4185861477174107382 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8568467190338195159, guid: e017c4a555637dc4398780904a9288ad, type: 3}
+  m_PrefabInstance: {fileID: 4185861477174107381}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b96583de57ab4e7428f775075afdb322, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
