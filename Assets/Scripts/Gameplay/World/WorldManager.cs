@@ -19,10 +19,7 @@ namespace RM_MST
         // This isn't needed, but it helps with the clarity.
         private static bool instanced = false;
 
-        // Set to 'true' when the late start function has been called.
-        private bool calledLateStart = false;
-
-        [Header("World")]
+        [Header("WorldManager")]
         // The world user interface.
         public WorldUI worldUI;
 
@@ -85,8 +82,6 @@ namespace RM_MST
             // If the gameplay info has been instantiated.
             if (GameplayInfo.Instantiated)
             {
-                GameplayInfo gameInfo = GameplayInfo.Instance;
-
                 // Load info into the world if it exists.
                 if (gameInfo.hasWorldInfo)
                     gameInfo.LoadWorldInfo(this);
@@ -102,10 +97,9 @@ namespace RM_MST
         }
 
         // The function called after the start function.
-        protected void LateStart()
+        protected override void LateStart()
         {
-            // Late start has been called.
-            calledLateStart = true;
+            base.LateStart();
 
             // The game complete event is set.
             if(gameCompleteEvent != null)
@@ -261,7 +255,7 @@ namespace RM_MST
         public void ToStage(StageWorld stageWorld)
         {
             // Saves the world info and goes into the stage.
-            GameplayInfo.Instance.SaveWorldInfo(this);
+            gameInfo.SaveWorldInfo(this);
             LoadStageScene();
 
             // TODO: play to stage animation?
@@ -271,6 +265,7 @@ namespace RM_MST
         // Loads the stage scene.
         public void LoadStageScene()
         {
+            Time.timeScale = 1.0F;
             SceneManager.LoadScene(stageScene);
         }
 
@@ -279,11 +274,7 @@ namespace RM_MST
         {
             base.Update();
 
-            // If late start has not been called, call it.
-            if(!calledLateStart)
-            {
-                LateStart();
-            }
+            // ...
         }
 
         // This function is called when the MonoBehaviour will be destroyed.

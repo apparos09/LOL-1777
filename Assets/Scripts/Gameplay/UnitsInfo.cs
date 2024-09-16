@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.EditorTools;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEditor.Experimental.GraphView.Port;
 
 namespace RM_MST
 {
@@ -398,6 +399,25 @@ namespace RM_MST
             {
                 return instanced;
             }
+        }
+
+        // UNIT GROUPS
+        // Generates a list of all unit groups.
+        public static List<unitGroups> GenerateUnitGroupsList()
+        {
+            // The groups.
+            List<unitGroups> groups = new List<unitGroups>()
+            {
+                unitGroups.lengthImperial,
+                unitGroups.weightImperial,
+                unitGroups.time,
+                unitGroups.lengthMetric,
+                unitGroups.weightMetric,
+                unitGroups.capacity
+            };
+
+            // Returns the groups.
+            return groups;
         }
 
         // UNIT GROUPS AND DESCRIPTIONS

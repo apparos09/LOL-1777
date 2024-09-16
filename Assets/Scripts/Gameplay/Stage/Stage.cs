@@ -24,9 +24,6 @@ namespace RM_MST
         // The stage manager.
         public StageManager manager;
 
-        // The list of unit types to use for the stage.
-        public List<UnitsInfo.unitGroups> unitTypes = new List<UnitsInfo.unitGroups>();
-
         // Start is called before the first frame update
         void Start()
         {

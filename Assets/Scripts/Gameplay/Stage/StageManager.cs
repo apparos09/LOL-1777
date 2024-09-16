@@ -15,11 +15,24 @@ namespace RM_MST
         // This isn't needed, but it helps with the clarity.
         private static bool instanced = false;
 
+        [Tooltip("StageManager")]
         // The stage user interface.
         public StageUI stageUI;
 
         // The stage.
         public Stage stage;
+
+        // The stage's name.
+        public string stageName;
+
+        // The difficulty.
+        public int difficulty = 0;
+
+        // The stage index.
+        public int stageIndex = -1;
+
+        // The units used for the stage.
+        public List<UnitsInfo.unitGroups> stageUnitGroups = new List<UnitsInfo.unitGroups>();
 
         // The world scene.
         public string worldScene = "WorldScene";
@@ -60,12 +73,25 @@ namespace RM_MST
             // If the gameplay info has been instantiated.
             if (GameplayInfo.Instantiated)
             {
-                GameplayInfo gameInfo = GameplayInfo.Instance;
-
-                // Load info into the world if it exists.
-                if (gameInfo.hasStageInfo)
-                    gameInfo.LoadStageInfo(this);
+                // Load the stage information.
+                gameInfo.LoadStageInfo(this);
             }
+            else
+            {
+                // If there are no stage units, generate the group list.
+                if(stageUnitGroups.Count == 0)
+                    stageUnitGroups = UnitsInfo.GenerateUnitGroupsList();
+            }
+
+
+        }
+
+        // The function called after the start function.
+        protected override void LateStart()
+        {
+            base.LateStart();
+
+            // TODO: start stage.
         }
 
         // Gets the instance.
@@ -104,14 +130,40 @@ namespace RM_MST
             }
         }
 
+        // The stage start info.
+        public void ApplyStageStartInfo(GameplayInfo.StageStartInfo stageStartInfo)
+        {
+            // If the information is valid.
+            if(stageStartInfo.valid)
+            {
+                stageName = stageStartInfo.name;
+                stageUnitGroups = stageStartInfo.stageUnitGroups;
+                difficulty = stageStartInfo.difficulty;
+                stageIndex = stageStartInfo.index;
+            }
+            else
+            {
+                Debug.LogWarning("The stage info was not marked as valid.");
+            }
+
+            // If the stage units list is empty, generate a list of all types.
+            if(stageUnitGroups.Count <= 0)
+                stageUnitGroups = UnitsInfo.GenerateUnitGroupsList();
+    }
+
         // Goes to the world.
         public void ToWorld()
         {
             // Saves the stage info and goes into the world.
             GameplayInfo.Instance.SaveStageInfo(this);
-            SceneManager.LoadScene(worldScene);
+            ToWorldScene();
         }
 
+        // Goes to the world scene.
+        public void ToWorldScene()
+        {
+            SceneManager.LoadScene(worldScene);
+        }
        
         // Update is called once per frame
         protected override void Update()

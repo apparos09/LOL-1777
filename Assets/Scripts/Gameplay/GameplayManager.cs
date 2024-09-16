@@ -28,6 +28,12 @@ namespace RM_MST
         // The tutorials object.
         public Tutorials tutorials;
 
+        // The gameplay info object.
+        public GameplayInfo gameInfo;
+
+        // Set to 'true' when the late start function has been called.
+        private bool calledLateStart = false;
+
         // NOTE: GameInfo and Tutorial aren't listed here because they're singletons.
         // Having them be in the scene from the start caused issues, so I'm not going to have them.
 
@@ -47,7 +53,7 @@ namespace RM_MST
             // For some reason, when coming back from the match scene this is listed as 'missing'.
 
             // Creates/gets the game info instance.
-            GameplayInfo gameInfo = GameplayInfo.Instance;
+            gameInfo = GameplayInfo.Instance;
 
             // // Creates/gets the tutorial instance if it will be used.
             // if(IsUsingTutorial())
@@ -71,6 +77,12 @@ namespace RM_MST
                     gameUI.AddTutorialTextBoxCallbacks(this);
                 }
             }
+        }
+        
+        // LateStart is called on the first update frame of this object.
+        protected virtual void LateStart()
+        {
+            calledLateStart = true;
         }
 
         // Returns the provided time (in seconds), formatted.
@@ -229,6 +241,12 @@ namespace RM_MST
         // Update is called once per frame
         protected virtual void Update()
         {
+            // If late start has not been called, call it.
+            if (!calledLateStart)
+            {
+                LateStart();
+            }
+
             // The game isn't paused.
             if (!gamePaused)
             {

@@ -17,7 +17,7 @@ namespace RM_MST
             public string name;
 
             // Unit Groups
-            public List<UnitsInfo.unitGroups> unitGroups;
+            public List<UnitsInfo.unitGroups> stageUnitGroups;
 
             // Difficulty
             public int difficulty;
@@ -43,6 +43,9 @@ namespace RM_MST
 
         // If the class has world info.
         public bool hasWorldInfo = false;
+
+        // Marks if the stage has been cleared or not.
+        public bool[] clearedStages = new bool[WorldManager.STAGE_COUNT];
 
         // The stage start information.
         public StageStartInfo stageStartInfo;
@@ -88,6 +91,7 @@ namespace RM_MST
 
             // Blank data to start.
             stageStartInfo = new StageStartInfo();
+            stageStartInfo.valid = false; // Don't read from this.
         }
 
         // Gets the instance.
@@ -156,6 +160,14 @@ namespace RM_MST
                 stageStartInfo = nextStage.GenerateStageInfo();
             }
 
+            // Saves what stages have been cleared.
+            for(int i = 0; i < clearedStages.Length && i < worldManager.stages.Count; i++)
+            {
+                // If there is a stage, get the clear value.
+                if (worldManager.stages[i] != null)
+                    clearedStages[i] = worldManager.stages[i].cleared;
+            }
+
             // There is world info.
             hasWorldInfo = true;
         }
@@ -164,6 +176,14 @@ namespace RM_MST
         public void LoadWorldInfo(WorldManager worldManager)
         {
             LoadGameplayInfo(worldManager);
+
+            // Sets what stages have been cleared.
+            for (int i = 0; i < clearedStages.Length && i < worldManager.stages.Count; i++)
+            {
+                // If there is a stage, set the clear value.
+                if (worldManager.stages[i] != null)
+                    worldManager.stages[i].cleared = clearedStages[i];
+            }
         }
 
         // Saves the stage info from the stage manager object.
@@ -179,6 +199,9 @@ namespace RM_MST
         public void LoadStageInfo(StageManager stageManager)
         {
             LoadGameplayInfo(stageManager);
+
+            // Apply the stage start info.
+            stageManager.ApplyStageStartInfo(stageStartInfo);
         }
 
 

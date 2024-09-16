@@ -317,7 +317,7 @@ namespace RM_MST
 
             // Sets the name, units groups, and difficulty.
             stageStartInfo.name = stageName;
-            stageStartInfo.unitGroups = unitGroups;
+            stageStartInfo.stageUnitGroups = unitGroups;
             stageStartInfo.difficulty = difficulty;
 
             // Gets the index for the stage start.
