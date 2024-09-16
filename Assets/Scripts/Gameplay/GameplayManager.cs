@@ -20,7 +20,7 @@ namespace RM_MST
         public int gameScore = 0;
 
         // Pauses the timer if true.
-        protected bool gamePaused = false;
+        private bool gamePaused = false;
 
         // The mouse touch object.
         public MouseTouchInput mouseTouch;
@@ -30,6 +30,9 @@ namespace RM_MST
 
         // The gameplay info object.
         public GameplayInfo gameInfo;
+
+        // The units info.
+        public UnitsInfo unitsInfo;
 
         // Set to 'true' when the late start function has been called.
         private bool calledLateStart = false;
@@ -54,6 +57,9 @@ namespace RM_MST
 
             // Creates/gets the game info instance.
             gameInfo = GameplayInfo.Instance;
+
+            // Creates or gets the units info.
+            unitsInfo = UnitsInfo.Instance;
 
             // // Creates/gets the tutorial instance if it will be used.
             // if(IsUsingTutorial())

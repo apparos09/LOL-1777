@@ -1,8 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.EditorTools;
 using UnityEngine;
-using UnityEngine.UIElements;
 using static UnityEditor.Experimental.GraphView.Port;
 
 namespace RM_MST
@@ -10,8 +7,150 @@ namespace RM_MST
     // The units info.
     public class UnitsInfo : MonoBehaviour
     {
+        // A units conversion class.
+        public abstract class UnitsConversion
+        {
+            // The input value and the group.
+            public float inputValue;
+            public unitGroups group;
+
+            // Default constructor.
+            public UnitsConversion()
+            {
+                inputValue = 0;
+                group = unitGroups.none;
+            }
+
+            // Sets the input and group.
+            public UnitsConversion(float inputValue, unitGroups group)
+            {
+                this.inputValue = inputValue;
+                this.group = group;
+            }
+
+
+            // Gets the converted value.
+            public abstract float GetConvertedValue();
+        }
+
+        // A class for weight conversions.
+        public class WeightConversion : UnitsConversion
+        {
+            // The input and output units.
+            public weightUnits inputUnits = weightUnits.unknown;
+            public weightUnits outputUnits = weightUnits.unknown;
+
+            // Default constructor.
+            public WeightConversion() : base()
+            {
+            }
+
+            // Sets the input, group, inputUnits, and outputUnits.
+            public WeightConversion(float inputValue, unitGroups group, weightUnits inputUnits, weightUnits outputUnits) : 
+                base(inputValue, group)
+            {
+                this.inputUnits = inputUnits;
+                this.outputUnits = outputUnits;
+            }
+
+
+            // Gets the converted value.
+            public override float GetConvertedValue()
+            {
+                return ConvertWeightUnits(inputValue, inputUnits, outputUnits);
+            }
+        }
+
+        // A class for length conversions.
+        public class LengthConversion : UnitsConversion
+        {
+            // The input and output units.
+            public lengthUnits inputUnits = lengthUnits.unknown;
+            public lengthUnits outputUnits = lengthUnits.unknown;
+
+            // Default constructor.
+            public LengthConversion() : base()
+            {
+            }
+
+            // Sets the input, group, inputUnits, and outputUnits.
+            public LengthConversion(float inputValue, unitGroups group, lengthUnits inputUnits, lengthUnits outputUnits) :
+                base(inputValue, group)
+            {
+                this.inputUnits = inputUnits;
+                this.outputUnits = outputUnits;
+            }
+
+
+            // Gets the converted value.
+            public override float GetConvertedValue()
+            {
+                return ConvertLengthUnits(inputValue, inputUnits, outputUnits);
+            }
+        }
+
+        // A class for time conversions.
+        public class TimeConversion : UnitsConversion
+        {
+            // The input and output units.
+            public timeUnits inputUnits = timeUnits.unknown;
+            public timeUnits outputUnits = timeUnits.unknown;
+
+            // Default constructor.
+            public TimeConversion() : base()
+            {
+            }
+
+            // Sets the input, group, inputUnits, and outputUnits.
+            public TimeConversion(float inputValue, unitGroups group, timeUnits inputUnits, timeUnits outputUnits) :
+                base(inputValue, group)
+            {
+                this.inputUnits = inputUnits;
+                this.outputUnits = outputUnits;
+            }
+
+
+            // Gets the converted value.
+            public override float GetConvertedValue()
+            {
+                return ConvertTimeUnits(inputValue, inputUnits, outputUnits);
+            }
+        }
+
+        // A class for capacity conversions.
+        public class CapacityConversion : UnitsConversion
+        {
+            // The input and output units.
+            public capacityUnits inputUnits = capacityUnits.unknown;
+            public capacityUnits outputUnits = capacityUnits.unknown;
+
+            // Default constructor.
+            public CapacityConversion() : base()
+            {
+            }
+
+            // Sets the input, group, inputUnits, and outputUnits.
+            public CapacityConversion(float inputValue, unitGroups group, capacityUnits inputUnits, capacityUnits outputUnits) :
+                base(inputValue, group)
+            {
+                this.inputUnits = inputUnits;
+                this.outputUnits = outputUnits;
+            }
+
+            // Gets the converted value.
+            public override float GetConvertedValue()
+            {
+                return ConvertCapacityUnits(inputValue, inputUnits, outputUnits);
+            }
+        }
+
+
+
+
+        // UNIT GROUPS AND UNITS
+
         // The measurement units.
-        public const int NUMBER_OF_UNIT_GROUPS = 7;
+        public const int UNIT_GROUPS_COUNT = 7;
 
         public enum unitGroups { none, lengthImperial, weightImperial, time, lengthMetric, weightMetric, capacity }
 
@@ -54,6 +193,16 @@ namespace RM_MST
 
         // Capacity
         private List<capacityUnits> capacityList;
+
+
+        // VALID CONVERSIONS LISTS
+        // These are the conversion lists for the game.
+        private List<LengthConversion> lengthImperialConversions;
+        private List<WeightConversion> weightImperialConversions;
+        private List<TimeConversion> timeConversions;
+        private List<LengthConversion> lengthMetricConversions;
+        private List<WeightConversion> weightMetricConversions;
+        private List<CapacityConversion> capcityConversions;
 
         // TODO: change descriptions?
 
@@ -192,7 +341,6 @@ namespace RM_MST
         private string litersSymbol = "l";
         public const string LITERS_SYMBOL_KEY = "unt_liters_sbl";
 
-
         // Awake is called when the script is being loaded
         void Awake()
         {
@@ -264,6 +412,51 @@ namespace RM_MST
             {
                 capacityUnits.milliliter,
                 capacityUnits.liter
+            };
+
+
+            // CONVERSION LISTS
+            // Length (Imperial)
+            lengthImperialConversions = new List<LengthConversion>()
+            {
+                new LengthConversion(1.0F, unitGroups.lengthImperial, lengthUnits.foot, lengthUnits.inch),
+                new LengthConversion(1.0F, unitGroups.lengthImperial, lengthUnits.yard, lengthUnits.foot)
+            };
+
+            // Weight (Imperial)
+            weightImperialConversions = new List<WeightConversion>()
+            {
+                new WeightConversion(1.0F, unitGroups.weightImperial, weightUnits.pound, weightUnits.ounce)
+            };
+
+            // Time
+            timeConversions = new List<TimeConversion>()
+            {
+                new TimeConversion(1.0F, unitGroups.time, timeUnits.minutes, timeUnits.seconds),
+                new TimeConversion(1.0F, unitGroups.time, timeUnits.hour, timeUnits.minutes)
+            };
+
+            // Length (Metric)
+            lengthMetricConversions = new List<LengthConversion>()
+            {
+                new LengthConversion(1.0F, unitGroups.lengthMetric, lengthUnits.meter, lengthUnits.millimeter),
+                new LengthConversion(1.0F, unitGroups.lengthMetric, lengthUnits.meter, lengthUnits.centimeter),
+                new LengthConversion(1.0F, unitGroups.lengthMetric, lengthUnits.centimeter, lengthUnits.millimeter),
+                new LengthConversion(1.0F, unitGroups.lengthMetric, lengthUnits.decimeter, lengthUnits.centimeter),
+                new LengthConversion(1.0F, unitGroups.lengthMetric, lengthUnits.kilometer, lengthUnits.meter)
+            };
+
+            // Weight (Metric)
+            weightMetricConversions = new List<WeightConversion>()
+            {
+                new WeightConversion(1.0F, unitGroups.weightMetric, weightUnits.gram, weightUnits.milligram),
+                new WeightConversion(1.0F, unitGroups.weightMetric, weightUnits.kilogram, weightUnits.gram),
+            };
+
+            // Capacity
+            capcityConversions = new List<CapacityConversion>()
+            {
+                new CapacityConversion(1.0F, unitGroups.capacity, capacityUnits.liter, capacityUnits.milliliter),
             };
 
 
@@ -870,7 +1063,7 @@ namespace RM_MST
         // CONVERSIONS
         // Converts the length measurement units.
         // Returns 0 if the conversion cannot be calculated.
-        public float ConvertLengthUnits(float value, lengthUnits input, lengthUnits output)
+        public static float ConvertLengthUnits(float value, lengthUnits input, lengthUnits output)
         {
             // The modifier.
             float modifier = 0.0F;
@@ -1209,7 +1402,7 @@ namespace RM_MST
 
         // Converts the weight measurement units.
         // Returns 0 if the conversion cannot be calculated.
-        public float ConvertWeightUnits(float value, weightUnits input, weightUnits output)
+        public static float ConvertWeightUnits(float value, weightUnits input, weightUnits output)
         {
             // The modifier.
             float modifier = 0.0F;
@@ -1370,7 +1563,7 @@ namespace RM_MST
 
         // Converts the time measurement units.
         // Returns 0 if the conversion cannot be calculated.
-        public float ConvertTimeUnits(float value, timeUnits input, timeUnits output)
+        public static float ConvertTimeUnits(float value, timeUnits input, timeUnits output)
         {
             // The modifier.
             float modifier = 0.0F;
@@ -1445,7 +1638,7 @@ namespace RM_MST
 
         // Converts the capacity measurement units.
         // Returns 0 if the conversion cannot be calculated.
-        public float ConvertCapacityUnits(float value, capacityUnits input, capacityUnits output)
+        public static float ConvertCapacityUnits(float value, capacityUnits input, capacityUnits output)
         {
             // The modifier.
             float modifier = 0.0F;
@@ -1493,6 +1686,50 @@ namespace RM_MST
 
             // Returns the result.
             return result;
+        }
+
+        // Get a conversion list. This only goes from larger units to smaller units.
+        public List<UnitsConversion> GetConversionList(unitGroups group)
+        {
+            // The conversion list.
+            List<UnitsConversion> conversions;
+
+            // Checks the group to know which conversions to include.
+            switch (group)
+            {
+                default:
+                case unitGroups.none: // Add all conversions.
+                    conversions = new List<UnitsConversion>();
+                    break;
+
+                case unitGroups.lengthImperial:
+                    conversions = new List<UnitsConversion>(lengthImperialConversions);
+                    break;
+
+                case unitGroups.weightImperial:
+                    conversions = new List<UnitsConversion>(weightImperialConversions);
+                    break;
+
+                case unitGroups.time:
+                    conversions = new List<UnitsConversion>(timeConversions);
+                    break;
+
+                case unitGroups.lengthMetric:
+                    conversions = new List<UnitsConversion>(lengthMetricConversions);
+                    break;
+
+                case unitGroups.weightMetric:
+                    conversions = new List<UnitsConversion>(weightMetricConversions);
+                    break;
+
+
+                case unitGroups.capacity:
+                    conversions = new List<UnitsConversion>(capcityConversions);
+                    break;
+            }
+
+            // Returns the conversions.
+            return conversions;
         }
 
 
