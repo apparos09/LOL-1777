@@ -29,24 +29,21 @@ namespace RM_MST
         public void GivePoints(float pointsAdd)
         {
             points += pointsAdd;
-            OnPointsChange();
+            OnPointsChanged();
         }
 
         // Removes points from the player.
         public void RemovePoints(float pointsMinus)
         {
             points -= pointsMinus;
-            OnPointsChange();
+            OnPointsChanged();
         }
 
         // Called when the points have changed.
-        public void OnPointsChange()
+        public void OnPointsChanged()
         {
-            // If the points goal has been reached, trigger the stage win.
-            if(stageManager.IsPointsGoalReached(points))
-            {
-                stageManager.OnStageWon();
-            }
+            // The player's points have changed.
+            stageManager.OnPlayerPointsChanged();
         }
 
         // Update is called once per frame

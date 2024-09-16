@@ -14,6 +14,9 @@ namespace RM_MST
         // This isn't needed, but it helps with the clarity.
         private static bool instanced = false;
 
+        // The stage manager.
+        public StageManager stageManager;
+
         // Constructor
         private StageUI()
         {
@@ -46,6 +49,10 @@ namespace RM_MST
         protected override void Start()
         {
             base.Start();
+
+            // Gets the instance.
+            if (stageManager == null)
+                stageManager = StageManager.Instance;
         }
 
         // Gets the instance.
@@ -82,6 +89,38 @@ namespace RM_MST
             {
                 return instanced;
             }
+        }
+
+        // WINDOWS
+        // Closes all the windows.
+        public override void CloseAllWindows()
+        {
+            base.CloseAllWindows();
+        }
+
+        // STAGE WIN/LOST
+        // Called when the stage has been won.
+        public void OnStageWon()
+        {
+            // ...
+        }
+
+        // Called when the stage has been lost.
+        public void OnStageLost()
+        {
+            // ...
+        }
+
+        // Called to restart the stage.
+        public void RestartStage()
+        {
+            stageManager.RestartStage();
+        }
+
+        // Called when the start has been restarted.
+        public void OnStageRestart()
+        {
+            CloseAllWindows();
         }
 
         // Update is called once per frame

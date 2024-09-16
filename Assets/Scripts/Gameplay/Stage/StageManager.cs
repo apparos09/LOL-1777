@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -35,11 +36,15 @@ namespace RM_MST
         // TODO: make private.
         public int difficulty = 0;
 
-        // The minimum difficulty.
-        public const int DIFFICULTY_MIN = 1;
-
         // The maximum difficulty.
         public const int DIFFICULTY_MAX = 9;
+
+        // The phase for the game.
+        // TODO: make private.
+        public int phase = 0;
+
+        // The maximum phase value.
+        public const int PHASE_MAX = 4;
 
         // The player for the stage.
         public PlayerStage player;
@@ -67,12 +72,14 @@ namespace RM_MST
         public const float UNITS_INPUT_VALUE_MAX = 1000.0F;
 
         [Header("Meteors")]
+        // TODO: make private.
         // The meteor spawn rate.
         public float meteorSpawnRate = 1.0F;
 
         // The timer used for spawning meteors.
         private float meteorSpawnTimer = 0.0F;
 
+        // TODO: make private.
         // The meteor fall speed factor.
         public float meteorSpeedMax = 1.0F;
 
@@ -242,7 +249,7 @@ namespace RM_MST
         public void SetDifficulty(int difficultyLevel)
         {
             // Sets the difficulty.
-            difficulty = Mathf.Clamp(difficultyLevel, DIFFICULTY_MIN, DIFFICULTY_MAX);
+            difficulty = Mathf.Clamp(difficultyLevel, 1, DIFFICULTY_MAX);
 
             // // Changes parameters based on the difficulty.
             // // TODO: implement.
@@ -298,6 +305,44 @@ namespace RM_MST
             // }
         }
 
+        // Gets the phase.
+        public int GetPhase()
+        {
+            return phase;
+        }
+
+        // Sets the phase
+        public void SetPhase(int newPhase)
+        {
+            phase = Mathf.Clamp(newPhase, 1, PHASE_MAX);
+        }
+
+        // Sets the game phase by the game progress.
+        public void SetPhaseByPlayerPointsProgress()
+        {
+            // Gets the percent.
+            float percent = GetPlayerPointsProgress();
+
+            // Checks the percent.
+            if(percent > 0.75F) // Phase 4
+            {
+                SetPhase(4);
+            }
+            else if(percent > 0.50F) // Phase 3
+            {
+                SetPhase(3);
+            }
+            else if(percent > 0.25F) // Phase 3
+            {
+                SetPhase(2);
+            }
+            else // Phase 1
+            {
+                SetPhase(1);
+            }
+        }
+
+
         // METEORS
         // Spawns a meteor.
         public Meteor SpawnMeteor()
@@ -342,7 +387,7 @@ namespace RM_MST
         }
 
         // Removes the meteor from the active list if it's destroyed.
-        public void OnMeteorDestroyed(Meteor meteor)
+        public void OnMeteorKilled(Meteor meteor)
         {
             if(meteorsActive.Contains(meteor))
                 meteorsActive.Remove(meteor);
@@ -414,6 +459,23 @@ namespace RM_MST
                     meteorsActive.RemoveAt(i);
                 }
             }
+        }
+
+        // Destroys all the meteors.
+        public void KillAllMeteors()
+        {
+            // Goes through all meteors.
+            for(int i = 0; i < meteorsActive.Count; i++)
+            {
+                // If the meteor exists, kill it.
+                if (meteorsActive[i] != null)
+                {
+                    meteorsActive[i].Kill();
+                }
+            }
+
+            // Clear out the list.
+            meteorsActive.Clear();
         }
 
         // Generates a units conversion. This isn't needed anymore.
@@ -499,6 +561,77 @@ namespace RM_MST
             conversion.inputValue = value;
         }
 
+        // Gets the meteor spawn rate, modified by the phase.
+        public float GetModifiedMeteorSpawnRate()
+        {
+            // The modifier value.
+            float mod;
+
+            // Checks the speed for the spawn rate modifier.
+            switch(phase)
+            {
+                default:
+                case 1:
+                    mod = 1.0F;
+                    break;
+
+                case 2:
+                    mod = 0.95F;
+                    break;
+
+                case 3:
+                    mod = 0.90F;
+                    break;
+
+                case 4:
+                    mod = 0.85F;
+                    break;
+
+            }
+
+            // Get the result.
+            float result = meteorSpawnRate * mod;
+
+            // Return the result.
+            return result;
+
+        }
+
+        // Gets the meteor speed, modified by the phase.
+        public float GetModifiedMeteorSpeedMax()
+        {
+            // The modifier value.
+            float mod;
+
+            // Checks the phase to see what speed to use.
+            switch (phase)
+            {
+                default:
+                case 1:
+                    mod = 1.0F;
+                    break;
+
+                case 2:
+                    mod = 1.05F;
+                    break;
+
+                case 3:
+                    mod = 1.10F;
+                    break;
+
+                case 4:
+                    mod = 1.15F;
+                    break;
+
+            }
+
+            // Get the result.
+            float result = meteorSpeedMax * mod;
+
+            // Return the result.
+            return result;
+        }
+
         // OPERATIONS
         // Generate a question for the player to answer.
         public void GenerateQuestion()
@@ -519,18 +652,58 @@ namespace RM_MST
             return points >= POINTS_GOAL;
         }
 
+        // Gets the progress of the player's points towards the goal.
+        public float GetPlayerPointsProgress()
+        {
+            // Calculates the percent and returns it.
+            float percent = player.points / POINTS_GOAL;
+            return percent;
+        }
+
+        // Called when the player's points have changed.
+        public void OnPlayerPointsChanged()
+        {
+            // If the points goal has been reached, trigger the stage win.
+            if (IsPointsGoalReached(player.points))
+            {
+                OnStageWon();
+            }
+            else // Change phase.
+            {
+                SetPhaseByPlayerPointsProgress();
+            }
+
+        }
 
         // ENDING
         // Called when the game has been won.
         public void OnStageWon()
         {
-            // Win Event
+            runningGame = false;
+            stageUI.OnStageWon();
         }
 
         // Called when the game has been lost.
         public void OnStageLost()
         {
-            // Lose Event
+            runningGame = false;
+            stageUI.OnStageLost();
+        }
+
+        // Called to restart the stage.
+        public void RestartStage()
+        {
+            // Reset the player's points, kill all the meteors, and reset the game progress.
+            player.points = 0;
+            KillAllMeteors();
+            SetPhaseByPlayerPointsProgress();
+
+            // Restarts the stage.
+            stageUI.OnStageRestart();
+
+            // Unpauses the game, and starts running the game again.
+            UnpauseGame();
+            runningGame = true;
         }
 
         // Goes to the world.
@@ -564,7 +737,7 @@ namespace RM_MST
                 SpawnMeteor();
 
                 // Sets the timer to the spawn rate.
-                meteorSpawnTimer = meteorSpawnRate;
+                meteorSpawnTimer = GetModifiedMeteorSpawnRate();
             }
 
             // If there is no meteor being target.

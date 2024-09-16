@@ -121,7 +121,7 @@ namespace RM_MST
         // Kills the meteor.
         public void Kill()
         {
-            stageManager.OnMeteorDestroyed(this);
+            stageManager.OnMeteorKilled(this);
             Destroy(gameObject);
         }
 
@@ -130,7 +130,7 @@ namespace RM_MST
         {
             // Gets the velocity and clamps it.
             Vector2 velocity = rigidbody.velocity;
-            velocity = Vector2.ClampMagnitude(velocity, stageManager.meteorSpeedMax);
+            velocity = Vector2.ClampMagnitude(velocity, stageManager.GetModifiedMeteorSpeedMax());
 
             // Set the velocity.
             rigidbody.velocity = velocity;
