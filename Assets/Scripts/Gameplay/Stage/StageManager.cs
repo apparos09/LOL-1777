@@ -55,8 +55,11 @@ namespace RM_MST
         // The stage surface.
         public StageSurface stageSurface;
 
+        // The barriers for the stage.
+        public List<Barrier> stageBarriers;
+
         // The score that must be met to win the game.
-        public float POINTS_GOAL = 100.0F;
+        public const float POINTS_GOAL = 100.0F;
 
         [Header("Conversions")]
         // The units used for the stage.
@@ -90,7 +93,7 @@ namespace RM_MST
         // private List<Meteor> meteorPool = new List<Meteor>();
 
         // The active meteors.
-        private List<Meteor> meteorsActive = new List<Meteor>();
+        public List<Meteor> meteorsActive = new List<Meteor>();
 
         // The total number of meteors that can be active at once.
         private int ACTIVE_METEORS_COUNT_MAX = 12;
@@ -146,6 +149,13 @@ namespace RM_MST
                 if(stageUnitGroups.Count == 0)
                     stageUnitGroups = UnitsInfo.GenerateUnitGroupsList();
             }
+
+            // If the barrier list is empty, find all the barriers.
+            if (stageBarriers.Count == 0)
+            {
+                stageBarriers = new List<Barrier>(FindObjectsOfType<Barrier>());
+            }
+                
 
             // Sets the difficulty.
             SetDifficulty(difficulty);
@@ -373,14 +383,14 @@ namespace RM_MST
             if(stage.meteorParent != null)
                 meteor.transform.parent = stage.meteorParent.transform;
 
-            // Add to the list.
-            meteorsActive.Add(meteor);
-
             // Generate the spawn point.
             meteor.spawnPoint = stage.GenerateMeteorSpawnPoint();
 
             // Called when the meteor has spawned.
             meteor.OnSpawn();
+
+            // Add to the list.
+            meteorsActive.Add(meteor);
 
             // Return the meteor.
             return meteor;
@@ -389,6 +399,7 @@ namespace RM_MST
         // Removes the meteor from the active list if it's destroyed.
         public void OnMeteorKilled(Meteor meteor)
         {
+            // If this meteor is in the list, remove it.
             if(meteorsActive.Contains(meteor))
                 meteorsActive.Remove(meteor);
         }
@@ -680,6 +691,7 @@ namespace RM_MST
         public void OnStageWon()
         {
             runningGame = false;
+            KillAllMeteors();
             stageUI.OnStageWon();
         }
 
@@ -687,6 +699,7 @@ namespace RM_MST
         public void OnStageLost()
         {
             runningGame = false;
+            KillAllMeteors();
             stageUI.OnStageLost();
         }
 
@@ -743,8 +756,9 @@ namespace RM_MST
             // If there is no meteor being target.
             if(meteorTarget.meteor == null)
             {
-                // Gets the closest meteor.
+                // Gets the closest meteor, and move towards it.
                 meteorTarget.meteor = GetClosestMeteor();
+                meteorTarget.trackExactPos = false;
             }
 
             // TODO: check points and damage for a game win?

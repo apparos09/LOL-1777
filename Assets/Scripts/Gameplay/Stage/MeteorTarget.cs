@@ -36,6 +36,13 @@ namespace RM_MST
             // TODO: implement.
         }
 
+        // Removes the target for the meteor.
+        public void RemoveTarget()
+        {
+            meteor = null;
+            trackExactPos = false;
+        }
+
         // Update is called once per frame
         void Update()
         {

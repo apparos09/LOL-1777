@@ -19,8 +19,12 @@ namespace RM_MST
         // The meteor's spawn point.
         public Vector3 spawnPoint = new Vector3();
 
+        // TODO: generate random values to display as options.
         // The conversion for the meteor.
         public UnitsInfo.UnitsConversion conversion;
+
+        // Gets set to 'true' when the meteor is suffering from knockback.
+        private bool inKnockback = false;
 
         // Start is called before the first frame update
         void Start()
@@ -54,14 +58,14 @@ namespace RM_MST
         private void OnCollisionEvent(GameObject other)
         {
             // Possible collision objects.
-            Laser laser;
+            LaserShot laserShot;
             Barrier barrier;
             StageSurface surface;
 
             // Tries to grab relevant components.
-            if (other.TryGetComponent(out laser)) // Laser
+            if (other.TryGetComponent(out laserShot)) // Laser
             {
-                GivePoints();
+                TryGivePoints(laserShot);
             }
             else if (other.TryGetComponent(out barrier)) // Barrier
             {
@@ -91,16 +95,62 @@ namespace RM_MST
         {
             rigidbody.velocity = Vector2.zero;
         }
-       
+
+        // Gets the converted value for the meteor.
+        public float GetConvertedValue()
+        {
+            // Checks if conversion is set to get the value.
+            if(conversion != null)
+            {
+                return conversion.GetConvertedValue();
+            }
+            else
+            {
+                return -1;
+            }
+        }
 
         // Give points to the player.
-        public void GivePoints()
+        public bool TryGivePoints(LaserShot laserShot)
         {
-            // Give the player points.
-            stageManager.player.GivePoints(stageManager.CalculatePoints(this));
+            // Gets set based on if the laser shot's output value is correct.
+            bool success;
 
-            // Kill the meteor.
-            Kill();
+            // If the values match, the laser shot was a success.
+            if(laserShot.outputValue == conversion.GetConvertedValue())
+            {
+                stageManager.player.GivePoints(stageManager.CalculatePoints(this));
+                success = true;
+            }
+            else // If the values don't match, the laser shot was a failure.
+            {
+                success = false;
+            }
+            // Give the player points.
+
+            // Knock back the meteor and kill the laser.
+            Vector3 forceDirec = laserShot.moveDirec;
+
+            // If the force direction is 0, set it to the forward of the laser shot.
+            if (forceDirec == Vector3.zero)
+                forceDirec = laserShot.transform.forward;
+
+            // Add force and kill the laser shot.
+            rigidbody.velocity = Vector2.zero;
+            rigidbody.AddForce(forceDirec.normalized * laserShot.meteorHitForce, ForceMode2D.Impulse);
+            laserShot.Kill(true);
+
+            // The meteor is now experiencing knockback.
+            inKnockback = true;
+
+            // If the laser shot was a success, kill the meteor.
+            if(success)
+            {
+                Kill();
+            }
+
+            // Returns the success value.
+            return success;
         }
 
         // Damage the barrier.
@@ -128,12 +178,30 @@ namespace RM_MST
         // Update is called once per frame
         void Update()
         {
-            // Gets the velocity and clamps it.
-            Vector2 velocity = rigidbody.velocity;
-            velocity = Vector2.ClampMagnitude(velocity, stageManager.GetModifiedMeteorSpeedMax());
+            // If the meteor is moving downwards, cap the velocity.
+            if(rigidbody.velocity.y < 0)
+            {
+                // The meteor was experiencing knockback.
+                if(inKnockback)
+                {
+                    // Look for a target again to see if another meteor has gotten closer.
+                    stageManager.meteorTarget.RemoveTarget();
+                    inKnockback = false;
+                }
 
-            // Set the velocity.
-            rigidbody.velocity = velocity;
+                // Gets the velocity and clamps it.
+                Vector2 velocity = rigidbody.velocity;
+                velocity = Vector2.ClampMagnitude(velocity, stageManager.GetModifiedMeteorSpeedMax());
+
+                // Set the velocity.
+                rigidbody.velocity = velocity;
+            }
+
+            // Not in game area, so kill it.
+            if(!stageManager.stage.InGameArea(gameObject))
+            {
+                Kill();
+            }
         }
 
 

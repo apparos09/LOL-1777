@@ -10,6 +10,9 @@ namespace RM_MST
         // The stage manager.
         public StageManager stageManager;
 
+        // The laser prefab.
+        public LaserShot laserShotPrefab;
+
         // The number of points.
         public float points = 0;
 
@@ -23,6 +26,31 @@ namespace RM_MST
             // Set the player.
             if(stageManager.player == null)
                 stageManager.player = this;
+        }
+
+        // Shoots the laser shot.
+        public LaserShot ShootLaserShot(float outputValue)
+        {
+            // Generates the laser shot, sets the spawn point, and shoots it.
+            LaserShot newShot = Instantiate(laserShotPrefab);
+            stageManager.stage.SetLaserShotToSpawnPositionY(newShot);
+
+            // If the meteor is not null, target it.
+            if(stageManager.meteorTarget.meteor != null)
+            {
+                newShot.Shoot(stageManager.meteorTarget.meteor.gameObject);
+            }
+            else // No meteor, so no target.
+            {
+                newShot.Shoot(null);
+            }
+                    
+
+            // Sets the laser shot's output value.
+            newShot.outputValue = outputValue;
+
+            // Returns the new shot.
+            return newShot;
         }
         
         // Gives points to the player.
@@ -49,7 +77,16 @@ namespace RM_MST
         // Update is called once per frame
         void Update()
         {
+            // TODO: this is for testing purposes, remove when unneeded (game only uses mouse/touch controls).
+            // Only allow the player to shoot when a meteor is targeted.
+            if(Input.GetKeyDown(KeyCode.Space))
+            {
+                if(stageManager.meteorTarget.meteor != null)
+                    ShootLaserShot(1);
+                else
+                    ShootLaserShot(1);
 
+            }
         }
     }
 }
