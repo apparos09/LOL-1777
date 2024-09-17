@@ -61,6 +61,9 @@ namespace RM_MST
         // The barriers for the stage.
         public List<Barrier> stageBarriers;
 
+        // The timer for the stage.
+        public float stageTime = 0.0F;
+
         // The world scene.
         public string worldScene = "WorldScene";
 
@@ -718,18 +721,32 @@ namespace RM_MST
         public float GetPlayerPointsProgress()
         {
             // Calculates the percent and returns it.
-            float percent = player.points / pointsGoal;
+            float percent = player.GetPoints() / pointsGoal;
             return percent;
+        }
+
+        // Gets the player's points.
+        public float GetPlayerPoints()
+        {
+            return player.GetPoints();
+        }
+
+        // Sets the player's points.
+        public void SetPlayerPoints(float points)
+        {
+            player.SetPoints(points);
+            player.OnPointsChanged();
         }
 
         // Called when the player's points have changed.
         public void OnPlayerPointsChanged()
         {
             // Updates the points bar.
+            stageUI.UpdatePointsText();
             stageUI.UpdatePointsBar();
 
             // If the points goal has been reached, trigger the stage win.
-            if (IsPointsGoalReached(player.points))
+            if (IsPointsGoalReached(player.GetPoints()))
             {
                 OnStageWon();
             }
@@ -789,14 +806,15 @@ namespace RM_MST
         public void RestartStage()
         {
             // Reset the player's points, kill all the meteors, and reset the game progress.
-            player.points = 0;
+            player.SetPoints(0);
             KillAllMeteorsInList();
             SetPhaseByPlayerPointsProgress();
 
             // Restarts the stage.
             stageUI.OnStageRestart();
 
-            // Unpauses the game, and starts running the game again.
+            // Resets the time, unpauses the game, and starts running the game again.
+            stageTime = 0;
             UnpauseGame();
             runningGame = true;
         }
@@ -855,6 +873,11 @@ namespace RM_MST
             if(runningGame && !IsGamePaused())
             {
                 RunGame();
+
+                // Add to the stage timer and updates the time text.
+                // TODO: maybe don't update every frame?
+                stageTime += Time.deltaTime;
+                stageUI.UpdateTimeText();
 
                 // If the combo timer is greater than 0, and a meteor is targeted.
                 if(comboTimer > 0.0F && meteorTarget.meteor != null)

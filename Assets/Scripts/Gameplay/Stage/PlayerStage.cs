@@ -14,7 +14,7 @@ namespace RM_MST
         public LaserShot laserShotPrefab;
 
         // The number of points.
-        public float points = 0;
+        private float points = 0;
 
         // Start is called before the first frame update
         void Start()
@@ -52,7 +52,20 @@ namespace RM_MST
             // Returns the new shot.
             return newShot;
         }
+
+        // Gets the points.
+        public float GetPoints()
+        {
+            return points;
+        }
         
+        // Set the player's points.
+        public void SetPoints(float newPoints)
+        {
+            points = newPoints;
+            OnPointsChanged();
+        }
+
         // Gives points to the player.
         public void GivePoints(float pointsAdd)
         {

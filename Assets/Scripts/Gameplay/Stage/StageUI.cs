@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using util;
 
 namespace RM_MST
 {
@@ -17,13 +19,22 @@ namespace RM_MST
         // The stage manager.
         public StageManager stageManager;
 
-        [Tooltip("Progress Bars")]
+        [Header("Text")]
+
+        // The time text.
+        public TMP_Text timeText;
+
+        // The score text.
+        public TMP_Text pointsText;
+
+
+        [Header("Progress Bars")]
 
         // The points bar.
-        public util.ProgressBar pointsBar;
+        public ProgressBar pointsBar;
 
         // The damage bar.
-        public util.ProgressBar surfaceHealthBar;
+        public ProgressBar surfaceHealthBar;
 
         // Constructor
         private StageUI()
@@ -121,15 +132,29 @@ namespace RM_MST
         // Updates all the UI.
         public void UpdateAllUI()
         {
+            UpdateTimeText();
+            UpdatePointsText();
             UpdatePointsBar();
             UpdateSurfaceHealthBar();
+        }
+
+        // Updates the time text.
+        public void UpdateTimeText()
+        {
+            timeText.text = StringFormatter.FormatTime(stageManager.stageTime, false, true, false);
+        }
+
+        // Updates the points text.
+        public void UpdatePointsText()
+        {
+            pointsText.text = Mathf.Round(stageManager.player.GetPoints()).ToString();
         }
 
         // Updates the points bar.
         public void UpdatePointsBar()
         {
             // Get the points percentage and clamp it.
-            float percent = stageManager.player.points / stageManager.pointsGoal;
+            float percent = stageManager.player.GetPoints() / stageManager.pointsGoal;
             percent = Mathf.Clamp01(percent);
             pointsBar.SetValueAsPercentage(percent);
         }

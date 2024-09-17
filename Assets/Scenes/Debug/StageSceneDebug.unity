@@ -154,7 +154,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageManager: {fileID: 0}
   laserShotPrefab: {fileID: 4725303725601913545, guid: 7bf713998058b2644a048011ec725293, type: 3}
-  points: 0
 --- !u!4 &53097579
 Transform:
   m_ObjectHideFlags: 0
@@ -695,6 +694,7 @@ MonoBehaviour:
   meteorTarget: {fileID: 1718801710}
   stageSurface: {fileID: 547026082}
   stageBarriers: []
+  stageTime: 0
   worldScene: WorldSceneDebug
   stageUnitGroups: 
   meteorSpawnRate: 1
@@ -1701,6 +1701,14 @@ PrefabInstance:
     - target: {fileID: 3476837066656711834, guid: e017c4a555637dc4398780904a9288ad, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5678111129616546589, guid: e017c4a555637dc4398780904a9288ad, type: 3}
+      propertyPath: m_Name
+      value: Points Text (TMP)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6051825251945292986, guid: e017c4a555637dc4398780904a9288ad, type: 3}
+      propertyPath: m_Name
+      value: Time and Points
       objectReference: {fileID: 0}
     - target: {fileID: 8568467190338195159, guid: e017c4a555637dc4398780904a9288ad, type: 3}
       propertyPath: gameManager
