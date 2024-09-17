@@ -94,6 +94,9 @@
     "unt_liters_nme": "Liters",
     "unt_liters_sbl": "l",
 
+    "kwd_input": "Input",
+    "kwd_output": "Output",
+
     "kwd_all": "All",
     "kwd_none": "None",
 

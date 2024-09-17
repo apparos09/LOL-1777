@@ -13,7 +13,7 @@ namespace RM_MST
         public struct UnitsInfoEntry
         {
             // The units type.
-            public UnitsInfo.unitGroups unitsType;
+            public UnitsInfo.unitGroups group;
 
             // The group the units belong to, and its key.
             public string groupName;
@@ -28,6 +28,9 @@ namespace RM_MST
 
         // The units info.
         public UnitsInfo unitsInfo;
+
+        // The units table.
+        public UnitsTable unitsTable;
 
         // The group name.
         public TMP_Text groupName;
@@ -76,23 +79,35 @@ namespace RM_MST
         // This function is called when the object becomes enabled and active.
         private void OnEnable()
         {
+            // Saves the old index and old count.
+            int oldIndex = entryIndex;
+            int oldCount = entries.Count;
+
             // Loads entries on enable.
             if(loadEntriesOnEnable)
                 LoadEntries();
+
+
+            // If the count hasn't changed, set the entry to the old index.
+            if (oldCount == entries.Count)
+                SetEntry(oldIndex);
         }
 
         // Generates the units info entry.
-        public UnitsInfoEntry GenerateUnitsInfoEntry(UnitsInfo.unitGroups unitsType)
+        public UnitsInfoEntry GenerateUnitsInfoEntry(UnitsInfo.unitGroups group)
         {
             // A new entry.
             UnitsInfoEntry newEntry = new UnitsInfoEntry();
 
-            newEntry.groupName = unitsInfo.GetUnitsGroupName(unitsType);
-            newEntry.groupNameKey = UnitsInfo.GetUnitsGroupNameKey(unitsType);
+            // Set the group.
+            newEntry.group = group;
+
+            newEntry.groupName = unitsInfo.GetUnitsGroupName(group);
+            newEntry.groupNameKey = UnitsInfo.GetUnitsGroupNameKey(group);
 
             // Description
-            newEntry.groupDesc = unitsInfo.GetUnitsGroupDescription(unitsType);
-            newEntry.groupDescKey = UnitsInfo.GetUnitsGroupDescriptionKey(unitsType);
+            newEntry.groupDesc = unitsInfo.GetUnitsGroupDescription(group);
+            newEntry.groupDescKey = UnitsInfo.GetUnitsGroupDescriptionKey(group);
 
             return newEntry;
         }
@@ -244,10 +259,12 @@ namespace RM_MST
             // Gets the entry.
             UnitsInfoEntry entry = entries[index];
 
-            // TODO: load entry information.
-
+            // Set the text.
             groupName.text = entry.groupName;
             groupDesc.text = entry.groupDesc;
+
+            // Update the table.
+            unitsTable.SetGroup(entry.group);
 
             // If the LOL Manager has been instantiated.
             if(GameSettings.Instance.UseTextToSpeech)
