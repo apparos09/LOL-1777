@@ -22,6 +22,9 @@ namespace RM_MST
             // Difficulty
             public int difficulty;
 
+            // Losses
+            public int losses;
+
             // Index in the Stage List
             public int index;
         }
@@ -163,9 +166,13 @@ namespace RM_MST
             // Saves what stages have been cleared.
             for(int i = 0; i < worldStages.Length && i < worldManager.stages.Count; i++)
             {
-                // If there is a stage, get the clear value.
+                // If there is a stage, get the clear value and the losses.
                 if (worldManager.stages[i] != null)
+                {
+                    worldStages[i].losses = worldManager.stages[i].losses;
                     worldStages[i].cleared = worldManager.stages[i].cleared;
+                }
+                    
             }
 
             // There is world info.
@@ -180,9 +187,10 @@ namespace RM_MST
             // Sets what stages have been cleared.
             for (int i = 0; i < worldStages.Length && i < worldManager.stages.Count; i++)
             {
-                // If there is a stage, set the clear value.
+                // If there is a stage, set the losses and clear value.
                 if (worldManager.stages[i] != null)
                 {
+                    worldManager.stages[i].losses = worldStages[i].losses;
                     worldManager.stages[i].cleared = worldStages[i].cleared;
                 }
             }

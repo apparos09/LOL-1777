@@ -17,6 +17,9 @@ namespace RM_MST
         // The highest combo.
         public int highestCombo;
 
+        // The number of losses.
+        public int losses = 0;
+
         // Checks if the stage has been cleared.
         public bool cleared = false;
     }

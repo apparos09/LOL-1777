@@ -36,8 +36,17 @@ namespace RM_MST
         // TODO: make private.
         public int difficulty = 0;
 
+        // The base difficulty for the game.
+        public int baseDifficulty = 0;
+
         // The maximum difficulty.
         public const int DIFFICULTY_MAX = 9;
+
+        // Adjusts the difficulty dynamically by the number of losses the player has.
+        private bool dynamicDifficulty = true;
+
+        // The total number of losses.
+        public int losses = 0;
 
         // The phase for the game.
         // TODO: make private.
@@ -183,8 +192,12 @@ namespace RM_MST
                 stageBarriers = new List<Barrier>(FindObjectsOfType<Barrier>());
             }
 
-            // Sets the difficulty.
-            SetDifficulty(difficulty);
+            // Sets the difficulty 
+            SetDifficulty(difficulty, true);
+
+            // If the difficulty should be dynamically adjusted.
+            if(dynamicDifficulty)
+                AdjustDifficultyByLosses();
         }
 
         // The function called after the start function.
@@ -260,6 +273,7 @@ namespace RM_MST
                 stageName = stageStartInfo.name;
                 stageUnitGroups = stageStartInfo.stageUnitGroups;
                 difficulty = stageStartInfo.difficulty;
+                losses = stageStartInfo.losses;
                 stageIndex = stageStartInfo.index;
             }
             else
@@ -282,10 +296,15 @@ namespace RM_MST
         }
 
         // Sets the difficulty for the game.
-        public void SetDifficulty(int difficultyLevel)
+        public void SetDifficulty(int difficultyLevel, bool setBaseDifficulty = true)
         {
             // Sets the difficulty.
             difficulty = Mathf.Clamp(difficultyLevel, 1, DIFFICULTY_MAX);
+            
+            // If the base difficulty should be set, set it.
+            if(setBaseDifficulty)
+                baseDifficulty = difficulty;
+
 
             // // Changes parameters based on the difficulty.
             // // TODO: implement.
@@ -339,6 +358,16 @@ namespace RM_MST
             //         break;
             // 
             // }
+        }
+
+        // Adjusts the difficulty by the amount of losses.
+        public void AdjustDifficultyByLosses()
+        {
+            // For every 3 losses, lower the difficulty by 1.
+            int quotient = losses / 3;
+
+            // Set the difficulty with the base difficulty as a basis.
+            SetDifficulty(baseDifficulty - quotient, false);
         }
 
         // Gets the phase.
@@ -835,6 +864,10 @@ namespace RM_MST
             KillAllMeteorsInList();
             CalculateAndSetStageFinalScore();
             stageUI.OnStageLost();
+
+            // Add to the losses count, and adjusts the difficulty.
+            losses++;
+            AdjustDifficultyByLosses();
         }
 
         // Called to restart the stage.
@@ -851,6 +884,10 @@ namespace RM_MST
             // Resets the time, unpauses the game, and starts running the game again.
             stageTime = 0;
             stageFinalScore = 0;
+
+            // The difficulty is only dynamically adjusted if the player goes back to the world scene.
+
+            // Unpause game and start running.
             UnpauseGame();
             runningGame = true;
         }

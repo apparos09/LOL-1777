@@ -51,6 +51,9 @@ namespace RM_MST
         // The difficulty of the stage.
         public int difficulty = 0;
 
+        // The number of loses on this stage.
+        public int losses = 0;
+
         // Gets set to 'true' when the stage has been cleared.
         // TODO: make this private when not testing.
         public bool cleared = false;
@@ -319,6 +322,7 @@ namespace RM_MST
             stageStartInfo.name = stageName;
             stageStartInfo.stageUnitGroups = unitGroups;
             stageStartInfo.difficulty = difficulty;
+            stageStartInfo.losses = losses;
 
             // Gets the index for the stage start.
             stageStartInfo.index = worldManager.GetStageWorldIndex(this);
