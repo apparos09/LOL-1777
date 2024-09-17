@@ -8,6 +8,9 @@ namespace RM_MST
     [System.Serializable]
     public class StageData
     {
+        // The stage name.
+        public string stageName;
+
         // The stage time.
         public float stageTime;
 

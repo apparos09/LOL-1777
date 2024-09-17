@@ -931,6 +931,7 @@ namespace RM_MST
             StageData data = new StageData();
 
             // Set values.
+            data.stageName = stageName;
             data.stageTime = stageTime;
             data.stageScore = stageFinalScore;
             data.highestCombo = highestCombo;

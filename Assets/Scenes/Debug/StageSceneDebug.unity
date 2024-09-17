@@ -545,8 +545,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 547026080}
-  - component: {fileID: 547026082}
   - component: {fileID: 547026081}
+  - component: {fileID: 547026082}
   m_Layer: 0
   m_Name: Surface
   m_TagString: Untagged
@@ -628,8 +628,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageManager: {fileID: 0}
-  collider: {fileID: 0}
-  rigidbody: {fileID: 0}
+  collider: {fileID: 547026081}
   health: 1
   maxHealth: 10
 --- !u!1 &906850105
@@ -718,8 +717,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1041838949}
-  - component: {fileID: 1041838950}
   - component: {fileID: 1041838951}
+  - component: {fileID: 1041838950}
   m_Layer: 0
   m_Name: Barrier
   m_TagString: Untagged
@@ -757,8 +756,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageManager: {fileID: 0}
   spriteRenderer: {fileID: 197310502}
-  collider: {fileID: 0}
-  rigidbody: {fileID: 0}
+  collider: {fileID: 1041838951}
   health: 1
   maxHealth: 1
 --- !u!61 &1041838951
@@ -1806,8 +1804,8 @@ SceneRoots:
   m_Roots:
   - {fileID: 1645859232}
   - {fileID: 4185861477174107381}
+  - {fileID: 69953333}
   - {fileID: 906850106}
   - {fileID: 1417097716}
   - {fileID: 53097579}
   - {fileID: 1711066771}
-  - {fileID: 69953333}

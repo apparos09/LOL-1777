@@ -10,9 +10,13 @@ namespace RM_MST
     // The results UI.
     public class ResultsUI : MonoBehaviour
     {
-        public ResultsManager manager;
+        // The results manager.
+        public ResultsManager resultsManager;
 
         [Header("Text")]
+
+        // The title text.
+        public TMP_Text titleText;
 
         // The game time text.
         public TMP_Text gameTimeText;
@@ -20,7 +24,11 @@ namespace RM_MST
         // The score text.
         public TMP_Text gameScoreText;
 
-        // TODO: add answer speed?
+        [Header("Results Entries")]
+
+        // The results entries.
+        public List<ResultsEntry> resultsEntries;
+
 
         [Header("Buttons")]
 
@@ -34,8 +42,14 @@ namespace RM_MST
         void Start()
         {
             // Manager
-            if (manager == null)
-                manager = ResultsManager.Instance;
+            if (resultsManager == null)
+                resultsManager = ResultsManager.Instance;
+
+
+            // Results entries.
+            if(resultsEntries == null)
+                resultsEntries = new List<ResultsEntry>(FindObjectsOfType<ResultsEntry>());
+
 
             // If the platform is set to webGL, disable the quit button.
             if (Application.platform == RuntimePlatform.WebGLPlayer)
@@ -61,19 +75,24 @@ namespace RM_MST
             // Score
             gameScoreText.text = data.gameScore.ToString();
 
-            // TODO: show stage data.
+            // Applies the entries from the stage data.
+            for(int i = 0; i < resultsEntries.Count && i < data.stageDatas.Length; i++)
+            {
+                // Apply the data.
+                resultsEntries[i].ApplyStageData(data.stageDatas[i]);
+            }
         }
 
         // Goes to the title scene.
         public void ToTitleScene()
         {
-            manager.ToTitleScene();
+            resultsManager.ToTitleScene();
         }
         
         // Complete the game.
         public void CompleteGame()
         {
-            manager.CompleteGame();
+            resultsManager.CompleteGame();
         }
     }
 }
