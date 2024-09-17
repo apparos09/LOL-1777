@@ -46,6 +46,9 @@ namespace RM_MST
         // The maximum phase value.
         public const int PHASE_MAX = 4;
 
+        // The score that must be met to win the game.
+        public float pointsGoal = 1000.0F;
+
         // The player for the stage.
         public PlayerStage player;
 
@@ -58,8 +61,11 @@ namespace RM_MST
         // The barriers for the stage.
         public List<Barrier> stageBarriers;
 
-        // The score that must be met to win the game.
-        public const float POINTS_GOAL = 100.0F;
+        // The world scene.
+        public string worldScene = "WorldScene";
+
+        // Gets set to 'true' when the game is running.
+        private bool runningGame = false;
 
         [Header("Conversions")]
         // The units used for the stage.
@@ -98,11 +104,20 @@ namespace RM_MST
         // The total number of meteors that can be active at once.
         private int ACTIVE_METEORS_COUNT_MAX = 12;
 
-        // Gets set to 'true' when the game is running.
-        private bool runningGame = false;
 
-        // The world scene.
-        public string worldScene = "WorldScene";
+
+        [Header("Combo")]
+        // The combo for the stage.
+        public int combo = 0;
+
+        // The highest combo achieved.
+        public int highestCombo = 0;
+
+        // The timer for triggering a combo.
+        private float comboTimer = 0;
+
+        // The maximum time for the combo.
+        private const float COMBO_TIMER_MAX = 5.0F;
 
         // Constructor
         private StageManager()
@@ -396,13 +411,22 @@ namespace RM_MST
             return meteor;
         }
 
-        // Removes the meteor from the active list if it's destroyed.
+        // Called when a meteor is destroyed.
         public void OnMeteorKilled(Meteor meteor)
         {
             // If this meteor is in the list, remove it.
             if(meteorsActive.Contains(meteor))
                 meteorsActive.Remove(meteor);
         }
+
+        // Called when a meteor fails to be destroyed.
+        public void OnMeteorSurivived(Meteor meteor)
+        {
+            // Reset the combo.
+            combo = 0;
+            comboTimer = 0;
+        }
+
 
         // Gets the closest meteor from the active list.
         public Meteor GetClosestMeteor()
@@ -669,27 +693,39 @@ namespace RM_MST
         // Calculates the points to be given for destroying the provided meteor.
         public float CalculatePoints(Meteor meteor)
         {
-            // TODO: implement
-            return 10;
+            // The points to be returned.
+            float points = 0;
+            
+            // Base amount, combo bonus, and difficulty bonus.
+            points += 15;
+            points += 10 * combo;
+            points += 5 * difficulty;
+
+            // Returns the points.
+            return points;
         }
+        
 
         // Returns 'true' if the points goal has been reached.
         public bool IsPointsGoalReached(float points)
         {
-            return points >= POINTS_GOAL;
+            return points >= pointsGoal;
         }
 
         // Gets the progress of the player's points towards the goal.
         public float GetPlayerPointsProgress()
         {
             // Calculates the percent and returns it.
-            float percent = player.points / POINTS_GOAL;
+            float percent = player.points / pointsGoal;
             return percent;
         }
 
         // Called when the player's points have changed.
         public void OnPlayerPointsChanged()
         {
+            // Updates the points bar.
+            stageUI.UpdatePointsBar();
+
             // If the points goal has been reached, trigger the stage win.
             if (IsPointsGoalReached(player.points))
             {
@@ -699,7 +735,29 @@ namespace RM_MST
             {
                 SetPhaseByPlayerPointsProgress();
             }
+        }
 
+        // Increaes the combo.
+        public void IncreaseCombo()
+        {
+            // Increase the combo and reset the timer.
+            combo++;
+            comboTimer = COMBO_TIMER_MAX;
+
+            // If this is the new highest combo, set it.
+            if (combo > highestCombo)
+                highestCombo = combo;
+        }
+
+        // Resets the combo.
+        public void ResetCombo(bool resetHighestCombo)
+        {
+            combo = 0;
+            comboTimer = 0;
+
+            // If the highest combo should be reset, reset it.
+            if (resetHighestCombo)
+                highestCombo = 0;
         }
 
         // ENDING
@@ -789,6 +847,19 @@ namespace RM_MST
             if(runningGame && !IsGamePaused())
             {
                 RunGame();
+
+                // If the combo timer is greater than 0.
+                if(comboTimer > 0.0F)
+                {
+                    // Reduce the timer.
+                    comboTimer -= Time.deltaTime;
+
+                    // Reset the combo if the timer has run out.
+                    if(comboTimer <= 0)
+                    {
+                        ResetCombo(false);
+                    }
+                }
             }
         }
 

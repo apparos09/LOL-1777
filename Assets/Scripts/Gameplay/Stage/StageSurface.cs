@@ -53,6 +53,9 @@ namespace RM_MST
         {
             health -= damage;
 
+            // Updates the surface health bar.
+            stageManager.stageUI.UpdateSurfaceHealthBar();
+
             // If the surface health is 0 or less, kill it.
             if (health <= 0)
             {

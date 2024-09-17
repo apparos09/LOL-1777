@@ -564,7 +564,7 @@ MonoBehaviour:
   collider: {fileID: 0}
   rigidbody: {fileID: 0}
   health: 1
-  maxHealth: 999
+  maxHealth: 10
 --- !u!1 &906850105
 GameObject:
   m_ObjectHideFlags: 0
@@ -622,17 +622,20 @@ MonoBehaviour:
   stageIndex: -1
   difficulty: 0
   phase: 0
+  pointsGoal: 500
   player: {fileID: 53097578}
   meteorTarget: {fileID: 1718801710}
   stageSurface: {fileID: 547026082}
   stageBarriers: []
+  worldScene: WorldSceneDebug
   stageUnitGroups: 
   meteorSpawnRate: 1
   meteorSpeedMax: 1
   meteorPrefabs:
   - {fileID: 3009806165377321055, guid: 6d2fe1ca55a1e5e4895aeab1b087592f, type: 3}
   meteorsActive: []
-  worldScene: WorldSceneDebug
+  combo: 0
+  highestCombo: 0
 --- !u!1 &1041838948
 GameObject:
   m_ObjectHideFlags: 0
@@ -1530,6 +1533,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1955338396881668884, guid: e017c4a555637dc4398780904a9288ad, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3407424017466097829, guid: e017c4a555637dc4398780904a9288ad, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3407424017466097829, guid: e017c4a555637dc4398780904a9288ad, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3476837066656711834, guid: e017c4a555637dc4398780904a9288ad, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3476837066656711834, guid: e017c4a555637dc4398780904a9288ad, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8568467190338195159, guid: e017c4a555637dc4398780904a9288ad, type: 3}

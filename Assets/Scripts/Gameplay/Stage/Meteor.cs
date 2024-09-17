@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.Intrinsics;
 using UnityEngine;
 
 namespace RM_MST
@@ -119,7 +120,6 @@ namespace RM_MST
             // If the values match, the laser shot was a success.
             if(laserShot.outputValue == conversion.GetConvertedValue())
             {
-                stageManager.player.GivePoints(stageManager.CalculatePoints(this));
                 success = true;
             }
             else // If the values don't match, the laser shot was a failure.
@@ -135,19 +135,27 @@ namespace RM_MST
             if (forceDirec == Vector3.zero)
                 forceDirec = laserShot.transform.forward;
 
-            // Add force and kill the laser shot.
+            // Add force for knockback.
             rigidbody.velocity = Vector2.zero;
             rigidbody.AddForce(forceDirec.normalized * laserShot.meteorHitForce, ForceMode2D.Impulse);
-            laserShot.Kill(true);
-
-            // The meteor is now experiencing knockback.
             inKnockback = true;
 
             // If the laser shot was a success, kill the meteor.
             if(success)
             {
-                Kill();
+                stageManager.IncreaseCombo(); // Increase the combo.
+                stageManager.player.CalculateAndGivePoints(this); // Give the player points.                                                                  // Kill the laser shot.
+                laserShot.Kill(success); // Kill the laser.
+                Kill(); // Kill the meteor.
             }
+            else
+            {
+                // The meteor has survived.
+                stageManager.ResetCombo(false); // Reset the combo.
+                laserShot.Kill(success); // Kill the laser.
+                stageManager.OnMeteorSurivived(this);
+            }
+            
 
             // Returns the success value.
             return success;

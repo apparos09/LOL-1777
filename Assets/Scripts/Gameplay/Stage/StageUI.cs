@@ -17,6 +17,14 @@ namespace RM_MST
         // The stage manager.
         public StageManager stageManager;
 
+        [Tooltip("Progress Bars")]
+
+        // The points bar.
+        public util.ProgressBar pointsBar;
+
+        // The damage bar.
+        public util.ProgressBar surfaceHealthBar;
+
         // Constructor
         private StageUI()
         {
@@ -53,6 +61,15 @@ namespace RM_MST
             // Gets the instance.
             if (stageManager == null)
                 stageManager = StageManager.Instance;
+        }
+
+        // Late start is called on the first frame update.
+        protected override void LateStart()
+        {
+            base.LateStart();
+
+            // Updates all the UI.
+            UpdateAllUI();
         }
 
         // Gets the instance.
@@ -96,6 +113,34 @@ namespace RM_MST
         public override void CloseAllWindows()
         {
             base.CloseAllWindows();
+        }
+
+
+        // UI
+
+        // Updates all the UI.
+        public void UpdateAllUI()
+        {
+            UpdatePointsBar();
+            UpdateSurfaceHealthBar();
+        }
+
+        // Updates the points bar.
+        public void UpdatePointsBar()
+        {
+            // Get the points percentage and clamp it.
+            float percent = stageManager.player.points / stageManager.pointsGoal;
+            percent = Mathf.Clamp01(percent);
+            pointsBar.SetValueAsPercentage(percent);
+        }
+
+        // Updates the surface health bar.
+        public void UpdateSurfaceHealthBar()
+        {
+            // Get the percent and update the damage bar.
+            float percent = stageManager.stageSurface.health / stageManager.stageSurface.maxHealth;
+            percent = Mathf.Clamp01(percent);
+            surfaceHealthBar.SetValueAsPercentage(percent);
         }
 
         // STAGE WIN/LOST

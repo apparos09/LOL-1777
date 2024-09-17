@@ -60,6 +60,12 @@ namespace RM_MST
             OnPointsChanged();
         }
 
+        // Calculates and gives the player points.
+        public void CalculateAndGivePoints(Meteor meteor)
+        {
+            GivePoints(stageManager.CalculatePoints(meteor));
+        }
+
         // Removes points from the player.
         public void RemovePoints(float pointsMinus)
         {

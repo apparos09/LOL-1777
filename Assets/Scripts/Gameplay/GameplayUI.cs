@@ -12,6 +12,9 @@ namespace RM_MST
         // The gameplay manager.
         public GameplayManager gameManager;
 
+        // Gets set to 'true' when late start is called.
+        protected bool calledLateStart = false;
+
         [Header("Windows/Menus")]
         // The window panel.
         public Image windowPanel;
@@ -38,6 +41,12 @@ namespace RM_MST
 
             // Closes all windows by default.
             CloseAllWindows();
+        }
+
+        // Called on the first update frame.
+        protected virtual void LateStart()
+        {
+            calledLateStart = true;
         }
 
         // TUTORIAL //
@@ -193,7 +202,9 @@ namespace RM_MST
         // Update is called once per frame
         protected virtual void Update()
         {
-            // ...
+            // Call late start.
+            if (!calledLateStart)
+                LateStart();
         }
     }
 }
