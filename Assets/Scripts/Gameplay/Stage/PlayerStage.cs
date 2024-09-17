@@ -82,7 +82,7 @@ namespace RM_MST
             if(Input.GetKeyDown(KeyCode.Space))
             {
                 if(stageManager.meteorTarget.meteor != null)
-                    ShootLaserShot(1);
+                    ShootLaserShot(stageManager.meteorTarget.meteor.GetConvertedValue());
                 else
                     ShootLaserShot(1);
 

@@ -472,8 +472,8 @@ namespace RM_MST
             }
         }
 
-        // Destroys all the meteors.
-        public void KillAllMeteors()
+        // Destroys all the meteors in the list. Some meteors may not be in the list for some reason.
+        public void KillAllMeteorsInList()
         {
             // Goes through all meteors.
             for(int i = 0; i < meteorsActive.Count; i++)
@@ -486,6 +486,22 @@ namespace RM_MST
             }
 
             // Clear out the list.
+            meteorsActive.Clear();
+        }
+
+        // Finds and kills all meteors. This is more accurate than KillAllMeteorsActive().
+        public void FindAndKillAllMeteors()
+        {
+            // Gets all the meteors.
+            Meteor[] meteors = FindObjectsOfType<Meteor>(true);
+
+            // Kills all the meteors.
+            foreach(Meteor meteor in meteors)
+            {
+                meteor.Kill();
+            }
+
+            // Clears out the active list.
             meteorsActive.Clear();
         }
 
@@ -623,15 +639,15 @@ namespace RM_MST
                     break;
 
                 case 2:
-                    mod = 1.05F;
-                    break;
-
-                case 3:
                     mod = 1.10F;
                     break;
 
+                case 3:
+                    mod = 1.20F;
+                    break;
+
                 case 4:
-                    mod = 1.15F;
+                    mod = 1.30F;
                     break;
 
             }
@@ -691,7 +707,7 @@ namespace RM_MST
         public void OnStageWon()
         {
             runningGame = false;
-            KillAllMeteors();
+            FindAndKillAllMeteors();
             stageUI.OnStageWon();
         }
 
@@ -699,7 +715,7 @@ namespace RM_MST
         public void OnStageLost()
         {
             runningGame = false;
-            KillAllMeteors();
+            KillAllMeteorsInList();
             stageUI.OnStageLost();
         }
 
@@ -708,7 +724,7 @@ namespace RM_MST
         {
             // Reset the player's points, kill all the meteors, and reset the game progress.
             player.points = 0;
-            KillAllMeteors();
+            KillAllMeteorsInList();
             SetPhaseByPlayerPointsProgress();
 
             // Restarts the stage.

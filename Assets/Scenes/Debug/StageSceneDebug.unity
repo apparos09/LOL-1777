@@ -631,6 +631,7 @@ MonoBehaviour:
   meteorSpeedMax: 1
   meteorPrefabs:
   - {fileID: 3009806165377321055, guid: 6d2fe1ca55a1e5e4895aeab1b087592f, type: 3}
+  meteorsActive: []
   worldScene: WorldSceneDebug
 --- !u!1 &1041838948
 GameObject:
@@ -1283,7 +1284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageManager: {fileID: 0}
   meteor: {fileID: 0}
-  trackSpeed: 10
+  trackSpeed: 30
   trackExactPos: 0
 --- !u!1 &1934594205
 GameObject:
