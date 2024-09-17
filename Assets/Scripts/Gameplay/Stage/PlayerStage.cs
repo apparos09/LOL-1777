@@ -62,15 +62,21 @@ namespace RM_MST
         // Set the player's points.
         public void SetPoints(float newPoints)
         {
+            // Set value.
             points = newPoints;
+
+            // The points can't be negative.
+            if(points < 0)
+                points = 0;
+
+            // On points changed.
             OnPointsChanged();
         }
 
         // Gives points to the player.
         public void GivePoints(float pointsAdd)
         {
-            points += pointsAdd;
-            OnPointsChanged();
+            SetPoints(points + pointsAdd);
         }
 
         // Calculates and gives the player points.
@@ -82,8 +88,7 @@ namespace RM_MST
         // Removes points from the player.
         public void RemovePoints(float pointsMinus)
         {
-            points -= pointsMinus;
-            OnPointsChanged();
+            SetPoints(points - pointsMinus);
         }
 
         // Called when the points have changed.

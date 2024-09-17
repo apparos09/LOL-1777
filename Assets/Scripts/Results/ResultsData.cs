@@ -11,8 +11,9 @@ namespace RM_MST
         public float gameTime = 0;
 
         // The game score.
-        public int gameScore = 0;
+        public float gameScore = 0;
 
-        // TODO: implement results data.
+        // The stage data.
+        public StageData[] stageDatas = new StageData[WorldManager.STAGE_COUNT];
     }
 }

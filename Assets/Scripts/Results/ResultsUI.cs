@@ -60,6 +60,8 @@ namespace RM_MST
 
             // Score
             gameScoreText.text = data.gameScore.ToString();
+
+            // TODO: show stage data.
         }
 
         // Goes to the title scene.

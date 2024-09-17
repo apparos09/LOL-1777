@@ -37,15 +37,15 @@ namespace RM_MST
         public float gameTime = 0.0F;
 
         // The game score.
-        public int gameScore = 0;
+        public float gameScore = 0;
 
         [Header("WorldInfo")]
 
         // If the class has world info.
         public bool hasWorldInfo = false;
 
-        // Marks if the stage has been cleared or not.
-        public bool[] clearedStages = new bool[WorldManager.STAGE_COUNT];
+        // The data for all the world stages.
+        public StageData[] worldStages = new StageData[WorldManager.STAGE_COUNT];
 
         // The stage start information.
         public StageStartInfo stageStartInfo;
@@ -161,11 +161,11 @@ namespace RM_MST
             }
 
             // Saves what stages have been cleared.
-            for(int i = 0; i < clearedStages.Length && i < worldManager.stages.Count; i++)
+            for(int i = 0; i < worldStages.Length && i < worldManager.stages.Count; i++)
             {
                 // If there is a stage, get the clear value.
                 if (worldManager.stages[i] != null)
-                    clearedStages[i] = worldManager.stages[i].cleared;
+                    worldStages[i].cleared = worldManager.stages[i].cleared;
             }
 
             // There is world info.
@@ -178,11 +178,13 @@ namespace RM_MST
             LoadGameplayInfo(worldManager);
 
             // Sets what stages have been cleared.
-            for (int i = 0; i < clearedStages.Length && i < worldManager.stages.Count; i++)
+            for (int i = 0; i < worldStages.Length && i < worldManager.stages.Count; i++)
             {
                 // If there is a stage, set the clear value.
                 if (worldManager.stages[i] != null)
-                    worldManager.stages[i].cleared = clearedStages[i];
+                {
+                    worldManager.stages[i].cleared = worldStages[i].cleared;
+                }
             }
         }
 
@@ -190,6 +192,13 @@ namespace RM_MST
         public void SaveStageInfo(StageManager stageManager)
         {
             SaveGameplayInfo(stageManager);
+
+            // If the stage index is valid, save the information.
+            if(stageManager.stageIndex >= 0 && stageManager.stageIndex < worldStages.Length)
+            {
+                // Replace the stage data.
+                worldStages[stageManager.stageIndex] = stageManager.GenerateStageData();
+            }
 
             // There is stage info.
             hasStageInfo = true;

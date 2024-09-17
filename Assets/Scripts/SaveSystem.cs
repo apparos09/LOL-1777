@@ -28,14 +28,14 @@ namespace RM_MST
         // The game time
         public float gameTime = 0;
 
-        // The player's score.
-        public int gameScore = 0;
+        // The player's overall score.
+        public float gameScore = 0;
 
         // TODO: implement values.
-        // ...
+        public StageData[] stageDatas = new StageData[WorldManager.STAGE_COUNT];
 
         // Tutorial Clears
-        public Tutorials.TutorialData tutorialData;
+        public Tutorials.TutorialsData tutorialData;
     }
 
     // Used to save the game.

@@ -154,6 +154,30 @@ namespace RM_MST
             return -1;
         }
 
+        // Returns the game score.
+        public float CalculateGameScore()
+        {
+            // The game score result.
+            float result = 0;
+
+            // Goes through all the stages.
+            for(int i = 0; i < gameInfo.worldStages.Length; i++)
+            {
+                // Add to the score.
+                if (gameInfo.worldStages[i] != null)
+                    result += gameInfo.worldStages[i].stageScore;
+            }
+
+            // Returns the game score.
+            return result;
+        }
+
+        // Updates the game score.
+        public void CalculateAndSetGameScore()
+        {
+            gameScore = CalculateGameScore();
+        }
+
         // SAVING/LOADING
         // Generates the save data or the game.
         public MST_GameData GenerateSaveData()
@@ -161,8 +185,31 @@ namespace RM_MST
             // The data.
             MST_GameData data = new MST_GameData();
 
-            // TODO: implement.
+            // Sets if the tutorial is being used.
+            data.useTutorial = GameSettings.Instance.UseTutorial;
 
+            // Sets the game time.
+            data.gameTime = gameTime;
+
+            // Sets the game score.
+            data.gameScore = CalculateGameScore();
+
+            // Adds in the stage data.
+            for(int i = 0; i < data.stageDatas.Length && i < gameInfo.worldStages.Length; i++)
+            {
+                data.stageDatas[i] = gameInfo.worldStages[i];
+            }
+
+            // Sets the tutorials data.
+            data.tutorialData = Tutorials.Instance.GenerateTutorialsData();
+
+            // Saves if the game is completed.
+            data.complete = gameCompleteEvent.cleared;
+
+            // The data is valid.
+            data.valid = true;
+
+            // Return the data.
             return data;
         }
 
@@ -185,7 +232,6 @@ namespace RM_MST
                 Debug.LogError("The save system could not be found.");
                 return false;
             }
-
 
             // Set the world manager.
             if (saveSys.worldManager == null)
@@ -245,6 +291,24 @@ namespace RM_MST
                 return false;
             }
 
+            // Tutorial setting.
+            GameSettings.Instance.UseTutorial = loadedData.useTutorial;
+
+            // Sets the game time.
+            gameTime = loadedData.gameTime;
+
+            // Sets the game score.
+            gameScore = loadedData.gameScore;
+
+            // Adds in the stage data.
+            for (int i = 0; i < loadedData.stageDatas.Length && i < gameInfo.worldStages.Length; i++)
+            {
+                gameInfo.worldStages[i] = loadedData.stageDatas[i];
+            }
+
+            // Sets the tutorials data.
+            Tutorials.Instance.LoadTutorialsData(loadedData.tutorialData);
+
             // The data has been loaded successfully.
             return true;
         }
@@ -254,6 +318,7 @@ namespace RM_MST
         public void ToStage(StageWorld stageWorld)
         {
             // Saves the world info and goes into the stage.
+            CalculateAndSetGameScore();
             gameInfo.SaveWorldInfo(this);
             LoadStageScene();
 
@@ -266,6 +331,33 @@ namespace RM_MST
         {
             Time.timeScale = 1.0F;
             SceneManager.LoadScene(stageScene);
+        }
+
+
+        // GAME END
+        // When going to the results scene, create the results data.
+        public override void ToResultsScene()
+        {
+            // The results data and object.
+            GameObject resultsObject = new GameObject("Results Data");
+            ResultsData resultsData = resultsObject.AddComponent<ResultsData>();
+            DontDestroyOnLoad(resultsObject);
+
+            // Caluclates and sets the game score.
+            CalculateAndSetGameScore();
+
+            // Sets the time and score.
+            resultsData.gameTime = gameTime;
+            resultsData.gameScore = gameScore;
+
+            // Saves the stage data.
+            for(int i = 0; i < resultsData.stageDatas.Length && i < gameInfo.worldStages.Length; i++)
+            {
+                resultsData.stageDatas[i] = gameInfo.worldStages[i];
+            }
+
+            // Go to the results scene.
+            base.ToResultsScene();
         }
 
         // Update is called once per frame

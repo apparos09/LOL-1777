@@ -64,6 +64,12 @@ namespace RM_MST
         // The timer for the stage.
         public float stageTime = 0.0F;
 
+        // The final score for the stage.
+        public float stageFinalScore = 0.0F;
+
+        // Shows if the stage is cleared.
+        public bool cleared = false;
+
         // The world scene.
         public string worldScene = "WorldScene";
 
@@ -710,7 +716,6 @@ namespace RM_MST
             return points;
         }
         
-
         // Returns 'true' if the points goal has been reached.
         public bool IsPointsGoalReached(float points)
         {
@@ -756,6 +761,34 @@ namespace RM_MST
             }
         }
 
+        // Calculates the final stage score and returns it.
+        public float CalculateStageFinalScore()
+        {
+            // Base score.
+            float score = player.GetPoints();
+
+            // Difficulty bonus.
+            score += 50.0F * difficulty;
+
+            // Highest combo bonus.
+            score += 100.0F * highestCombo;
+
+            // Returns the score.
+            return score;
+        }
+
+        // Calculates and set the stage final score.
+        public void CalculateAndSetStageFinalScore()
+        {
+            // Sets the final score.
+            stageFinalScore = CalculateStageFinalScore();
+
+            // The score can't be negative.
+            if (stageFinalScore < 0)
+                stageFinalScore = 0;
+        }
+
+        // COMBO
         // Increaes the combo.
         public void IncreaseCombo()
         {
@@ -791,6 +824,7 @@ namespace RM_MST
         {
             runningGame = false;
             FindAndKillAllMeteors();
+            CalculateAndSetStageFinalScore();
             stageUI.OnStageWon();
         }
 
@@ -799,11 +833,12 @@ namespace RM_MST
         {
             runningGame = false;
             KillAllMeteorsInList();
+            CalculateAndSetStageFinalScore();
             stageUI.OnStageLost();
         }
 
         // Called to restart the stage.
-        public void RestartStage()
+        public void ResetStage()
         {
             // Reset the player's points, kill all the meteors, and reset the game progress.
             player.SetPoints(0);
@@ -811,12 +846,29 @@ namespace RM_MST
             SetPhaseByPlayerPointsProgress();
 
             // Restarts the stage.
-            stageUI.OnStageRestart();
+            stageUI.OnStageReset();
 
             // Resets the time, unpauses the game, and starts running the game again.
             stageTime = 0;
+            stageFinalScore = 0;
             UnpauseGame();
             runningGame = true;
+        }
+
+        // Generates the stage data.
+        public StageData GenerateStageData()
+        {
+            // The stage data.
+            StageData data = new StageData();
+
+            // Set values.
+            data.stageTime = stageTime;
+            data.stageScore = stageFinalScore;
+            data.highestCombo = highestCombo;
+            data.cleared = cleared;
+
+            // Return the values.
+            return data;
         }
 
         // Goes to the world.

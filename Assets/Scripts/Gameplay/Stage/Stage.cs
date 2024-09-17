@@ -16,6 +16,9 @@ namespace RM_MST
 
         // The highest combo.
         public int highestCombo;
+
+        // Checks if the stage has been cleared.
+        public bool cleared = false;
     }
 
     // The stage.

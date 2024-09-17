@@ -11,9 +11,20 @@ namespace RM_MST
     public class Tutorials : MonoBehaviour
     {
         [System.Serializable]
-        public class TutorialData
+        public class TutorialsData
         {
-            // TODO: implement.
+            public bool introTutorial;
+            public bool stageTutorial;
+            public bool clearedFirstStageTutorial;
+            public bool mixStageTutorial;
+
+            public bool clearedWeightImperial;
+            public bool clearedLengthImperial;
+            public bool clearedTime;
+
+            public bool clearedLengthMetric;
+            public bool clearedWeightMetric;
+            public bool clearedCapcity;
         }
 
         // The tutorial types.
@@ -48,6 +59,12 @@ namespace RM_MST
         public bool constantTutorialStartCheck = true;
 
         [Header("Tutorials")]
+
+        public bool introTutorial;
+        public bool stageTutorial;
+        public bool clearedFirstStageTutorial;
+        public bool mixStageTutorial;
+
         public bool clearedWeightImperial;
         public bool clearedLengthImperial;
         public bool clearedTime;
@@ -313,6 +330,48 @@ namespace RM_MST
                 }
             }
         }
+
+        // TUTORIAL DATA
+        // Generates the tutorials data.
+        public TutorialsData GenerateTutorialsData()
+        {
+            TutorialsData data = new TutorialsData();
+            
+            data.introTutorial = introTutorial;
+            data.stageTutorial = stageTutorial;
+
+            data.clearedFirstStageTutorial = clearedFirstStageTutorial;
+            data.mixStageTutorial = mixStageTutorial;
+
+            data.clearedWeightImperial = clearedWeightImperial;
+            data.clearedLengthImperial = clearedLengthImperial;
+            data.clearedTime = clearedTime;
+
+            data.clearedLengthMetric = clearedLengthMetric;
+            data.clearedWeightMetric = clearedWeightMetric;
+            data.clearedCapcity = clearedCapcity;
+
+            return data;
+        }
+
+        // Sets the tutorials data.
+        public void LoadTutorialsData(TutorialsData data)
+        {
+            introTutorial = data.introTutorial;
+            stageTutorial = data.stageTutorial;
+
+            clearedFirstStageTutorial = data.clearedFirstStageTutorial;
+            mixStageTutorial = data.mixStageTutorial;
+
+            clearedWeightImperial = data.clearedWeightImperial;
+            clearedLengthImperial = data.clearedLengthImperial;
+            clearedTime = data.clearedTime;
+
+            clearedLengthMetric = data.clearedLengthMetric;
+            clearedWeightMetric = data.clearedWeightMetric;
+            clearedCapcity = data.clearedCapcity;
+        }
+
 
         // Tutorial Loader
 

@@ -184,11 +184,11 @@ namespace RM_MST
         // Called to restart the stage.
         public void RestartStage()
         {
-            stageManager.RestartStage();
+            stageManager.ResetStage();
         }
 
         // Called when the start has been restarted.
-        public void OnStageRestart()
+        public void OnStageReset()
         {
             CloseAllWindows();
         }
