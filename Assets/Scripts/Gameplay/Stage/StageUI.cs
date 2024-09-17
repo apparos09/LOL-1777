@@ -27,6 +27,9 @@ namespace RM_MST
         // The score text.
         public TMP_Text pointsText;
 
+        // The units table.
+        public UnitsTable unitsTable;
+
 
         [Header("Progress Bars")]
 
@@ -136,6 +139,7 @@ namespace RM_MST
             UpdatePointsText();
             UpdatePointsBar();
             UpdateSurfaceHealthBar();
+            UpdateUnitsTable();
         }
 
         // Updates the time text.
@@ -167,6 +171,13 @@ namespace RM_MST
             percent = Mathf.Clamp01(percent);
             surfaceHealthBar.SetValueAsPercentage(percent);
         }
+
+        // Updates the units table with the provied conversion. By default it's set to 'none'.
+        public void UpdateUnitsTable(UnitsInfo.unitGroups group = UnitsInfo.unitGroups.none)
+        {
+            unitsTable.SetGroup(group);
+        }
+
 
         // STAGE WIN/LOST
         // Called when the stage has been won.

@@ -688,6 +688,8 @@ MonoBehaviour:
   stageName: 
   stageIndex: -1
   difficulty: 0
+  baseDifficulty: 0
+  losses: 0
   phase: 0
   pointsGoal: 500
   player: {fileID: 53097578}
@@ -695,6 +697,8 @@ MonoBehaviour:
   stageSurface: {fileID: 547026082}
   stageBarriers: []
   stageTime: 0
+  stageFinalScore: 0
+  cleared: 0
   worldScene: WorldSceneDebug
   stageUnitGroups: 
   meteorSpawnRate: 1

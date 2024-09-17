@@ -33,7 +33,16 @@ namespace RM_MST
         // Called when the meteor is targeted.
         private void OnMeteorTargeted()
         {
-            // TODO: implement.
+            // Meteor is set.
+            if (meteor != null)
+            {
+                // Conversion is set.
+                if(meteor.conversion != null)
+                {
+                    stageManager.stageUI.UpdateUnitsTable(meteor.conversion.group);
+                }
+            }
+            
         }
 
         // Removes the target for the meteor.
