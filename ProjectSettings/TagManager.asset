@@ -46,3 +46,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Stage Overlay (World Space)
+    uniqueID: 3816044433
+    locked: 0

@@ -116,8 +116,11 @@ namespace RM_MST
         // The timer for triggering a combo.
         private float comboTimer = 0;
 
-        // The maximum time for the combo.
+        // The maximum time for the combo (in seconds).
         private const float COMBO_TIMER_MAX = 5.0F;
+
+        // The combo display.
+        public ComboDisplay comboDisplay;
 
         // Constructor
         private StageManager()
@@ -170,7 +173,6 @@ namespace RM_MST
             {
                 stageBarriers = new List<Barrier>(FindObjectsOfType<Barrier>());
             }
-                
 
             // Sets the difficulty.
             SetDifficulty(difficulty);
@@ -749,6 +751,12 @@ namespace RM_MST
                 highestCombo = combo;
         }
 
+        // Displays the combo.
+        public void DisplayCombo(Vector3 position)
+        {
+            comboDisplay.PlayComboAnimationAtPosition(position);
+        }
+
         // Resets the combo.
         public void ResetCombo(bool resetHighestCombo)
         {
@@ -848,14 +856,14 @@ namespace RM_MST
             {
                 RunGame();
 
-                // If the combo timer is greater than 0.
-                if(comboTimer > 0.0F)
+                // If the combo timer is greater than 0, and a meteor is targeted.
+                if(comboTimer > 0.0F && meteorTarget.meteor != null)
                 {
                     // Reduce the timer.
                     comboTimer -= Time.deltaTime;
 
                     // Reset the combo if the timer has run out.
-                    if(comboTimer <= 0)
+                    if(comboTimer <= 0.0F)
                     {
                         ResetCombo(false);
                     }

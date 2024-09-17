@@ -146,6 +146,14 @@ namespace RM_MST
                 stageManager.IncreaseCombo(); // Increase the combo.
                 stageManager.player.CalculateAndGivePoints(this); // Give the player points.                                                                  // Kill the laser shot.
                 laserShot.Kill(success); // Kill the laser.
+
+                // Play the combo animation if the player has more than one in the combo count.
+                if (stageManager.combo > 1)
+                {
+                    // Play the animation at the meteor's position.
+                    stageManager.comboDisplay.PlayComboAnimationAtPosition(transform.position);
+                }
+
                 Kill(); // Kill the meteor.
             }
             else
