@@ -848,26 +848,43 @@ namespace RM_MST
         }
 
         // ENDING
+        // Called when the stage has ended.
+        public void OnStageEnd()
+        {
+            runningGame = false;
+            PauseGame();
+            FindAndKillAllMeteors();
+        }
+
         // Called when the game has been won.
         public void OnStageWon()
         {
-            runningGame = false;
-            FindAndKillAllMeteors();
+            // On stage end.
+            OnStageEnd();
+
+            // Calculate the final score.
             CalculateAndSetStageFinalScore();
+
+            // Stage won.
             stageUI.OnStageWon();
         }
 
         // Called when the game has been lost.
         public void OnStageLost()
         {
-            runningGame = false;
-            KillAllMeteorsInList();
-            CalculateAndSetStageFinalScore();
-            stageUI.OnStageLost();
+            // On stage end.
+            OnStageEnd();
+
+            // Set time and score to 0.
+            stageTime = 0;
+            stageFinalScore = 0;
 
             // Add to the losses count, and adjusts the difficulty.
             losses++;
             AdjustDifficultyByLosses();
+
+            // Stage lost.
+            stageUI.OnStageLost();
         }
 
         // Called to restart the stage.
@@ -878,14 +895,25 @@ namespace RM_MST
             KillAllMeteorsInList();
             SetPhaseByPlayerPointsProgress();
 
-            // Restarts the stage.
-            stageUI.OnStageReset();
+            // Resets the barrier and surface.
+            foreach(Barrier barrier in stageBarriers)
+            {
+                // Restore the barrier.
+                if (barrier != null)
+                    barrier.RestoreBarrier();
+            }
+
+            // Restores the surface to full health.
+            stageSurface.RestoreSurface();
 
             // Resets the time, unpauses the game, and starts running the game again.
             stageTime = 0;
             stageFinalScore = 0;
 
             // The difficulty is only dynamically adjusted if the player goes back to the world scene.
+
+            // Restarts the stage.
+            stageUI.OnStageReset();
 
             // Unpause game and start running.
             UnpauseGame();
@@ -911,6 +939,8 @@ namespace RM_MST
         // Goes to the world.
         public void ToWorld()
         {
+            OnGameEnd();
+
             // Saves the stage info and goes into the world.
             GameplayInfo.Instance.SaveStageInfo(this);
             ToWorldScene();
@@ -922,7 +952,7 @@ namespace RM_MST
             SceneManager.LoadScene(worldScene);
         }
 
-        // Called to run the game.
+        // Called to run the game mechanics.
         public void RunGame()
         {
             // Reduce the spawn timer.

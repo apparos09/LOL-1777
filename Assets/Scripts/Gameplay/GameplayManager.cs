@@ -1,5 +1,3 @@
-using RM_MST;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -118,7 +116,7 @@ namespace RM_MST
             // If the game is paused.
             if(gamePaused)
             {
-                Time.timeScale = 0;
+                Time.timeScale = 0.0F;
             }
             else // If the game is not paused.
             {
@@ -220,8 +218,8 @@ namespace RM_MST
             if (Tutorials.Instantiated)
                 Destroy(Tutorials.Instance.gameObject);
 
-            // Make sure the time scale is normal.
-            Time.timeScale = 1.0F;
+            // Makes sure the game is not paused.
+            UnpauseGame();
         }
         
         // Go to the title scene.

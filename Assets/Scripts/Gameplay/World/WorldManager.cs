@@ -329,7 +329,7 @@ namespace RM_MST
         // Loads the stage scene.
         public void LoadStageScene()
         {
-            Time.timeScale = 1.0F;
+            UnpauseGame();
             SceneManager.LoadScene(stageScene);
         }
 

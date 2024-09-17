@@ -1690,6 +1690,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2979344536415619258, guid: e017c4a555637dc4398780904a9288ad, type: 3}
+      propertyPath: m_Name
+      value: Window Title Text (TMP)
+      objectReference: {fileID: 0}
     - target: {fileID: 3407424017466097829, guid: e017c4a555637dc4398780904a9288ad, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1705,6 +1709,10 @@ PrefabInstance:
     - target: {fileID: 3476837066656711834, guid: e017c4a555637dc4398780904a9288ad, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3959088139489594367, guid: e017c4a555637dc4398780904a9288ad, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
       objectReference: {fileID: 0}
     - target: {fileID: 5678111129616546589, guid: e017c4a555637dc4398780904a9288ad, type: 3}
       propertyPath: m_Name

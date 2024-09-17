@@ -39,6 +39,19 @@ namespace RM_MST
         // The damage bar.
         public ProgressBar surfaceHealthBar;
 
+        [Header("End Windows")]
+
+        // The game win window.
+        public GameObject stageWonWindow;
+
+        // The stage clear time text.
+        public TMP_Text stageWonTimeText;
+
+        // The time clear score text.
+        public TMP_Text stageWonScoreText;
+
+        // The game lost window.
+        public GameObject stageLostWindow;
         // Constructor
         private StageUI()
         {
@@ -127,6 +140,9 @@ namespace RM_MST
         public override void CloseAllWindows()
         {
             base.CloseAllWindows();
+
+            stageWonWindow.SetActive(false);
+            stageLostWindow.SetActive(false);
         }
 
 
@@ -179,17 +195,24 @@ namespace RM_MST
         }
 
 
-        // STAGE WIN/LOST
+        // STAGE END
         // Called when the stage has been won.
         public void OnStageWon()
         {
-            // ...
+            CloseAllWindows();
+            stageWonWindow.SetActive(true);
+
+            // Set the time and score text.
+            stageWonTimeText.text = StringFormatter.FormatTime(stageManager.stageTime, false, true, false);
+            stageWonScoreText.text = stageManager.stageFinalScore.ToString(); // Already calculated.
+
         }
 
         // Called when the stage has been lost.
         public void OnStageLost()
         {
-            // ...
+            CloseAllWindows();
+            stageLostWindow.SetActive(true);
         }
 
         // Called to restart the stage.
@@ -203,6 +226,13 @@ namespace RM_MST
         {
             CloseAllWindows();
         }
+
+        // Goes to the world.
+        public void ToWorld()
+        {
+            stageManager.ToWorld();
+        }
+
 
         // Update is called once per frame
         protected override void Update()

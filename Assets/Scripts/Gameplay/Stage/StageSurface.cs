@@ -42,6 +42,13 @@ namespace RM_MST
             SetHealthToMax();
         }
 
+        // Returns 'true' if health is at max.
+        public bool IsHealthAtMax()
+        {
+            return health >= maxHealth;
+        }
+
+
         // Set the health to the max.
         public void SetHealthToMax()
         {
@@ -72,17 +79,22 @@ namespace RM_MST
         }
 
         // Called when the surface has been killed.
-        public void OnSurfaceKilled()
+        protected void OnSurfaceKilled()
         {
+            // TOOD: add animation.
+
             // The game is over.
             stageManager.OnStageLost();
         }
 
-        // Update is called once per frame
-        void Update()
+        // Restores the stage surface.
+        public void RestoreSurface()
         {
-
+            gameObject.SetActive(true); // TOOD: replace with animation.
+            SetHealthToMax();
+            stageManager.stageUI.UpdateSurfaceHealthBar();
         }
+
     }
 
 }

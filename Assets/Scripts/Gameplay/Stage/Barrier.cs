@@ -44,6 +44,12 @@ namespace RM_MST
             SetHealthToMax();
         }
 
+        // Returns 'true' if health is at max.
+        public bool IsHealthAtMax()
+        {
+            return health >= maxHealth;
+        }
+
         // Set the health to the max.
         public void SetHealthToMax()
         {
@@ -71,15 +77,15 @@ namespace RM_MST
         }
 
         // On the barrier being killed.
-        public void OnBarrierKilled()
+        protected void OnBarrierKilled()
         {
-            gameObject.SetActive(false);
+            gameObject.SetActive(false); // TOOD: replace with animation.
         }
 
         // Restores the barrier.
         public void RestoreBarrier()
         {
-            gameObject.SetActive(true);
+            gameObject.SetActive(true); // TOOD: replace with animation.
             SetHealthToMax();
         }
     }

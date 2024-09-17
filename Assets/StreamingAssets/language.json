@@ -97,12 +97,21 @@
     "kwd_input": "Input",
     "kwd_output": "Output",
 
+    "kwd_world": "World",
+    "kwd_stageSelect": "Stage Select",
+    "kwd_stage": "Stage",
+
     "kwd_all": "All",
     "kwd_none": "None",
 
     "kwd_mix1": "Mix 1",
     "kwd_mix2": "Mix 2",
-    "kwd_mix3": "Mix 3"
+    "kwd_mix3": "Mix 3",
+
+    "kwd_time": "Time",
+    "kwd_score": "Score",
+    "kwd_points": "Points",
+    "kwd_restart" "Restart"
 
   }
 
