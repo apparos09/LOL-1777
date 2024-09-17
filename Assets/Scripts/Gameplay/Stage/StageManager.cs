@@ -192,6 +192,10 @@ namespace RM_MST
                 stageBarriers = new List<Barrier>(FindObjectsOfType<Barrier>());
             }
 
+            // Just fill the stage name with elipses if there is no name.
+            if (stageName == "")
+                stageName = "...";
+
             // Sets the difficulty 
             SetDifficulty(difficulty, true);
 

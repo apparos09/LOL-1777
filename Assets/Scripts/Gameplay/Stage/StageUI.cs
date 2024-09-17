@@ -21,6 +21,9 @@ namespace RM_MST
 
         [Header("Text")]
 
+        // The stage name text.
+        public TMP_Text stageNameText;
+
         // The time text.
         public TMP_Text timeText;
 
@@ -94,6 +97,9 @@ namespace RM_MST
         protected override void LateStart()
         {
             base.LateStart();
+
+            // Set the name.
+            stageNameText.text = stageManager.stageName;
 
             // Updates all the UI.
             UpdateAllUI();
