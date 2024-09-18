@@ -13,6 +13,12 @@ namespace RM_MST
         // The laser prefab.
         public LaserShot laserShotPrefab;
 
+        // The player's active laser shot.
+        public LaserShot laserShotActive;
+
+        // If 'true', the player can shoot multiple laser shots.
+        private bool multipleLaserShots = false;
+
         // The number of points.
         private float points = 0;
 
@@ -40,6 +46,14 @@ namespace RM_MST
         // Shoots the laser shot.
         public LaserShot ShootLaserShot(float outputValue)
         {
+            // If there are not multiple laser shots.
+            if(!multipleLaserShots)
+            {
+                // The player already has an active laser shot.
+                if (laserShotActive != null)
+                    return laserShotActive;
+            }
+
             // If the game is slowed down, return to normal speed.
             if(!stageManager.IsSlowSpeed())
                 stageManager.SetToNormalSpeed();
@@ -59,8 +73,9 @@ namespace RM_MST
             }
                     
 
-            // Sets the laser shot's output value.
+            // Sets the laser shot's output value, and sets it as the active laser shot.
             newShot.outputValue = outputValue;
+            laserShotActive = newShot;
 
             // Returns the new shot.
             return newShot;
