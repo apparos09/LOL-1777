@@ -33,6 +33,9 @@ namespace RM_MST
         // Gets set to 'true' when the meteor is suffering from knockback.
         private bool inKnockback = false;
 
+        // Called the late start.
+        private bool calledLateStart = false;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -47,6 +50,13 @@ namespace RM_MST
             // If the rigidbody is not set, try to set it.
             if(rigidbody == null)
                 rigidbody = GetComponent<Rigidbody2D>();
+        }
+
+        // Late start function.
+        void LateStart()
+        {
+            // Regenerates alternate outputs to fix a bug.
+            GenerateAlternateOutputs();
         }
 
         // OnCollisionEnter2D is called when this collider2D/rigidbody2D has begun touching another collider2D/rigidbody2D.
@@ -237,8 +247,11 @@ namespace RM_MST
             // Gets set based on if the laser shot's output value is correct.
             bool success;
 
+            // The conversion output value.
+            float outputValue = conversion.GetConvertedValue();
+
             // If the values match, the laser shot was a success.
-            if(laserShot.outputValue == conversion.GetConvertedValue())
+            if (laserShot.outputValue == outputValue)
             {
                 success = true;
             }
@@ -314,6 +327,10 @@ namespace RM_MST
         // Update is called once per frame
         void Update()
         {
+            // Call the late start function.
+            if (!calledLateStart)
+                LateStart();
+
             // If the meteor is moving downwards, cap the velocity.
             if(rigidbody.velocity.y < 0)
             {

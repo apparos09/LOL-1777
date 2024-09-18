@@ -266,8 +266,20 @@ namespace RM_MST
             // If the right value has not been found, set it to a random button.
             if(!foundRightValue)
             {
-                int index = Random.Range(0, meteor.possibleOutputs.Length);
-                unitsButtons[index].SetMeasurementValue(trueOutputValue);
+                // Gets random indexes for the output and the buttons.
+                int outputIndex = Random.Range(0, meteor.possibleOutputs.Length);
+                int buttonIndex;
+
+                // If the indexes match, replace it on that button.
+                // If they don't match, choose a random button.
+                if(outputIndex >= 0 && outputIndex < unitsButtons.Count)
+                    buttonIndex = outputIndex;
+                else
+                    buttonIndex = Random.Range(0, unitsButtons.Count);
+
+                // Replaces the value at the provided index.
+                meteor.possibleOutputs[outputIndex] = trueOutputValue;
+                unitsButtons[buttonIndex].SetMeasurementValue(trueOutputValue);
             }
         }
 

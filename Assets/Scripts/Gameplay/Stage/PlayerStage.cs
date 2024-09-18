@@ -101,16 +101,7 @@ namespace RM_MST
         // Update is called once per frame
         void Update()
         {
-            // TODO: this is for testing purposes, remove when unneeded (game only uses mouse/touch controls).
-            // Only allow the player to shoot when a meteor is targeted.
-            if(Input.GetKeyDown(KeyCode.Space))
-            {
-                if(stageManager.meteorTarget.meteor != null)
-                    ShootLaserShot(stageManager.meteorTarget.meteor.GetConvertedValue());
-                else
-                    ShootLaserShot(1);
-
-            }
+            // ...
         }
     }
 }
