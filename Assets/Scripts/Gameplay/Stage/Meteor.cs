@@ -36,6 +36,15 @@ namespace RM_MST
         // Called the late start.
         private bool calledLateStart = false;
 
+        // The list of meteors active.
+        private static List<Meteor> meteorsActive = new List<Meteor>();
+
+        // Awake is called when the script instance is being loaded
+        private void Awake()
+        {
+            AddMeteorToMeteorsActiveList(this);
+        }
+
         // Start is called before the first frame update
         void Start()
         {
@@ -57,6 +66,18 @@ namespace RM_MST
         {
             // Regenerates alternate outputs to fix a bug.
             GenerateAlternateOutputs();
+        }
+
+        // This function is called when the object becomes enabled and active
+        private void OnEnable()
+        {
+            AddMeteorToMeteorsActiveList(this);
+        }
+
+        // This function is called when the object becomes disabled and inactive.
+        private void OnDisable()
+        {
+            RemoveMeteorFromMeteorsActiveList(this);
         }
 
         // OnCollisionEnter2D is called when this collider2D/rigidbody2D has begun touching another collider2D/rigidbody2D.
@@ -94,6 +115,70 @@ namespace RM_MST
             }
         }
 
+
+
+        // METEOR LIST
+        // Adds the meteor to the meteors instantiated list.
+        private void AddMeteorToMeteorsActiveList(Meteor meteor)
+        {
+            // If the meteor is not in the list, put it in the list.
+            if (!meteorsActive.Contains(meteor))
+                meteorsActive.Add(meteor);
+        }
+
+        // Remove the meteor to the meteors instantiated list.
+        private void RemoveMeteorFromMeteorsActiveList(Meteor meteor)
+        {
+            // If the meteor is in the list, remove it.
+            if (meteorsActive.Contains(meteor))
+                meteorsActive.Remove(meteor);
+        }
+
+        // Gets the meteors instantiated count.
+        public static int GetMeteorsActiveCount()
+        {
+            return meteorsActive.Count;
+        }
+
+        // Gets a copy of the meteors instantiated list.
+        public static List<Meteor> GetMeteorsActiveListCopy()
+        {
+            return new List<Meteor>(meteorsActive);
+        }
+
+        // Refreshes the meteors active list to remove null values.
+        // This shouldn't be needed, but it's been kept here.
+        public static void RefreshMeteorsActiveList()
+        {
+            // The meteors active.
+            for (int i = meteorsActive.Count - 1; i >= 0; i--)
+            {
+                // If the index is null, remove it.
+                if (meteorsActive[i] == null)
+                {
+                    meteorsActive.RemoveAt(i);
+                }
+            }
+        }
+
+        // Destroys all the meteors in the active list.
+        public static void KillAllMeteorsInActiveList()
+        {
+            // Goes through all meteors.
+            for (int i = 0; i < meteorsActive.Count; i++)
+            {
+                // If the meteor exists, kill it.
+                if (meteorsActive[i] != null)
+                {
+                    meteorsActive[i].Kill();
+                }
+            }
+
+            // Clear out the list.
+            meteorsActive.Clear();
+        }
+
+        // SPAWN
         // Called when the meteor has been spawned.
         public void OnSpawn()
         {
@@ -359,6 +444,11 @@ namespace RM_MST
             }
         }
 
+        // This function is called when the MonoBehaviour will be destroyed
+        private void OnDestroy()
+        {
+            RemoveMeteorFromMeteorsActiveList(this);
+        }
 
     }
 }

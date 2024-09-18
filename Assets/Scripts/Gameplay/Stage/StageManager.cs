@@ -100,7 +100,7 @@ namespace RM_MST
         public const float UNITS_INPUT_VALUE_MIN = 0.0F;
 
         // The maximum units input value.
-        public const float UNITS_INPUT_VALUE_MAX = 1.0F;
+        public const float UNITS_INPUT_VALUE_MAX = 1000.0F;
 
         // The number of decimal places for the units.
         // TODO: maybe limit to 2 decimal places.
@@ -131,10 +131,8 @@ namespace RM_MST
         public List<Meteor> meteorPrefabs = new List<Meteor>();
 
         // TODO: The meteor pool. May not need this.
+        // If you use this, make sure to account for the FindAndDestroyAllActiveMeteors function.
         // private List<Meteor> meteorPool = new List<Meteor>();
-
-        // The active meteors.
-        public List<Meteor> meteorsActive = new List<Meteor>();
 
         // The total number of meteors that can be active at once.
         private int ACTIVE_METEORS_COUNT_MAX = 12;
@@ -442,8 +440,11 @@ namespace RM_MST
                 return null;
             }
 
+            // Gets a copy of the meteors active list.
+            List<Meteor> meteorsActive = Meteor.GetMeteorsActiveListCopy();
+
             // Maximum meteor count met.
-            if(meteorsActive.Count >= ACTIVE_METEORS_COUNT_MAX)
+            if (meteorsActive.Count >= ACTIVE_METEORS_COUNT_MAX)
             {
                 // Debug.LogWarning("Maximum meteor count met.");
                 return null;
@@ -479,9 +480,7 @@ namespace RM_MST
         // Called when a meteor is destroyed.
         public void OnMeteorKilled(Meteor meteor)
         {
-            // If this meteor is in the list, remove it.
-            if(meteorsActive.Contains(meteor))
-                meteorsActive.Remove(meteor);
+            // ...
         }
 
         // Called when a meteor fails to be destroyed.
@@ -500,10 +499,14 @@ namespace RM_MST
             Meteor meteor = null;
             float meteorDist = 0;
 
+            // Gets a copy of the meteors active list.
+            List<Meteor> meteorsActive = Meteor.GetMeteorsActiveListCopy();
+
             // Goes through all meteors from end to start.
             for (int i = meteorsActive.Count - 1; i >= 0; i--)
             {
                 // If the index is null, remove it.
+                // This isn't necessary anymore, but I don't feel like removing it.
                 if (meteorsActive[i] == null)
                 {
                     meteorsActive.RemoveAt(i);
@@ -515,7 +518,14 @@ namespace RM_MST
                     {
                         // Get the meteor and the distance.
                         meteor = meteorsActive[i];
-                        meteorDist = Vector3.Distance(meteor.transform.position, stageSurface.gameObject.transform.position);
+
+                        // Adjusts the distance to ignore the x and z components.
+                        Vector3 meteorAdjustPos = meteor.transform.position;
+                        meteorAdjustPos.x = stageSurface.transform.position.x;
+                        meteorAdjustPos.z = stageSurface.transform.position.z;
+
+                        // Save the distance.
+                        meteorDist = Vector3.Distance(meteorAdjustPos, stageSurface.gameObject.transform.position);
                     }
                     else // Compare distances.
                     {
@@ -523,9 +533,16 @@ namespace RM_MST
                         Meteor m1 = meteor;
                         Meteor m2 = meteorsActive[i];
 
+                        // The adjusted positions for m2.
+                        // They all have the same x and z pos as the surface for this comparison.
+                        // M2
+                        Vector3 m2AdjustPos = m2.transform.position;
+                        m2AdjustPos.x = stageSurface.transform.position.x;
+                        m2AdjustPos.z = stageSurface.transform.position.z;
+
                         // Gets the distances.
                         float m1Dist = meteorDist;
-                        float m2Dist = Vector3.Distance(m2.transform.position, stageSurface.gameObject.transform.position);
+                        float m2Dist = Vector3.Distance(m2AdjustPos, stageSurface.gameObject.transform.position);
 
                         // Meteor 1 is Closer
                         if(m1Dist < m2Dist)
@@ -550,32 +567,13 @@ namespace RM_MST
         // Refreshes the meteors active list to remove null values.
         public void RefreshMeteorsActiveList()
         {
-            // The meteors active.
-            for (int i = meteorsActive.Count - 1; i >= 0; i--)
-            {
-                // If the index is null, remove it.
-                if (meteorsActive[i] == null)
-                {
-                    meteorsActive.RemoveAt(i);
-                }
-            }
+            Meteor.RefreshMeteorsActiveList();
         }
 
         // Destroys all the meteors in the list. Some meteors may not be in the list for some reason.
         public void KillAllMeteorsInList()
         {
-            // Goes through all meteors.
-            for(int i = 0; i < meteorsActive.Count; i++)
-            {
-                // If the meteor exists, kill it.
-                if (meteorsActive[i] != null)
-                {
-                    meteorsActive[i].Kill();
-                }
-            }
-
-            // Clear out the list.
-            meteorsActive.Clear();
+            Meteor.KillAllMeteorsInActiveList();
         }
 
         // Finds and kills all meteors. This is more accurate than KillAllMeteorsActive().
@@ -589,9 +587,6 @@ namespace RM_MST
             {
                 meteor.Kill();
             }
-
-            // Clears out the active list.
-            meteorsActive.Clear();
         }
 
         // Generates a units conversion. This isn't needed anymore.
@@ -1043,6 +1038,7 @@ namespace RM_MST
         public void OnStageEnd()
         {
             runningGame = false;
+            SetToNormalSpeed();
             PauseGame();
             FindAndKillAllMeteors();
         }
