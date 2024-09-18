@@ -16,6 +16,17 @@ namespace RM_MST
         // The entries for the units table.
         public List<UnitsTableEntry> entries = new List<UnitsTableEntry>();
 
+        // Gets set to 'true' when the groups have been initialized.
+        private bool groupsInits = false;
+
+        // Conversion groups.
+        private List<UnitsInfo.UnitsConversion> lengthImperialConversions = new List<UnitsInfo.UnitsConversion>();
+        private List<UnitsInfo.UnitsConversion> weightImperialConversions = new List<UnitsInfo.UnitsConversion>();
+        private List<UnitsInfo.UnitsConversion> timeConversions = new List<UnitsInfo.UnitsConversion>();
+        private List<UnitsInfo.UnitsConversion> lengthMetricConversions = new List<UnitsInfo.UnitsConversion>();
+        private List<UnitsInfo.UnitsConversion> weightMetricConversions = new List<UnitsInfo.UnitsConversion>();
+        private List<UnitsInfo.UnitsConversion> capcityConversions = new List<UnitsInfo.UnitsConversion>();
+
         // Start is called before the first frame update
         void Start()
         {
@@ -26,6 +37,40 @@ namespace RM_MST
             // Gets the components in the children.
             if (entries.Count == 0)
                 entries = new List<UnitsTableEntry>(GetComponentsInChildren<UnitsTableEntry>());
+
+            // Initialize the lists.
+            InitializeGroupLists();
+        }
+
+        // Initializes the group lists.
+        private void InitializeGroupLists()
+        {
+            // Clears the lists.
+            lengthImperialConversions.Clear();
+            weightImperialConversions.Clear();
+            timeConversions.Clear();
+            lengthMetricConversions.Clear();
+            weightMetricConversions.Clear();
+            capcityConversions.Clear();
+
+            // Not initialized.
+            groupsInits = false;
+
+            // If units group info is initialized, get the copies.
+            if(UnitsInfo.Instantiated)
+            {
+                // Adds in the values.
+                lengthImperialConversions = UnitsInfo.Instance.GetGroupConversionListCopy(UnitsInfo.unitGroups.lengthImperial);
+                weightImperialConversions = UnitsInfo.Instance.GetGroupConversionListCopy(UnitsInfo.unitGroups.weightImperial);
+                timeConversions = UnitsInfo.Instance.GetGroupConversionListCopy(UnitsInfo.unitGroups.time);
+                lengthMetricConversions = UnitsInfo.Instance.GetGroupConversionListCopy(UnitsInfo.unitGroups.lengthMetric);
+                weightMetricConversions = UnitsInfo.Instance.GetGroupConversionListCopy(UnitsInfo.unitGroups.weightMetric);
+                capcityConversions = UnitsInfo.Instance.GetGroupConversionListCopy(UnitsInfo.unitGroups.capacity);
+
+                // Groups initialized.
+                groupsInits = true;
+            }
+            
         }
 
         // Sets the group
@@ -33,6 +78,55 @@ namespace RM_MST
         {
             group = newGroup;
             LoadConversions();
+        }
+
+        // Gets the converison list by group.
+        private List<UnitsInfo.UnitsConversion> GetConversionListByGroup()
+        {
+            return GetConversionListByGroup(group);
+        }
+
+        // Gets the conversion list by the set group.
+        private List<UnitsInfo.UnitsConversion> GetConversionListByGroup(UnitsInfo.unitGroups convertGroup)
+        {
+            // The conversions list.
+            List<UnitsInfo.UnitsConversion> conversions;
+
+            // Checks the group to know which one to get.
+            switch (convertGroup)
+            {
+                default:
+                case UnitsInfo.unitGroups.none: // Empty list.
+                    conversions = new List<UnitsInfo.UnitsConversion>();
+                    break;
+
+                case UnitsInfo.unitGroups.lengthImperial:
+                    conversions = lengthImperialConversions;
+                    break;
+
+                case UnitsInfo.unitGroups.weightImperial:
+                    conversions = weightImperialConversions;
+                    break;
+
+                case UnitsInfo.unitGroups.time:
+                    conversions = timeConversions;
+                    break;
+
+                case UnitsInfo.unitGroups.lengthMetric:
+                    conversions = lengthMetricConversions;
+                    break;
+
+                case UnitsInfo.unitGroups.weightMetric:
+                    conversions = weightMetricConversions;
+                    break;
+
+                case UnitsInfo.unitGroups.capacity:
+                    conversions = capcityConversions;
+                    break;
+            }
+
+            // Returns the conversions.
+            return conversions;
         }
 
         // Loads entries from the provided group.
@@ -56,7 +150,25 @@ namespace RM_MST
             {
                 // Gets the conversion list for the provided group.
                 // TODO: it's inefficient to get these as copies, but this is to prevent the lists from being edited.
-                List<UnitsInfo.UnitsConversion> conversions = unitsInfo.GetGroupConversionListCopy(group);
+                List<UnitsInfo.UnitsConversion> conversions;
+
+                // if the groups have been initialized, grap one of the exisitng groups.
+                // If they haven't been initialized, generate a group copy.
+                if (groupsInits)
+                {
+                    // Gets by group.
+                    conversions = GetConversionListByGroup();
+
+                    // Empty group, so get a group copy from UnitsInfo.
+                    if(conversions.Count == 0)
+                        conversions = unitsInfo.GetGroupConversionListCopy(group);
+                }
+                else
+                {
+                    // Gets a units info copy.
+                    conversions = unitsInfo.GetGroupConversionListCopy(group);
+                }
+                    
 
                 // The entry index.
                 int entryIndex = 0;

@@ -1786,7 +1786,7 @@ namespace RM_MST
             switch (group)
             {
                 default:
-                case unitGroups.none: // Add all conversions.
+                case unitGroups.none: // Empty list.
                     conversions = new List<UnitsConversion>();
                     break;
 
@@ -1809,7 +1809,6 @@ namespace RM_MST
                 case unitGroups.weightMetric:
                     conversions = new List<UnitsConversion>(weightMetricConversions);
                     break;
-
 
                 case unitGroups.capacity:
                     conversions = new List<UnitsConversion>(capcityConversions);
