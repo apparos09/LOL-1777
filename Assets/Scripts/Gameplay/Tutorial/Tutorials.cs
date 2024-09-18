@@ -118,7 +118,12 @@ namespace RM_MST
                 }
                 else
                 {
-                    Debug.LogWarning("Game manager could not be found.");
+                    // Tries to find the object.
+                    gameManager = FindObjectOfType<GameplayManager>();
+
+                    // Not set, so state a warning.
+                    if(gameManager == null)
+                        Debug.LogWarning("Game manager could not be found.");
                 }
             }
 

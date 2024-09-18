@@ -691,6 +691,13 @@ namespace RM_MST
         // Generates a random input value for the conversion.
         public float SetRandomConversionInputValue(UnitsInfo.UnitsConversion conversion)
         {
+            // The conversion object doesn't exist.
+            if(conversion == null)
+            {
+                Debug.LogWarning("The conversion object is null. Returning 0.");
+                return 0.0F;
+            }
+
             // Generates the value, and gets the factor for the number of decimal palces.
             float value = Random.Range(UNITS_INPUT_VALUE_MIN, UNITS_INPUT_VALUE_MAX);
 
@@ -784,10 +791,36 @@ namespace RM_MST
         }
 
         // SPEED
+        // Gets the game speed.
+        public float GetGameSpeed()
+        {
+            // Returns the time scale.
+            return GetGameTimeScale();
+        }
+
+        // Sets the game speed.
+        public void SetGameSpeed(float timeScale)
+        {
+            // Sets the time scale.
+            SetGameTimeScale(timeScale);
+        }
+
+        // Returns 'true' if the time scale is normal.
+        public bool IsNormalSpeed()
+        {
+            return IsGameTimeScaleNormal();
+        }
+
         // Sets the game to normal speed.
         public void SetToNormalSpeed()
         {
             ResetGameTimeScale();
+        }
+
+        // Returns 'true' if the game is at a fast speed.
+        public bool IsFastSpeed()
+        {
+            return GetGameTimeScale() == FAST_GAME_TIME_SCALE;
         }
 
         // Sets the game to fast speed.
@@ -796,12 +829,47 @@ namespace RM_MST
             SetGameTimeScale(FAST_GAME_TIME_SCALE);
         }
 
+        // Toggles fast speed.
+        public void ToggleFastSpeed()
+        {
+            // If the game time scale is normal, set to fast.
+            // If the game time scale is fast,set it to normal.
+            if(IsGameTimeScaleNormal())
+            {
+                SetToFastSpeed();
+            }
+            else
+            {
+                SetToNormalSpeed();
+            }
+        }
+
+        // Returns 'true' if the game is at a slow speed.
+        public bool IsSlowSpeed()
+        {
+            return GetGameTimeScale() == SLOW_GAME_TIME_SCALE;
+        }
+
         // Sets the game to slow speed.
         public void SetToSlowSpeed()
         {
             SetGameTimeScale(SLOW_GAME_TIME_SCALE);
         }
 
+        // Toggles slow speed.
+        public void ToggleSlowSpeed()
+        {
+            // If the game time scale is normal, set to slow.
+            // If the game time scale is fast,set it to normal.
+            if (IsGameTimeScaleNormal())
+            {
+                SetToSlowSpeed();
+            }
+            else
+            {
+                SetToNormalSpeed();
+            }
+        }
 
         // UNIT OPERATIONS
         // Generates the conversion question for the player.

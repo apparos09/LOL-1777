@@ -31,6 +31,10 @@ namespace RM_MST
         // Shoots the laser shot.
         public LaserShot ShootLaserShot(float outputValue)
         {
+            // If the game is slowed down, return to normal speed.
+            if(!stageManager.IsSlowSpeed())
+                stageManager.SetToNormalSpeed();
+
             // Generates the laser shot, sets the spawn point, and shoots it.
             LaserShot newShot = Instantiate(laserShotPrefab);
             stageManager.stage.SetLaserShotToSpawnPositionY(newShot);

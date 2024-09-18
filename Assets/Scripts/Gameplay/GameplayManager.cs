@@ -113,18 +113,26 @@ namespace RM_MST
         }
 
         // Sets the game time scale.
-        protected void SetGameTimeScale(float value)
+        public void SetGameTimeScale(float value)
         {
             gameTimeScale = value;
             Time.timeScale = gameTimeScale;
         }
 
         // Resets the time scale.
-        protected void ResetGameTimeScale()
+        public void ResetGameTimeScale()
         {
             gameTimeScale = 1.0F;
             Time.timeScale = gameTimeScale;
         }
+
+        // Returns 'true' if the game time scale is 1.0.
+        public bool IsGameTimeScaleNormal()
+        {
+            return gameTimeScale == 1.0F;
+        }
+
+
 
         // Returns 'true' if the game is paused.
         public bool IsGamePaused()

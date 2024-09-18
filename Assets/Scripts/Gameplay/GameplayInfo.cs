@@ -166,8 +166,8 @@ namespace RM_MST
             // Saves what stages have been cleared.
             for(int i = 0; i < worldStages.Length && i < worldManager.stages.Count; i++)
             {
-                // If there is a stage, get the clear value and the losses.
-                if (worldManager.stages[i] != null)
+                // If there are stages, get the clear value and the losses.
+                if (worldStages[i] != null && worldManager.stages[i] != null)
                 {
                     worldStages[i].losses = worldManager.stages[i].losses;
                     worldStages[i].cleared = worldManager.stages[i].cleared;

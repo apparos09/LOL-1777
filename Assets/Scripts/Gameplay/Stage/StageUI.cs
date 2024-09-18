@@ -373,6 +373,34 @@ namespace RM_MST
             unitsButton7.ClearButton();
         }
 
+        // SPEED
+        // Sets the game to fast.
+        public void SetToFastSpeed()
+        {
+            stageManager.SetToFastSpeed();
+        }
+
+        // Toggles fast speed.
+        public void ToggleFastSpeed()
+        {
+            stageManager.ToggleFastSpeed();
+        }
+
+        // Sets the game to slow.
+        public void SetToSlowSpeed()
+        {
+            stageManager.SetToSlowSpeed();
+        }
+
+        // Toggles slow speed.
+        public void ToggleSlowSpeed()
+        {
+            stageManager.ToggleSlowSpeed();
+        }
+
+
+        // LASER
+
         // Shoots the laser with the value from the provided value.
         public void ShootLaserShot(float value)
         {
