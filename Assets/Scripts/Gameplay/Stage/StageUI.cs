@@ -216,6 +216,31 @@ namespace RM_MST
         }
 
         // GAMEPLAY
+        // Set all the unit buttons to be active or inactive.
+        public void SetAllUnitButtonsActive(bool active)
+        {
+            unitsButton1.gameObject.SetActive(active);
+            unitsButton2.gameObject.SetActive(active);
+            unitsButton3.gameObject.SetActive(active);
+            unitsButton4.gameObject.SetActive(active);
+            unitsButton5.gameObject.SetActive(active);
+            unitsButton6.gameObject.SetActive(active);
+            unitsButton7.gameObject.SetActive(active);
+        }
+
+        // Makes all unit buttons active.
+        public void EnableAllUnitButtons()
+        {
+            SetAllUnitButtonsActive(true);
+        }
+
+        // Makes all unit buttons inactive.
+        public void DisableAllUnitButtons()
+        {
+            SetAllUnitButtonsActive(false);
+        }
+
+
         // Updates the units buttons.
         public void UpdateConversionAndUnitsButtons(Meteor meteor)
         {
@@ -245,6 +270,40 @@ namespace RM_MST
                 unitsButton6, 
                 unitsButton7
             };
+
+            // A stack of the button inactive indexes.
+            Stack<int> buttonInactiveIndexes = new Stack<int>();
+
+            // Remove inactive buttons. There should always be at least one button.
+            for(int i = 0; i < unitsButtons.Count; i++)
+            {
+                // If the button is not active and enabled, remove it.
+                if(!unitsButtons[i].isActiveAndEnabled)
+                {
+                    // Add to the stack.
+                    buttonInactiveIndexes.Push(i);
+                }
+            }
+
+            // Don't remove any if all buttons would be removed.
+            if(buttonInactiveIndexes.Count != unitsButtons.Count)
+            {
+                // Remove the relevant indexes.
+                while(buttonInactiveIndexes.Count > 0 && unitsButtons.Count > 0)
+                {
+                    // Gets the index.
+                    int index = buttonInactiveIndexes.Pop();
+
+                    // Valid index check.
+                    if(index >= 0 && index < unitsButtons.Count)
+                        unitsButtons.RemoveAt(index);
+                }
+            }
+
+
+            // If there are no buttons left, add in button 4 (the middle button).
+            if (unitsButtons.Count == 0)
+                unitsButtons.Add(unitsButton4);
 
             // Gets set to 'true' if the right value is found.
             float trueOutputValue = meteor.GetConvertedValue();

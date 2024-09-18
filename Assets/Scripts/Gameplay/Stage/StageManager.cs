@@ -362,6 +362,8 @@ namespace RM_MST
             //         break;
             // 
             // }
+
+            // TODO: activate/deactive certain buttons.
         }
 
         // Adjusts the difficulty by the amount of losses.
