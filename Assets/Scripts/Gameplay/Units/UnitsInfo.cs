@@ -448,6 +448,7 @@ namespace RM_MST
             {
                 instanced = true;
 
+                // Moved here from the Start() function.
                 // Length (Imperial)
                 lengthImperialList = new List<lengthUnits>
                 {

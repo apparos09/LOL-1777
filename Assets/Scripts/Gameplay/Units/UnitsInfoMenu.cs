@@ -52,6 +52,9 @@ namespace RM_MST
         // This is false by default so that it's called from Start() first.
         private bool loadEntriesOnEnable = false;
 
+        // Set to true when late start is called.
+        private bool calledLateStart = false;
+
         [Header("Groups")]
         // Measurement groups
         public bool clearedWeightImperial;
@@ -63,12 +66,21 @@ namespace RM_MST
         public bool clearedCapcity;
 
 
+        // TODO: don't allow the player to open the units info menu if there are no entries.
+
         // Start is called before the first frame update
         void Start()
         {
             // Gets the units info instance.
             if (unitsInfo == null)
                 unitsInfo = UnitsInfo.Instance;
+        }
+
+        // Called on the first update frame.
+        void LateStart()
+        {
+            // I didn't need to it this way (it was done to try and fix something else)...
+            // But I'm leaving it.
 
             // Loads the entries, and sets it to do this on enable.
             // OnEnable is triggered before start.
@@ -277,6 +289,14 @@ namespace RM_MST
                     lolManager.SpeakText(entry.groupDescKey);
 
             }
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            // Calls late start.
+            if (!calledLateStart)
+                LateStart();
         }
     }
 }
