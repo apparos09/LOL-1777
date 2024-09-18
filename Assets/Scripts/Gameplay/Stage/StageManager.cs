@@ -97,6 +97,7 @@ namespace RM_MST
         public const float UNITS_INPUT_VALUE_MAX = 1.0F;
 
         // The number of decimal places for the units.
+        // TODO: maybe limit to 2 decimal places.
         public const int UNITS_DECIMAL_PLACES = 3;
 
         // If 'true', random inputs are limited to whole numbers for non-metric units.
@@ -106,7 +107,7 @@ namespace RM_MST
         private bool useFractions = true;
 
         // The fraction display chance.
-        public const float FRACTION_DISPLAY_CHANCE = 0.9F;
+        public const float FRACTION_DISPLAY_CHANCE = 0.5F;
 
         [Header("Meteors")]
         // TODO: make private.
