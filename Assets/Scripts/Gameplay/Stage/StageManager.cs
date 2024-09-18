@@ -1,11 +1,8 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static UnityEditor.Experimental.GraphView.Port;
 
 namespace RM_MST
 {
@@ -93,10 +90,13 @@ namespace RM_MST
         public List<UnitsInfo.UnitsConversion> conversions;
 
         // The minimum units input value.
-        public const float UNITS_INPUT_VALUE_MIN = 0.01F;
+        public const float UNITS_INPUT_VALUE_MIN = 1.00F;
 
         // The maximum units input value.
-        public const float UNITS_INPUT_VALUE_MAX = 1000.0F;
+        public const float UNITS_INPUT_VALUE_MAX = 100.0F;
+
+        // The number of decimal places for the units.
+        public const int UNITS_DECIMAL_PLACES = 3;
 
         [Header("Meteors")]
         // TODO: make private.
@@ -434,9 +434,10 @@ namespace RM_MST
             int randomIndex = Random.Range(0, meteorPrefabs.Count);
             Meteor meteor = Instantiate(meteorPrefabs[randomIndex]);
 
-            // Generates a random conversion for the meteor.
+            // Generates a random conversion for the meteor, and generates alternate outputs.
             meteor.conversion = GenerateRandomConversionFromList();
             SetRandomConversionInputValue(meteor.conversion);
+            meteor.GenerateAlternateOutputs();
 
             // Set the parent.
             if(stage.meteorParent != null)
@@ -642,18 +643,17 @@ namespace RM_MST
         }
 
         // Generates a random input value for the conversion.
-        public void SetRandomConversionInputValue(UnitsInfo.UnitsConversion conversion)
+        public float SetRandomConversionInputValue(UnitsInfo.UnitsConversion conversion)
         {
-            // Generates the value.
+            // Generates the value, and gets the factor for the number of decimal palces.
             float value = Random.Range(UNITS_INPUT_VALUE_MIN, UNITS_INPUT_VALUE_MAX);
 
             // Round the value, and cap it at 3 decimal places.
-            value *= 1000.0F;
-            value = Mathf.Round(value);
-            value /= 1000.0F;
+            value = util.CustomMath.Round(value, UNITS_DECIMAL_PLACES);
 
-            // Return the value.
+            // Set and return the value.
             conversion.inputValue = value;
+            return value;
         }
 
         // Gets the meteor spawn rate, modified by the phase.
@@ -728,10 +728,11 @@ namespace RM_MST
         }
 
         // OPERATIONS
-        // Generate a question for the player to answer.
-        public void GenerateQuestion()
+        // Generates the conversion question for the player.
+        public string GenerateConversionQuestion(Meteor meteor)
         {
-            // TODO: implement.
+            string result = meteor.conversion.inputValue.ToString() + " " + meteor.conversion.GetInputSymbol() + " = ?";
+            return result;
         }
 
         // Calculates the points to be given for destroying the provided meteor.

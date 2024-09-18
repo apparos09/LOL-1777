@@ -197,3 +197,11 @@ MonoBehaviour:
   collider: {fileID: 7245379458485550067}
   rigidbody: {fileID: 3357909935922858574}
   spawnPoint: {x: 0, y: 0, z: 0}
+  possibleOutputs:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0

@@ -42,6 +42,21 @@ namespace RM_MST
         // The damage bar.
         public ProgressBar surfaceHealthBar;
 
+        [Header("PlayerUI")]
+
+        // The conversion text.
+        public TMP_Text conversionText;
+
+        // The 7 units buttons.
+        public UnitsButton unitsButton1;
+        public UnitsButton unitsButton2;
+        public UnitsButton unitsButton3;
+        public UnitsButton unitsButton4;
+        public UnitsButton unitsButton5;
+        public UnitsButton unitsButton6;
+        public UnitsButton unitsButton7;
+
+
         [Header("End Windows")]
 
         // The game win window.
@@ -198,6 +213,90 @@ namespace RM_MST
         public void UpdateUnitsTable(UnitsInfo.unitGroups group = UnitsInfo.unitGroups.none)
         {
             unitsTable.SetGroup(group);
+        }
+
+        // GAMEPLAY
+        // Updates the units buttons.
+        public void UpdateConversionAndUnitsButtons(Meteor meteor)
+        {
+            // Clear all the buttons.
+            ClearConversionAndUnitsButtons();
+
+            // No meteor, so return null.
+            if (meteor == null)
+                return;
+
+            // No conversion, so return null.
+            if (meteor.conversion == null)
+                return;
+
+            // Conversion
+            conversionText.text = stageManager.GenerateConversionQuestion(meteor);
+
+            // Buttons
+            // Makes a list of the unit buttons.
+            List<UnitsButton> unitsButtons = new List<UnitsButton>()
+            {
+                unitsButton1,
+                unitsButton2, 
+                unitsButton3, 
+                unitsButton4, 
+                unitsButton5, 
+                unitsButton6, 
+                unitsButton7
+            };
+
+            // Gets set to 'true' if the right value is found.
+            float trueOutputValue = meteor.GetConvertedValue();
+            bool foundRightValue = false;
+
+            // Goes through all buttons and gets the values.
+            for(int i = 0; i < unitsButtons.Count && i < meteor.possibleOutputs.Length; i++)
+            {
+                // Sets the text and values.
+                unitsButtons[i].SetMeasurementValueAndSymbol(meteor.possibleOutputs[i], meteor.conversion.GetOutputSymbol());
+
+                // If this is the true output value, set that it's been found.
+                if (meteor.possibleOutputs[i] == trueOutputValue)
+                {
+                    foundRightValue = true;
+                }
+            }
+
+            // If the right value has not been found, set it to a random button.
+            if(!foundRightValue)
+            {
+                int index = Random.Range(0, meteor.possibleOutputs.Length);
+                unitsButtons[index].SetMeasurementValue(trueOutputValue);
+            }
+        }
+
+        // Clears the units buttons.
+        public void ClearConversionAndUnitsButtons()
+        {
+            // Conversion
+            conversionText.text = "-";
+
+            // Buttons
+            unitsButton1.ClearButton();
+            unitsButton2.ClearButton();
+            unitsButton3.ClearButton();
+            unitsButton4.ClearButton();
+            unitsButton5.ClearButton();
+            unitsButton6.ClearButton();
+            unitsButton7.ClearButton();
+        }
+
+        // Shoots the laser with the value from the provided value.
+        public void ShootLaserShot(float value)
+        {
+            stageManager.player.ShootLaserShot(value);
+        }
+
+        // Shoots the laser with the value from the provided units button.
+        public void ShootLaserShot(UnitsButton button)
+        {
+            stageManager.player.ShootLaserShot(button.GetMeasurementValue());
         }
 
 

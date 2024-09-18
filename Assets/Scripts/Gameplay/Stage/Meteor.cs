@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Burst.Intrinsics;
 using UnityEngine;
 
 namespace RM_MST
@@ -23,6 +22,13 @@ namespace RM_MST
         // TODO: generate random values to display as options.
         // The conversion for the meteor.
         public UnitsInfo.UnitsConversion conversion;
+
+        // The possible outputs count.
+        public const int POSSIBLE_OUTPUTS_COUNT = 7;
+
+        // A list of possible outputs for the meteor.
+        // One of these will be correct.
+        public float[] possibleOutputs = new float[POSSIBLE_OUTPUTS_COUNT];
 
         // Gets set to 'true' when the meteor is suffering from knockback.
         private bool inKnockback = false;
@@ -97,6 +103,8 @@ namespace RM_MST
             rigidbody.velocity = Vector2.zero;
         }
 
+        // CONVERSIONS
+
         // Gets the converted value for the meteor.
         public float GetConvertedValue()
         {
@@ -111,6 +119,118 @@ namespace RM_MST
             }
         }
 
+        // Generates possible conversion outputs.
+        public void GenerateAlternateOutputs()
+        {
+            // No conversion set, so just fill 0 for everything.
+            if (conversion == null)
+            {
+                // Fill all spots with 0.
+                for (int i = 0; i < possibleOutputs.Length; i++)
+                {
+                    possibleOutputs[i] = 0;
+                }
+
+                return;
+            }
+
+            // The true output of the operation.
+            float inputValue = conversion.inputValue;
+            float trueOutputValue = conversion.GetConvertedValue();
+
+            // Checks the group to know what set to use.
+            switch (conversion.group)
+            {
+                // Set 1 (specific multiples)
+                case UnitsInfo.unitGroups.lengthImperial:
+                case UnitsInfo.unitGroups.weightImperial:
+                case UnitsInfo.unitGroups.time:
+                    // Factors
+                    // 3, 6, 12, 16, 24, 30, 60
+
+                    // Goes through all indexes.
+                    for (int i = 0; i < possibleOutputs.Length; i++)
+                    {
+                        // The multiplication factor.
+                        float factor = 0;
+
+                        // Set the factor.
+                        switch (i)
+                        {
+                            case 0: // yd to ft
+                                factor = 3;
+                                break;
+
+                            case 1:
+                                factor = 6;
+                                break;
+
+                            case 2: // ft to in
+                                factor = 12;
+                                break;
+
+                            case 3: // lbs to oz
+                                factor = 16;
+                                break;
+
+                            case 4:
+                                factor = 24;
+                                break;
+
+                            case 5:
+                                factor = 30;
+                                break;
+
+                            case 6: // min to sec, hour to min
+                                factor = 60;
+                                break;
+
+                            default:
+                                factor = (i + 1) * 10;
+                                break;
+                        }
+
+                        // Generates the result and rounds it.
+                        float result = inputValue * factor;
+                        result = util.CustomMath.Round(result, StageManager.UNITS_DECIMAL_PLACES);
+
+                        // Save the result.
+                        possibleOutputs[i] = result;
+                    }
+
+                    break;
+
+                // Set 2 (multiples of 10)
+                case UnitsInfo.unitGroups.lengthMetric:
+                case UnitsInfo.unitGroups.weightMetric:
+                case UnitsInfo.unitGroups.capacity:
+                    // Factors
+                    // 0.1, 1, 10, 100, 1000, 10,000, 100,000
+
+                    // TODO: change selected values to remove 1?
+                    // Goes through all the outputs.
+                    for (int i = 0; i < possibleOutputs.Length; i++)
+                    {
+                        // Generates the value and rounds the decimals.
+                        float factor = 0.01F * (Mathf.Pow(10, i + 1));
+                        float result = inputValue * factor;
+                        result = util.CustomMath.Round(result, StageManager.UNITS_DECIMAL_PLACES);
+
+                        // Save the result.
+                        possibleOutputs[i] = result;
+                    }
+                    break;
+            }
+
+            // If the output value is not in the list, put it in a random location.
+            if (System.Array.IndexOf(possibleOutputs, trueOutputValue) == -1)
+            {
+                int randIndex = Random.Range(0, possibleOutputs.Length);
+                possibleOutputs[randIndex] = trueOutputValue;
+            }
+        }
+
+        // OTHER
         // Give points to the player.
         public bool TryGivePoints(LaserShot laserShot)
         {

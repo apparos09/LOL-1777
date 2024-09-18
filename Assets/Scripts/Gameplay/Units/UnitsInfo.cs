@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.Port;
 
 namespace RM_MST
 {
@@ -31,6 +30,12 @@ namespace RM_MST
 
             // Gets the converted value.
             public abstract float GetConvertedValue();
+
+            // Returns the symbol for the input units.
+            public abstract string GetInputSymbol();
+
+            // Returns the symbol for the output units.
+            public abstract string GetOutputSymbol();
         }
 
         // A class for weight conversions.
@@ -58,6 +63,18 @@ namespace RM_MST
             public override float GetConvertedValue()
             {
                 return ConvertWeightUnits(inputValue, inputUnits, outputUnits);
+            }
+
+            // Returns the symbol for the input units.
+            public override string GetInputSymbol()
+            {
+                return UnitsInfo.Instance.GetWeightUnitSymbol(inputUnits);
+            }
+
+            // Returns the symbol for the output units.
+            public override string GetOutputSymbol()
+            {
+                return UnitsInfo.Instance.GetWeightUnitSymbol(outputUnits);
             }
         }
 
@@ -87,6 +104,18 @@ namespace RM_MST
             {
                 return ConvertLengthUnits(inputValue, inputUnits, outputUnits);
             }
+
+            // Returns the symbol for the input units.
+            public override string GetInputSymbol()
+            {
+                return UnitsInfo.Instance.GetLengthUnitSymbol(inputUnits);
+            }
+
+            // Returns the symbol for the output units.
+            public override string GetOutputSymbol()
+            {
+                return UnitsInfo.Instance.GetLengthUnitSymbol(outputUnits);
+            }
         }
 
         // A class for time conversions.
@@ -115,6 +144,18 @@ namespace RM_MST
             {
                 return ConvertTimeUnits(inputValue, inputUnits, outputUnits);
             }
+
+            // Returns the symbol for the input units.
+            public override string GetInputSymbol()
+            {
+                return UnitsInfo.Instance.GetTimeUnitSymbol(inputUnits);
+            }
+
+            // Returns the symbol for the output units.
+            public override string GetOutputSymbol()
+            {
+                return UnitsInfo.Instance.GetTimeUnitSymbol(outputUnits);
+            }
         }
 
         // A class for capacity conversions.
@@ -141,6 +182,18 @@ namespace RM_MST
             public override float GetConvertedValue()
             {
                 return ConvertCapacityUnits(inputValue, inputUnits, outputUnits);
+            }
+
+            // Returns the symbol for the input units.
+            public override string GetInputSymbol()
+            {
+                return UnitsInfo.Instance.GetCapacityUnitSymbol(inputUnits);
+            }
+
+            // Returns the symbol for the output units.
+            public override string GetOutputSymbol()
+            {
+                return UnitsInfo.Instance.GetCapacityUnitSymbol(outputUnits);
             }
         }
 

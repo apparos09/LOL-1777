@@ -42,7 +42,9 @@ namespace RM_MST
                     stageManager.stageUI.UpdateUnitsTable(meteor.conversion.group);
                 }
             }
-            
+
+            // Updates the unit buttons with the provied meteor.
+            stageManager.stageUI.UpdateConversionAndUnitsButtons(meteor);
         }
 
         // Removes the target for the meteor.
