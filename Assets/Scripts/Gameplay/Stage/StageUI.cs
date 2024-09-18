@@ -169,7 +169,8 @@ namespace RM_MST
 
         // UI
 
-        // Updates all the UI.
+        // Updates all the UI, not counting the unit buttons.
+        // TODO: rename this to be more clear?
         public void UpdateAllUI()
         {
             UpdateTimeText();
@@ -373,6 +374,8 @@ namespace RM_MST
             unitsButton7.ClearButton();
         }
 
+
+
         // SPEED
         // Sets the game to fast.
         public void SetToFastSpeed()
@@ -457,6 +460,7 @@ namespace RM_MST
         public void OnStageReset()
         {
             CloseAllWindows();
+            ClearConversionAndUnitsButtons();
         }
 
         // Goes to the world.

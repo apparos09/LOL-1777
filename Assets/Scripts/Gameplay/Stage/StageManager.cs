@@ -224,7 +224,6 @@ namespace RM_MST
         {
             base.LateStart();
 
-
             // This is done here to make sure that the unit info object has been loaded.
 
             // Getting the conversions.
@@ -242,6 +241,10 @@ namespace RM_MST
                     usedGroups.Add(group);
                 }
             }
+
+            // Closes all the windows, and clears the buttons.
+            stageUI.CloseAllWindows();
+            stageUI.ClearConversionAndUnitsButtons();
 
             // The game is now running.
             runningGame = true;
@@ -1179,12 +1182,13 @@ namespace RM_MST
             // If the game is running.
             if(runningGame && !IsGamePaused())
             {
-                RunGame();
-
                 // Add to the stage timer and updates the time text.
                 // TODO: maybe don't update every frame?
                 stageTime += Time.unscaledDeltaTime;
                 stageUI.UpdateTimeText();
+
+                // Run the game.
+                RunGame();
 
                 // If the combo timer is greater than 0, and a meteor is targeted.
                 if(comboTimer > 0.0F && meteorTarget.meteor != null)
