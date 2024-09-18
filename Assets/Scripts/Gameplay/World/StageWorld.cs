@@ -171,12 +171,14 @@ namespace RM_MST
             if (available) // Available
             {
                 collider.enabled = true;
-                spriteRenderer.enabled = true;
+                spriteRenderer.gameObject.SetActive(true);
+                nameText.gameObject.SetActive(true);
             }
             else // Unavailable.
             {
                 collider.enabled = false;
-                spriteRenderer.enabled = false;
+                spriteRenderer.gameObject.SetActive(false);
+                nameText.gameObject.SetActive(false);
             }
 
             // TODO: implement animation.

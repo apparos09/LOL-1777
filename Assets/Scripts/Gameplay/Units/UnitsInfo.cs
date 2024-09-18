@@ -447,106 +447,106 @@ namespace RM_MST
             if (!instanced)
             {
                 instanced = true;
+
+                // Length (Imperial)
+                lengthImperialList = new List<lengthUnits>
+                {
+                    lengthUnits.inch,
+                    lengthUnits.foot,
+                    lengthUnits.yard
+                };
+
+                // Weight
+                weightImperialList = new List<weightUnits>
+                {
+                    weightUnits.pound,
+                    weightUnits.ounce
+                };
+
+                // Time
+                timeList = new List<timeUnits>()
+                {
+                    timeUnits.seconds,
+                    timeUnits.minutes,
+                    timeUnits.hour
+                };
+
+                // Length (Metric)
+                lengthMetricList = new List<lengthUnits>()
+                {
+                    lengthUnits.millimeter,
+                    lengthUnits.centimeter,
+                    lengthUnits.meter,
+                    lengthUnits.decimeter,
+                    lengthUnits.kilometer
+                };
+
+                // Weight (Metric)
+                weightMetricList = new List<weightUnits>()
+                {
+                    weightUnits.milligram,
+                    weightUnits.gram,
+                    weightUnits.kilogram
+                };
+
+                // Capacity
+                capacityList = new List<capacityUnits>()
+                {
+                    capacityUnits.milliliter,
+                    capacityUnits.liter
+                };
+
+
+                // CONVERSION LISTS
+                // Length (Imperial)
+                lengthImperialConversions = new List<LengthConversion>()
+                {
+                    new LengthConversion(1.0F, unitGroups.lengthImperial, lengthUnits.foot, lengthUnits.inch),
+                    new LengthConversion(1.0F, unitGroups.lengthImperial, lengthUnits.yard, lengthUnits.foot)
+                };
+
+                // Weight (Imperial)
+                weightImperialConversions = new List<WeightConversion>()
+                {
+                    new WeightConversion(1.0F, unitGroups.weightImperial, weightUnits.pound, weightUnits.ounce)
+                };
+
+                // Time
+                timeConversions = new List<TimeConversion>()
+                {
+                    new TimeConversion(1.0F, unitGroups.time, timeUnits.minutes, timeUnits.seconds),
+                    new TimeConversion(1.0F, unitGroups.time, timeUnits.hour, timeUnits.minutes)
+                };
+
+                // Length (Metric)
+                lengthMetricConversions = new List<LengthConversion>()
+                {
+                    new LengthConversion(1.0F, unitGroups.lengthMetric, lengthUnits.meter, lengthUnits.millimeter),
+                    new LengthConversion(1.0F, unitGroups.lengthMetric, lengthUnits.meter, lengthUnits.centimeter),
+                    new LengthConversion(1.0F, unitGroups.lengthMetric, lengthUnits.centimeter, lengthUnits.millimeter),
+                    new LengthConversion(1.0F, unitGroups.lengthMetric, lengthUnits.decimeter, lengthUnits.centimeter),
+                    new LengthConversion(1.0F, unitGroups.lengthMetric, lengthUnits.kilometer, lengthUnits.meter)
+                };
+
+                // Weight (Metric)
+                weightMetricConversions = new List<WeightConversion>()
+                {
+                    new WeightConversion(1.0F, unitGroups.weightMetric, weightUnits.gram, weightUnits.milligram),
+                    new WeightConversion(1.0F, unitGroups.weightMetric, weightUnits.kilogram, weightUnits.gram),
+                };
+
+                // Capacity
+                capcityConversions = new List<CapacityConversion>()
+                {
+                    new CapacityConversion(1.0F, unitGroups.capacity, capacityUnits.liter, capacityUnits.milliliter),
+                };
             }
         }
 
         // Start is called before the first frame update
         void Start()
         {
-            // Length (Imperial)
-            lengthImperialList = new List<lengthUnits>
-            {
-                lengthUnits.inch,
-                lengthUnits.foot,
-                lengthUnits.yard
-            };
-
-            // Weight
-            weightImperialList = new List<weightUnits>
-            {
-                weightUnits.pound,
-                weightUnits.ounce
-            };
-
-            // Time
-            timeList = new List<timeUnits>()
-            {
-                timeUnits.seconds,
-                timeUnits.minutes,
-                timeUnits.hour
-            };
-
-            // Length (Metric)
-            lengthMetricList = new List<lengthUnits>()
-            {
-                lengthUnits.millimeter,
-                lengthUnits.centimeter,
-                lengthUnits.meter,
-                lengthUnits.decimeter,
-                lengthUnits.kilometer
-            };
-
-            // Weight (Metric)
-            weightMetricList = new List<weightUnits>()
-            {
-                weightUnits.milligram,
-                weightUnits.gram,
-                weightUnits.kilogram
-            };
-
-            // Capacity
-            capacityList = new List<capacityUnits>()
-            {
-                capacityUnits.milliliter,
-                capacityUnits.liter
-            };
-
-
-            // CONVERSION LISTS
-            // Length (Imperial)
-            lengthImperialConversions = new List<LengthConversion>()
-            {
-                new LengthConversion(1.0F, unitGroups.lengthImperial, lengthUnits.foot, lengthUnits.inch),
-                new LengthConversion(1.0F, unitGroups.lengthImperial, lengthUnits.yard, lengthUnits.foot)
-            };
-
-            // Weight (Imperial)
-            weightImperialConversions = new List<WeightConversion>()
-            {
-                new WeightConversion(1.0F, unitGroups.weightImperial, weightUnits.pound, weightUnits.ounce)
-            };
-
-            // Time
-            timeConversions = new List<TimeConversion>()
-            {
-                new TimeConversion(1.0F, unitGroups.time, timeUnits.minutes, timeUnits.seconds),
-                new TimeConversion(1.0F, unitGroups.time, timeUnits.hour, timeUnits.minutes)
-            };
-
-            // Length (Metric)
-            lengthMetricConversions = new List<LengthConversion>()
-            {
-                new LengthConversion(1.0F, unitGroups.lengthMetric, lengthUnits.meter, lengthUnits.millimeter),
-                new LengthConversion(1.0F, unitGroups.lengthMetric, lengthUnits.meter, lengthUnits.centimeter),
-                new LengthConversion(1.0F, unitGroups.lengthMetric, lengthUnits.centimeter, lengthUnits.millimeter),
-                new LengthConversion(1.0F, unitGroups.lengthMetric, lengthUnits.decimeter, lengthUnits.centimeter),
-                new LengthConversion(1.0F, unitGroups.lengthMetric, lengthUnits.kilometer, lengthUnits.meter)
-            };
-
-            // Weight (Metric)
-            weightMetricConversions = new List<WeightConversion>()
-            {
-                new WeightConversion(1.0F, unitGroups.weightMetric, weightUnits.gram, weightUnits.milligram),
-                new WeightConversion(1.0F, unitGroups.weightMetric, weightUnits.kilogram, weightUnits.gram),
-            };
-
-            // Capacity
-            capcityConversions = new List<CapacityConversion>()
-            {
-                new CapacityConversion(1.0F, unitGroups.capacity, capacityUnits.liter, capacityUnits.milliliter),
-            };
-
-
+            
             // Translate the text if the LOL Manager and the LOL SDK are initialized.
             if (LOLManager.Instantiated && LOLManager.IsLOLSDKInitialized())
             {

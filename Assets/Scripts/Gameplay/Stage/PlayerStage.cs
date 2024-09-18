@@ -51,7 +51,13 @@ namespace RM_MST
             {
                 // The player already has an active laser shot.
                 if (laserShotActive != null)
-                    return laserShotActive;
+                {
+                    // If the laser shot is active, return that shot.
+                    if(laserShotActive.isActiveAndEnabled)
+                    {
+                        return laserShotActive;
+                    }
+                }
             }
 
             // If the game is slowed down, return to normal speed.

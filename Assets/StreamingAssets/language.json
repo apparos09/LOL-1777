@@ -104,9 +104,14 @@
     "kwd_all": "All",
     "kwd_none": "None",
 
-    "kwd_mix1": "Mix 1",
-    "kwd_mix2": "Mix 2",
-    "kwd_mix3": "Mix 3",
+    "kwd_mix1_nme": "Mix 1",
+    "kwd_mix1_dsc": "Length (Imperial), Weight (Imperial), Time",
+
+    "kwd_mix2_nme": "Mix 2",
+    "kwd_mix2_dsc": "Length (Metric), Weight (Metric), Capacity",
+
+    "kwd_mix3_nme": "Mix 3",
+    "kwd_mix3_dsc": "All",
 
     "kwd_time": "Time",
     "kwd_score": "Score",
