@@ -99,6 +99,9 @@ namespace RM_MST
         // The number of decimal places for the units.
         public const int UNITS_DECIMAL_PLACES = 3;
 
+        // If 'true', random inputs are limited to whole numbers for non-metric units.
+        private bool limitRandomUnitInputs = true;
+
         // If 'true', fractions are used in the game.
         private bool useFractions = true;
 
@@ -686,6 +689,16 @@ namespace RM_MST
 
             // Round the value, and cap it at 3 decimal places.
             value = util.CustomMath.Round(value, UNITS_DECIMAL_PLACES);
+
+            // If random unit inputs should be limited.
+            if(limitRandomUnitInputs)
+            {
+                // If these are not metric units, round up to a whole number.
+                if(!UnitsInfo.IsMetricUnits(conversion.group))
+                {
+                    value = Mathf.Ceil(value);
+                }
+            }
 
             // Set and return the value.
             conversion.inputValue = value;
