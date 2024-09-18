@@ -284,12 +284,12 @@ namespace RM_MST
 
         // VALID CONVERSIONS LISTS
         // These are the conversion lists for the game.
-        private List<LengthConversion> lengthImperialConversions;
-        private List<WeightConversion> weightImperialConversions;
-        private List<TimeConversion> timeConversions;
-        private List<LengthConversion> lengthMetricConversions;
-        private List<WeightConversion> weightMetricConversions;
-        private List<CapacityConversion> capcityConversions;
+        private List<LengthConversion> lengthImperialConversions = new List<LengthConversion>();
+        private List<WeightConversion> weightImperialConversions = new List<WeightConversion>();
+        private List<TimeConversion> timeConversions = new List<TimeConversion>();
+        private List<LengthConversion> lengthMetricConversions = new List<LengthConversion>();
+        private List<WeightConversion> weightMetricConversions = new List<WeightConversion>();
+        private List<CapacityConversion> capcityConversions = new List<CapacityConversion>();
 
         // TODO: change descriptions?
 
@@ -1118,6 +1118,53 @@ namespace RM_MST
         }
 
         // GROUP CHECKS
+        // Checks if the unit group is imperial.
+        public static bool IsImperialUnitsGroup(unitGroups group)
+        {
+            bool result = false;
+
+            // Checks group for imperial units.
+            switch(group)
+            {
+                case unitGroups.lengthImperial:
+                case unitGroups.weightImperial:
+                    result = true;
+                    break;
+
+                default:
+                    result = false;
+                    break;
+            }
+
+            // Return result.
+            return result;
+        }
+
+        // Checks if the unit group is metric.
+        public static bool IsMetricUnits(unitGroups group)
+        {
+            bool result = false;
+
+            // Checks group for imperial units.
+            switch (group)
+            {
+                case unitGroups.lengthMetric:
+                case unitGroups.weightMetric:
+                case unitGroups.capacity:
+                    result = true;
+                    break;
+
+                default:
+                    result = false;
+                    break;
+            }
+
+            // Return result.
+            return result;
+        }
+
+        // Checks if the unit group is metric.
+
         // Checks if the provided unit is an imperial weight.
         public bool IsWeightImperial(weightUnits units)
         {

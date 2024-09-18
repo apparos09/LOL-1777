@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -87,16 +88,22 @@ namespace RM_MST
         public List<UnitsInfo.unitGroups> stageUnitGroups = new List<UnitsInfo.unitGroups>();
 
         // The conversions for the stage.
-        public List<UnitsInfo.UnitsConversion> conversions;
+        public List<UnitsInfo.UnitsConversion> conversions = new List<UnitsInfo.UnitsConversion>();
 
         // The minimum units input value.
-        public const float UNITS_INPUT_VALUE_MIN = 1.00F;
+        public const float UNITS_INPUT_VALUE_MIN = 0.0F;
 
         // The maximum units input value.
-        public const float UNITS_INPUT_VALUE_MAX = 100.0F;
+        public const float UNITS_INPUT_VALUE_MAX = 1.0F;
 
         // The number of decimal places for the units.
         public const int UNITS_DECIMAL_PLACES = 3;
+
+        // If 'true', fractions are used in the game.
+        private bool useFractions = true;
+
+        // The fraction display chance.
+        public const float FRACTION_DISPLAY_CHANCE = 0.9F;
 
         [Header("Meteors")]
         // TODO: make private.
@@ -760,7 +767,49 @@ namespace RM_MST
         // Generates the conversion question for the player.
         public string GenerateConversionQuestion(Meteor meteor)
         {
-            string result = meteor.conversion.inputValue.ToString() + " " + meteor.conversion.GetInputSymbol() + " = ?";
+            // The result.
+            string result = string.Empty;
+
+            // If 'true', fractions can be tried.
+            bool tryFractions = UnitsInfo.IsMetricUnits(meteor.conversion.group) && 
+                meteor.conversion.inputValue < 1.0F && meteor.conversion.inputValue >= 0.0F;
+
+            // If fractions can be used, try to generate a fraction.
+            if (useFractions && tryFractions)
+            {
+                // Generates a random value.
+                float randValue = Random.Range(0.0F, 1.0F);
+
+                // Fraction display change.
+                if(randValue <= FRACTION_DISPLAY_CHANCE)
+                {
+                    // Variables to be used to set up the string.
+                    float inputValue = meteor.conversion.inputValue;
+                    string inputValueString = inputValue.ToString();
+                    int decimalPlaces = 0;
+
+                    // If there is a decimal place, use it to get the amount of decimal places.
+                    if(inputValueString.Contains("."))
+                    {
+                        // Calculates the number of decimal places to know what to display.
+                        decimalPlaces = inputValueString.Length - (inputValueString.IndexOf(".") + 1);
+                    }
+
+                    // There are decimal places, generate the result string.
+                    if(decimalPlaces > 0)
+                    {
+                        float mult = Mathf.Pow(10, decimalPlaces);
+                        result = (inputValue * mult).ToString() + "/" + mult.ToString() + " " +
+                            meteor.conversion.GetInputSymbol() + " = ?";
+                    }
+                }
+
+            }
+
+            // Result wasn't set, so use the default format.
+            if(result == "")
+                result = meteor.conversion.inputValue.ToString() + " " + meteor.conversion.GetInputSymbol() + " = ?";
+
             return result;
         }
 

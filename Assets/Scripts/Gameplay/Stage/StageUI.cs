@@ -258,6 +258,9 @@ namespace RM_MST
             // Conversion
             conversionText.text = stageManager.GenerateConversionQuestion(meteor);
 
+            // If there is a slash, then this is a fraction.
+            bool isFraction = conversionText.text.Contains("/");
+
             // Buttons
             // Makes a list of the unit buttons.
             List<UnitsButton> unitsButtons = new List<UnitsButton>()
@@ -312,8 +315,18 @@ namespace RM_MST
             // Goes through all buttons and gets the values.
             for(int i = 0; i < unitsButtons.Count && i < meteor.possibleOutputs.Length; i++)
             {
-                // Sets the text and values.
-                unitsButtons[i].SetMeasurementValueAndSymbol(meteor.possibleOutputs[i], meteor.conversion.GetOutputSymbol());
+                // If the question uses fractions, try to display the output as a fraction.
+                if(isFraction)
+                {
+                    // The result will be shown as a fraction if possible.
+                    unitsButtons[i].SetMeasurementValueAndSymbol(meteor.possibleOutputs[i], meteor.conversion.GetOutputSymbol(), true);
+                }
+                else
+                {
+                    // Sets the text and values.
+                    unitsButtons[i].SetMeasurementValueAndSymbol(meteor.possibleOutputs[i], meteor.conversion.GetOutputSymbol());
+                }
+                
 
                 // If this is the true output value, set that it's been found.
                 if (meteor.possibleOutputs[i] == trueOutputValue)
