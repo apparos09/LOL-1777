@@ -440,6 +440,7 @@ namespace RM_MST
             meteor.conversion = GenerateRandomConversionFromList();
             SetRandomConversionInputValue(meteor.conversion);
             meteor.GenerateAlternateOutputs();
+            unitsInfo.gameObject.SetActive(true);
 
             // Set the parent.
             if(stage.meteorParent != null)
@@ -632,7 +633,32 @@ namespace RM_MST
             // Checks if there are conversions to pick from.
             if (conversions.Count > 0)
             {
-                conversion = conversions[Random.Range(0, conversions.Count)];
+                // The oirignal conversion.
+                UnitsInfo.UnitsConversion origConvert = conversions[Random.Range(0, conversions.Count)];
+
+                // Checks the conversion type.
+                if(origConvert is UnitsInfo.WeightConversion) // Weight
+                {
+                    conversion = new UnitsInfo.WeightConversion((UnitsInfo.WeightConversion)origConvert);
+                }
+                else if(origConvert is UnitsInfo.LengthConversion) // Length
+                {
+                    conversion = new UnitsInfo.LengthConversion((UnitsInfo.LengthConversion)origConvert);
+                }
+                else if(origConvert is UnitsInfo.TimeConversion) // Time
+                {
+                    conversion = new UnitsInfo.TimeConversion((UnitsInfo.TimeConversion)origConvert);
+                }
+                else if(origConvert is UnitsInfo.CapacityConversion) // Capacity
+                {
+                    conversion = new UnitsInfo.CapacityConversion((UnitsInfo.CapacityConversion)origConvert);
+                }
+                else
+                {
+                    conversion = null;
+                }
+
+
             }
             else // No conversions, so generate an empty conversion.
             {

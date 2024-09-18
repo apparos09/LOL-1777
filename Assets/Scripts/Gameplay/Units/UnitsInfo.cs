@@ -27,6 +27,13 @@ namespace RM_MST
                 this.group = group;
             }
 
+            // Copy constructor.
+            public UnitsConversion(UnitsConversion conversion)
+            {
+                inputValue *= conversion.inputValue;
+                group = conversion.group;
+            }
+
 
             // Gets the converted value.
             public abstract float GetConvertedValue();
@@ -56,6 +63,13 @@ namespace RM_MST
             {
                 this.inputUnits = inputUnits;
                 this.outputUnits = outputUnits;
+            }
+
+            // Copy constructor.
+            public WeightConversion(WeightConversion conversion) : base(conversion)
+            {
+                inputUnits = conversion.inputUnits;
+                outputUnits = conversion.outputUnits;
             }
 
 
@@ -98,6 +112,12 @@ namespace RM_MST
                 this.outputUnits = outputUnits;
             }
 
+            // Copy constructor.
+            public LengthConversion(LengthConversion conversion) : base(conversion)
+            {
+                inputUnits = conversion.inputUnits;
+                outputUnits = conversion.outputUnits;
+            }
 
             // Gets the converted value.
             public override float GetConvertedValue()
@@ -138,6 +158,13 @@ namespace RM_MST
                 this.outputUnits = outputUnits;
             }
 
+            // Copy constructor.
+            public TimeConversion(TimeConversion conversion) : base(conversion)
+            {
+                inputUnits = conversion.inputUnits;
+                outputUnits = conversion.outputUnits;
+            }
+
 
             // Gets the converted value.
             public override float GetConvertedValue()
@@ -176,6 +203,13 @@ namespace RM_MST
             {
                 this.inputUnits = inputUnits;
                 this.outputUnits = outputUnits;
+            }
+
+            // Copy constructor.
+            public CapacityConversion(CapacityConversion conversion) : base(conversion)
+            {
+                inputUnits = conversion.inputUnits;
+                outputUnits = conversion.outputUnits;
             }
 
             // Gets the converted value.
