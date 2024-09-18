@@ -71,6 +71,12 @@ namespace RM_MST
         // The timer for the stage.
         public float stageTime = 0.0F;
 
+        // The fast game time scale.
+        private float FAST_GAME_TIME_SCALE = 2.0F;
+
+        // The slow game time scale.
+        private float SLOW_GAME_TIME_SCALE = 0.5F;
+
         // The final score for the stage.
         public float stageFinalScore = 0.0F;
 
@@ -777,7 +783,27 @@ namespace RM_MST
             return result;
         }
 
-        // OPERATIONS
+        // SPEED
+        // Sets the game to normal speed.
+        public void SetToNormalSpeed()
+        {
+            ResetGameTimeScale();
+        }
+
+        // Sets the game to fast speed.
+        public void SetToFastSpeed()
+        {
+            SetGameTimeScale(FAST_GAME_TIME_SCALE);
+        }
+
+        // Sets the game to slow speed.
+        public void SetToSlowSpeed()
+        {
+            SetGameTimeScale(SLOW_GAME_TIME_SCALE);
+        }
+
+
+        // UNIT OPERATIONS
         // Generates the conversion question for the player.
         public string GenerateConversionQuestion(Meteor meteor)
         {
@@ -1093,7 +1119,7 @@ namespace RM_MST
 
                 // Add to the stage timer and updates the time text.
                 // TODO: maybe don't update every frame?
-                stageTime += Time.deltaTime;
+                stageTime += Time.unscaledDeltaTime;
                 stageUI.UpdateTimeText();
 
                 // If the combo timer is greater than 0, and a meteor is targeted.

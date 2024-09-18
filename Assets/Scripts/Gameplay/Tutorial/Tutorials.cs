@@ -237,7 +237,17 @@ namespace RM_MST
             // Unfreeze the game if the game is not paused.
             if (!gameManager.IsGamePaused())
             {
-                Time.timeScale = 1.0F;
+                // If the game manager is set, check it for the time scale.
+                // If it's not set, use 1.0F.
+                if(gameManager != null)
+                {
+                    Time.timeScale = gameManager.GetGameTimeScale();
+                }
+                else
+                {
+                    Time.timeScale = 1.0F;
+                }
+                
             }
                 
             // Ignore the current input for this frame in case the player is holding the space bar.

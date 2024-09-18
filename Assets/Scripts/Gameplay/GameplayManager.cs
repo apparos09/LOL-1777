@@ -11,6 +11,9 @@ namespace RM_MST
         // The game UI.
         public GameplayUI gameUI;
 
+        // The game speed.
+        private float gameTimeScale = 1.0F;
+
         // The timer for the game.
         public float gameTime = 0;
 
@@ -102,6 +105,27 @@ namespace RM_MST
             return formatted;
         }
 
+        // TIME
+        // Gets the game time scale.
+        public float GetGameTimeScale()
+        {
+            return gameTimeScale;
+        }
+
+        // Sets the game time scale.
+        protected void SetGameTimeScale(float value)
+        {
+            gameTimeScale = value;
+            Time.timeScale = gameTimeScale;
+        }
+
+        // Resets the time scale.
+        protected void ResetGameTimeScale()
+        {
+            gameTimeScale = 1.0F;
+            Time.timeScale = gameTimeScale;
+        }
+
         // Returns 'true' if the game is paused.
         public bool IsGamePaused()
         {
@@ -116,6 +140,7 @@ namespace RM_MST
             // If the game is paused.
             if(gamePaused)
             {
+                // NOTE: this does not change the time scale.
                 Time.timeScale = 0.0F;
             }
             else // If the game is not paused.
@@ -123,7 +148,20 @@ namespace RM_MST
                 // If the tutorial is not running, set the time scale to 1.0F.
                 if (!IsTutorialRunning())
                 {
-                    Time.timeScale = 1.0F;
+                    // Gets the game time scale.
+                    float gts = GetGameTimeScale();
+
+                    // If the time scale is 0, reset the time scale.
+                    if(gts == 0)
+                    {
+                        ResetGameTimeScale();
+                        gts = GetGameTimeScale();
+                    }
+                    
+                    // Set the game time scale.
+                    Time.timeScale = gts;
+
+
                 }
             }
         }
@@ -218,7 +256,8 @@ namespace RM_MST
             if (Tutorials.Instantiated)
                 Destroy(Tutorials.Instance.gameObject);
 
-            // Makes sure the game is not paused.
+            // Makes sure the game is not paused, and that the game is at normal speed.
+            ResetGameTimeScale();
             UnpauseGame();
         }
         
@@ -256,6 +295,17 @@ namespace RM_MST
             {
                 gameTime += Time.unscaledDeltaTime;
             }
+        }
+
+        
+        // This function is called when the MonoBehaviour will be destroyed.
+        private void OnDestroy()
+        {
+            // Resets the game time scale.
+            ResetGameTimeScale();
+
+            // Return the time scale to normal.
+            Time.timeScale = 1.0F;
         }
     }
 }
