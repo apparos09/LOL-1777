@@ -9,6 +9,9 @@ namespace RM_MST
     // A units button.
     public class UnitsButton : MonoBehaviour
     {
+        // The stage manager.
+        public StageManager stageManager;
+
         // The button;
         public Button button;
 
@@ -21,9 +24,18 @@ namespace RM_MST
         // The symbol for the button.
         private string unitsSymbol = string.Empty;
 
+        // Gets set to 'true' when this is the correct value.
+        // This is an alternate way to see if this button is the correct one.
+        [Tooltip("An alternate way to check that this button is correct. Call related function to auto set.")]
+        public bool correctValue = false;
+
         // Start is called before the first frame update
         void Start()
         {
+            // Grab the instance.
+            if (stageManager == null)
+                stageManager = StageManager.Instance;
+
             // Autoset the button.
             if(button == null)
                 button = GetComponent<Button>();
@@ -70,6 +82,7 @@ namespace RM_MST
         public void UpdateText()
         {
             text.text = measurementValue.ToString() + " " + unitsSymbol;
+            correctValue = false;
         }
 
         // Clears the button.
@@ -78,6 +91,31 @@ namespace RM_MST
             measurementValue = 0;
             unitsSymbol = string.Empty;
             text.text = "-";
+            correctValue = false;
+        }
+
+        // Checks and returns if this is the correct value.
+        public bool IsCorrectValue()
+        {
+            // Sets the instance.
+            if(stageManager == null)
+                stageManager = StageManager.Instance;
+
+            // False by default.
+            correctValue = false;
+
+            // If the targeter has a meteor.
+            if (stageManager.meteorTarget.meteor != null)
+            {
+                // Values match, meaning this is the correct value.
+                if(stageManager.meteorTarget.meteor.GetConvertedValue() == measurementValue)
+                {
+                    correctValue = true;
+                }
+            }          
+
+            // Return result.
+            return correctValue;
         }
 
     }

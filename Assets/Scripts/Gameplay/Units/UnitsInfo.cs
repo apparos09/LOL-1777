@@ -1709,7 +1709,7 @@ namespace RM_MST
                             break;
 
                         case capacityUnits.liter:
-                            modifier = 1000.0F;
+                            modifier = 1.0F / 1000.0F;
                             break;
 
 
@@ -1721,7 +1721,7 @@ namespace RM_MST
                     switch (output)
                     {
                         case capacityUnits.milliliter:
-                            modifier = 1.0F / 1000.0F;
+                            modifier = 1000.0F;
                             break;
 
                         case capacityUnits.liter:

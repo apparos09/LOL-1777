@@ -260,6 +260,7 @@ namespace RM_MST
                 if (meteor.possibleOutputs[i] == trueOutputValue)
                 {
                     foundRightValue = true;
+                    unitsButtons[i].correctValue = true;
                 }
             }
 
@@ -277,9 +278,10 @@ namespace RM_MST
                 else
                     buttonIndex = Random.Range(0, unitsButtons.Count);
 
-                // Replaces the value at the provided index.
+                // Replaces the value at the provided index, and marks that button as having the true value.
                 meteor.possibleOutputs[outputIndex] = trueOutputValue;
                 unitsButtons[buttonIndex].SetMeasurementValue(trueOutputValue);
+                unitsButtons[buttonIndex].correctValue = true;
             }
         }
 
@@ -306,9 +308,22 @@ namespace RM_MST
         }
 
         // Shoots the laser with the value from the provided units button.
-        public void ShootLaserShot(UnitsButton button)
+        public void ShootLaserShot(UnitsButton unitsButton)
         {
-            stageManager.player.ShootLaserShot(button.GetMeasurementValue());
+            // If the button is automatically correct, pull the exact value.
+            if(unitsButton.correctValue)
+            {
+                // Use meteor's value if true. Use button's value if false.
+                if(stageManager.meteorTarget.meteor != null)
+                    stageManager.player.ShootLaserShot(stageManager.meteorTarget.meteor.GetConvertedValue());
+                else
+                    stageManager.player.ShootLaserShot(unitsButton.GetMeasurementValue());
+            }
+            else // Button is not automatically correct.
+            {
+                stageManager.player.ShootLaserShot(unitsButton.GetMeasurementValue());
+            }
+            
         }
 
 

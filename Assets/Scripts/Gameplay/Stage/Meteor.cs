@@ -251,7 +251,8 @@ namespace RM_MST
             float outputValue = conversion.GetConvertedValue();
 
             // If the values match, the laser shot was a success.
-            if (laserShot.outputValue == outputValue)
+            // Now uses an approximate check in case the vales are slightly off.
+            if (Mathf.Approximately(laserShot.outputValue, outputValue))
             {
                 success = true;
             }
@@ -259,6 +260,7 @@ namespace RM_MST
             {
                 success = false;
             }
+
             // Give the player points.
 
             // Knock back the meteor and kill the laser.
