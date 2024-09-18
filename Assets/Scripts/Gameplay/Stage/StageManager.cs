@@ -100,7 +100,7 @@ namespace RM_MST
         public const float UNITS_INPUT_VALUE_MIN = 0.0F;
 
         // The maximum units input value.
-        public const float UNITS_INPUT_VALUE_MAX = 1000.0F;
+        public const float UNITS_INPUT_VALUE_MAX = 100.0F;
 
         // The number of decimal places for the units.
         // TODO: maybe limit to 2 decimal places.

@@ -374,6 +374,30 @@ namespace RM_MST
             unitsButton7.ClearButton();
         }
 
+        // Sets all unit buttons to be interactable.
+        public void SetUnitButtonsInteractable(bool interactable)
+        {
+            unitsButton1.button.interactable = interactable;
+            unitsButton2.button.interactable = interactable;
+            unitsButton3.button.interactable = interactable;
+            unitsButton4.button.interactable = interactable;
+            unitsButton5.button.interactable = interactable;
+            unitsButton6.button.interactable = interactable;
+            unitsButton7.button.interactable = interactable;
+        }
+
+        // Set the unit buttons interactable to true.
+        public void MakeUnitButtonsInteractable()
+        {
+            SetUnitButtonsInteractable(true);
+        }
+
+        // Set the unit buttons interactable to false.
+        public void MakeUnitButtonsUninteractable()
+        {
+            SetUnitButtonsInteractable(false);
+        }
+
 
 
         // SPEED

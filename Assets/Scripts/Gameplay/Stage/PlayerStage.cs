@@ -16,11 +16,14 @@ namespace RM_MST
         // The number of points.
         private float points = 0;
 
+        // If 'true', the player can be stunned.
+        public bool stunPlayer = true;
+
         // The player stun timer.
         private float playerStunTimer = 0.0F;
 
         // Player stun timer max.
-        private float playerStunTimerMax = 1.0F;
+        public const float PLAYER_STUN_TIMER_MAX = 0.5F;
 
         // Start is called before the first frame update
         void Start()
@@ -116,14 +119,13 @@ namespace RM_MST
         }
 
         // Stuns the player.
-        public void StunPlayer()
-        {
-            playerStunTimer = playerStunTimerMax;
+        public virtual void StunPlayer()
+        { 
             OnPlayerStunStarted();
         }
 
         // Unstuns the player.
-        public void UnstunPlayer()
+        public virtual void UnstunPlayer()
         {
             OnPlayerStunEnded();
         }
@@ -131,13 +133,15 @@ namespace RM_MST
         // The player has gotten stunned.
         protected virtual void OnPlayerStunStarted()
         {
-
+            playerStunTimer = PLAYER_STUN_TIMER_MAX;
+            stageManager.stageUI.MakeUnitButtonsUninteractable();
         }
 
         // The player is no longer stunned.
         protected virtual void OnPlayerStunEnded()
         {
             playerStunTimer = 0.0F;
+            stageManager.stageUI.MakeUnitButtonsInteractable();
         }
 
         // Update is called once per frame
@@ -147,7 +151,7 @@ namespace RM_MST
             if(playerStunTimer > 0.0F && !stageManager.IsGamePaused())
             {
                 // Reduce by unscaled delta time.
-                playerStunTimer -= Time.unscaledTime;
+                playerStunTimer -= Time.unscaledDeltaTime;
 
                 // No longer stunned.
                 if(playerStunTimer <= 0)

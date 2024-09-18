@@ -105,6 +105,14 @@ namespace RM_MST
         // Kills the laser shot. If 'true', then the laser shot's hit was a success.
         public void Kill(bool success)
         {
+            // The shot was not a success, so stun the player.
+            if(!success)
+            {
+                // Stuns the player if they can be stunned.
+                if (stageManager.player.stunPlayer)
+                    stageManager.player.StunPlayer();
+            }
+
             Destroy(gameObject);
         }
 
