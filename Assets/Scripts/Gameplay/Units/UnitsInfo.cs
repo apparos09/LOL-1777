@@ -1775,8 +1775,9 @@ namespace RM_MST
             return result;
         }
 
-        // Get a conversion list. This only goes from larger units to smaller units.
-        public List<UnitsConversion> GetConversionList(unitGroups group)
+        // Get a group conversion list. This only goes from larger units to smaller units.
+        // This is private as to prevent the lists from being altered.
+        private List<UnitsConversion> GetGroupConversionList(unitGroups group)
         {
             // The conversion list.
             List<UnitsConversion> conversions;
@@ -1817,6 +1818,45 @@ namespace RM_MST
 
             // Returns the conversions.
             return conversions;
+        }
+
+        // Get a group conversion list copy. This only goes from larger units to smaller units.
+        // These are the lists used for the game, as they only include valid conversions.
+        public List<UnitsConversion> GetGroupConversionListCopy(unitGroups group)
+        {
+            // Gets the group conversion list, and initializes the copy list.
+            List<UnitsConversion> conversionsOrig = GetGroupConversionList(group);
+            List<UnitsConversion> conversionsCopy = new List<UnitsConversion>();
+
+            // Goes through each original conversion.
+            foreach (UnitsConversion convertOrig in conversionsOrig)
+            {
+                // Checks the conversion type.
+                if (convertOrig is UnitsInfo.WeightConversion) // Weight
+                {
+                    conversionsCopy.Add(new WeightConversion((WeightConversion)convertOrig));
+                }
+                else if (convertOrig is UnitsInfo.LengthConversion) // Length
+                {
+                    conversionsCopy.Add(new LengthConversion((LengthConversion)convertOrig));
+                }
+                else if (convertOrig is UnitsInfo.TimeConversion) // Time
+                {
+                    conversionsCopy.Add(new TimeConversion((TimeConversion)convertOrig));
+                }
+                else if (convertOrig is UnitsInfo.CapacityConversion) // Capacity
+                {
+                    conversionsCopy.Add(new CapacityConversion((CapacityConversion)convertOrig));
+                }
+                else
+                {
+                    // Add nothing.
+                }
+            }
+            
+
+            // Returns the conversions copy.
+            return conversionsCopy;
         }
 
 

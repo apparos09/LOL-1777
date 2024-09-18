@@ -49,12 +49,14 @@ namespace RM_MST
                 if (unitsInfo == null)
                     unitsInfo = UnitsInfo.Instance;
 
+                // Clears the entries.
                 ClearEntries();
             }
             else // Load the entries.
             {
                 // Gets the conversion list for the provided group.
-                List<UnitsInfo.UnitsConversion> conversions = unitsInfo.GetConversionList(group);
+                // TODO: it's inefficient to get these as copies, but this is to prevent the lists from being edited.
+                List<UnitsInfo.UnitsConversion> conversions = unitsInfo.GetGroupConversionListCopy(group);
 
                 // The entry index.
                 int entryIndex = 0;

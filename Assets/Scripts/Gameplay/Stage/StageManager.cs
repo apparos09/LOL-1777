@@ -223,7 +223,7 @@ namespace RM_MST
                 // If the group hasn't been used yet, get the group.
                 if(!usedGroups.Contains(group))
                 {
-                    conversions.AddRange(UnitsInfo.Instance.GetConversionList(group));
+                    conversions.AddRange(UnitsInfo.Instance.GetGroupConversionListCopy(group));
                     usedGroups.Add(group);
                 }
             }
@@ -633,7 +633,8 @@ namespace RM_MST
             // Checks if there are conversions to pick from.
             if (conversions.Count > 0)
             {
-                // The oirignal conversion.
+                // The original conversion.
+                // These conversions are copied as to prevent the original conversion objects from being altered.
                 UnitsInfo.UnitsConversion origConvert = conversions[Random.Range(0, conversions.Count)];
 
                 // Checks the conversion type.
