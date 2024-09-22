@@ -158,12 +158,144 @@ MonoBehaviour:
     useTutorial: 1
     gameTime: 0
     gameScore: 0
+    stageDatas:
+    - stageName: 
+      stageTime: 0
+      stageScore: 0
+      highestCombo: 0
+      losses: 0
+      cleared: 0
+    - stageName: 
+      stageTime: 0
+      stageScore: 0
+      highestCombo: 0
+      losses: 0
+      cleared: 0
+    - stageName: 
+      stageTime: 0
+      stageScore: 0
+      highestCombo: 0
+      losses: 0
+      cleared: 0
+    - stageName: 
+      stageTime: 0
+      stageScore: 0
+      highestCombo: 0
+      losses: 0
+      cleared: 0
+    - stageName: 
+      stageTime: 0
+      stageScore: 0
+      highestCombo: 0
+      losses: 0
+      cleared: 0
+    - stageName: 
+      stageTime: 0
+      stageScore: 0
+      highestCombo: 0
+      losses: 0
+      cleared: 0
+    - stageName: 
+      stageTime: 0
+      stageScore: 0
+      highestCombo: 0
+      losses: 0
+      cleared: 0
+    - stageName: 
+      stageTime: 0
+      stageScore: 0
+      highestCombo: 0
+      losses: 0
+      cleared: 0
+    - stageName: 
+      stageTime: 0
+      stageScore: 0
+      highestCombo: 0
+      losses: 0
+      cleared: 0
+    tutorialData:
+      introTutorial: 0
+      stageTutorial: 0
+      clearedFirstStageTutorial: 0
+      mixStageTutorial: 0
+      clearedWeightImperial: 0
+      clearedLengthImperial: 0
+      clearedTime: 0
+      clearedLengthMetric: 0
+      clearedWeightMetric: 0
+      clearedCapcity: 0
   loadedData:
     valid: 0
     complete: 0
     useTutorial: 1
     gameTime: 0
     gameScore: 0
+    stageDatas:
+    - stageName: 
+      stageTime: 0
+      stageScore: 0
+      highestCombo: 0
+      losses: 0
+      cleared: 0
+    - stageName: 
+      stageTime: 0
+      stageScore: 0
+      highestCombo: 0
+      losses: 0
+      cleared: 0
+    - stageName: 
+      stageTime: 0
+      stageScore: 0
+      highestCombo: 0
+      losses: 0
+      cleared: 0
+    - stageName: 
+      stageTime: 0
+      stageScore: 0
+      highestCombo: 0
+      losses: 0
+      cleared: 0
+    - stageName: 
+      stageTime: 0
+      stageScore: 0
+      highestCombo: 0
+      losses: 0
+      cleared: 0
+    - stageName: 
+      stageTime: 0
+      stageScore: 0
+      highestCombo: 0
+      losses: 0
+      cleared: 0
+    - stageName: 
+      stageTime: 0
+      stageScore: 0
+      highestCombo: 0
+      losses: 0
+      cleared: 0
+    - stageName: 
+      stageTime: 0
+      stageScore: 0
+      highestCombo: 0
+      losses: 0
+      cleared: 0
+    - stageName: 
+      stageTime: 0
+      stageScore: 0
+      highestCombo: 0
+      losses: 0
+      cleared: 0
+    tutorialData:
+      introTutorial: 0
+      stageTutorial: 0
+      clearedFirstStageTutorial: 0
+      mixStageTutorial: 0
+      clearedWeightImperial: 0
+      clearedLengthImperial: 0
+      clearedTime: 0
+      clearedLengthMetric: 0
+      clearedWeightMetric: 0
+      clearedCapcity: 0
   worldManager: {fileID: 0}
   feedbackText: {fileID: 0}
 --- !u!4 &42300935
@@ -376,7 +508,7 @@ GameObject:
   - component: {fileID: 2001890761}
   m_Layer: 0
   m_Name: LOL Manager
-  m_TagString: VCE
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
