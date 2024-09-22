@@ -170,7 +170,7 @@ namespace RM_MST
                 if (worldStages[i] != null && worldManager.stages[i] != null)
                 {
                     worldStages[i].losses = worldManager.stages[i].losses;
-                    worldStages[i].cleared = worldManager.stages[i].cleared;
+                    worldStages[i].cleared = worldManager.stages[i].IsStageCleared();
                 }
                     
             }
@@ -191,7 +191,7 @@ namespace RM_MST
                 if (worldManager.stages[i] != null)
                 {
                     worldManager.stages[i].losses = worldStages[i].losses;
-                    worldManager.stages[i].cleared = worldStages[i].cleared;
+                    worldManager.stages[i].SetStageCleared(worldStages[i].cleared);
                 }
             }
         }

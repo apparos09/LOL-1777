@@ -296,6 +296,10 @@ MonoBehaviour:
   tutorialsUI: {fileID: 0}
   clearedTutorials: 
   constantTutorialStartCheck: 1
+  introTutorial: 0
+  stageTutorial: 0
+  clearedFirstStageTutorial: 0
+  mixStageTutorial: 0
   clearedWeightImperial: 0
   clearedLengthImperial: 0
   clearedTime: 0

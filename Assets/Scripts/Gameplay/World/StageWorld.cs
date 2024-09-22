@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Rendering;
 
 namespace RM_MST
 {
@@ -21,9 +22,6 @@ namespace RM_MST
 
         // The name text.
         public TMP_Text nameText;
-
-        // The stage sprite.
-        public Sprite stageSprite;
 
         // Gets set to 'true' when late start has been called.
         private bool calledLateStart = false;
@@ -56,10 +54,53 @@ namespace RM_MST
 
         // Gets set to 'true' when the stage has been cleared.
         // TODO: make this private when not testing.
-        public bool cleared = false;
+        private bool cleared = false;
 
         // Shows if the stage is available.
         private bool available = true;
+
+        [Header("Sprites")]
+
+        // The sprites icon.
+        public SpriteRenderer iconRenderer;
+
+        // The border.
+        public SpriteRenderer borderRenderer;
+
+        // The stage sprite.
+        public Sprite stageSprite;
+
+        // The locked sprite.
+        public Sprite lockedSprite;
+
+        // The cleared sprite.
+        public Sprite clearedSprite;
+
+        [Header("Animator")]
+
+        // The animator for stage world.
+        public Animator animator;
+
+        // Gets set to 'true' if animations should be used.
+        private bool useAnimations = true;
+
+        // Icon
+        // Icon Available
+        public string iconAvailableAnim = "Stage Icon - Icon - Available Animation";
+
+        // Icon Locked
+        public string iconLockedAnim = "Stage Icon - Icon - Locked Animation";
+
+        // Icon Cleared
+        public string iconClearedAnim = "Stage Icon - Icon - Cleared Animation";
+
+        // Border
+        // Blinking
+        public string borderBlinkingAnim = "Stage Icon - Border - Blinking Animation";
+
+        // Greyed
+        public string borderGreyedAnim = "Stage Icon - Border - Greyed Animation";
+
 
         // Start is called before the first frame update
         void Start()
@@ -81,6 +122,9 @@ namespace RM_MST
                 // Tries to get the component (no longer checks children for misinput concerns).
                 spriteRenderer = GetComponent<SpriteRenderer>();
             }
+
+            // Changes the animator's enabled parameter based on the variable.
+            animator.enabled = useAnimations;
         }
 
         // Called on the first update frame.
@@ -136,6 +180,9 @@ namespace RM_MST
                 }
             }
 
+            // Update the state.
+            OnStageStateChanged();
+
             // Late Start has been called.
             calledLateStart = true;
         }
@@ -167,21 +214,8 @@ namespace RM_MST
         {
             available = avail;
 
-            // Checks if the stage is available.
-            if (available) // Available
-            {
-                collider.enabled = true;
-                spriteRenderer.gameObject.SetActive(true);
-                nameText.gameObject.SetActive(true);
-            }
-            else // Unavailable.
-            {
-                collider.enabled = false;
-                spriteRenderer.gameObject.SetActive(false);
-                nameText.gameObject.SetActive(false);
-            }
-
-            // TODO: implement animation.
+            // Called since the stage state has changed.
+            OnStageStateChanged();
         }
 
         // Sets the stage to be available.
@@ -207,22 +241,8 @@ namespace RM_MST
         {
             cleared = clear;
 
-            // Checks if the sprite renderer is enabled.
-            bool rendererEnabled = spriteRenderer.enabled;
-
-            // Changes the colour based on if the stage is cleared or not.
-            if (cleared && spriteRenderer.color != Color.grey) // Greyed Out
-            {
-                spriteRenderer.enabled = true;
-                spriteRenderer.color = Color.grey;
-                spriteRenderer.enabled = rendererEnabled;
-            }
-            else if(!cleared && spriteRenderer.color != Color.white) // Regular Colour
-            {
-                spriteRenderer.enabled = true;
-                spriteRenderer.color = Color.white;
-                spriteRenderer.enabled = rendererEnabled;
-            }
+            // Called when the state has changed.
+            OnStageStateChanged();
         }
 
         // Returns 'true' if the stage is available and cleared.
@@ -312,6 +332,53 @@ namespace RM_MST
                     worldManager.worldUI.ShowStageWorldUI(this, worldManager.GetStageWorldIndex(this));
                 }    
             }
+        }
+
+        // Called when the stage state has changed.
+        public void OnStageStateChanged()
+        {
+            if (!available && !cleared) // Unavailable and Not Cleared (Locked)
+            {
+                if(useAnimations)
+                {
+                    animator.Play(iconLockedAnim);
+                    animator.Play(borderGreyedAnim);
+                }
+                else
+                {
+                    iconRenderer.sprite = lockedSprite;
+                    collider.enabled = false;
+                }
+                
+            }
+            else if (available && !cleared) // Unlocked and Not Cleared
+            {
+                if(useAnimations)
+                {
+                    animator.Play(iconAvailableAnim);
+                    animator.Play(borderBlinkingAnim);
+                }
+                else
+                {
+                    iconRenderer.sprite = stageSprite;
+                    collider.enabled = true;
+                }
+                
+            }
+            else if (cleared) // Cleared
+            {
+                if (useAnimations)
+                {
+                    animator.Play(iconClearedAnim);
+                    animator.Play(borderGreyedAnim);
+                }
+                else
+                {
+                    iconRenderer.sprite = clearedSprite;
+                    collider.enabled = false;
+                }        
+            }
+
         }
 
         // Generates the stage start information.
