@@ -50,19 +50,27 @@ namespace RM_MST
         // Removes the target for the meteor.
         public void RemoveTarget()
         {
+            // Remove the meteor, stop tracking the exactp position, and clear the buttons.
             meteor = null;
             trackExactPos = false;
+            stageManager.stageUI.ClearConversionAndUnitsButtons();
         }
 
         // Update is called once per frame
         void Update()
         {
-            // TODO: move to late update.
+            // ...
+        }
+
+        // Late update is called every frame, if the Behaviour is enabled.
+        private void LateUpdate()
+        {
+            // Moved here from main Update().
             // Meteor is set.
-            if(meteor != null)
+            if (meteor != null)
             {
                 // Should exact position be tracked?
-                if(trackExactPos) // Yes
+                if (trackExactPos) // Yes
                 {
                     transform.position = meteor.transform.position;
                 }
@@ -76,7 +84,7 @@ namespace RM_MST
                     transform.position = newPos;
 
                     // If the position has been matched, track the exact position.
-                    if(newPos == meteor.transform.position)
+                    if (newPos == meteor.transform.position)
                     {
                         trackExactPos = true;
                         OnMeteorTargeted();
@@ -88,7 +96,6 @@ namespace RM_MST
                 // Don't track the exact position if there's no meteor.
                 trackExactPos = false;
             }
-
         }
 
     }
