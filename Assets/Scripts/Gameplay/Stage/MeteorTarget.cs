@@ -11,7 +11,7 @@ namespace RM_MST
         public StageManager stageManager;
 
         // The meteor being targeted.
-        public Meteor meteor;
+        protected Meteor meteor;
 
         // The target's movement speed.
         [Tooltip("How long it takes for the target to move to the meteor's position.")]
@@ -19,6 +19,17 @@ namespace RM_MST
 
         // If 'true', the exact meteor position is tracked.
         public bool trackExactPos = false;
+
+        [Header("Animation")]
+
+        // Animator
+        public Animator animator;
+
+        // Lock In Animation
+        public string lockInAnim = "Target - Lock In Animation";
+
+        // Lock Out Animation
+        public string lockOutAnim = "Target - Lock Out Animation";
 
         // TODO: add animation.
 
@@ -28,6 +39,12 @@ namespace RM_MST
             // Set the instance.
             if (stageManager == null)
                 stageManager = StageManager.Instance;
+        }
+
+        // Returns the meteor being targeted.
+        public Meteor GetMeteor()
+        {
+            return meteor;
         }
 
         // Called when the meteor is targeted.
@@ -45,6 +62,19 @@ namespace RM_MST
 
             // Updates the unit buttons with the provied meteor.
             stageManager.stageUI.UpdateConversionAndUnitsButtons(meteor);
+
+            // Plays the animation.
+            PlayLockInAnimation();
+        }
+
+        // Sets the meteor.
+        public void SetTarget(Meteor newMeteor)
+        {
+            meteor = newMeteor;
+            trackExactPos = false;
+
+            // Plays the lock out animation.
+            PlayLockOutAnimation();
         }
 
         // Removes the target for the meteor.
@@ -54,6 +84,22 @@ namespace RM_MST
             meteor = null;
             trackExactPos = false;
             stageManager.stageUI.ClearConversionAndUnitsButtons();
+
+            // Plays teh animation.
+            PlayLockOutAnimation();
+        }
+
+        // ANIMATION
+        // Plays the lock in aniamtion.
+        public void PlayLockInAnimation()
+        {
+            animator.Play(lockInAnim);
+        }
+
+        // Plays the lock out aniamtion.
+        public void PlayLockOutAnimation()
+        {
+            animator.Play(lockOutAnim);
         }
 
         // Update is called once per frame

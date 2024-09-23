@@ -440,9 +440,12 @@ namespace RM_MST
             // If the button is automatically correct, pull the exact value.
             if(unitsButton.correctValue)
             {
+                // Gets the meteor.
+                Meteor meteor = stageManager.meteorTarget.GetMeteor();
+
                 // Use meteor's value if true. Use button's value if false.
-                if(stageManager.meteorTarget.meteor != null)
-                    stageManager.player.ShootLaserShot(stageManager.meteorTarget.meteor.GetConvertedValue());
+                if (meteor != null)
+                    stageManager.player.ShootLaserShot(meteor.GetConvertedValue());
                 else
                     stageManager.player.ShootLaserShot(unitsButton.GetMeasurementValue());
             }

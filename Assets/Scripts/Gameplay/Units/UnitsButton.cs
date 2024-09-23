@@ -164,11 +164,14 @@ namespace RM_MST
             // False by default.
             correctValue = false;
 
+            // Gets the target meteor.
+            Meteor targetMeteor = stageManager.meteorTarget.GetMeteor();
+
             // If the targeter has a meteor.
-            if (stageManager.meteorTarget.meteor != null)
+            if (targetMeteor != null)
             {
                 // Values match, meaning this is the correct value.
-                if(stageManager.meteorTarget.meteor.GetConvertedValue() == measurementValue)
+                if(targetMeteor.GetConvertedValue() == measurementValue)
                 {
                     correctValue = true;
                 }

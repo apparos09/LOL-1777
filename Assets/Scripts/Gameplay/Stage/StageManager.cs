@@ -1164,12 +1164,12 @@ namespace RM_MST
                 meteorSpawnTimer = GetModifiedMeteorSpawnRate();
             }
 
+
             // If there is no meteor being target.
-            if(meteorTarget.meteor == null)
+            if(meteorTarget.GetMeteor() == null)
             {
                 // Gets the closest meteor, and move towards it.
-                meteorTarget.meteor = GetClosestMeteor();
-                meteorTarget.trackExactPos = false;
+                meteorTarget.SetTarget(GetClosestMeteor());
             }
 
             // TODO: check points and damage for a game win?
@@ -1192,7 +1192,7 @@ namespace RM_MST
                 RunGame();
 
                 // If the combo timer is greater than 0, and a meteor is targeted.
-                if(comboTimer > 0.0F && meteorTarget.meteor != null)
+                if(comboTimer > 0.0F && meteorTarget.GetMeteor() != null)
                 {
                     // Reduce the timer.
                     comboTimer -= Time.deltaTime;

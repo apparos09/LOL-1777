@@ -68,10 +68,13 @@ namespace RM_MST
             LaserShot newShot = Instantiate(laserShotPrefab);
             stageManager.stage.SetLaserShotToSpawnPositionY(newShot);
 
+            // Gets the meteor.
+            Meteor meteor = stageManager.meteorTarget.GetMeteor();
+
             // If the meteor is not null, target it.
-            if(stageManager.meteorTarget.meteor != null)
+            if (meteor != null)
             {
-                newShot.Shoot(stageManager.meteorTarget.meteor.gameObject);
+                newShot.Shoot(meteor.gameObject);
             }
             else // No meteor, so no target.
             {
