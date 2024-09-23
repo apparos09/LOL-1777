@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3550713446434957575}
   - component: {fileID: 4145049798691380090}
   - component: {fileID: 4843574524621866511}
-  - component: {fileID: 336182161205984794}
   m_Layer: 0
   m_Name: Combo Display
   m_TagString: Untagged
@@ -73,18 +72,6 @@ MonoBehaviour:
   animator: {fileID: 4145049798691380090}
   comboAnim: Combo Display Animation
   emptyAnim: Empty Animation
---- !u!210 &336182161205984794
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2429549532806585585}
-  m_Enabled: 1
-  m_SortingLayerID: -478922863
-  m_SortingLayer: 3
-  m_SortingOrder: 3
-  m_SortAtRoot: 0
 --- !u!1 &2750788955548133537
 GameObject:
   m_ObjectHideFlags: 0
@@ -278,8 +265,8 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -478922863
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &1172815797408068673
 MonoBehaviour:

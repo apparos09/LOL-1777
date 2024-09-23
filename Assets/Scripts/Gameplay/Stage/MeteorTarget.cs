@@ -31,7 +31,6 @@ namespace RM_MST
         // Lock Out Animation
         public string lockOutAnim = "Target - Lock Out Animation";
 
-        // TODO: add animation.
 
         // Start is called before the first frame update
         void Start()
@@ -91,13 +90,13 @@ namespace RM_MST
 
         // ANIMATION
         // Plays the lock in aniamtion.
-        public void PlayLockInAnimation()
+        protected void PlayLockInAnimation()
         {
             animator.Play(lockInAnim);
         }
 
         // Plays the lock out aniamtion.
-        public void PlayLockOutAnimation()
+        protected void PlayLockOutAnimation()
         {
             animator.Play(lockOutAnim);
         }

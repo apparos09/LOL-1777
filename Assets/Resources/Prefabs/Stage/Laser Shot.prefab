@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5542443764917254116}
   - component: {fileID: 4325135792498934122}
   - component: {fileID: 3855639866833693991}
+  - component: {fileID: 7165494914697652301}
   - component: {fileID: 4725303725601913545}
   m_Layer: 0
   m_Name: Laser Shot
@@ -97,6 +98,27 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &7165494914697652301
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 781200696175590620}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ec422c4c564e9c040ab8547ef535dad7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &4725303725601913545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,7 +137,12 @@ MonoBehaviour:
   maxSpeed: 50
   moveDirec: {x: 0, y: 1, z: 0}
   meteorHitForce: 10
+  applyForce: 1
   outputValue: 0
+  animator: {fileID: 7165494914697652301}
+  launchAnim: Laser Shot - Launch Animation
+  idleAnim: Laser Shot - Idle Animation
+  deathAnim: Laser Shot - Death Animation
 --- !u!1 &8664669877864708538
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,7 +215,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1589969025
   m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 711245419, guid: 7da9513778acccf4f87a67a199569d69, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

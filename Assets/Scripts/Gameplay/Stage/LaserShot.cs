@@ -26,10 +26,30 @@ namespace RM_MST
         // The force for the laser shot when it hits the meteor. 
         public float meteorHitForce = 10.0F;
 
+        // Gets set to 'true' when force should be applied.
+        public bool applyForce = true;
+
         // TODO: account for measurement type?
         // The output value for this laser shot.
         [Tooltip("The output value attached to this laser shot. If it matches that of the meteor's, it is correct.")]
         public float outputValue = 0;
+
+        [Header("Animation")]
+
+        // The animator.
+        public Animator animator;
+
+        // The launch animation.
+        public string launchAnim = "Laser Shot - Launch Animation";
+
+        // The idle animation.
+        public string idleAnim = "Laser Shot - Idle Animation";
+
+        // The death animation.
+        public string deathAnim = "Laser Shot - Death Animation";
+
+        // Sets if animations are being used.
+        private bool useAnimations = true;
 
         // Start is called before the first frame update
         void Start()
@@ -57,7 +77,10 @@ namespace RM_MST
             foreach(Barrier barrier in stageManager.stageBarriers)
             {
                 Physics2D.IgnoreCollision(collider, barrier.collider, true);
-            }    
+            }
+
+            // Sets if animations are being used.
+            animator.enabled = useAnimations;       
         }
 
         // Shoots the shot at the provided target.
@@ -82,8 +105,17 @@ namespace RM_MST
             {
                 moveDirec = Vector3.up;
             }
-        
+
             // TODO: rotate in direction of movement.
+
+            // Apply force to the object.
+            applyForce = true;
+
+            // Plays the launch animation.
+            if(useAnimations)
+            {
+                PlayLaunchAnimation();
+            }
         }
 
         // Shoots the shot at the provided game object.
@@ -103,7 +135,7 @@ namespace RM_MST
         }
 
         // Kills the laser shot. If 'true', then the laser shot's hit was a success.
-        public void Kill(bool success)
+        public virtual void Kill(bool success)
         {
             // Gets the player.
             PlayerStage player = stageManager.player;
@@ -120,6 +152,23 @@ namespace RM_MST
             if (player.laserShotActive == this)
                 player.laserShotActive = null;
 
+            // Kill the rigidbody velocity.
+            rigidbody.velocity = Vector2.zero;
+            
+            // Checks if animations should be used.
+            if(useAnimations)
+            {
+                PlayDeathAnimation();
+            }
+            else
+            {
+                OnDeath();
+            }
+        }
+
+        // Called when the laser shot has died.
+        protected virtual void OnDeath()
+        {
             Destroy(gameObject);
         }
 
@@ -128,30 +177,83 @@ namespace RM_MST
         {
             transform.forward = Vector3.forward;
             moveDirec = Vector3.up;
+            applyForce = true;
         }
+
+        // ANIMATION
+
+        // Launch Animation
+        protected void PlayLaunchAnimation()
+        {
+            animator.Play(launchAnim);
+        }
+
+        // Launch animation start.
+        protected void OnLaunchAnimationStart()
+        {
+            // ...
+        }
+
+
+        // Launch animation end.
+        protected void OnLaunchAnimationEnd()
+        {
+            PlayIdleAnimation();
+        }
+
+        // Idle animation.
+        protected void PlayIdleAnimation()
+        {
+            animator.Play(idleAnim);
+        }
+
+        // Death
+        protected void PlayDeathAnimation()
+        {
+            animator.Play(deathAnim);
+        }
+
+        // Death Start
+        public void OnDeathAnimationStart()
+        {
+            applyForce = false;
+        }
+
+        // Death End
+        public void OnDeathAnimationEnd()
+        {
+            applyForce = true;
+            OnDeath();
+        }
+
 
         // Update is called once per frame
         void Update()
         {
-            // TODO: maybe don't include delta time?
-            // Calculate the force.
-            Vector2 force = new Vector2();
-            force.x = moveDirec.normalized.x * maxSpeed * Time.deltaTime;
-            force.y = moveDirec.normalized.y * maxSpeed * Time.deltaTime;
-
-            // Adds the amount of force.
-            rigidbody.AddForce(force, ForceMode2D.Impulse);
-
-            // Clamp the velocity at the max speed.
-            Vector2 velocity = rigidbody.velocity;
-            velocity = Vector2.ClampMagnitude(velocity, maxSpeed);
-            rigidbody.velocity = velocity;
-
-            // If the laser isn't in the game area, destroy it.
-            if(!stageManager.stage.InGameArea(gameObject))
+            // If force should be applied.
+            if(applyForce)
             {
-                Kill(false);
+                // TODO: maybe don't include delta time?
+                // Calculate the force.
+                Vector2 force = new Vector2();
+                force.x = moveDirec.normalized.x * maxSpeed * Time.deltaTime;
+                force.y = moveDirec.normalized.y * maxSpeed * Time.deltaTime;
+
+                // Adds the amount of force.
+                rigidbody.AddForce(force, ForceMode2D.Impulse);
+
+                // Clamp the velocity at the max speed.
+                Vector2 velocity = rigidbody.velocity;
+                velocity = Vector2.ClampMagnitude(velocity, maxSpeed);
+                rigidbody.velocity = velocity;
+
+                // If the laser isn't in the game area, destroy it.
+                if (!stageManager.stage.InGameArea(gameObject))
+                {
+                    Kill(false);
+                }
             }
+            
         }
     }
 }
