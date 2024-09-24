@@ -74,8 +74,14 @@ namespace RM_MST
         // The fast game time scale.
         private float FAST_GAME_TIME_SCALE = 2.0F;
 
+        // Times how long the game is going fast for.
+        private float fastStageTime = 0.0F;
+
         // The slow game time scale.
         private float SLOW_GAME_TIME_SCALE = 0.5F;
+
+        // Times how long the game is going slow for.
+        private float slowStageTime = 0.0F;
 
         // The final score for the stage.
         public float stageFinalScore = 0.0F;
@@ -869,6 +875,13 @@ namespace RM_MST
             }
         }
 
+        // Resets the trackers for how long the game runs at certain speeds.
+        public void ResetGameSpeedTimeTrackers()
+        {
+            fastStageTime = 0;
+            slowStageTime = 0;
+        }
+
         // UNIT OPERATIONS
         // Generates the conversion question for the player.
         public string GenerateConversionQuestion(Meteor meteor)
@@ -991,6 +1004,30 @@ namespace RM_MST
             // Highest combo bonus.
             score += 100.0F * highestCombo;
 
+            // The speed change time bound.
+            const float SPEED_CHANGE_TIME_BOUND = 60.0F;
+            const float SPEED_CHANGE_POINTS_MAX = 150.0F;
+
+            // If the slow stage time is less than 1 minute.
+            if(slowStageTime < SPEED_CHANGE_TIME_BOUND)
+            {
+                float percent = Mathf.Clamp(slowStageTime, 0.0F, SPEED_CHANGE_TIME_BOUND);
+                percent = 1.0F - (percent / SPEED_CHANGE_TIME_BOUND); // Reverses the percent.
+                score += Mathf.Ceil(SPEED_CHANGE_POINTS_MAX * percent);
+            }
+
+            // If the fast stage time is less than 1 minute.
+            if (fastStageTime < SPEED_CHANGE_TIME_BOUND)
+            {
+                float percent = Mathf.Clamp(fastStageTime, 0.0F, SPEED_CHANGE_TIME_BOUND);
+                percent = 1.0F - (percent / SPEED_CHANGE_TIME_BOUND); // Reverses the percent.
+                score += Mathf.Ceil(SPEED_CHANGE_POINTS_MAX * percent);
+            }
+
+            // Bounds heck.
+            if (score < 0)
+                score = 0;
+
             // Returns the score.
             return score;
         }
@@ -1044,6 +1081,9 @@ namespace RM_MST
             SetToNormalSpeed();
             PauseGame();
             FindAndKillAllMeteors();
+
+            // UI call.
+            stageUI.OnStageEnd();
         }
 
         // Called when the game has been won.
@@ -1066,9 +1106,7 @@ namespace RM_MST
             // On stage end.
             OnStageEnd();
 
-            // Set time and score to 0.
-            stageTime = 0;
-            stageFinalScore = 0;
+            // Time and score is reset in the ResetStage() function.
 
             // Add to the losses count, and adjusts the difficulty.
             losses++;
@@ -1101,7 +1139,9 @@ namespace RM_MST
             stageTime = 0;
             stageFinalScore = 0;
 
-            // The difficulty is only dynamically adjusted if the player goes back to the world scene.
+            // Resets the combo and game speed time trackers.
+            ResetCombo(true);
+            ResetGameSpeedTimeTrackers();
 
             // Restarts the stage.
             stageUI.OnStageReset();
@@ -1203,6 +1243,19 @@ namespace RM_MST
                         ResetCombo(false);
                     }
                 }
+
+                // Fast and Slow Speed Time - times how long both are in effect.
+                float gameSpeed = GetGameSpeed();
+                if(gameSpeed > 1.0F) // Fast
+                {
+                    fastStageTime += Time.unscaledDeltaTime;
+                }
+
+                if(gameSpeed < 1.0F) // Slow
+                {
+                    slowStageTime += Time.unscaledDeltaTime;
+                }
+
             }
         }
 

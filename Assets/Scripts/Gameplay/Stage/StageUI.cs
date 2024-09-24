@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using util;
+using UnityEditor.SceneManagement;
 
 namespace RM_MST
 {
@@ -117,7 +118,7 @@ namespace RM_MST
             stageNameText.text = stageManager.stageName;
 
             // Updates all the UI.
-            UpdateAllUI();
+            UpdateHUD();
         }
 
         // Gets the instance.
@@ -169,9 +170,9 @@ namespace RM_MST
 
         // UI
 
-        // Updates all the UI, not counting the unit buttons.
+        // Updates the HUD. This is not counting the unit buttons.
         // TODO: rename this to be more clear?
-        public void UpdateAllUI()
+        public void UpdateHUD()
         {
             UpdateTimeText();
             UpdatePointsText();
@@ -458,6 +459,12 @@ namespace RM_MST
 
 
         // STAGE END
+        // Updates the HUD one last time after the stage ends.
+        public void OnStageEnd()
+        {
+            UpdateHUD();
+        }
+
         // Called when the stage has been won.
         public void OnStageWon()
         {
@@ -467,7 +474,6 @@ namespace RM_MST
             // Set the time and score text.
             stageWonTimeText.text = StringFormatter.FormatTime(stageManager.stageTime, false, true, false);
             stageWonScoreText.text = stageManager.stageFinalScore.ToString(); // Already calculated.
-
         }
 
         // Called when the stage has been lost.

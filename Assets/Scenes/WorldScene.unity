@@ -858,10 +858,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1254349219}
     - target: {fileID: 8107672868599216122, guid: 41f0b0d5bbd6cb141b6312f963ffb617, type: 3}
-      propertyPath: stageScene
-      value: StageSceneDebug
-      objectReference: {fileID: 0}
-    - target: {fileID: 8107672868599216122, guid: 41f0b0d5bbd6cb141b6312f963ffb617, type: 3}
       propertyPath: playerWorld
       value: 
       objectReference: {fileID: 1164240882}
