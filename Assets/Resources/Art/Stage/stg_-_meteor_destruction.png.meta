@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e52d44dcad8031840ab286153775ca92
+guid: 7b32359d059855d45875a5b53163563b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -136,175 +136,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: stg_-_meteors_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 768
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9bfe764db2d593c49a84749d4a37bfdb
-      internalID: -1931177097
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: stg_-_meteors_1
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 768
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 81a242e45ebd6234fad987f0446c284e
-      internalID: -190762150
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: stg_-_meteors_2
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 768
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3c402a431b9cadf468b86f35982dc710
-      internalID: -1552574479
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: stg_-_meteors_3
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 768
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f021d53456e94d54db7ac6ca49b75940
-      internalID: 458397987
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: stg_-_meteors_4
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 512
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fe2f7ba29c02e55489007d215315e303
-      internalID: -153976185
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: stg_-_meteors_5
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 512
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ed2a760b273cd1a49ba9e1d0145d3b5d
-      internalID: 2029413048
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: stg_-_meteors_6
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 512
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 48049ae45b85f524eb0d3aa41e32993f
-      internalID: -2071510026
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: stg_-_meteors_7
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 512
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d0822d762e8e0f54794b0fd4b5d659d5
-      internalID: -1749170397
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: stg_-_meteors_8
+      name: stg_-_meteor_destruction_0
       rect:
         serializedVersion: 2
         x: 0
@@ -318,14 +150,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b92cb50a8ecf8fd4486369809b4d8580
-      internalID: -1731081926
+      spriteID: 46e991a51d8b003499a1b38b6c5049c4
+      internalID: 305931518
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stg_-_meteors_9
+      name: stg_-_meteor_destruction_1
       rect:
         serializedVersion: 2
         x: 256
@@ -339,14 +171,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f92d3f9ef3c700d47805368d5373a636
-      internalID: 2008071754
+      spriteID: 942c2fb7bd32cd94fa677317d9fe97ac
+      internalID: 562679416
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stg_-_meteors_10
+      name: stg_-_meteor_destruction_2
       rect:
         serializedVersion: 2
         x: 512
@@ -360,14 +192,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 46117b0e99da29443b792b8275947063
-      internalID: -1351516923
+      spriteID: 0ebb5ab44743d6b4a97e082e3081d07c
+      internalID: -1392638203
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stg_-_meteors_11
+      name: stg_-_meteor_destruction_3
       rect:
         serializedVersion: 2
         x: 768
@@ -381,14 +213,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0eb821b16ed3b1f40afa82613606f927
-      internalID: 2142886901
+      spriteID: 904d14719af90a848887fd11a06bccbc
+      internalID: 196392414
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stg_-_meteors_12
+      name: stg_-_meteor_destruction_4
       rect:
         serializedVersion: 2
         x: 0
@@ -402,14 +234,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 65d6130b119fffc40890bea6e934dbec
-      internalID: 1566499641
+      spriteID: cc7bbbb98be703d4b9e820aabe5e20a3
+      internalID: 890444456
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stg_-_meteors_13
+      name: stg_-_meteor_destruction_5
       rect:
         serializedVersion: 2
         x: 256
@@ -423,14 +255,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b2784bd8a45240438143c725cc508c3
-      internalID: 1912843761
+      spriteID: 43e18d32f60ee904ba0fb768ff0dad67
+      internalID: 1352848363
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stg_-_meteors_14
+      name: stg_-_meteor_destruction_6
       rect:
         serializedVersion: 2
         x: 512
@@ -444,14 +276,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7cc942562e42e2545857b4fc0d1ea401
-      internalID: -67771792
+      spriteID: ccb002dea17b5e945b528227a2e456e0
+      internalID: 1524243029
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stg_-_meteors_15
+      name: stg_-_meteor_destruction_7
       rect:
         serializedVersion: 2
         x: 768
@@ -465,8 +297,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5a476c0a8213c8446a0804a37b3afac1
-      internalID: -817026624
+      spriteID: 4340c361c406c644bba905a223bffdc9
+      internalID: -1181686683
       vertices: []
       indices: 
       edges: []
@@ -482,22 +314,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      stg_-_meteors_0: -1931177097
-      stg_-_meteors_1: -190762150
-      stg_-_meteors_10: -1351516923
-      stg_-_meteors_11: 2142886901
-      stg_-_meteors_12: 1566499641
-      stg_-_meteors_13: 1912843761
-      stg_-_meteors_14: -67771792
-      stg_-_meteors_15: -817026624
-      stg_-_meteors_2: -1552574479
-      stg_-_meteors_3: 458397987
-      stg_-_meteors_4: -153976185
-      stg_-_meteors_5: 2029413048
-      stg_-_meteors_6: -2071510026
-      stg_-_meteors_7: -1749170397
-      stg_-_meteors_8: -1731081926
-      stg_-_meteors_9: 2008071754
+      stg_-_meteor_destruction_0: 305931518
+      stg_-_meteor_destruction_1: 562679416
+      stg_-_meteor_destruction_2: -1392638203
+      stg_-_meteor_destruction_3: 196392414
+      stg_-_meteor_destruction_4: 890444456
+      stg_-_meteor_destruction_5: 1352848363
+      stg_-_meteor_destruction_6: 1524243029
+      stg_-_meteor_destruction_7: -1181686683
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -39,6 +39,28 @@ namespace RM_MST
         // The list of meteors active.
         private static List<Meteor> meteorsActive = new List<Meteor>();
 
+        [Header("Sprites")]
+
+        // The sprite renderer.
+        public SpriteRenderer meteorSpriteRenderer;
+
+        // The list of meteor sprites.
+        public List<Sprite> meteorSprites;
+
+        // If 'true', the sprite is randomized upon spawning.
+        public bool randomSpriteOnSpawn = true;
+
+        [Header("Animation")]
+
+        // The animator.
+        public Animator animator;
+
+        // The death animation for the meteor.
+        public string deathAnim = "Meteor - Death Animation";
+
+        // Sets if animations are being used.
+        private bool useAnimations = true;
+
         // Awake is called when the script instance is being loaded
         private void Awake()
         {
@@ -59,6 +81,9 @@ namespace RM_MST
             // If the rigidbody is not set, try to set it.
             if(rigidbody == null)
                 rigidbody = GetComponent<Rigidbody2D>();
+
+            // Sets if animations are being used.
+            animator.enabled = useAnimations;
         }
 
         // Late start function.
@@ -182,8 +207,34 @@ namespace RM_MST
         // Called when the meteor has been spawned.
         public void OnSpawn()
         {
+            // If the sprite should be randomized.
+            if(randomSpriteOnSpawn)
+            {
+                RandomizeSprite();
+            }
+
+            // Other
             ResetVelocity();
             SetMeteorToSpawnPoint();
+            RandomizeAngularVelocity();
+        }
+
+        // Randomizes the meteor's sprite.
+        public void RandomizeSprite()
+        {
+            // There are sprites.
+            if(meteorSprites.Count > 0)
+            {
+                // Gets a random index and a sprite.
+                int randIndex = Random.Range(0, meteorSprites.Count);
+                Sprite sprite = meteorSprites[randIndex];
+
+                // The sprite is not null, so use it.
+                if(sprite != null)
+                {
+                    meteorSpriteRenderer.sprite = sprite;
+                }
+            }
         }
 
         // Sets the meteor to its spawn point.
@@ -196,6 +247,19 @@ namespace RM_MST
         public void ResetVelocity()
         {
             rigidbody.velocity = Vector2.zero;
+            rigidbody.angularVelocity = 0;
+        }
+
+        // Randomzies the angular velocity.
+        public void RandomizeAngularVelocity()
+        {
+            // The min and max for the rotation.
+            float rotMin = 30;
+            float rotMax = 310;
+
+            // Randomizes the velocity and the rotation direction.
+            rigidbody.angularVelocity = Random.Range(rotMin, rotMax);
+            rigidbody.angularVelocity *= (Random.Range(0, 2) == 0) ? 1 : -1;
         }
 
         // CONVERSIONS
@@ -407,8 +471,44 @@ namespace RM_MST
         // Kills the meteor.
         public void Kill()
         {
+            // Meteor killed, so stop moving and call on killed function.
+            ResetVelocity();
             stageManager.OnMeteorKilled(this);
+
+            // Checks if animations should be used.
+            if (useAnimations)
+            {
+                PlayDeathAnimation();
+            }
+            else
+            {
+                OnDeath();
+            }
+        }
+
+        // Called when the meteor has been destroyed.
+        protected virtual void OnDeath()
+        {
             Destroy(gameObject);
+        }
+
+        // Animation
+        // Death
+        protected void PlayDeathAnimation()
+        {
+            animator.Play(deathAnim);
+        }
+
+        // Death Start
+        public void OnDeathAnimationStart()
+        {
+            // ...
+        }
+
+        // Death End
+        public void OnDeathAnimationEnd()
+        {
+            OnDeath();
         }
 
         // Update is called once per frame
