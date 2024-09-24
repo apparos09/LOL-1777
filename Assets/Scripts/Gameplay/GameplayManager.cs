@@ -57,7 +57,8 @@ namespace RM_MST
             // For some reason, when coming back from the match scene this is listed as 'missing'.
 
             // Creates/gets the game info instance.
-            gameInfo = GameplayInfo.Instance;
+            if(gameInfo == null)
+                gameInfo = GameplayInfo.Instance;
 
             // Creates or gets the units info.
             unitsInfo = UnitsInfo.Instance;

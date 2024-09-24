@@ -49,14 +49,16 @@ namespace RM_MST
         public TMP_Text conversionText;
 
         // The 7 units buttons.
+        public UnitsButton unitsButton0;
         public UnitsButton unitsButton1;
         public UnitsButton unitsButton2;
         public UnitsButton unitsButton3;
         public UnitsButton unitsButton4;
         public UnitsButton unitsButton5;
         public UnitsButton unitsButton6;
-        public UnitsButton unitsButton7;
 
+        // Randomizes the unit button values if set to 'true'.
+        private bool randomizeUnitButtons = false;
 
         [Header("End Windows")]
 
@@ -227,7 +229,7 @@ namespace RM_MST
             unitsButton4.gameObject.SetActive(active);
             unitsButton5.gameObject.SetActive(active);
             unitsButton6.gameObject.SetActive(active);
-            unitsButton7.gameObject.SetActive(active);
+            unitsButton0.gameObject.SetActive(active);
         }
 
         // Makes all unit buttons active.
@@ -267,13 +269,13 @@ namespace RM_MST
             // Makes a list of the unit buttons.
             List<UnitsButton> unitsButtons = new List<UnitsButton>()
             {
+                unitsButton0,
                 unitsButton1,
                 unitsButton2, 
                 unitsButton3, 
                 unitsButton4, 
                 unitsButton5, 
-                unitsButton6, 
-                unitsButton7
+                unitsButton6
             };
 
             // A stack of the button inactive indexes.
@@ -305,10 +307,32 @@ namespace RM_MST
                 }
             }
 
-
             // If there are no buttons left, add in button 4 (the middle button).
             if (unitsButtons.Count == 0)
                 unitsButtons.Add(unitsButton4);
+
+            // If the unit buttons should be randomized.
+            if (randomizeUnitButtons)
+            {
+                // The random button list.
+                List<UnitsButton> randomButtonList = new List<UnitsButton>();
+
+                // While there are values.
+                while(unitsButtons.Count > 0)
+                {
+                    // Grabs the index, and gets the button.
+                    int randIndex = Random.Range(0, unitsButtons.Count);
+                    UnitsButton unitsButton = unitsButtons[randIndex];
+
+                    // Adds the button to the random list, and removes it from the normal list.
+                    randomButtonList.Add(unitsButton);
+                    unitsButtons.Remove(unitsButton);
+                }
+
+                // Replace the list with the randomized buttons.
+                unitsButtons = new List<UnitsButton>(randomButtonList);
+            }
+
 
             // Gets set to 'true' if the right value is found.
             float trueOutputValue = meteor.GetConvertedValue();
@@ -372,7 +396,7 @@ namespace RM_MST
             unitsButton4.ClearButton();
             unitsButton5.ClearButton();
             unitsButton6.ClearButton();
-            unitsButton7.ClearButton();
+            unitsButton0.ClearButton();
         }
 
         // Sets all unit buttons to be interactable.
@@ -384,7 +408,7 @@ namespace RM_MST
             unitsButton4.button.interactable = interactable;
             unitsButton5.button.interactable = interactable;
             unitsButton6.button.interactable = interactable;
-            unitsButton7.button.interactable = interactable;
+            unitsButton0.button.interactable = interactable;
         }
 
         // Set the unit buttons interactable to true.

@@ -1092,6 +1092,9 @@ namespace RM_MST
             // On stage end.
             OnStageEnd();
 
+            // The stage has been cleared.
+            cleared = true;
+
             // Calculate the final score, and add it to the game score.
             CalculateAndSetStageFinalScore();
             gameScore += stageFinalScore;
@@ -1105,6 +1108,9 @@ namespace RM_MST
         {
             // On stage end.
             OnStageEnd();
+
+            // The stage has not been cleared.
+            cleared = false;
 
             // Time and score is reset in the ResetStage() function.
 
@@ -1174,7 +1180,7 @@ namespace RM_MST
             OnGameEnd();
 
             // Saves the stage info and goes into the world.
-            GameplayInfo.Instance.SaveStageInfo(this);
+            gameInfo.SaveStageInfo(this);
             ToWorldScene();
         }
 

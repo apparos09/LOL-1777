@@ -148,10 +148,32 @@ namespace RM_MST
             }
         }
 
+        // Checks if the stage world index is valid.
+        public bool IsStageWorldIndexValid(int index)
+        {
+            // Returns true if the index is valid.
+            if(index >= 0 && index < stages.Count)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         // Gets the stage index.
         public int GetStageWorldIndex(StageWorld stage)
         {
-            return -1;
+            // If the stage is in the list, returns the index.
+            if(stages.Contains(stage))
+            {
+                return stages.IndexOf(stage);
+            }
+            else
+            {
+                return -1;
+            }
         }
 
         // Returns the game score.

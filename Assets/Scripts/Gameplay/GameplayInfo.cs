@@ -83,18 +83,20 @@ namespace RM_MST
             if (!instanced)
             {
                 instanced = true;
+
+                // Don't destroy this game object on load.
+                DontDestroyOnLoad(gameObject);
+
+                // Blank data to start.
+                stageStartInfo = new StageStartInfo();
+                stageStartInfo.valid = false; // Don't read from this.
             }
         }
 
         // Start is called before the first frame update
         private void Start()
         {
-            // Don't destroy this game object on load.
-            DontDestroyOnLoad(gameObject);
-
-            // Blank data to start.
-            stageStartInfo = new StageStartInfo();
-            stageStartInfo.valid = false; // Don't read from this.
+            // ...
         }
 
         // Gets the instance.
@@ -113,7 +115,7 @@ namespace RM_MST
                     if (instance == null)
                     {
                         // Generate the instance.
-                        GameObject go = new GameObject("Game Info (singleton)");
+                        GameObject go = new GameObject("Gameplay Info (singleton)");
                         instance = go.AddComponent<GameplayInfo>();
                     }
 
@@ -202,7 +204,7 @@ namespace RM_MST
             SaveGameplayInfo(stageManager);
 
             // If the stage index is valid, save the information.
-            if(stageManager.stageIndex >= 0 && stageManager.stageIndex < worldStages.Length)
+            if(IsValidStageIndex(stageManager.stageIndex))
             {
                 // Replace the stage data.
                 worldStages[stageManager.stageIndex] = stageManager.GenerateStageData();
@@ -221,6 +223,19 @@ namespace RM_MST
             stageManager.ApplyStageStartInfo(stageStartInfo);
         }
 
+        // Checks if the provided index is valid for the stage array.
+        public bool IsValidStageIndex(int index)
+        {
+            // If the index is valid, return true. If invalid, return false.
+            if(index >= 0 && index < worldStages.Length)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         // This function is called when the MonoBehaviour will be destroyed.
         private void OnDestroy()
