@@ -31,6 +31,9 @@ namespace RM_MST
         // The game complete event.
         public GameCompleteEvent gameCompleteEvent;
 
+        // If 'true', auto saving is enabled.
+        private bool autoSave = false; // TODO: enable when saving.
+
         [Header("Area")]
 
         // The stage list.
@@ -78,21 +81,12 @@ namespace RM_MST
             if (worldUI == null)
                 worldUI = WorldUI.Instance;
 
-            // If the gameplay info has been instantiated.
-            if (GameplayInfo.Instantiated)
-            {
-                // Load info into the world if it exists.
-                if (gameInfo.hasWorldInfo)
-                    gameInfo.LoadWorldInfo(this);
-            }
-
             // If there are no stages in the stage list.
             if(stages.Count == 0)
             {
                 // Finds all the stages in the world and puts them in the list.
                 stages = new List<StageWorld>(FindObjectsOfType<StageWorld>(true));
             }
-
         }
 
         // The function called after the start function.
@@ -100,8 +94,46 @@ namespace RM_MST
         {
             base.LateStart();
 
+            // Gets set to 'false' if the game shouldn't try to load save data.
+            bool tryLoadGame = true;
+
+            // If the gameplay info has been instantiated.
+            if (GameplayInfo.Instantiated)
+            {
+                // Load info into the world if it exists.
+                if (gameInfo.hasWorldInfo)
+                {
+                    gameInfo.LoadWorldInfo(this);
+
+                    // If the game should auto save, and the most recent stage was cleared.
+                    if (autoSave && gameInfo.recentStageCleared)
+                    {
+                        SaveGame();
+                    }
+                }
+                else
+                {
+                    tryLoadGame = false;
+                }
+
+            }
+            else
+            {
+                tryLoadGame = false;
+            }
+
+            // If saving/loading is enabled, and the game should try to load data.
+            if(IsSavingLoadingEnabled() && tryLoadGame)
+            {
+                // If the save system has data to load.
+                if(SaveSystem.Instance.HasLoadedData())
+                {
+                    LoadGame();
+                }
+            }
+
             // The game complete event is set.
-            if(gameCompleteEvent != null)
+            if (gameCompleteEvent != null)
             {
                 // Checks game complete to see if the game is finished.
                 if(!gameCompleteEvent.cleared)
@@ -235,6 +267,20 @@ namespace RM_MST
             return data;
         }
 
+        // Sets if the game should be auto saving.
+        public bool AutoSave
+        {
+            get 
+            { 
+                return autoSave;
+            }
+            
+            set 
+            {
+                autoSave = value;
+            }
+        }
+
         // Saves the data for the game.
         public bool SaveGame()
         {
@@ -322,14 +368,17 @@ namespace RM_MST
             // Sets the game score.
             gameScore = loadedData.gameScore;
 
-            // Adds in the stage data.
-            for (int i = 0; i < loadedData.stageDatas.Length && i < gameInfo.worldStages.Length; i++)
+            // Loads the stage data.
+            for (int i = 0; i < loadedData.stageDatas.Length && i < stages.Count; i++)
             {
-                gameInfo.worldStages[i] = loadedData.stageDatas[i];
+                stages[i].LoadStageDataFromSavedGame(loadedData.stageDatas[i]);
             }
 
             // Sets the tutorials data.
             Tutorials.Instance.LoadTutorialsData(loadedData.tutorialData);
+
+            // Save the world info.
+            gameInfo.SaveWorldInfo(this);
 
             // The data has been loaded successfully.
             return true;

@@ -381,6 +381,13 @@ namespace RM_MST
 
         }
 
+        // Loads the stage data from a saved game. Only certains parts are kept.
+        public void LoadStageDataFromSavedGame(StageData data)
+        {
+            losses = data.losses;
+            SetStageCleared(data.cleared);
+        }
+
         // Generates the stage start information.
         public GameplayInfo.StageStartInfo GenerateStageInfo()
         {

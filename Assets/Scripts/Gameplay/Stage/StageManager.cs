@@ -1177,11 +1177,11 @@ namespace RM_MST
         // Goes to the world.
         public void ToWorld()
         {
-            OnGameEnd();
-
             // Saves the stage info and goes into the world.
             gameInfo.SaveStageInfo(this);
             ToWorldScene();
+
+            // Play loading animation?
         }
 
         // Goes to the world scene.

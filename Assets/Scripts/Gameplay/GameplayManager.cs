@@ -259,15 +259,36 @@ namespace RM_MST
             // Destroys 'DontDestroyOnLoad' Objects
             // Game Info
             if (GameplayInfo.Instantiated)
+            {
                 Destroy(GameplayInfo.Instance.gameObject);
+                gameInfo = null;
+            }
 
             // Tutorial
             if (Tutorials.Instantiated)
                 Destroy(Tutorials.Instance.gameObject);
 
+                           
+
             // Makes sure the game is not paused, and that the game is at normal speed.
             ResetGameTimeScale();
             UnpauseGame();
+        }
+
+        // If saving and loading is enabled.
+        public bool IsSavingLoadingEnabled()
+        {
+            // It's disabled if the save system is not instantiated.
+            if(SaveSystem.Instantiated)
+            {
+                SaveSystem saveSystem = SaveSystem.Instance;
+                return saveSystem.savingLoadingEnabled;
+            }
+            else
+            {
+                return false;
+            }
+
         }
         
         // Go to the title scene.

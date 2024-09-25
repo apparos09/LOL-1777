@@ -59,7 +59,7 @@ namespace RM_MST
 
         // LOL - AutoSave //
         // Added from the ExampleCookingGame. Used for feedback from autosaves.
-        WaitForSeconds feedbackTimer = new WaitForSeconds(2);
+        WaitForSecondsRealtime feedbackTimer = new WaitForSecondsRealtime(2); // Switched to real-time seconds.
         Coroutine feedbackMethod;
         public TMP_Text feedbackText;
 
@@ -68,6 +68,11 @@ namespace RM_MST
 
         // The string key for the feedback.
         private const string FEEDBACK_STRING_KEY = "sve_msg_savingGame";
+
+        // Other
+        // Determines if saving and loading is enabled.
+        [HideInInspector]
+        public bool savingLoadingEnabled = true;
 
         // Private constructor so that only one save system object exists.
         private SaveSystem()

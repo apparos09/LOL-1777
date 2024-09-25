@@ -57,6 +57,9 @@ namespace RM_MST
 
         // If the class has stage info.
         public bool hasStageInfo = false;
+
+        // Gets set to 'true' when the most recent stage was cleared.
+        public bool recentStageCleared = false;
         
         // Constructor
         private GameplayInfo()
@@ -190,7 +193,7 @@ namespace RM_MST
             for (int i = 0; i < worldStages.Length && i < worldManager.stages.Count; i++)
             {
                 // If there is a stage, set the losses and clear value.
-                if (worldManager.stages[i] != null)
+                if (worldManager.stages[i] != null && worldStages[i] != null)
                 {
                     worldManager.stages[i].losses = worldStages[i].losses;
                     worldManager.stages[i].SetStageCleared(worldStages[i].cleared);
@@ -210,6 +213,9 @@ namespace RM_MST
                 worldStages[stageManager.stageIndex] = stageManager.GenerateStageData();
             }
 
+            // Sets if the stage was cleared or not.
+            recentStageCleared = stageManager.cleared;
+
             // There is stage info.
             hasStageInfo = true;
         }
@@ -221,6 +227,9 @@ namespace RM_MST
 
             // Apply the stage start info.
             stageManager.ApplyStageStartInfo(stageStartInfo);
+
+            // The most recent stage has not been played yet, so don't mark it as cleared.
+            recentStageCleared = false;
         }
 
         // Checks if the provided index is valid for the stage array.

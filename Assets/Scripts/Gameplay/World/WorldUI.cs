@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 namespace RM_MST
 {
@@ -17,6 +18,9 @@ namespace RM_MST
         [Header("WorldUI")]
         // The world manager.
         public WorldManager worldManager;
+
+        // The saving text.
+        public TMP_Text saveText;
 
         [Header("WorldUI/StageUI")]
         // The stage world UI.
@@ -71,8 +75,25 @@ namespace RM_MST
             if (tutorialUI == null)
                 tutorialUI = TutorialUI.Instance;
 
+            // If the save system has been instantiated...
+            if (SaveSystem.Instantiated)
+            {
+                // TODO: properly implement the save text.
+                // Set the save text.
+                SaveSystem.Instance.feedbackText = saveText;
+                saveText.text = string.Empty;
+            }
+
             // Hide the stage world UI.
             HideStageWorldUI(true);
+        }
+
+        // The late start function.
+        protected override void LateStart()
+        {
+            base.LateStart();
+
+            // ...
         }
 
         // Gets the instance.
