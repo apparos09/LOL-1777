@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using JetBrains.Annotations;
+using util;
 
 namespace RM_MST
 {
@@ -16,11 +17,17 @@ namespace RM_MST
         // The button;
         public Button button;
 
-        // The button's text.
-        public TMP_Text text;
+        // The button's output (result) text.
+        public TMP_Text measurementValueText;
+
+        // The button's conversion text.
+        public TMP_Text conversionMultipleText;
 
         // The measurement value.
         private float measurementValue = 0;
+
+        // The conversion multiple.
+        private float conversionMultiple = 0;
 
         // The symbol for the button.
         private string unitsSymbol = string.Empty;
@@ -42,8 +49,8 @@ namespace RM_MST
                 button = GetComponent<Button>();
 
             // Autoset the text.
-            if(text == null)
-                text = GetComponentInChildren<TMP_Text>();
+            if(measurementValueText == null)
+                measurementValueText = GetComponentInChildren<TMP_Text>();
         }
 
         // Returns the measurement value.
@@ -52,35 +59,24 @@ namespace RM_MST
             return measurementValue;
         }
 
-        // Sets the text with a value and symbol.
-        public void SetMeasurementValue(float value)
+        // Gets the multiple that resulted in the measurement value.
+        public float GetConversionMultiple()
         {
-            measurementValue = value;
-            UpdateText();
+            return conversionMultiple;
         }
 
-        // Sets the text with a value and symbol.
-        public void SetMeasurementValueAndSymbol(float value, string symbol)
+        // Gets the conversion multiple rounded.
+        public float GetConversionMultipleRounded()
         {
-            measurementValue = value;
-            unitsSymbol = symbol;
-            UpdateText();
+            return CustomMath.Round(conversionMultiple, StageManager.UNITS_DECIMAL_PLACES);
         }
 
-        // Sets the measurement value and symbol.
-        // If 'showFraction' is 'true', the value is shown as a fraction if it is less than 1.
-        public void SetMeasurementValueAndSymbol(float value, string symbol, bool showFraction)
+        // Gets the conversion multiple rounded.
+        public float GetConversionMultipleRounded(int decimalPlaces)
         {
-            measurementValue = value;
-            unitsSymbol = symbol;
-            UpdateText(showFraction);
+            return CustomMath.Round(conversionMultiple, decimalPlaces);
         }
 
-        // Sets text using the provided conversion.
-        public void SetMeasurementValueAndSymbol(UnitsInfo.UnitsConversion conversion)
-        {
-            SetMeasurementValueAndSymbol(conversion.GetConvertedValue(), conversion.GetOutputSymbol());
-        }
 
         // Returns the unit symbol.
         public string GetUnitSymbol()
@@ -88,10 +84,43 @@ namespace RM_MST
             return unitsSymbol;
         }
 
+        // Sets the text with a value and symbol.
+        public void SetMeasurementValueAndSymbol(float measurement, float conversionMult, string symbol)
+        {
+            measurementValue = measurement;
+            conversionMultiple = conversionMult;
+            unitsSymbol = symbol;
+            UpdateText();
+        }
+
+        // Sets the measurement value and symbol.
+        // If 'showFraction' is 'true', the value is shown as a fraction if it is less than 1.
+        public void SetMeasurementValueAndSymbol(float measurement, float conversionMult, string symbol, bool showFraction)
+        {
+            measurementValue = measurement;
+            conversionMultiple = conversionMult;
+            unitsSymbol = symbol;
+            UpdateText(showFraction);
+        }
+
+        // Sets text using the provided conversion.
+        public void SetMeasurementValueAndSymbol(UnitsInfo.UnitsConversion conversion, bool showFraction)
+        {
+            // Set the measurement value.
+            SetMeasurementValueAndSymbol(conversion.GetConvertedValue(), conversion.CalculateConversionMultiple(), conversion.GetOutputSymbol(), showFraction);
+        }
+
+        // Gets the conversion multiple's display string.
+        private string GetConversionMultipleDisplayString()
+        {
+            return "x" + GetConversionMultipleRounded().ToString();
+        }
+
         // Updates the text.
         public void UpdateText()
         {
-            text.text = measurementValue.ToString() + " " + unitsSymbol;
+            measurementValueText.text = measurementValue.ToString() + " " + unitsSymbol;
+            conversionMultipleText.text = GetConversionMultipleDisplayString();
             correctValue = false;
         }
 
@@ -124,7 +153,7 @@ namespace RM_MST
                         // Sets up the text string and sets it.
                         float mult = Mathf.Pow(10, decimalPlaces);
                         string textStr = (measurementValue * mult).ToString() + "/" + mult.ToString() + " " + unitsSymbol;
-                        text.text = textStr;
+                        measurementValueText.text = textStr;
 
                         // The text has been updated.
                         textUpdated = true;
@@ -136,6 +165,7 @@ namespace RM_MST
             // If the text wasn't updated, do a normal update.
             if(textUpdated)
             {
+                conversionMultipleText.text = GetConversionMultipleDisplayString();
                 correctValue = false;
             }
             else
@@ -149,8 +179,12 @@ namespace RM_MST
         public void ClearButton()
         {
             measurementValue = 0;
+            conversionMultiple = 0;
             unitsSymbol = string.Empty;
-            text.text = "-";
+
+            measurementValueText.text = "-";
+            conversionMultipleText.text = "-";
+
             correctValue = false;
         }
 

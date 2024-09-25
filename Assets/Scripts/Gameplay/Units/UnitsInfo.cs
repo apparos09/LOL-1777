@@ -38,6 +38,26 @@ namespace RM_MST
             // Gets the converted value.
             public abstract float GetConvertedValue();
 
+            // Calculates the converison multiple using the input value and output value.
+            public float CalculateConversionMultiple()
+            {
+                // Used to calculate the conversion multiple.
+                float outputValue = GetConvertedValue();
+                float multiple;
+
+                // If the input value is 0, have the conversion be 1.0.
+                if (inputValue == 0)
+                {
+                    multiple = 1;
+                }
+                else // The input isn't 0, so calculate the conversion.
+                {
+                    multiple = outputValue / inputValue;
+                }
+
+                return multiple;
+            }
+
             // Returns the symbol for the input units.
             public abstract string GetInputSymbol();
 

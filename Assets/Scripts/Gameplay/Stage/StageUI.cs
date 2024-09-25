@@ -338,21 +338,39 @@ namespace RM_MST
             float trueOutputValue = meteor.GetConvertedValue();
             bool foundRightValue = false;
 
-            // Goes through all buttons and gets the values.
-            for(int i = 0; i < unitsButtons.Count && i < meteor.possibleOutputs.Length; i++)
+            // Calculates the true multiple for the true output value.
+            float trueMult;
+
+            // If the input value is 0, have the conversion be 1.0.
+            if (meteor.conversion.inputValue == 0)
             {
-                // If the question uses fractions, try to display the output as a fraction.
-                if(isFraction)
+                trueMult = 1;
+            }
+            else // The input isn't 0, so calculate the conversion.
+            {
+                trueMult = trueOutputValue / meteor.conversion.inputValue;
+            }
+
+
+
+            // Goes through all buttons and gets the values.
+            for (int i = 0; i < unitsButtons.Count && i < meteor.possibleOutputs.Length; i++)
+            {
+                // Used to calculate the conversion multiple for the possible output.
+                float multiple;
+
+                // If the input value is 0, have the conversion be 1.0.
+                if (meteor.conversion.inputValue == 0)
                 {
-                    // The result will be shown as a fraction if possible.
-                    unitsButtons[i].SetMeasurementValueAndSymbol(meteor.possibleOutputs[i], meteor.conversion.GetOutputSymbol(), true);
+                    multiple = 1;
                 }
-                else
+                else // The input isn't 0, so calculate the conversion.
                 {
-                    // Sets the text and values.
-                    unitsButtons[i].SetMeasurementValueAndSymbol(meteor.possibleOutputs[i], meteor.conversion.GetOutputSymbol());
+                    multiple = meteor.possibleOutputs[i] / meteor.conversion.inputValue;
                 }
-                
+
+                unitsButtons[i].SetMeasurementValueAndSymbol(meteor.possibleOutputs[i], multiple, 
+                    meteor.conversion.GetOutputSymbol(), isFraction);              
 
                 // If this is the true output value, set that it's been found.
                 if (meteor.possibleOutputs[i] == trueOutputValue)
@@ -378,7 +396,12 @@ namespace RM_MST
 
                 // Replaces the value at the provided index, and marks that button as having the true value.
                 meteor.possibleOutputs[outputIndex] = trueOutputValue;
-                unitsButtons[buttonIndex].SetMeasurementValue(trueOutputValue);
+                
+                // Updates the unit buttons with the true measurement and conversion mult.
+                unitsButtons[buttonIndex].SetMeasurementValueAndSymbol(
+                    trueOutputValue, trueMult, meteor.conversion.GetOutputSymbol(), isFraction);
+
+                // Sets that this unit button is the correct value.
                 unitsButtons[buttonIndex].correctValue = true;
             }
         }
