@@ -381,13 +381,6 @@ namespace RM_MST
 
         }
 
-        // Loads the stage data from a saved game. Only certains parts are kept.
-        public void LoadStageDataFromSavedGame(StageData data)
-        {
-            losses = data.losses;
-            SetStageCleared(data.cleared);
-        }
-
         // Generates the stage start information.
         public GameplayInfo.StageStartInfo GenerateStageInfo()
         {
@@ -408,6 +401,30 @@ namespace RM_MST
 
             // Reutnrs the object.
             return stageStartInfo;
+        }
+
+        // Loads the stage data from a saved game. Only certains parts are kept.
+        public void LoadStageDataFromSavedGame(StageData data)
+        {
+            losses = data.losses;
+            SetStageCleared(data.cleared);
+        }
+
+        // Generates stage data.
+        public StageData GenerateStageData()
+        {
+            // The stage data.
+            StageData data = new StageData();
+
+            // Set values.
+            data.stageName = stageName;
+            data.stageTime = 0;
+            data.stageScore = 0;
+            data.highestCombo = 0;
+            data.cleared = cleared;
+
+            // Return the values.
+            return data;
         }
 
         // Update is called once per frame

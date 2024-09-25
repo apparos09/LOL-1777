@@ -1523,6 +1523,10 @@ PrefabInstance:
       propertyPath: m_text
       value: Start
       objectReference: {fileID: 0}
+    - target: {fileID: 2352895987738871904, guid: 3eb77aaff20e4064a9f4940aa2079af1, type: 3}
+      propertyPath: key
+      value: kwd_start
+      objectReference: {fileID: 0}
     - target: {fileID: 6632412097355346787, guid: 3eb77aaff20e4064a9f4940aa2079af1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -2104,6 +2108,10 @@ PrefabInstance:
     - target: {fileID: 101382317650165733, guid: 3eb77aaff20e4064a9f4940aa2079af1, type: 3}
       propertyPath: m_fontSize
       value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 2352895987738871904, guid: 3eb77aaff20e4064a9f4940aa2079af1, type: 3}
+      propertyPath: key
+      value: kwd_back
       objectReference: {fileID: 0}
     - target: {fileID: 6632412097355346787, guid: 3eb77aaff20e4064a9f4940aa2079af1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size

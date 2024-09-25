@@ -71,8 +71,7 @@ namespace RM_MST
 
         // Other
         // Determines if saving and loading is enabled.
-        [HideInInspector]
-        public bool savingLoadingEnabled = true;
+        private bool savingLoadingEnabled = true;
 
         // Private constructor so that only one save system object exists.
         private SaveSystem()
@@ -166,6 +165,22 @@ namespace RM_MST
             // Makes the continue button disappear if there is no data to load. 
             Helper.StateButtonInitialize<MST_GameData>(newGameButton, continueButton, OnLoadData);
         }
+
+
+        // Saving Loading Enabled
+        public bool SavingLoadingEnabled
+        {
+            get
+            {
+                return savingLoadingEnabled;
+            }
+
+            set
+            {
+                savingLoadingEnabled = value;
+            }
+        }
+
 
         // Checks if the world manager has been set.
         private bool IsWorldManagerSet()

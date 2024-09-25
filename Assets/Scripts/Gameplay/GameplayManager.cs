@@ -282,7 +282,7 @@ namespace RM_MST
             if(SaveSystem.Instantiated)
             {
                 SaveSystem saveSystem = SaveSystem.Instance;
-                return saveSystem.savingLoadingEnabled;
+                return saveSystem.SavingLoadingEnabled;
             }
             else
             {

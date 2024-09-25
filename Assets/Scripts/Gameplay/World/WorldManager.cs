@@ -32,7 +32,7 @@ namespace RM_MST
         public GameCompleteEvent gameCompleteEvent;
 
         // If 'true', auto saving is enabled.
-        private bool autoSave = false; // TODO: enable when saving.
+        private bool autoSave = true;
 
         [Header("Area")]
 
@@ -94,8 +94,8 @@ namespace RM_MST
         {
             base.LateStart();
 
-            // Gets set to 'false' if the game shouldn't try to load save data.
-            bool tryLoadGame = true;
+            // Tries to load the game if this is set to 'true'.
+            bool tryLoadGame = false;
 
             // If the gameplay info has been instantiated.
             if (GameplayInfo.Instantiated)
@@ -113,13 +113,13 @@ namespace RM_MST
                 }
                 else
                 {
-                    tryLoadGame = false;
+                    tryLoadGame = true;
                 }
 
             }
             else
             {
-                tryLoadGame = false;
+                tryLoadGame = true;
             }
 
             // If saving/loading is enabled, and the game should try to load data.
@@ -371,7 +371,11 @@ namespace RM_MST
             // Loads the stage data.
             for (int i = 0; i < loadedData.stageDatas.Length && i < stages.Count; i++)
             {
-                stages[i].LoadStageDataFromSavedGame(loadedData.stageDatas[i]);
+                // The data exists.
+                if(loadedData.stageDatas[i] != null)
+                {
+                    stages[i].LoadStageDataFromSavedGame(loadedData.stageDatas[i]);
+                }
             }
 
             // Sets the tutorials data.

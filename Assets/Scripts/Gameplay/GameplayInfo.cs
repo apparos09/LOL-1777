@@ -177,6 +177,12 @@ namespace RM_MST
                     worldStages[i].losses = worldManager.stages[i].losses;
                     worldStages[i].cleared = worldManager.stages[i].IsStageCleared();
                 }
+                // There's no data in game info, but there is data in the world manager.
+                else if (worldStages[i] == null && worldManager.stages[i] != null)
+                {
+                    // Overwrites the stage data.
+                    worldStages[i] = worldManager.stages[i].GenerateStageData();
+                }
                     
             }
 
