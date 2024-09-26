@@ -69,7 +69,7 @@ MonoBehaviour:
   cleared: 0
   worldScene: WorldScene
   stageUnitGroups: 
-  meteorSpawnRate: 1
+  meteorSpawnRate: 2
   meteorSpeedMax: 1
   meteorPrefabs:
   - {fileID: 3009806165377321055, guid: 6d2fe1ca55a1e5e4895aeab1b087592f, type: 3}

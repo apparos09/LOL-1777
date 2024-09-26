@@ -103,10 +103,13 @@ namespace RM_MST
         public List<UnitsInfo.UnitsConversion> conversions = new List<UnitsInfo.UnitsConversion>();
 
         // The minimum units input value.
-        public const float UNITS_INPUT_VALUE_MIN = 0.0F;
+        public const float UNITS_INPUT_VALUE_MIN = 0.001F;
 
         // The maximum units input value.
         public const float UNITS_INPUT_VALUE_MAX = 100.0F;
+
+        // If 'true', random inputs can be decimal values.
+        private bool allowRandomInputDecimals = true;
 
         // The number of decimal places for the units.
         // TODO: maybe limit to 2 decimal places.
@@ -707,6 +710,10 @@ namespace RM_MST
 
             // Round the value, and cap it at 3 decimal places.
             value = util.CustomMath.Round(value, UNITS_DECIMAL_PLACES);
+
+            // If random values cannot be decimals, round up to the nearest value.
+            if(!allowRandomInputDecimals)
+                value = Mathf.Ceil(value);
 
             // If random unit inputs should be limited.
             if(limitRandomUnitInputs)
