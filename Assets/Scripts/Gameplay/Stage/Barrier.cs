@@ -87,6 +87,9 @@ namespace RM_MST
             // Updates the barrier color.
             UpdateBarrierColor();
 
+            // Called when the barrier has been damaged.
+            stageManager.OnBarrierDamaged();
+
             // If the surface health is 0 or less, kill it.
             if(health <= 0)
             {

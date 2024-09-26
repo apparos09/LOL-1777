@@ -2609,6 +2609,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab8045caae2a0de4fb59ad7155946c43, type: 3}
+--- !u!114 &3816581878737125234 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4546702499478649822, guid: ab8045caae2a0de4fb59ad7155946c43, type: 3}
+  m_PrefabInstance: {fileID: 859652247433217196}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51d0c38611da5384eaaa72411f31fa9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &7772709161589514716 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6931089197447521648, guid: ab8045caae2a0de4fb59ad7155946c43, type: 3}
@@ -3529,10 +3540,12 @@ MonoBehaviour:
   gameSettingsUI: {fileID: 1360451479903039616}
   tutorialUI: {fileID: 62561567443399544}
   stageManager: {fileID: 0}
+  unitsTable: {fileID: 3109907061343250379}
+  partnerAIcon: {fileID: 323181053611118649}
+  partnerBIcon: {fileID: 3816581878737125234}
   stageNameText: {fileID: 8831754411256693344}
   timeText: {fileID: 816529836397086108}
   pointsText: {fileID: 3038572560905820448}
-  unitsTable: {fileID: 3109907061343250379}
   pointsBar: {fileID: 3407424016729095375}
   surfaceHealthBar: {fileID: 3476837066984798448}
   conversionText: {fileID: 6668690271524425984}
@@ -4234,6 +4247,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0e98ead30f44c241bc23293d3a8188a, type: 3}
+--- !u!114 &323181053611118649 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4710316769351317842, guid: b0e98ead30f44c241bc23293d3a8188a, type: 3}
+  m_PrefabInstance: {fileID: 4981618155183974763}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51d0c38611da5384eaaa72411f31fa9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &6581208516286385815 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2195334494375258108, guid: b0e98ead30f44c241bc23293d3a8188a, type: 3}

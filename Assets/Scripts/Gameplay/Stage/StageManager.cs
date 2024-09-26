@@ -412,7 +412,7 @@ namespace RM_MST
         // Sets the phase
         public void SetPhase(int newPhase)
         {
-            phase = Mathf.Clamp(newPhase, 1, PHASE_MAX);
+            phase = Mathf.Clamp(newPhase, 1, PHASE_MAX);         
         }
 
         // Sets the game phase by the game progress.
@@ -438,6 +438,14 @@ namespace RM_MST
             {
                 SetPhase(1);
             }
+        }
+
+        // Called when the phase has changed.
+        public void OnPhaseChanged()
+        {
+            // TODO: add changes based on phase change.
+
+            stageUI.OnPhaseChanged();
         }
 
 
@@ -492,7 +500,7 @@ namespace RM_MST
         // Called when a meteor is destroyed.
         public void OnMeteorKilled(Meteor meteor)
         {
-            // ...
+            stageUI.OnMeteorKilled();
         }
 
         // Called when a meteor fails to be destroyed.
@@ -1078,6 +1086,19 @@ namespace RM_MST
             // If the highest combo should be reset, reset it.
             if (resetHighestCombo)
                 highestCombo = 0;
+        }
+
+        // BARRIER, SURFACE
+        // Called when a barrier has been damaged.
+        public void OnBarrierDamaged()
+        {
+            stageUI.OnBarrierDamaged();
+        }
+
+        // Called when the surface has been damaged.
+        public void OnSurfaceDamaged()
+        {
+            stageUI.OnSurfaceDamaged();
         }
 
         // ENDING

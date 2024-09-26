@@ -140,9 +140,18 @@ namespace RM_MST
             // Gets the player.
             PlayerStage player = stageManager.player;
 
-            // The shot was not a success, so stun the player.
-            if(!success)
+            // Checks if the shot was a success.
+            if(success)
             {
+                // Play a happy animation.
+                stageManager.stageUI.PlayPartnersAnimation(CharacterIcon.charIconAnim.happy);
+                
+            }
+            else // Not a success.
+            {
+                // Play a sad aniamtion.
+                stageManager.stageUI.PlayPartnersAnimation(CharacterIcon.charIconAnim.sad);
+
                 // Stuns the player if they can be stunned.
                 if (player.stunPlayer)
                     player.StunPlayer();

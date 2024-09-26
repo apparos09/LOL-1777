@@ -20,6 +20,15 @@ namespace RM_MST
         // The stage manager.
         public StageManager stageManager;
 
+        // The units table.
+        public UnitsTable unitsTable;
+
+        // The partner A icon.
+        public CharacterIcon partnerAIcon;
+
+        // The partner B icon.
+        public CharacterIcon partnerBIcon;
+
         [Header("Text")]
 
         // The stage name text.
@@ -30,10 +39,6 @@ namespace RM_MST
 
         // The score text.
         public TMP_Text pointsText;
-
-        // The units table.
-        public UnitsTable unitsTable;
-
 
         [Header("Progress Bars")]
 
@@ -213,13 +218,34 @@ namespace RM_MST
             surfaceHealthBar.SetValueAsPercentage(percent);
         }
 
+        // PARTNER ANIMATIONS //
+        // Plays partner animation.
+        public void PlayPartnersAnimation(CharacterIcon.charIconAnim anim)
+        {
+            PlayPartnerAAnimation(anim);
+            PlayPartnerBAnimation(anim);
+        }
+
+        // Plays Parter A Animation
+        public void PlayPartnerAAnimation(CharacterIcon.charIconAnim anim)
+        {
+            partnerAIcon.PlayAnimation(anim);
+        }
+
+        // Plays Parter B Animation
+        public void PlayPartnerBAnimation(CharacterIcon.charIconAnim anim)
+        {
+            partnerBIcon.PlayAnimation(anim);
+        }
+
+
+        // GAMEPLAY
         // Updates the units table with the provied conversion. By default it's set to 'none'.
         public void UpdateUnitsTable(UnitsInfo.unitGroups group = UnitsInfo.unitGroups.none)
         {
             unitsTable.SetGroup(group);
         }
 
-        // GAMEPLAY
         // Set all the unit buttons to be active or inactive.
         public void SetAllUnitButtonsActive(bool active)
         {
@@ -504,6 +530,30 @@ namespace RM_MST
             
         }
 
+        // EVENTS
+        // Called when the phase has changed.
+        public void OnPhaseChanged()
+        {
+            PlayPartnerAAnimation(CharacterIcon.charIconAnim.angry);
+        }
+
+        // Called when a meteor has been killed.
+        public void OnMeteorKilled()
+        {
+            // ...
+        }
+
+        // Called when a barrier has been damaged.
+        public void OnBarrierDamaged()
+        {
+            PlayPartnersAnimation(CharacterIcon.charIconAnim.shocked);
+        }
+
+        // Called when the surface has been damaged.
+        public void OnSurfaceDamaged()
+        {
+            PlayPartnersAnimation(CharacterIcon.charIconAnim.sad);
+        }
 
         // STAGE END
         // Updates the HUD one last time after the stage ends.
@@ -521,6 +571,9 @@ namespace RM_MST
             // Set the time and score text.
             stageWonTimeText.text = StringFormatter.FormatTime(stageManager.stageTime, false, true, false);
             stageWonScoreText.text = stageManager.stageFinalScore.ToString(); // Already calculated.
+
+            // Play happy animation.
+            PlayPartnersAnimation(CharacterIcon.charIconAnim.happy);
         }
 
         // Called when the stage has been lost.
@@ -528,6 +581,9 @@ namespace RM_MST
         {
             CloseAllWindows();
             stageLostWindow.SetActive(true);
+
+            // Play sad animation.
+            PlayPartnersAnimation(CharacterIcon.charIconAnim.sad);
         }
 
         // Called to restart the stage.
@@ -541,6 +597,9 @@ namespace RM_MST
         {
             CloseAllWindows();
             ClearConversionAndUnitsButtons();
+
+            // Switch to neutral expressions.
+            PlayPartnersAnimation(CharacterIcon.charIconAnim.neutral);
         }
 
         // Goes to the world.
