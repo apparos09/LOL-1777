@@ -79,6 +79,8 @@ namespace RM_MST
         // Called on the first update frame.
         void LateStart()
         {
+            calledLateStart = true;
+
             // I didn't need to it this way (it was done to try and fix something else)...
             // But I'm leaving it.
 
