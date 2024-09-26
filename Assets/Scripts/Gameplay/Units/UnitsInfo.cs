@@ -38,6 +38,9 @@ namespace RM_MST
             // Gets the converted value.
             public abstract float GetConvertedValue();
 
+            // Gets the conversion multiple based on the units type.
+            public abstract float GetsConverisonMultiple();
+
             // Calculates the converison multiple using the input value and output value.
             public float CalculateConversionMultiple()
             {
@@ -78,7 +81,7 @@ namespace RM_MST
             }
 
             // Sets the input, group, inputUnits, and outputUnits.
-            public WeightConversion(float inputValue, unitGroups group, weightUnits inputUnits, weightUnits outputUnits) : 
+            public WeightConversion(float inputValue, unitGroups group, weightUnits inputUnits, weightUnits outputUnits) :
                 base(inputValue, group)
             {
                 this.inputUnits = inputUnits;
@@ -97,6 +100,12 @@ namespace RM_MST
             public override float GetConvertedValue()
             {
                 return ConvertWeightUnits(inputValue, inputUnits, outputUnits);
+            }
+
+            // Gets the conversion multiple.
+            public override float GetsConverisonMultiple()
+            {
+                return GetWeightUnitsMultiple(inputUnits, outputUnits);
             }
 
             // Returns the symbol for the input units.
@@ -143,6 +152,12 @@ namespace RM_MST
             public override float GetConvertedValue()
             {
                 return ConvertLengthUnits(inputValue, inputUnits, outputUnits);
+            }
+
+            // Gets the conversion multiple.
+            public override float GetsConverisonMultiple()
+            {
+                return GetLengthUnitsMultiple(inputUnits, outputUnits);
             }
 
             // Returns the symbol for the input units.
@@ -192,6 +207,12 @@ namespace RM_MST
                 return ConvertTimeUnits(inputValue, inputUnits, outputUnits);
             }
 
+            // Gets the conversion multiple.
+            public override float GetsConverisonMultiple()
+            {
+                return GetTimeUnitsMultiple(inputUnits, outputUnits);
+            }
+
             // Returns the symbol for the input units.
             public override string GetInputSymbol()
             {
@@ -236,6 +257,12 @@ namespace RM_MST
             public override float GetConvertedValue()
             {
                 return ConvertCapacityUnits(inputValue, inputUnits, outputUnits);
+            }
+
+            // Gets the conversion multiple.
+            public override float GetsConverisonMultiple()
+            {
+                return GetCapacityUnitsMultiple(inputUnits, outputUnits);
             }
 
             // Returns the symbol for the input units.
@@ -1842,6 +1869,32 @@ namespace RM_MST
             // Returns the result.
             return result;
         }
+
+        // Getting Modifiers
+        // Gets the length units modifier.
+        public static float GetLengthUnitsMultiple(lengthUnits input, lengthUnits output)
+        {
+            return ConvertLengthUnits(1, input, output);
+        }
+
+        // Gets the weight units modifier.
+        public static float GetWeightUnitsMultiple(weightUnits input, weightUnits output)
+        {
+            return ConvertWeightUnits(1, input, output);
+        }
+
+        // Gets the time units modifier.
+        public static float GetTimeUnitsMultiple(timeUnits input, timeUnits output)
+        {
+            return ConvertTimeUnits(1, input, output);
+        }
+
+        // Gets the capacity units modifier.
+        public static float GetCapacityUnitsMultiple(capacityUnits input, capacityUnits output)
+        {
+            return ConvertCapacityUnits(1, input, output);
+        }
+
 
         // Get a group conversion list. This only goes from larger units to smaller units.
         // This is private as to prevent the lists from being altered.
