@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 namespace RM_MST
 {
@@ -27,6 +28,9 @@ namespace RM_MST
         public StageWorldUI stageWorldUI;
 
         [Header("WorldUI/Options Windows")]
+
+        // The units info button.
+        public Button unitsInfoButton;
 
         // The units info window.
         public UnitsInfoMenu unitsInfoMenu;
@@ -162,6 +166,7 @@ namespace RM_MST
             return open;
         }
 
+        // WINDOWS
         // Closes all the windows.
         public override void CloseAllWindows()
         {
@@ -172,6 +177,35 @@ namespace RM_MST
             base.CloseAllWindows();
         }
 
+        // Returns the units info button interactable.
+        public bool IsUnitsInfoButtonInteractable()
+        {
+            return unitsInfoButton.interactable;
+        }
+
+        // Sets the interactable for the units info button.
+        public void SetUnitsInfoButtonInteractable(bool interactable)
+        {
+            unitsInfoButton.interactable = interactable;
+        }
+
+        // Make the units info button interactable.
+        public void MakeUnitsInfoButtonInteractable()
+        {
+            SetUnitsInfoButtonInteractable(true);
+        }
+
+        // Make the untis info button non-interactable
+        public void MakeUnitsInfoButtonUninteractable()
+        {
+            SetUnitsInfoButtonInteractable(false);
+        }
+
+        // Toggles the interactable on the units info button.
+        public void ToggleUnitsInfoButtonInteractable()
+        {
+            SetUnitsInfoButtonInteractable(!IsUnitsInfoButtonInteractable());
+        }
 
         // STAGE UI
         // Returns 'true' if the stage world UI is active.

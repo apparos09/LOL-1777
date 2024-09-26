@@ -1979,6 +1979,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8025164980129016184, guid: 2b3453dfd0e20b24b9a165392d78af22, type: 3}
   m_PrefabInstance: {fileID: 3129503088942009313}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7861569306269950369 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5077771038468991552, guid: 2b3453dfd0e20b24b9a165392d78af22, type: 3}
+  m_PrefabInstance: {fileID: 3129503088942009313}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3913704811216370791
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2839,6 +2850,7 @@ MonoBehaviour:
   worldManager: {fileID: 0}
   saveText: {fileID: 4714713602443856207}
   stageWorldUI: {fileID: 798173595517633425}
+  unitsInfoButton: {fileID: 7861569306269950369}
   unitsInfoMenu: {fileID: 1618309164583767552}
   saveWindow: {fileID: 2607488750361624843}
 --- !u!1001 &7027211653835769675
