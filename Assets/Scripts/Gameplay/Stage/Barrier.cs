@@ -22,6 +22,31 @@ namespace RM_MST
         // The maximum health of the surface.
         public float maxHealth = 1.0F;
 
+        [Header("Colors")]
+
+        // The color at maximum health.
+        public Color maxHealthColor = Color.green;
+
+        // The color at half health.
+        public Color halfHealthColor = Color.yellow;
+
+        // The color at no health.
+        public Color noHealthColor = Color.red;
+
+        [Header("Animation")]
+
+        // The animator for the barrier.
+        public Animator animator;
+
+        // The barrier's revive animation.
+        public string barrierReviveAnim = "Barrier - Revive Animation";
+
+        // The barrier's death animation.
+        public string barrierDeathAnim = "Barrier - Death Animation";
+
+        // Uses the animations if set to 'true'.
+        private bool useAnimations = true;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -32,6 +57,10 @@ namespace RM_MST
             // If the collider is not set, try to set it.
             if (collider == null)
                 collider = GetComponent<Collider2D>();
+
+
+            // Animator setting.
+            animator.enabled = useAnimations;
 
             // Set the health to max.
             SetHealthToMax();
@@ -47,12 +76,16 @@ namespace RM_MST
         public void SetHealthToMax()
         {
             health = maxHealth;
+            UpdateBarrierColor();
         }
 
         // Applies damage to the surface.
         public void ApplyDamage(float damage)
         {
             health -= damage;
+
+            // Updates the barrier color.
+            UpdateBarrierColor();
 
             // If the surface health is 0 or less, kill it.
             if(health <= 0)
@@ -66,20 +99,110 @@ namespace RM_MST
         public void KillBarrier()
         {
             health = 0;
-            OnBarrierKilled();
+
+            // If animations should be used.
+            if (useAnimations)
+            {
+                PlayBarrierDeathAnimation();
+            }
+            else
+            {
+                OnBarrierKilled();
+            }
         }
 
         // On the barrier being killed.
         protected void OnBarrierKilled()
         {
-            gameObject.SetActive(false); // TOOD: replace with animation.
+            gameObject.SetActive(false);
         }
 
         // Restores the barrier.
         public void RestoreBarrier()
         {
-            gameObject.SetActive(true); // TOOD: replace with animation.
+            gameObject.SetActive(true);
+
+            // Sets the health to max.
             SetHealthToMax();
+
+            // If animations should be used.
+            if (useAnimations)
+            {
+                PlayBarrierReviveAnimation();
+            }
+        }
+
+        // Updates the barrier's color.
+        public void UpdateBarrierColor()
+        {
+            // The two colours, and the t-value between them.
+            Color color1, color2;
+            float colorT = 0.0F;
+
+            // The health percentage.
+            float healthPercent = Mathf.Clamp01(health / maxHealth);
+
+            // Checks the health.
+            if (healthPercent >= 0.5F) // Green to Yellow
+            {
+                color1 = maxHealthColor;
+                color2 = halfHealthColor;
+                colorT = Mathf.InverseLerp(1.0F, 0.5F, healthPercent);
+            }
+            else // Yellow to Red
+            {
+                color1 = halfHealthColor;
+                color2 = noHealthColor;
+                colorT = Mathf.InverseLerp(0.5F, 0.0F, healthPercent);
+            }
+
+            // Calculates the final color.
+            Color finalColor = new Color
+                (
+                Mathf.Lerp(color1.r, color2.r, colorT),
+                Mathf.Lerp(color1.g, color2.g, colorT),
+                Mathf.Lerp(color1.b, color2.b, colorT)
+                );
+
+            // Sets the sprite renderer to the final colour.
+            spriteRenderer.color = finalColor;
+        }
+
+        // ANIMATION
+        // Revive animation.
+        public void PlayBarrierReviveAnimation()
+        {
+            animator.Play(barrierReviveAnim);
+        }
+
+        // Revive start
+        public void OnBarrierReviveAnimationStart()
+        {
+            // ...
+        }
+
+        // Revive end
+        public void OnBarrierReviveAnimationEnd()
+        {
+            SetHealthToMax();
+        }
+
+        // Death animation.
+        public void PlayBarrierDeathAnimation()
+        {
+            animator.Play(barrierDeathAnim);
+        }
+
+        // Death start
+        public void OnBarrierDeathAnimationStart()
+        {
+            // ...
+        }
+
+        // Death end
+        public void OnBarrierDeathAnimationEnd()
+        {
+            OnBarrierKilled();
         }
     }
 }
