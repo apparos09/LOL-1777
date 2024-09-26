@@ -355,6 +355,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3414718615701894934, guid: db4b37199e3470e49a5c2ff2ef80e384, type: 3}
+      propertyPath: reqStageWorlds.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3414718615701894934, guid: db4b37199e3470e49a5c2ff2ef80e384, type: 3}
+      propertyPath: reqStageWorlds.Array.data[0]
+      value: 
+      objectReference: {fileID: 1424204586}
     - target: {fileID: 6622377654606349290, guid: db4b37199e3470e49a5c2ff2ef80e384, type: 3}
       propertyPath: cleared
       value: 1
@@ -665,6 +673,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3414718615701894934, guid: db4b37199e3470e49a5c2ff2ef80e384, type: 3}
+      propertyPath: reqStageWorlds.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3414718615701894934, guid: db4b37199e3470e49a5c2ff2ef80e384, type: 3}
+      propertyPath: reqStageWorlds.Array.data[0]
+      value: 
+      objectReference: {fileID: 1424204586}
     - target: {fileID: 6622377654606349290, guid: db4b37199e3470e49a5c2ff2ef80e384, type: 3}
       propertyPath: stageDesc
       value: Seconds (secs), Minutes (mins), Hours (hrs)

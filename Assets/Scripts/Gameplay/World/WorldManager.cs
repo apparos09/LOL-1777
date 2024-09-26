@@ -105,8 +105,9 @@ namespace RM_MST
                 {
                     gameInfo.LoadWorldInfo(this);
 
-                    // If the game should auto save, and the most recent stage was cleared.
-                    if (autoSave && gameInfo.recentStageCleared)
+                    // If the game should auto save, the game can save...
+                    // And the most recent stage was cleared.
+                    if (autoSave && IsSavingLoadingEnabled() && gameInfo.recentStageCleared)
                     {
                         SaveGame();
                     }

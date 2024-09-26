@@ -157,7 +157,7 @@ MonoBehaviour:
   cleared: 0
   calledInit: 0
   calledComplete: 0
-  stageWorld: {fileID: 0}
+  stageWorld: {fileID: 6622377654606349290}
   reqStageWorlds: []
   playUnlockAnim: 1
 --- !u!1 &2228829032752869077
