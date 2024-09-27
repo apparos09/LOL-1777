@@ -29,6 +29,7 @@ namespace RM_MST
                 animator = GetComponent<Animator>();
         }
 
+        // NOTE: these functions aren't necessarily called by all animations. They're here for utility reasons.
         // Called when an animation is started.
         public virtual void OnAnimationStart()
         {

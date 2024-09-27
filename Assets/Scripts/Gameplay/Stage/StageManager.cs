@@ -48,10 +48,13 @@ namespace RM_MST
 
         // The phase for the game.
         // TODO: make private.
-        public int phase = 0;
+        public int phase = 1;
 
         // The maximum phase value.
         public const int PHASE_MAX = 4;
+
+        // Applies changes to the game difficulty based on the phase.
+        private bool applyPhaseDifficultyChanges = false;
 
         // The score that must be met to win the game.
         public float pointsGoal = 1000.0F;
@@ -220,8 +223,9 @@ namespace RM_MST
             if (stageName == "")
                 stageName = "...";
 
-            // Sets the difficulty 
+            // Sets the difficulty and the phase.
             SetDifficulty(difficulty, true);
+            SetPhase(phase);
 
             // If the difficulty should be dynamically adjusted.
             if(dynamicDifficulty)
@@ -317,7 +321,7 @@ namespace RM_MST
                 stageUnitGroups = UnitsInfo.GenerateUnitGroupsList();
 
             // Sets the difficulty using the proper function.
-            SetDifficulty(difficulty);
+            SetDifficulty(difficulty, true);
         }
 
         // Gets the difficulty.
@@ -327,7 +331,7 @@ namespace RM_MST
         }
 
         // Sets the difficulty for the game.
-        public void SetDifficulty(int difficultyLevel, bool setBaseDifficulty = true)
+        public void SetDifficulty(int difficultyLevel, bool setBaseDifficulty)
         {
             // Sets the difficulty.
             difficulty = Mathf.Clamp(difficultyLevel, 1, DIFFICULTY_MAX);
@@ -393,6 +397,12 @@ namespace RM_MST
             // TODO: activate/deactive certain buttons.
         }
 
+        // Returns the base difficulty.
+        public float GetBaseDifficulty()
+        {
+            return baseDifficulty;
+        }
+
         // Adjusts the difficulty by the amount of losses.
         public void AdjustDifficultyByLosses()
         {
@@ -412,7 +422,15 @@ namespace RM_MST
         // Sets the phase
         public void SetPhase(int newPhase)
         {
-            phase = Mathf.Clamp(newPhase, 1, PHASE_MAX);         
+            // Saves the old phase, and checks against the new phase.
+            int oldPhase = phase;
+            phase = Mathf.Clamp(newPhase, 1, PHASE_MAX);
+
+            // The phase has changed.
+            if (phase != oldPhase)
+            {
+                OnPhaseChanged();
+            }
         }
 
         // Sets the game phase by the game progress.
@@ -443,8 +461,46 @@ namespace RM_MST
         // Called when the phase has changed.
         public void OnPhaseChanged()
         {
-            // TODO: add changes based on phase change.
+            // Applies phase difficultly changes.
+            if (applyPhaseDifficultyChanges)
+            {
+                // Resets the difficulty (doesn't change base difficulty).
+                SetDifficulty(difficulty, false);
 
+
+                // TODO: add changes based on phase change.
+                // Sets the phase.
+                switch (phase)
+                {
+                    case 1:
+                        // ...
+                        break;
+
+                    case 2:
+                        meteorSpawnRate -= 0.125F;
+                        meteorSpeedMax += 0.25F;
+                        break;
+
+                    case 3:
+                        meteorSpawnRate -= 0.25F;
+                        meteorSpeedMax += 0.5F;
+                        break;
+
+                    case 4:
+                        meteorSpawnRate -= 0.375F;
+                        meteorSpeedMax += 0.75F;
+                        break;
+                }
+
+
+                // The spawn rate is less than 0, so cap it. 
+                if (meteorSpawnRate < 0)
+                {
+                    meteorSpawnRate = 0;
+                }
+            }
+
+            // The phase has changed.
             stageUI.OnPhaseChanged();
         }
 

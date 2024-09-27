@@ -534,6 +534,8 @@ namespace RM_MST
         // Called when the phase has changed.
         public void OnPhaseChanged()
         {
+            // TODO: this animation seems to getting overwritten by the happy animation.
+            // TODO: play sound effect.
             PlayPartnerAAnimation(CharacterIcon.charIconAnim.angry);
         }
 
