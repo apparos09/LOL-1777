@@ -13,11 +13,23 @@ namespace RM_MST
         // The collider for the meteor.
         public new Collider2D collider;
 
+        // TODO: make private when not testing.
         // The health of the surface.
         public float health = 1.0F;
 
         // The maximum health of the surface.
         public float maxHealth = 1.0F;
+
+        [Header("Sprites")]
+
+        // Top
+        public SpriteRenderer topLayerRenderer;
+
+        // Middle
+        public SpriteRenderer middleLayerRenderer;
+
+        // Bottom
+        public SpriteRenderer bottomLayerRenderer;
 
         // Start is called before the first frame update
         void Start()
@@ -47,22 +59,59 @@ namespace RM_MST
             health = maxHealth;
         }
 
-        // Applies damage to the surface.
-        public void ApplyDamage(float damage)
+        // Sets the health of the stage surface (0 - max health).
+        public void SetHealth(float newHealth)
         {
-            health -= damage;
+            // Saves the old health.
+            float oldHealth = health;
 
-            // Updates the surface health bar.
+            // Sets the health, and calls the related functions.
+            health = Mathf.Clamp(newHealth, 0, maxHealth);
+
+            // Calls related functions.
+            OnHealthChanged();
+
+            // The surface has been damaged.
+            if (health < oldHealth)
+            {
+                stageManager.OnSurfaceDamaged();
+            }
+
+            // Check for death.
+            CheckDeath();
+        }
+
+        // Adds health to the barrier.
+        public void AddHealth(float heal)
+        {
+            SetHealth(health + heal);
+        }
+
+        // Applies damage to the surface.
+        public void ReduceHealth(float damage)
+        {
+            SetHealth(health - damage);
+        }
+
+        // Called when the surface's health has changed.
+        public virtual void OnHealthChanged()
+        {
             stageManager.stageUI.UpdateSurfaceHealthBar();
+        }
 
-            // Called when the surface has been damaged.
-            stageManager.OnSurfaceDamaged();
-
+        // Checks if the surface is dead.
+        public bool CheckDeath()
+        {
             // If the surface health is 0 or less, kill it.
             if (health <= 0)
             {
                 health = 0;
                 KillSurface();
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 

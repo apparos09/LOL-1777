@@ -464,7 +464,7 @@ namespace RM_MST
         public void ApplyDamageToStageSurface(StageSurface surface)
         {
             // TODO: implement.
-            surface.ApplyDamage(1.0F);
+            surface.ReduceHealth(1.0F);
             Kill();
         }
 

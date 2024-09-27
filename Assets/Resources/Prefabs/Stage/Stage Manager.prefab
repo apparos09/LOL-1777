@@ -72,7 +72,10 @@ MonoBehaviour:
   meteorSpawnRate: 2
   meteorSpeedMax: 1
   meteorPrefabs:
-  - {fileID: 3009806165377321055, guid: 6d2fe1ca55a1e5e4895aeab1b087592f, type: 3}
+  - {fileID: 5598984342507308061, guid: e2ab8f6230c5f884386d095f6fd46ccf, type: 3}
+  - {fileID: 5970267755578477049, guid: aae73e9b0ba9ace4aabc0a7959894793, type: 3}
+  - {fileID: 7285035793078636869, guid: 031a3e6536131d34999e79ed56cc8883, type: 3}
+  - {fileID: 7986561566760400614, guid: 4a90f099ddf28644388e3f46fd9f0247, type: 3}
   combo: 0
   highestCombo: 0
   comboDisplay: {fileID: 0}
