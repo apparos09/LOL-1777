@@ -441,6 +441,8 @@ namespace RM_MST
             };
 
             // Change the display image when certain pages are opened using callbacks.
+            pages[0].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerA);
+            pages[0].OnPageOpenedAddCallback(tutorialsUI.textBox.ShowCharacterImage);
 
             // Sets the bool and loads the tutorial.
             clearedMixStageTutorial = true;
@@ -458,6 +460,8 @@ namespace RM_MST
             };
 
             // Change the display image when certain pages are opened using callbacks.
+            pages[0].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerB);
+            pages[0].OnPageOpenedAddCallback(tutorialsUI.textBox.ShowCharacterImage);
 
             // Sets the bool and loads the tutorial.
             clearedWeightImperialTutorial = true;
@@ -475,6 +479,8 @@ namespace RM_MST
             };
 
             // Change the display image when certain pages are opened using callbacks.
+            pages[0].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerA);
+            pages[0].OnPageOpenedAddCallback(tutorialsUI.textBox.ShowCharacterImage);
 
             // Sets the bool and loads the tutorial.
             clearedTimeTutorial = true;
@@ -492,6 +498,8 @@ namespace RM_MST
             };
 
             // Change the display image when certain pages are opened using callbacks.
+            pages[0].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerB);
+            pages[0].OnPageOpenedAddCallback(tutorialsUI.textBox.ShowCharacterImage);
 
             // Sets the bool and loads the tutorial.
             clearedLengthMetricTutorial = true;
@@ -509,6 +517,8 @@ namespace RM_MST
             };
 
             // Change the display image when certain pages are opened using callbacks.
+            pages[0].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerA);
+            pages[0].OnPageOpenedAddCallback(tutorialsUI.textBox.ShowCharacterImage);
 
             // Sets the bool and loads the tutorial.
             clearedWeightMetricTutorial = true;
@@ -526,6 +536,8 @@ namespace RM_MST
             };
 
             // Change the display image when certain pages are opened using callbacks.
+            pages[0].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerB);
+            pages[0].OnPageOpenedAddCallback(tutorialsUI.textBox.ShowCharacterImage);
 
             // Sets the bool and loads the tutorial.
             clearedCapacityTutorial = true;

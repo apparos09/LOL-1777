@@ -31,6 +31,7 @@ namespace RM_MST
 
         [Header("Characters")]
         
+        // The border colours do not change for now. Will probably be kept this way.
 
         // The alpha 0 sprite. Used to hide the diagram if there's no image.
         [Tooltip("Used to mkae an empty character image.")]
@@ -40,13 +41,16 @@ namespace RM_MST
         public Sprite partnerASprite;
 
         // The border colour for partner A.
-        public Color partnerABorderColor = Color.blue;
+        private Color partnerABorderColor = Color.blue;
 
         // Partner B's sprite.
         public Sprite partnerBSprite;
 
         // The border colour for partner B.
-        public Color partnerBBorderColor = Color.red;
+        private Color partnerBBorderColor = Color.red;
+
+        // Changes the border color.
+        private bool changeBorderColor = true;
 
         // Constructor
         private TutorialUI()
@@ -268,14 +272,24 @@ namespace RM_MST
         public void SetCharacterToPartnerA()
         {
             textBox.SetCharacterImage(partnerASprite);
-            textBox.SetBorderColor(partnerABorderColor);
+
+            // Changes the border color.
+            if (changeBorderColor)
+            {
+                textBox.SetBorderColor(partnerABorderColor);
+            }
         }
 
         // Sets the character to partner B.
         public void SetCharacterToPartnerB()
         {
             textBox.SetCharacterImage(partnerBSprite);
-            textBox.SetBorderColor(partnerBBorderColor);
+
+            // Changes the border color.
+            if (changeBorderColor)
+            {
+                textBox.SetBorderColor(partnerBBorderColor);
+            }
         }
 
         // This function is called when the MonoBehaviour will be destroyed.
