@@ -149,12 +149,12 @@ namespace RM_MST
                 // Gets the tutorial.
                 Tutorials tutorials = Tutorials.Instance;
 
-                clearedWeightImperial = tutorials.clearedWeightImperial;
-                clearedLengthImperial = tutorials.clearedLengthImperial;
-                clearedTime = tutorials.clearedTime;
-                clearedLengthMetric = tutorials.clearedLengthMetric;
-                clearedWeightMetric = tutorials.clearedWeightMetric;
-                clearedCapcity = tutorials.clearedCapcity;
+                clearedWeightImperial = tutorials.clearedWeightImperialTutorial;
+                clearedLengthImperial = tutorials.clearedLengthImperialTutorial;
+                clearedTime = tutorials.clearedTimeTutorial;
+                clearedLengthMetric = tutorials.clearedLengthMetricTutorial;
+                clearedWeightMetric = tutorials.clearedWeightMetricTutorial;
+                clearedCapcity = tutorials.clearedCapcityTutorial;
             }
             else // Not being used, so enable all.
             {

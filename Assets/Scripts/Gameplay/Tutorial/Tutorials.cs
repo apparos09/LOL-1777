@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using util;
@@ -13,25 +11,25 @@ namespace RM_MST
         [System.Serializable]
         public class TutorialsData
         {
-            public bool introTutorial;
-            public bool stageTutorial;
-            public bool clearedFirstStageTutorial;
-            public bool mixStageTutorial;
+            public bool clearedIntroTutorial;
+            public bool clearedStageTutorial;
+            public bool clearedFirstWinTutorial;
+            public bool clearedMixStageTutorial;
 
-            public bool clearedWeightImperial;
             public bool clearedLengthImperial;
-            public bool clearedTime;
+            public bool clearedWeightImperial;
+            public bool clearedTimeTutorial;
 
-            public bool clearedLengthMetric;
-            public bool clearedWeightMetric;
-            public bool clearedCapcity;
+            public bool clearedLengthMetricTutorial;
+            public bool clearedWeightMetricTutorial;
+            public bool clearedCapcityTutorial;
         }
 
         // The tutorial types.
         // TODO: add the rest.
         public enum tutorialType
         {
-            none, weightImperial, lengthImperial, time, lengthMetric, weightMetric, capacity
+            none, intro, stage, firstWin, mixStage, weightImperial, lengthImperial, time, lengthMetric, weightMetric, capacity
         };
 
 
@@ -54,24 +52,25 @@ namespace RM_MST
         // The cleared tutorials.
         public List<tutorialType> clearedTutorials = new List<tutorialType>();
 
-        // If 'true', the tutorials object constantly checks for starting tutorials.
-        [Tooltip("Constant check for tutorial start.")]
-        public bool constantTutorialStartCheck = true;
+        // // If 'true', the tutorials object constantly checks for starting tutorials.
+        // [Tooltip("Constant check for tutorial start.")]
+        // public bool constantTutorialStartCheck = true;
+
 
         [Header("Tutorials")]
 
-        public bool introTutorial;
-        public bool stageTutorial;
-        public bool clearedFirstStageTutorial;
-        public bool mixStageTutorial;
+        public bool clearedIntroTutorial;
+        public bool clearedStageTutorial;
+        public bool clearedFirstWinTutorial;
+        public bool clearedMixStageTutorial;
 
-        public bool clearedWeightImperial;
-        public bool clearedLengthImperial;
-        public bool clearedTime;
+        public bool clearedLengthImperialTutorial;
+        public bool clearedWeightImperialTutorial;
+        public bool clearedTimeTutorial;
 
-        public bool clearedLengthMetric;
-        public bool clearedWeightMetric;
-        public bool clearedCapcity;
+        public bool clearedLengthMetricTutorial;
+        public bool clearedWeightMetricTutorial;
+        public bool clearedCapcityTutorial;
 
         // Constructor
         private Tutorials()
@@ -346,25 +345,26 @@ namespace RM_MST
             }
         }
 
+
         // TUTORIAL DATA
         // Generates the tutorials data.
         public TutorialsData GenerateTutorialsData()
         {
             TutorialsData data = new TutorialsData();
             
-            data.introTutorial = introTutorial;
-            data.stageTutorial = stageTutorial;
+            data.clearedIntroTutorial = clearedIntroTutorial;
+            data.clearedStageTutorial = clearedStageTutorial;
 
-            data.clearedFirstStageTutorial = clearedFirstStageTutorial;
-            data.mixStageTutorial = mixStageTutorial;
+            data.clearedFirstWinTutorial = clearedFirstWinTutorial;
+            data.clearedMixStageTutorial = clearedMixStageTutorial;
 
-            data.clearedWeightImperial = clearedWeightImperial;
-            data.clearedLengthImperial = clearedLengthImperial;
-            data.clearedTime = clearedTime;
+            data.clearedWeightImperial = clearedWeightImperialTutorial;
+            data.clearedLengthImperial = clearedLengthImperialTutorial;
+            data.clearedTimeTutorial = clearedTimeTutorial;
 
-            data.clearedLengthMetric = clearedLengthMetric;
-            data.clearedWeightMetric = clearedWeightMetric;
-            data.clearedCapcity = clearedCapcity;
+            data.clearedLengthMetricTutorial = clearedLengthMetricTutorial;
+            data.clearedWeightMetricTutorial = clearedWeightMetricTutorial;
+            data.clearedCapcityTutorial = clearedCapcityTutorial;
 
             return data;
         }
@@ -372,19 +372,19 @@ namespace RM_MST
         // Sets the tutorials data.
         public void LoadTutorialsData(TutorialsData data)
         {
-            introTutorial = data.introTutorial;
-            stageTutorial = data.stageTutorial;
+            clearedIntroTutorial = data.clearedIntroTutorial;
+            clearedStageTutorial = data.clearedStageTutorial;
 
-            clearedFirstStageTutorial = data.clearedFirstStageTutorial;
-            mixStageTutorial = data.mixStageTutorial;
+            clearedFirstWinTutorial = data.clearedFirstWinTutorial;
+            clearedMixStageTutorial = data.clearedMixStageTutorial;
 
-            clearedWeightImperial = data.clearedWeightImperial;
-            clearedLengthImperial = data.clearedLengthImperial;
-            clearedTime = data.clearedTime;
+            clearedWeightImperialTutorial = data.clearedWeightImperial;
+            clearedLengthImperialTutorial = data.clearedLengthImperial;
+            clearedTimeTutorial = data.clearedTimeTutorial;
 
-            clearedLengthMetric = data.clearedLengthMetric;
-            clearedWeightMetric = data.clearedWeightMetric;
-            clearedCapcity = data.clearedCapcity;
+            clearedLengthMetricTutorial = data.clearedLengthMetricTutorial;
+            clearedWeightMetricTutorial = data.clearedWeightMetricTutorial;
+            clearedCapcityTutorial = data.clearedCapcityTutorial;
         }
 
 
@@ -442,18 +442,187 @@ namespace RM_MST
                 new MST_Page("This is only a test.")
             };
 
+            pages[0].OnPageOpenedAddCallback(tutorialsUI.textBox.ShowCharacterImage);
+            pages[1].OnPageOpenedAddCallback(tutorialsUI.textBox.HideCharacterImage);
+
+
             // Change the display image when certain pages are opened using callbacks.
 
             // Loads the tutorial.
             LoadTutorial(ref pages, startTutorial);
         }
 
-
-        // Update is called once per frame
-        void Update()
+        // Loads the intro tutorial.
+        public void LoadIntroTutorial(bool startTutorial = true)
         {
-            // ...
+            // Create the pages list.
+            List<Page> pages = new List<Page>
+            {
+                // Load the pages.
+                new MST_Page("..."),
+            };
+
+            // Change the display image when certain pages are opened using callbacks.
+
+            // Sets the bool and loads the tutorial.
+            clearedIntroTutorial = true;
+            LoadTutorial(ref pages, startTutorial);
         }
+
+        // Loads the stage tutorial.
+        public void LoadStageTutorial(bool startTutorial = true)
+        {
+            // Create the pages list.
+            List<Page> pages = new List<Page>
+            {
+                // Load the pages.
+                new MST_Page("..."),
+            };
+
+            // Change the display image when certain pages are opened using callbacks.
+
+            // Sets the bool and loads the tutorial.
+            clearedStageTutorial = true;
+            LoadTutorial(ref pages, startTutorial);
+        }
+
+        // Loads the first win tutorial.
+        public void LoadFirstWinTutorial(bool startTutorial = true)
+        {
+            // Create the pages list.
+            List<Page> pages = new List<Page>
+            {
+                // Load the pages.
+                new MST_Page("..."),
+            };
+
+            // Change the display image when certain pages are opened using callbacks.
+
+            // Sets the bool and loads the tutorial.
+            clearedFirstWinTutorial = true;
+            LoadTutorial(ref pages, startTutorial);
+        }
+
+        // Loads the mix stage tutorial.
+        public void LoadMixStageTutorial(bool startTutorial = true)
+        {
+            // Create the pages list.
+            List<Page> pages = new List<Page>
+            {
+                // Load the pages.
+                new MST_Page("..."),
+            };
+
+            // Change the display image when certain pages are opened using callbacks.
+
+            // Sets the bool and loads the tutorial.
+            clearedMixStageTutorial = true;
+            LoadTutorial(ref pages, startTutorial);
+        }
+
+        // Measurement Groups
+        // Loads the length (imperial) tutorial.
+        public void LoadLengthImperialTutorial(bool startTutorial = true)
+        {
+            // Create the pages list.
+            List<Page> pages = new List<Page>
+            {
+                // Load the pages.
+                new MST_Page("..."),
+            };
+
+            // Change the display image when certain pages are opened using callbacks.
+
+            // Sets the bool and loads the tutorial.
+            clearedMixStageTutorial = true;
+            LoadTutorial(ref pages, startTutorial);
+        }
+
+        // Loads the weight (imperial) tutorial.
+        public void LoadWeightImperialTutorial(bool startTutorial = true)
+        {
+            // Create the pages list.
+            List<Page> pages = new List<Page>
+            {
+                // Load the pages.
+                new MST_Page("..."),
+            };
+
+            // Change the display image when certain pages are opened using callbacks.
+
+            // Sets the bool and loads the tutorial.
+            clearedWeightImperialTutorial = true;
+            LoadTutorial(ref pages, startTutorial);
+        }
+
+        // Loads the time tutorial.
+        public void LoadTimeTutorial(bool startTutorial = true)
+        {
+            // Create the pages list.
+            List<Page> pages = new List<Page>
+            {
+                // Load the pages.
+                new MST_Page("..."),
+            };
+
+            // Change the display image when certain pages are opened using callbacks.
+
+            // Sets the bool and loads the tutorial.
+            clearedTimeTutorial = true;
+            LoadTutorial(ref pages, startTutorial);
+        }
+
+        // Loads the length metric tutorial.
+        public void LoadLengthMetricTutorial(bool startTutorial = true)
+        {
+            // Create the pages list.
+            List<Page> pages = new List<Page>
+            {
+                // Load the pages.
+                new MST_Page("..."),
+            };
+
+            // Change the display image when certain pages are opened using callbacks.
+
+            // Sets the bool and loads the tutorial.
+            clearedLengthMetricTutorial = true;
+            LoadTutorial(ref pages, startTutorial);
+        }
+
+        // Loads the weight metric tutorial.
+        public void LoadWeightMetricTutorial(bool startTutorial = true)
+        {
+            // Create the pages list.
+            List<Page> pages = new List<Page>
+            {
+                // Load the pages.
+                new MST_Page("..."),
+            };
+
+            // Change the display image when certain pages are opened using callbacks.
+
+            // Sets the bool and loads the tutorial.
+            clearedWeightMetricTutorial = true;
+            LoadTutorial(ref pages, startTutorial);
+        }
+
+        // Loads the weight metric tutorial.
+        public void LoadCapacityTutorial(bool startTutorial = true)
+        {
+            // Create the pages list.
+            List<Page> pages = new List<Page>
+            {
+                // Load the pages.
+                new MST_Page("..."),
+            };
+
+            // Change the display image when certain pages are opened using callbacks.
+
+            // Sets the bool and loads the tutorial.
+            clearedCapcityTutorial = true;
+            LoadTutorial(ref pages, startTutorial);
+        }
+
 
 
         // This function is called when the MonoBehaviour will be destroyed.

@@ -29,13 +29,24 @@ namespace RM_MST
         public TutorialTextBox textBox;
 
 
-        [Header("Diagram/Images")]
+        [Header("Characters")]
         
-        // TODO: take this out.
 
         // The alpha 0 sprite. Used to hide the diagram if there's no image.
-        [Tooltip("Used to hide the text box diagram image.")]
+        [Tooltip("Used to mkae an empty character image.")]
         public Sprite alpha0Sprite;
+
+        // Partner A's sprite.
+        public Sprite partnerASprite;
+
+        // The border colour for partner A.
+        public Color partnerABorderColor = Color.blue;
+
+        // Partner B's sprite.
+        public Sprite partnerBSprite;
+
+        // The border colour for partner B.
+        public Color partnerBBorderColor = Color.red;
 
         // Constructor
         private TutorialUI()
@@ -252,38 +263,19 @@ namespace RM_MST
             tutorials.OnTutorialEnd();
         }
 
-        // TODO: replace diagram with table.
-        // // Diagram
-        // // Sets the diagram's visibility.
-        // public void SetDiagramVisibility(bool visible)
-        // {
-        //     textBoxDiagram.SetActive(visible);
-        // }
-        // 
-        // // Show the diagram.
-        // public void ShowDiagram()
-        // {
-        //     SetDiagramVisibility(true);
-        // }
-        // 
-        // // Hide the diagram.
-        // public void HideDiagram()
-        // {
-        //     SetDiagramVisibility(false);
-        // }
-        // 
-        // // Clears the diagram.
-        // public void ClearDiagram()
-        // {
-        //     // Clear out the sprite.
-        //     textBoxDiagramImage.sprite = alpha0Sprite;
-        // }
-
-        // DIAGRAM IMAGES
-        // Set diagram image by type.
-        public void SetDiagramImageByTutorialType(Tutorials.tutorialType tutorial)
+        // CHARACTERS
+        // Sets the character to partner A.
+        public void SetCharacterToPartnerA()
         {
-            // ...
+            textBox.SetCharacterImage(partnerASprite);
+            textBox.SetBorderColor(partnerABorderColor);
+        }
+
+        // Sets the character to partner B.
+        public void SetCharacterToPartnerB()
+        {
+            textBox.SetCharacterImage(partnerBSprite);
+            textBox.SetBorderColor(partnerBBorderColor);
         }
 
         // This function is called when the MonoBehaviour will be destroyed.
