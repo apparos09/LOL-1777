@@ -261,6 +261,17 @@ namespace RM_MST
 
             // The game is now running.
             runningGame = true;
+
+
+            // Tutorial check.
+            if(IsUsingTutorial())
+            {
+                // If the first stage tutorial has not been cleared, load it.
+                if(!tutorials.clearedFirstStageTutorial)
+                {
+                    tutorials.LoadFirstStageTutorial();
+                }
+            }
         }
 
         // Gets the instance.

@@ -154,7 +154,7 @@ namespace RM_MST
                 clearedTime = tutorials.clearedTimeTutorial;
                 clearedLengthMetric = tutorials.clearedLengthMetricTutorial;
                 clearedWeightMetric = tutorials.clearedWeightMetricTutorial;
-                clearedCapcity = tutorials.clearedCapcityTutorial;
+                clearedCapcity = tutorials.clearedCapacityTutorial;
             }
             else // Not being used, so enable all.
             {

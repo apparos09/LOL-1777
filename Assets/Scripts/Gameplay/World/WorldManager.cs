@@ -141,6 +141,25 @@ namespace RM_MST
                     gameCompleteEvent.CheckGameComplete();
             }
 
+            // If the tutorial is being used.
+            if(IsUsingTutorial())
+            {
+                // If the intro hasn't been cleared, play it.
+                if(!tutorials.clearedIntroTutorial)
+                {
+                    tutorials.LoadIntroTutorial();
+                }
+                else // Intro cleared.
+                {
+                    // The first win hasn't been cleared.
+                    if(!tutorials.clearedFirstWinTutorial)
+                    {
+                        // Load the first win tutorial.
+                        tutorials.LoadFirstWinTutorial();
+                    }
+                }
+            }
+
             // Loads the test tutorial.
             // tutorials.LoadTutorialTest();
         }

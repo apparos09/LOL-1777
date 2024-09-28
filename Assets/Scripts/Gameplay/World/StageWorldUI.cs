@@ -77,6 +77,9 @@ namespace RM_MST
             if(worldManager == null)
                 worldManager = WorldManager.Instance;
 
+            // The stage world UI has been opened.
+            OnStageWorldUIOpened();
+
             // TODO: play the button SFX for the stage UI?
             // // Plays the button SFX upon being activated.s
             // if (manager.worldAudio != null)
@@ -86,10 +89,10 @@ namespace RM_MST
 
         // TODO: add clear challenger option?
         // Sets the challenger.
-        public void SetStageWorld(StageWorld stageWorld, int index)
+        public void SetStageWorld(StageWorld newStageWorld, int index)
         {
             // Sets the stage and the index.
-            this.stageWorld = stageWorld;
+            stageWorld = newStageWorld;
             stageWorldIndex = index;
 
             // Updates the UI.
@@ -106,6 +109,7 @@ namespace RM_MST
             UpdateUI();
         }
 
+        // UI
         // Updates the UI.
         public void UpdateUI()
         {
@@ -148,6 +152,89 @@ namespace RM_MST
                 stageDescText.text = "-";
         }
 
+        // Called when the stage world UI has been opened.
+        public void OnStageWorldUIOpened()
+        {
+            // If the stage world is not equal to none.
+            if (stageWorld != null)
+            {
+                // If the tutorial is being used.
+                if(worldManager.IsUsingTutorial() && worldManager.tutorials != null)
+                {
+                    // Gets the tutorials object.
+                    Tutorials tutorials = worldManager.tutorials;
+
+                    // If there are multiple unit groups, try loading the mix stage tutorial.
+                    if(stageWorld.unitGroups.Count > 1)
+                    {
+                        // Loads the mix stage tutorial if it hasn't been used.
+                        if(!tutorials.clearedMixStageTutorial)
+                        {
+                            tutorials.LoadMixStageTutorial();
+                        }
+                    }
+                    else if(stageWorld.unitGroups.Count == 1)
+                    {
+                        // Gets the group.
+                        UnitsInfo.unitGroups group = stageWorld.unitGroups[0];
+
+                        // Checks the group to see what intro should be loaded.
+                        switch (group)
+                        {
+                            case UnitsInfo.unitGroups.lengthImperial:
+
+                                // Tutorial not cleared, load it.
+                                if (!tutorials.clearedLengthImperialTutorial)
+                                    tutorials.LoadLengthImperialTutorial();
+
+                                break;
+
+                            case UnitsInfo.unitGroups.weightImperial:
+
+                                // Tutorial not cleared, load it.
+                                if (!tutorials.clearedWeightImperialTutorial)
+                                    tutorials.LoadWeightImperialTutorial();
+
+                                break;
+
+                            case UnitsInfo.unitGroups.time:
+
+                                // Tutorial not cleared, load it.
+                                if (!tutorials.clearedTimeTutorial)
+                                    tutorials.LoadTimeTutorial();
+
+                                break;
+
+                            case UnitsInfo.unitGroups.lengthMetric:
+
+                                // Tutorial not cleared, load it.
+                                if (!tutorials.clearedLengthMetricTutorial)
+                                    tutorials.LoadLengthMetricTutorial();
+
+                                break;
+
+                            case UnitsInfo.unitGroups.weightMetric:
+
+                                // Tutorial not cleared, load it.
+                                if (!tutorials.clearedWeightImperialTutorial)
+                                    tutorials.LoadWeightImperialTutorial();
+
+                                break;
+
+                            case UnitsInfo.unitGroups.capacity:
+
+                                // Tutorial not cleared, load it.
+                                if (!tutorials.clearedCapacityTutorial)
+                                    tutorials.LoadCapacityTutorial();
+
+                                break;
+                        }
+                    }
+                }
+            }
+        }
+
+        // Start/Reject
         // Accepts the challenge.
         public void StartStage()
         {

@@ -130,9 +130,9 @@ MonoBehaviour:
   backgroundPanel: {fileID: 226835301491362644}
   textBox: {fileID: 7945077343697285619}
   alpha0Sprite: {fileID: 21300000, guid: 52605cba961dc09449dde4d4b7132c9a, type: 3}
-  partnerASprite: {fileID: 0}
+  partnerASprite: {fileID: 1162573658, guid: 51bd6a4f7ee9b834584ff39ea166068c, type: 3}
   partnerABorderColor: {r: 0, g: 0, b: 1, a: 1}
-  partnerBSprite: {fileID: 0}
+  partnerBSprite: {fileID: 1123979980, guid: a17f2ee993d3a9347b51c35e998f529a, type: 3}
   partnerBBorderColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1001 &8125119845263623605
 PrefabInstance:

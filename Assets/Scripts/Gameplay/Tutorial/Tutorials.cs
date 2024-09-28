@@ -12,7 +12,7 @@ namespace RM_MST
         public class TutorialsData
         {
             public bool clearedIntroTutorial;
-            public bool clearedStageTutorial;
+            public bool clearedFirstStageTutorial;
             public bool clearedFirstWinTutorial;
             public bool clearedMixStageTutorial;
 
@@ -22,7 +22,7 @@ namespace RM_MST
 
             public bool clearedLengthMetricTutorial;
             public bool clearedWeightMetricTutorial;
-            public bool clearedCapcityTutorial;
+            public bool clearedCapacityTutorial;
         }
 
         // The tutorial types.
@@ -49,9 +49,6 @@ namespace RM_MST
         // The tutorials UI.
         public TutorialUI tutorialsUI;
 
-        // The cleared tutorials.
-        public List<tutorialType> clearedTutorials = new List<tutorialType>();
-
         // // If 'true', the tutorials object constantly checks for starting tutorials.
         // [Tooltip("Constant check for tutorial start.")]
         // public bool constantTutorialStartCheck = true;
@@ -60,7 +57,7 @@ namespace RM_MST
         [Header("Tutorials")]
 
         public bool clearedIntroTutorial;
-        public bool clearedStageTutorial;
+        public bool clearedFirstStageTutorial;
         public bool clearedFirstWinTutorial;
         public bool clearedMixStageTutorial;
 
@@ -70,7 +67,7 @@ namespace RM_MST
 
         public bool clearedLengthMetricTutorial;
         public bool clearedWeightMetricTutorial;
-        public bool clearedCapcityTutorial;
+        public bool clearedCapacityTutorial;
 
         // Constructor
         private Tutorials()
@@ -257,94 +254,7 @@ namespace RM_MST
             // Ignore the current input for this frame in case the player is holding the space bar.
             // gameManager.player.IgnoreInputs(1);
         }
-
-
-
-        // CLEARED TUTORIAL
-        // Checks if the provided tutorial has been cleared.
-        public bool IsTutorialCleared(tutorialType tutorial)
-        {
-            return clearedTutorials.Contains(tutorial);
-        }
-
-        // Adds a cleared tutorial to the list.
-        public void AddClearedTutorial(tutorialType tutorial)
-        {
-            // If it's not in the list, add it
-            if (!clearedTutorials.Contains(tutorial))
-                clearedTutorials.Add(tutorial);
-        }
-
-        // Adds cleared tutorials to the list.
-        public void AddClearedTutorials(List<tutorialType> trlList, bool clearList)
-        {
-            // Clears the tutorial list.
-            if (clearList)
-                clearedTutorials.Clear();
-
-            // Adds all elements aside from duplicates.
-            foreach (tutorialType trl in trlList)
-            {
-                AddClearedTutorial(trl);
-            }
-        }
-
-        // Generates the cleared tutorials array.
-        public bool[] GenerateClearedTutorialsArray()
-        {
-            // Creates the array.
-            bool[] arr = new bool[TUTORIAL_TYPE_COUNT];
-
-            // Fill the array.
-            FillClearedTutorialsArray(ref arr);
-
-            // Returns the array.
-            return arr;
-        }
-
-        // Fills a bool array with cleared tutorials values. 
-        public void FillClearedTutorialsArray(ref bool[] arr)
-        {
-            // Goes through the cleared tutorials list
-            foreach (tutorialType trl in clearedTutorials)
-            {
-                // Convert the value.
-                int index = (int)trl;
-
-                // Index is valid.
-                if (index >= 0 && index < arr.Length)
-                {
-                    // This value has been cleared.
-                    arr[index] = true;
-                }
-
-            }
-        }
-
-        // Sets the cleared tutorials with the bool array.
-        // If the array is a different length than the total amount of types...
-        // The rest of the types are ignored.
-        public void AddClearedTutorials(bool[] arr, bool clearList)
-        {
-            // Clears the tutorial list.
-            if (clearList)
-                clearedTutorials.Clear();
-
-            // Goes through each index in the array.
-            for (int i = 0; i < arr.Length && i < TUTORIAL_TYPE_COUNT; i++)
-            {
-                // Converts the index.
-                tutorialType tutorial = (tutorialType)i;
-
-                // If the tutorial has been cleared, add it to the list.
-                if (arr[i] && !clearedTutorials.Contains(tutorial))
-                {
-                    // Adds the tutorial to the list.
-                    clearedTutorials.Add(tutorial);
-                }
-            }
-        }
-
+        
 
         // TUTORIAL DATA
         // Generates the tutorials data.
@@ -353,7 +263,7 @@ namespace RM_MST
             TutorialsData data = new TutorialsData();
             
             data.clearedIntroTutorial = clearedIntroTutorial;
-            data.clearedStageTutorial = clearedStageTutorial;
+            data.clearedFirstStageTutorial = clearedFirstStageTutorial;
 
             data.clearedFirstWinTutorial = clearedFirstWinTutorial;
             data.clearedMixStageTutorial = clearedMixStageTutorial;
@@ -364,7 +274,7 @@ namespace RM_MST
 
             data.clearedLengthMetricTutorial = clearedLengthMetricTutorial;
             data.clearedWeightMetricTutorial = clearedWeightMetricTutorial;
-            data.clearedCapcityTutorial = clearedCapcityTutorial;
+            data.clearedCapacityTutorial = clearedCapacityTutorial;
 
             return data;
         }
@@ -373,8 +283,7 @@ namespace RM_MST
         public void LoadTutorialsData(TutorialsData data)
         {
             clearedIntroTutorial = data.clearedIntroTutorial;
-            clearedStageTutorial = data.clearedStageTutorial;
-
+            clearedFirstStageTutorial = data.clearedFirstStageTutorial;
             clearedFirstWinTutorial = data.clearedFirstWinTutorial;
             clearedMixStageTutorial = data.clearedMixStageTutorial;
 
@@ -384,7 +293,7 @@ namespace RM_MST
 
             clearedLengthMetricTutorial = data.clearedLengthMetricTutorial;
             clearedWeightMetricTutorial = data.clearedWeightMetricTutorial;
-            clearedCapcityTutorial = data.clearedCapcityTutorial;
+            clearedCapacityTutorial = data.clearedCapacityTutorial;
         }
 
 
@@ -470,7 +379,7 @@ namespace RM_MST
         }
 
         // Loads the stage tutorial.
-        public void LoadStageTutorial(bool startTutorial = true)
+        public void LoadFirstStageTutorial(bool startTutorial = true)
         {
             // Create the pages list.
             List<Page> pages = new List<Page>
@@ -482,7 +391,7 @@ namespace RM_MST
             // Change the display image when certain pages are opened using callbacks.
 
             // Sets the bool and loads the tutorial.
-            clearedStageTutorial = true;
+            clearedFirstStageTutorial = true;
             LoadTutorial(ref pages, startTutorial);
         }
 
@@ -619,7 +528,7 @@ namespace RM_MST
             // Change the display image when certain pages are opened using callbacks.
 
             // Sets the bool and loads the tutorial.
-            clearedCapcityTutorial = true;
+            clearedCapacityTutorial = true;
             LoadTutorial(ref pages, startTutorial);
         }
 

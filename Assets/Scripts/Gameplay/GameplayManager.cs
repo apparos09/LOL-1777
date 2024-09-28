@@ -198,7 +198,21 @@ namespace RM_MST
         // Checks if the game is using the tutorial.
         public bool IsUsingTutorial()
         {
-            bool result = GameSettings.Instance.UseTutorial;
+            // The result.
+            bool result;
+            
+            // If the game settings is instantiated.
+            if(GameSettings.Instantiated)
+            {
+                result = GameSettings.Instance.UseTutorial;
+            }
+            else
+            {
+                // Not instantiated, so return false by default.
+                result = false;
+            }
+
+            
             return result;
         }
 
