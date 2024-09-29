@@ -294,6 +294,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6298003903392827934}
     m_Modifications:
+    - target: {fileID: 617510329050757780, guid: e772a70713fd94b4992a926f1f078201, type: 3}
+      propertyPath: key
+      value: kwd_tutorials
+      objectReference: {fileID: 0}
     - target: {fileID: 2608668500612464213, guid: e772a70713fd94b4992a926f1f078201, type: 3}
       propertyPath: m_Name
       value: Tutorials Toggle
@@ -555,6 +559,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3084248375539693439, guid: 7aef28e688567a14e8dc63071602c546, type: 3}
+      propertyPath: key
+      value: kwd_ttsVolume
+      objectReference: {fileID: 0}
     - target: {fileID: 5022413644115351020, guid: 7aef28e688567a14e8dc63071602c546, type: 3}
       propertyPath: m_text
       value: Text-to-Speech
@@ -600,6 +608,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6298003903392827934}
     m_Modifications:
+    - target: {fileID: 617510329050757780, guid: e772a70713fd94b4992a926f1f078201, type: 3}
+      propertyPath: key
+      value: kwd_textToSpeech
+      objectReference: {fileID: 0}
     - target: {fileID: 2608668500612464213, guid: e772a70713fd94b4992a926f1f078201, type: 3}
       propertyPath: m_Name
       value: TTS Toggle
@@ -1011,6 +1023,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3084248375539693439, guid: 7aef28e688567a14e8dc63071602c546, type: 3}
+      propertyPath: key
+      value: kwd_sfxVolume
+      objectReference: {fileID: 0}
     - target: {fileID: 5022413644115351020, guid: 7aef28e688567a14e8dc63071602c546, type: 3}
       propertyPath: m_text
       value: Sound Effects
@@ -1056,6 +1072,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6298003903392827934}
     m_Modifications:
+    - target: {fileID: 617510329050757780, guid: e772a70713fd94b4992a926f1f078201, type: 3}
+      propertyPath: key
+      value: kwd_mute
+      objectReference: {fileID: 0}
     - target: {fileID: 2608668500612464213, guid: e772a70713fd94b4992a926f1f078201, type: 3}
       propertyPath: m_Name
       value: Mute Toggle
@@ -1418,6 +1438,10 @@ PrefabInstance:
     - target: {fileID: 1164050666066541400, guid: 7aef28e688567a14e8dc63071602c546, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3084248375539693439, guid: 7aef28e688567a14e8dc63071602c546, type: 3}
+      propertyPath: key
+      value: kwd_bgmVolume
       objectReference: {fileID: 0}
     - target: {fileID: 5022413644115351020, guid: 7aef28e688567a14e8dc63071602c546, type: 3}
       propertyPath: m_text
