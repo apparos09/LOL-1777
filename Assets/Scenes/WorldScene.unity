@@ -550,18 +550,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
   tutorialsUI: {fileID: 0}
-  clearedTutorials: 
-  constantTutorialStartCheck: 1
-  introTutorial: 0
-  stageTutorial: 0
+  clearedIntroTutorial: 0
   clearedFirstStageTutorial: 0
-  mixStageTutorial: 0
-  clearedWeightImperial: 0
-  clearedLengthImperial: 0
-  clearedTime: 0
-  clearedLengthMetric: 0
-  clearedWeightMetric: 0
-  clearedCapcity: 0
+  clearedFirstWinTutorial: 0
+  clearedMixStageTutorial: 0
+  clearedLengthImperialTutorial: 0
+  clearedWeightImperialTutorial: 0
+  clearedTimeTutorial: 0
+  clearedLengthMetricTutorial: 0
+  clearedWeightMetricTutorial: 0
+  clearedCapacityTutorial: 0
 --- !u!4 &591710905
 Transform:
   m_ObjectHideFlags: 0
@@ -1252,7 +1250,7 @@ SpriteRenderer:
   m_SortingLayerID: -353722905
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f62d2b4b2fd771c42b6bc51efde786f8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c202173dbda0a6445aebf5a36fe97f71, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
