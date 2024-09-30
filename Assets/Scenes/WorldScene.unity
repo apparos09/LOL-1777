@@ -1204,7 +1204,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 8, y: 8, z: 1}
+  m_LocalScale: {x: 6.95, y: 6.95, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 641688685}
@@ -1757,13 +1757,25 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 0.2509804
       objectReference: {fileID: 0}
+    - target: {fileID: 3876997264726819337, guid: 4d9ebcf4b0604c64a8fa0eccc6f00006, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3876997264726819337, guid: 4d9ebcf4b0604c64a8fa0eccc6f00006, type: 3}
+      propertyPath: m_Color.g
+      value: 0.9888251
+      objectReference: {fileID: 0}
+    - target: {fileID: 3876997264726819337, guid: 4d9ebcf4b0604c64a8fa0eccc6f00006, type: 3}
+      propertyPath: m_Color.r
+      value: 0.87169814
+      objectReference: {fileID: 0}
     - target: {fileID: 6478128567876798137, guid: 4d9ebcf4b0604c64a8fa0eccc6f00006, type: 3}
       propertyPath: m_LocalScale.x
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6478128567876798137, guid: 4d9ebcf4b0604c64a8fa0eccc6f00006, type: 3}
       propertyPath: m_LocalScale.y
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6478128567876798137, guid: 4d9ebcf4b0604c64a8fa0eccc6f00006, type: 3}
       propertyPath: m_LocalPosition.x
