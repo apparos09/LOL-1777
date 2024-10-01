@@ -154,8 +154,12 @@ namespace RM_MST
                     // The first win hasn't been cleared.
                     if(!tutorials.clearedFirstWinTutorial)
                     {
-                        // Load the first win tutorial.
-                        tutorials.LoadFirstWinTutorial();
+                        // Only use this tutorial if a stage has been cleared.
+                        if(GetStagesClearedCount() > 0)
+                        {
+                            // Load the first win tutorial.
+                            tutorials.LoadFirstWinTutorial();
+                        }
                     }
                 }
             }
@@ -226,6 +230,25 @@ namespace RM_MST
             {
                 return -1;
             }
+        }
+
+        // Gets the number of stages that have been cleared.
+        public int GetStagesClearedCount()
+        {
+            int result = 0;
+
+            // Goes through all stages.
+            for(int i = 0; i < stages.Count; i++)
+            {
+                // If the stage is cleared, add to the result.
+                if (stages[i].IsStageCleared())
+                {
+                    result++;
+                }
+            }
+
+            // Return the result.
+            return result;
         }
 
         // Returns the game score.

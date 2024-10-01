@@ -173,10 +173,16 @@ namespace RM_MST
                 // The entry index.
                 int entryIndex = 0;
 
+                // Enables all the entries by default to make sure text is properly updated.
+                foreach(UnitsTableEntry unitsTableEntry in entries)
+                {
+                    unitsTableEntry.gameObject.SetActive(true);
+                }
+
                 // Goes through all the conversions and loads them in.
                 for(int i = 0; i < conversions.Count && i < entries.Count; i++)
                 {
-                    entries[i].gameObject.SetActive(true);
+                    // entries[i].gameObject.SetActive(true); // No longer needed.
                     entries[i].SetConversion(conversions[i]);
                     entryIndex++; // Add to the index.
                 }
@@ -184,7 +190,7 @@ namespace RM_MST
                 // While there are remaining entries, clear them out.
                 while(entryIndex < entries.Count)
                 {
-                    entries[entryIndex].gameObject.SetActive(true);
+                    // entries[entryIndex].gameObject.SetActive(true); // No longer needed.
                     entries[entryIndex].ClearText();
                     entries[entryIndex].gameObject.SetActive(false);
 

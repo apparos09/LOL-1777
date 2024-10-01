@@ -35,6 +35,9 @@ namespace RM_MST
         // The units info window.
         public UnitsInfoMenu unitsInfoMenu;
 
+        // The save button.
+        public Button saveButton;
+
         // The save window.
         public GameObject saveWindow;
 
@@ -177,6 +180,32 @@ namespace RM_MST
             base.CloseAllWindows();
         }
 
+        // SAVE BUTTON
+        // Checks if the save button is interactable.
+        public bool IsSaveButtonnteractable()
+        {
+            return saveButton.interactable;
+        }
+
+        // Sets the interactable for the save button.
+        public void SetSaveButtonInteractable(bool interactable)
+        {
+            saveButton.interactable = interactable;
+        }
+
+        // Make the save button interactable.
+        public void MakeSaveButtonInteractable()
+        {
+            SetSaveButtonInteractable(true);
+        }
+
+        // Make the save button non-interactable
+        public void MakeSaveButtonUninteractable()
+        {
+            SetSaveButtonInteractable(false);
+        }
+
+        // UNITS BUTTON
         // Returns the units info button interactable.
         public bool IsUnitsInfoButtonInteractable()
         {
@@ -195,7 +224,7 @@ namespace RM_MST
             SetUnitsInfoButtonInteractable(true);
         }
 
-        // Make the untis info button non-interactable
+        // Make the units info button non-interactable
         public void MakeUnitsInfoButtonUninteractable()
         {
             SetUnitsInfoButtonInteractable(false);
