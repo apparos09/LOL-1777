@@ -192,6 +192,10 @@ PrefabInstance:
       value: Capacity
       objectReference: {fileID: 0}
     - target: {fileID: 6622377654606349290, guid: db4b37199e3470e49a5c2ff2ef80e384, type: 3}
+      propertyPath: difficulty
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6622377654606349290, guid: db4b37199e3470e49a5c2ff2ef80e384, type: 3}
       propertyPath: stageDescKey
       value: unt_capacity_dsc
       objectReference: {fileID: 0}
@@ -276,6 +280,10 @@ PrefabInstance:
     - target: {fileID: 6622377654606349290, guid: db4b37199e3470e49a5c2ff2ef80e384, type: 3}
       propertyPath: stageName
       value: Weight (Imperial)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6622377654606349290, guid: db4b37199e3470e49a5c2ff2ef80e384, type: 3}
+      propertyPath: difficulty
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6622377654606349290, guid: db4b37199e3470e49a5c2ff2ef80e384, type: 3}
       propertyPath: stageDescKey
@@ -376,6 +384,10 @@ PrefabInstance:
       value: Length (Imperial)
       objectReference: {fileID: 0}
     - target: {fileID: 6622377654606349290, guid: db4b37199e3470e49a5c2ff2ef80e384, type: 3}
+      propertyPath: difficulty
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6622377654606349290, guid: db4b37199e3470e49a5c2ff2ef80e384, type: 3}
       propertyPath: stageDescKey
       value: unt_lengthImperial_dsc
       objectReference: {fileID: 0}
@@ -472,6 +484,10 @@ PrefabInstance:
     - target: {fileID: 6622377654606349290, guid: db4b37199e3470e49a5c2ff2ef80e384, type: 3}
       propertyPath: stageName
       value: Mix 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6622377654606349290, guid: db4b37199e3470e49a5c2ff2ef80e384, type: 3}
+      propertyPath: difficulty
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6622377654606349290, guid: db4b37199e3470e49a5c2ff2ef80e384, type: 3}
       propertyPath: stageDescKey
@@ -688,6 +704,10 @@ PrefabInstance:
       value: Time
       objectReference: {fileID: 0}
     - target: {fileID: 6622377654606349290, guid: db4b37199e3470e49a5c2ff2ef80e384, type: 3}
+      propertyPath: difficulty
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6622377654606349290, guid: db4b37199e3470e49a5c2ff2ef80e384, type: 3}
       propertyPath: stageDescKey
       value: unt_time_dsc
       objectReference: {fileID: 0}
@@ -780,6 +800,10 @@ PrefabInstance:
     - target: {fileID: 6622377654606349290, guid: db4b37199e3470e49a5c2ff2ef80e384, type: 3}
       propertyPath: stageName
       value: Weight (Metric)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6622377654606349290, guid: db4b37199e3470e49a5c2ff2ef80e384, type: 3}
+      propertyPath: difficulty
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6622377654606349290, guid: db4b37199e3470e49a5c2ff2ef80e384, type: 3}
       propertyPath: stageDescKey
@@ -1063,6 +1087,10 @@ PrefabInstance:
       value: Length (Metric)
       objectReference: {fileID: 0}
     - target: {fileID: 6622377654606349290, guid: db4b37199e3470e49a5c2ff2ef80e384, type: 3}
+      propertyPath: difficulty
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6622377654606349290, guid: db4b37199e3470e49a5c2ff2ef80e384, type: 3}
       propertyPath: stageDescKey
       value: unt_lengthMetric_dsc
       objectReference: {fileID: 0}
@@ -1336,6 +1364,10 @@ PrefabInstance:
     - target: {fileID: 6622377654606349290, guid: db4b37199e3470e49a5c2ff2ef80e384, type: 3}
       propertyPath: stageName
       value: Mix 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6622377654606349290, guid: db4b37199e3470e49a5c2ff2ef80e384, type: 3}
+      propertyPath: difficulty
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6622377654606349290, guid: db4b37199e3470e49a5c2ff2ef80e384, type: 3}
       propertyPath: stageDescKey
@@ -1695,6 +1727,10 @@ PrefabInstance:
     - target: {fileID: 6622377654606349290, guid: db4b37199e3470e49a5c2ff2ef80e384, type: 3}
       propertyPath: stageName
       value: Mix 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6622377654606349290, guid: db4b37199e3470e49a5c2ff2ef80e384, type: 3}
+      propertyPath: difficulty
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6622377654606349290, guid: db4b37199e3470e49a5c2ff2ef80e384, type: 3}
       propertyPath: stageDescKey

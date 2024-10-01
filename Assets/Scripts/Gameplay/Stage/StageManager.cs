@@ -43,6 +43,9 @@ namespace RM_MST
         // Adjusts the difficulty dynamically by the number of losses the player has.
         private bool dynamicDifficulty = true;
 
+        // If 'true', the game applies the difficulty changes.
+        private bool applyDifficultyChanges = true;
+
         // The total number of losses.
         public int losses = 0;
 
@@ -351,61 +354,72 @@ namespace RM_MST
             if(setBaseDifficulty)
                 baseDifficulty = difficulty;
 
+            // If the difficulty changes should be applied.
+            if(applyDifficultyChanges)
+            {
+                // Changes parameters based on the difficulty.
+                // TODO: implement.
+                switch (difficulty)
+                {
+                    default:
+                    case 1:
+                        meteorSpawnRate = 3.00F;
+                        meteorSpeedMax = 0.25F;
+                        pointsGoal = 500.0F;
+                        break;
 
-            // // Changes parameters based on the difficulty.
-            // // TODO: implement.
-            // switch(difficulty)
-            // {
-            //     default:
-            //     case 0:
-            //     case 1:
-            //         meteorSpawnRate = 1.0F;
-            //         meteorSpeedFactor = 1.0F;
-            //         break;
-            // 
-            //     case 2:
-            //         meteorSpawnRate = 1.0F;
-            //         meteorSpeedFactor = 1.0F;
-            //         break;
-            //     
-            //     case 3:
-            //         meteorSpawnRate = 1.0F;
-            //         meteorSpeedFactor = 1.0F;
-            //         break;
-            //     
-            //     case 4:
-            //         meteorSpawnRate = 1.0F;
-            //         meteorSpeedFactor = 1.0F;
-            //         break;
-            //     
-            //     case 5:
-            //         meteorSpawnRate = 1.0F;
-            //         meteorSpeedFactor = 1.0F;
-            //         break;
-            //     
-            //     case 6:
-            //         meteorSpawnRate = 1.0F;
-            //         meteorSpeedFactor = 1.0F;
-            //         break;
-            // 
-            //     case 7:
-            //         meteorSpawnRate = 1.0F;
-            //         meteorSpeedFactor = 1.0F;
-            //         break;
-            // 
-            //     case 8:
-            //         meteorSpawnRate = 1.0F;
-            //         meteorSpeedFactor = 1.0F;
-            //         break;
-            // 
-            //     case 9:
-            //         meteorSpawnRate = 1.0F;
-            //         meteorSpeedFactor = 1.0F;
-            //         break;
-            // 
-            // }
+                    case 2:
+                        meteorSpawnRate = 3.00F;
+                        meteorSpeedMax = 0.25F;
+                        pointsGoal = 500.0F;
+                        break;
 
-            // TODO: activate/deactive certain buttons.
+                    case 3:
+                        meteorSpawnRate = 3.00F;
+                        meteorSpeedMax = 0.50F;
+                        pointsGoal = 600.0F;
+                        break;
+
+                    case 4:
+                        meteorSpawnRate = 3.00F;
+                        meteorSpeedMax = 0.50F;
+                        pointsGoal = 600.0F;
+                        break;
+
+                    case 5:
+                        meteorSpawnRate = 2.75F;
+                        meteorSpeedMax = 0.75F;
+                        pointsGoal = 700.0F;
+                        break;
+
+                    case 6:
+                        meteorSpawnRate = 2.75F;
+                        meteorSpeedMax = 0.75F;
+                        pointsGoal = 700.0F;
+                        break;
+
+                    case 7:
+                        meteorSpawnRate = 2.75F;
+                        meteorSpeedMax = 1.00F;
+                        pointsGoal = 800.0F;
+                        break;
+
+                    case 8:
+                        meteorSpawnRate = 2.50F;
+                        meteorSpeedMax = 1.00F;
+                        pointsGoal = 800.0F;
+                        break;
+
+                    case 9:
+                        meteorSpawnRate = 2.50F;
+                        meteorSpeedMax = 1.00F;
+                        pointsGoal = 900.0F;
+                        break;
+                }
+
+                // Sets the unit buttons active/inactive by difficulty.
+                stageUI.SetUnitButtonsActiveByDifficulty(difficulty);
+            }
         }
 
         // Returns the base difficulty.

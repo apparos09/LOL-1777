@@ -18,7 +18,7 @@ namespace RM_MST
         public new Rigidbody2D rigidbody;
 
         // The speed of the laser shot.
-        public float maxSpeed = 50.0F;
+        public float maxSpeed = 70.0F;
 
         // The movement direction.
         public Vector3 moveDirec = Vector3.up;

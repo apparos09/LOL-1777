@@ -62,7 +62,7 @@ namespace RM_MST
         public UnitsButton unitsButton6;
 
         // Randomizes the unit button values if set to 'true'.
-        private bool randomizeUnitButtons = false;
+        private bool randomizeUnitButtons = true;
 
         [Header("End Windows")]
 
@@ -471,7 +471,59 @@ namespace RM_MST
             SetUnitButtonsInteractable(false);
         }
 
+        // Sets the unit buttons active by difficulty.
+        public void SetUnitButtonsActiveByDifficulty(int difficulty)
+        {
+            // Goes by the difficulty.
+            switch(difficulty)
+            {
+                // Easy - 3 Buttons
+                case 1:
+                case 2:
+                    unitsButton0.gameObject.SetActive(false);
+                    unitsButton1.gameObject.SetActive(false);
+                    unitsButton2.gameObject.SetActive(true);
+                    unitsButton3.gameObject.SetActive(true);
+                    unitsButton4.gameObject.SetActive(true);
+                    unitsButton5.gameObject.SetActive(false);
+                    unitsButton6.gameObject.SetActive(false);
+                    break;
+                    
+                    // Medium - 5 Buttons
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                    unitsButton0.gameObject.SetActive(false);
+                    unitsButton1.gameObject.SetActive(true);
+                    unitsButton2.gameObject.SetActive(true);
+                    unitsButton3.gameObject.SetActive(true);
+                    unitsButton4.gameObject.SetActive(true);
+                    unitsButton5.gameObject.SetActive(true);
+                    unitsButton6.gameObject.SetActive(false);
+                    break;
+                    
+                    // Hard - All Buttons
+                default:
+                case 7:
+                case 8:
+                case 9:
+                    unitsButton0.gameObject.SetActive(true);
+                    unitsButton1.gameObject.SetActive(true);
+                    unitsButton2.gameObject.SetActive(true);
+                    unitsButton3.gameObject.SetActive(true);
+                    unitsButton4.gameObject.SetActive(true);
+                    unitsButton5.gameObject.SetActive(true);
+                    unitsButton6.gameObject.SetActive(true);
+                    break;
+            }
+        }
 
+        // Sets the unit butotns active by difficulty.
+        public void SetUnitButtonsActiveByDifficulty()
+        {
+            SetUnitButtonsActiveByDifficulty(stageManager.GetDifficulty());
+        }
 
         // SPEED
         // Sets the game to fast.
