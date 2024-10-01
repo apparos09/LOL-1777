@@ -61,7 +61,8 @@ namespace RM_MST
                 gameInfo = GameplayInfo.Instance;
 
             // Creates or gets the units info.
-            unitsInfo = UnitsInfo.Instance;
+            if(unitsInfo == null)
+                unitsInfo = UnitsInfo.Instance;
 
             // // Creates/gets the tutorial instance if it will be used.
             // if(IsUsingTutorial())

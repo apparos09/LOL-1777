@@ -74,6 +74,10 @@ namespace RM_MST
             // Gets the units info instance.
             if (unitsInfo == null)
                 unitsInfo = UnitsInfo.Instance;
+
+            // Loads the entires.
+            LoadEntries();
+            loadEntriesOnEnable = true;
         }
 
         // Called on the first update frame.
@@ -81,13 +85,13 @@ namespace RM_MST
         {
             calledLateStart = true;
 
-            // I didn't need to it this way (it was done to try and fix something else)...
-            // But I'm leaving it.
+            // Originally entries were loaded here, but that caused the placeholder text to be visible for a frame.
+            // So the function calls have been moved.
 
             // Loads the entries, and sets it to do this on enable.
             // OnEnable is triggered before start.
-            LoadEntries();
-            loadEntriesOnEnable = true;
+            // LoadEntries();
+            // loadEntriesOnEnable = true;
         }
 
         // This function is called when the object becomes enabled and active.
@@ -285,6 +289,8 @@ namespace RM_MST
             {
                 // The LOL Manager
                 LOLManager lolManager = LOLManager.Instance;
+
+                // TODO: read the group name instead of the group description.
 
                 // If there is a description key, read it.
                 if (entry.groupDescKey != "")

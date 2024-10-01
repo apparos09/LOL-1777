@@ -123,6 +123,9 @@
     "kwd_restart": "Restart",
     "kwd_speed": "Speed",
 
+    "kwd_stageClear": "Stage Clear",
+    "kwd_stageWon": "Stage Won",
+    "kwd_stageLost": "Stage Lost",
 
 
     "trl_intro_00": "Welcome to the Meteor Strike Team (MST)! Our job is to track down meteors and destroy them before they hit the Earth's surface! But to destroy meteors, we need to solve measurement conversions. I'm Reteor...",

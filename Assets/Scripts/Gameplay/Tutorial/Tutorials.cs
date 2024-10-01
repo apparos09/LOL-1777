@@ -382,6 +382,13 @@ namespace RM_MST
             pages[2].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerA);
             pages[3].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerB);
 
+            // If the world manager UI is instantiated.
+            if(WorldUI.Instantiated)
+            {
+                // Disable the units info button since there's nothing to display yet.
+                WorldUI worldUI = WorldUI.Instance;
+                pages[0].OnPageOpenedAddCallback(worldUI.MakeUnitsInfoButtonUninteractable);
+            }
 
             // Sets the bool and loads the tutorial.
             clearedIntroTutorial = true;
@@ -487,6 +494,17 @@ namespace RM_MST
             // Change the display image when certain pages are opened using callbacks.
             pages[0].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerB);
             pages[0].OnPageOpenedAddCallback(tutorialsUI.textBox.ShowCharacterImage);
+
+
+            // If the world manager UI is instantiated.
+            if (WorldUI.Instantiated)
+            {
+                // This is the first stage of the game.
+                // As such, it makes sure to turn on the units button now that this tutorial has been given.
+                WorldUI worldUI = WorldUI.Instance;
+                pages[0].OnPageClosedAddCallback(worldUI.MakeUnitsInfoButtonInteractable);
+            }
+
 
             // Sets the bool and loads the tutorial.
             clearedWeightImperialTutorial = true;

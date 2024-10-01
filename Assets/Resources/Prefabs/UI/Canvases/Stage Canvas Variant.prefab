@@ -411,6 +411,8 @@ GameObject:
   - component: {fileID: 7215464248886282852}
   - component: {fileID: 4270215812896263522}
   - component: {fileID: 3959088139489594367}
+  - component: {fileID: 4418491823994164756}
+  - component: {fileID: 751506129704486576}
   m_Layer: 5
   m_Name: Window Title Text (TMP)
   m_TagString: Untagged
@@ -534,6 +536,35 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &4418491823994164756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2979344536415619258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71c0ce6c4d3f1f44c87c3ecdb6ce87fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 3959088139489594367}
+  key: kwd_stageClear
+  markIfFailed: 1
+--- !u!114 &751506129704486576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2979344536415619258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb2f0677134bae84fb90268ee8288578, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: kwd_stageClear
+  speakTextOnStart: 1
 --- !u!1 &3000488045017305694
 GameObject:
   m_ObjectHideFlags: 0
@@ -1701,6 +1732,8 @@ GameObject:
   - component: {fileID: 3740594108043612832}
   - component: {fileID: 4588328875216400648}
   - component: {fileID: 3959912128662922677}
+  - component: {fileID: 1450502960833848528}
+  - component: {fileID: 9074904042273271313}
   m_Layer: 5
   m_Name: Window Title Text (TMP)
   m_TagString: Untagged
@@ -1826,6 +1859,35 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1450502960833848528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8025519410033895407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71c0ce6c4d3f1f44c87c3ecdb6ce87fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 3959912128662922677}
+  key: kwd_stageLost
+  markIfFailed: 1
+--- !u!114 &9074904042273271313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8025519410033895407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb2f0677134bae84fb90268ee8288578, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: kwd_stageLost
+  speakTextOnStart: 1
 --- !u!1 &8190402491427072212
 GameObject:
   m_ObjectHideFlags: 0
