@@ -50,7 +50,7 @@ namespace RM_MST
         private Color partnerBBorderColor = Color.red;
 
         // Changes the border color.
-        private bool changeBorderColor = true;
+        private bool changeBorderColor = false;
 
         // Constructor
         private TutorialUI()
