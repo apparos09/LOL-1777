@@ -502,7 +502,8 @@ namespace RM_MST
         // Death Start
         public void OnDeathAnimationStart()
         {
-            // ...
+            // Reset the meteor's velocity again to make sure the explosion moves from the meteor as little as possible.
+            ResetVelocity();
         }
 
         // Death End
