@@ -91,8 +91,8 @@ namespace RM_MST
                 saveText.text = string.Empty;
             }
 
-            // Hide the stage world UI.
-            HideStageWorldUI(true);
+            // Open the units info window. This is done so that the units info menu gets initialized.
+            OpenWindow(unitsInfoMenu.gameObject);   
         }
 
         // The late start function.
@@ -100,7 +100,11 @@ namespace RM_MST
         {
             base.LateStart();
 
-            // ...
+            // Closes all the windows.
+            CloseAllWindows();
+
+            // Hide the stage world UI.
+            HideStageWorldUI(true);
         }
 
         // Gets the instance.

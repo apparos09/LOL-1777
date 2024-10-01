@@ -77,6 +77,10 @@ namespace RM_MST
             if(worldManager == null)
                 worldManager = WorldManager.Instance;
 
+            // Sets the world UI.
+            if (worldUI == null)
+                worldUI = WorldUI.Instance;
+
             // The stage world UI has been opened.
             OnStageWorldUIOpened();
 

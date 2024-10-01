@@ -477,7 +477,7 @@ namespace RM_MST
             pages[0].OnPageOpenedAddCallback(tutorialsUI.textBox.ShowCharacterImage);
 
             // Sets the bool and loads the tutorial.
-            clearedMixStageTutorial = true;
+            clearedLengthImperialTutorial = true;
             LoadTutorial(ref pages, startTutorial);
         }
 
