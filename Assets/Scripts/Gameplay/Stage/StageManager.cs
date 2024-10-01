@@ -1321,8 +1321,8 @@ namespace RM_MST
         {
             base.Update();
 
-            // If the game is running.
-            if(runningGame && !IsGamePaused())
+            // If the game is running, the game isn't paused, and a tutorial isn't running.
+            if(runningGame && !IsGamePaused() && !IsTutorialRunning())
             {
                 // Add to the stage timer and updates the time text.
                 // TODO: maybe don't update every frame?

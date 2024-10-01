@@ -368,10 +368,20 @@ namespace RM_MST
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new MST_Page("..."),
+                new MST_Page("Welcome to the Meteor Strike Team (MST)! Our job is to track down meteors and destroy them before they hit the Earth's surface! But to destroy meteors, we need to solve measurement conversions. I'm Reteor...", "trl_intro_00"),
+                new MST_Page("And I'm Astrite! We'll be your partners and guides for this game. This is the world area, which is where you can change the settings, save your game, view the units info, and select a stage. The game automatically saves after every completed stage, but manual saving is done via the 'save button'.", "trl_intro_01"),
+                new MST_Page("When a stage is selected, the stage's measurement units are displayed. Once introduced to a unit group, its conversion information is added to the units info screen, which is accessed with the 'units info button'. Notably, you'll only be asked to convert from larger units to smaller units.", "trl_intro_02"),
+                new MST_Page("With all that explained, please select the available stage to start destroying meteors!", "trl_intro_03")
             };
 
             // Change the display image when certain pages are opened using callbacks.
+            pages[0].OnPageOpenedAddCallback(tutorialsUI.textBox.ShowCharacterImage);
+
+            pages[0].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerA);
+            pages[1].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerB);
+            pages[2].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerA);
+            pages[3].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerB);
+
 
             // Sets the bool and loads the tutorial.
             clearedIntroTutorial = true;
@@ -385,10 +395,20 @@ namespace RM_MST
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new MST_Page("..."),
+                new MST_Page("Welcome to the stage area! This is where you'll shoot down meteors with unit conversions! The meteor closest to the Earth's surface is automatically targeted, so all you must do is shoot at it by solving the conversion equation. If the meteor is successfully destroyed, you'll get points, which will fill up the points bar to the left. Once the points bar is filled, the stage is complete!", "trl_firstStage_00"),
+                new MST_Page("To answer a conversion question, you must select one of the unit buttons at the bottom of the screen. A unit button shows its output, and the math operation that was used to get it. If you select the correct unit button, the meteor is destroyed. If you choose the wrong unit button, the meteor is knocked back, but not destroyed.", "trl_firstStage_01"),
+                new MST_Page("If a meteor hits one of the barriers, the meteor will be destroyed, but the barrier will take damage. If a barrier takes too much damage, it will disappear, which will leave an opening for the meteors to reach the Earth's surface. The surface's health is shown on the left, next to the points bar. If the Earth's surface takes too much damage, the stage is lost.", "trl_firstStage_02"),
+                new MST_Page("On the right are the settings button, the world button, the units table, and the speed button. The units table shows all the conversions for the current unit group you're dealing with, and the speed button allows you to change the game's speed. With all that said, time to start the stage!", "trl_firstStage_03"),
             };
 
             // Change the display image when certain pages are opened using callbacks.
+            pages[0].OnPageOpenedAddCallback(tutorialsUI.textBox.ShowCharacterImage);
+
+            pages[0].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerA);
+            pages[1].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerA);
+            pages[2].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerB);
+            pages[3].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerB);
+
 
             // Sets the bool and loads the tutorial.
             clearedFirstStageTutorial = true;
@@ -402,10 +422,12 @@ namespace RM_MST
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new MST_Page("..."),
+                new MST_Page("You've completed the first stage, which has unlocked even more stages! The more stages you beat, the more stages you'll unlock. Of the stages available, you can clear them in any order, but you must beat all the stages to complete the game.", "trl_firstWin_00"),
             };
 
             // Change the display image when certain pages are opened using callbacks.
+            pages[0].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerA);
+            pages[0].OnPageOpenedAddCallback(tutorialsUI.textBox.ShowCharacterImage);
 
             // Sets the bool and loads the tutorial.
             clearedFirstWinTutorial = true;
@@ -419,10 +441,13 @@ namespace RM_MST
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new MST_Page("..."),
+                new MST_Page("This is a mix stage. Mix stages have you deal with multiple unit groups at once. You'll only deal with a mix stage after you've experienced all relevant unit groups.", "trl_mixStage_00"),
             };
 
             // Change the display image when certain pages are opened using callbacks.
+            pages[0].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerB);
+            pages[0].OnPageOpenedAddCallback(tutorialsUI.textBox.ShowCharacterImage);
+
 
             // Sets the bool and loads the tutorial.
             clearedMixStageTutorial = true;
@@ -437,7 +462,7 @@ namespace RM_MST
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new MST_Page("..."),
+                new MST_Page("These units are used to measure how long something is. 1 yard (yd) is equal to 3 feet (ft), and 1 foot (ft) is equal to 12 inches (in).", "trl_lengthImperial_00"),
             };
 
             // Change the display image when certain pages are opened using callbacks.
@@ -456,7 +481,7 @@ namespace RM_MST
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new MST_Page("..."),
+                new MST_Page("These units are used to measure how heavy someone or something is. 1 pound (lb) is equal to 16 ounces (oz).", "trl_weightImperial_00"),
             };
 
             // Change the display image when certain pages are opened using callbacks.
@@ -475,7 +500,7 @@ namespace RM_MST
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new MST_Page("..."),
+                new MST_Page("These units are used to measure lengths of time. 1 hour (hrs) is equal to 60 minutes (mins), and 1 minute (mins) is equal to 60 seconds (secs).", "trl_time_00"),
             };
 
             // Change the display image when certain pages are opened using callbacks.
@@ -494,7 +519,7 @@ namespace RM_MST
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new MST_Page("..."),
+                new MST_Page("These units are used to measure how long something is. 1 kilometer (km) is equal to 1000 meters (m), 1 meter is equal to 100 centimeters (cm) and 1000 millimeters (mm), 1 decimeter (dm) is equal to 10 centimeters (cm), and 1 centimeter (cm) is equal to 10 millimeters (mm).", "trl_lengthMetric_00"),
             };
 
             // Change the display image when certain pages are opened using callbacks.
@@ -513,7 +538,7 @@ namespace RM_MST
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new MST_Page("..."),
+                new MST_Page("These units are used to measure how heavy someone or something is. 1 kilogram (kg) is equal to 1000 grams (g), and 1 gram (g) is equal to 1000 milligrams (mg).", "trl_weightMetric_00"),
             };
 
             // Change the display image when certain pages are opened using callbacks.
@@ -532,7 +557,7 @@ namespace RM_MST
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new MST_Page("..."),
+                new MST_Page("These units are used to measure the volume of a container. 1 liter (l) is equal to 1000 millilitres (mL).", "trl_capacity_00"),
             };
 
             // Change the display image when certain pages are opened using callbacks.
