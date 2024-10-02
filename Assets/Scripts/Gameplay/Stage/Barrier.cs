@@ -17,6 +17,7 @@ namespace RM_MST
         public new Collider2D collider;
 
         // The health of the surface.
+        // TOOD: make private when not testing.
         public float health = 1.0F;
 
         // The maximum health of the surface.
@@ -66,17 +67,35 @@ namespace RM_MST
             SetHealthToMax();
         }
 
+        // Gets the health.
+        public float GetHealth()
+        {
+            return health;
+        }
+
+        // Sets the health.
+        public virtual void SetHealth(float newHealth)
+        {
+            health = Mathf.Clamp(newHealth, 0, maxHealth);
+            UpdateBarrierColor();
+        }
+
+        // Checks if a barrier is dead.
+        public bool IsDead()
+        {
+            return health <= 0;
+        }
+
         // Returns 'true' if health is at max.
         public bool IsHealthAtMax()
         {
             return health >= maxHealth;
-        }
+        }    
 
         // Set the health to the max.
         public void SetHealthToMax()
         {
-            health = maxHealth;
-            UpdateBarrierColor();
+            SetHealth(maxHealth);
         }
 
         // Applies damage to the surface.
@@ -123,6 +142,10 @@ namespace RM_MST
         // Restores the barrier.
         public void RestoreBarrier()
         {
+            // Checks if the barrier was dead.
+            bool wasDead = IsDead();
+
+            // Make the game object active.
             gameObject.SetActive(true);
 
             // Sets the health to max.
@@ -131,7 +154,11 @@ namespace RM_MST
             // If animations should be used.
             if (useAnimations)
             {
-                PlayBarrierReviveAnimation();
+                // If the barrier was dead, play the revive animation.
+                if(wasDead)
+                {
+                    PlayBarrierReviveAnimation();
+                }
             }
         }
 

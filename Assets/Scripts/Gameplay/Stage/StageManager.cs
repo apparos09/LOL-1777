@@ -74,6 +74,9 @@ namespace RM_MST
         // The barriers for the stage.
         public List<Barrier> stageBarriers;
 
+        // If 'true', a barrier is restored on a phase change.
+        private bool restoreBarrierOnPhaseChange = true;
+
         // The timer for the stage.
         public float stageTime = 0.0F;
 
@@ -524,6 +527,55 @@ namespace RM_MST
                     meteorSpawnRate = 0;
                 }
             }
+
+            // If a barrier should be restored on a phase change.
+            if(restoreBarrierOnPhaseChange)
+            {
+                // Lists of dead barriers and damaged barriers.
+                List<Barrier> deadBarriers = new List<Barrier>();
+                List<Barrier> damagedBarriers = new List<Barrier>();
+
+                // Goes through all barriers.
+                for (int i = 0; i < stageBarriers.Count; i++)
+                {
+                    // Barrier does not exist.
+                    if (stageBarriers[i] == null)
+                        continue;
+
+                    // If the barrier is dead, add it to the dead list.
+                    if (stageBarriers[i].IsDead())
+                    {
+                        deadBarriers.Add(stageBarriers[i]);
+                    }
+                    // The barrier is damaged, so add it to the list.
+                    else if (!stageBarriers[i].IsHealthAtMax())
+                    {
+                        damagedBarriers.Add(stageBarriers[i]);
+                    }
+                }
+
+                // The barrier to be restored.
+                Barrier barrier = null;
+
+                // Gets a random barrier - prioritize dead barriers for restoration.
+                // Dead
+                if(deadBarriers.Count > 0)
+                {
+                    barrier = deadBarriers[Random.Range(0, deadBarriers.Count)];
+                }
+                // Damage
+                else if(damagedBarriers.Count > 0)
+                {
+                    barrier = damagedBarriers[Random.Range(0, damagedBarriers.Count)];
+                }
+
+                // If the barrier exists, restore it.
+                if(barrier != null)
+                {
+                    barrier.RestoreBarrier();
+                }
+            }
+
 
             // The phase has changed.
             stageUI.OnPhaseChanged();
