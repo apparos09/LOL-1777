@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEditor.Search.Providers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using util;
@@ -37,6 +38,15 @@ namespace RM_MST
 
         // Set to 'true' when the late start function has been called.
         private bool calledLateStart = false;
+
+        [Header("Scenes")]
+
+        // The title scene.
+        public string titleScene = "TitleScene";
+
+        // The results scene.
+        public string resultsScene = "ResultsScene";
+
 
         // NOTE: GameInfo and Tutorial aren't listed here because they're singletons.
         // Having them be in the scene from the start caused issues, so I'm not going to have them.
@@ -85,17 +95,7 @@ namespace RM_MST
                     // I don't think I need to remove them.
                     gameUI.AddTutorialTextBoxCallbacks(this);
                 }
-            }
-
-            // The loading screen canvas exists.
-            // TODO: add these callbacks on enable and on disable.
-            if (LoadingScreenCanvas.Instance.IsUsingLoadingScreen())
-            {
-                LoadingScreenCanvas lsc = LoadingScreenCanvas.Instance;
-                lsc.loadingScreen.OnAnimationStartAddCallback(OnLoadingAnimationStart);
-                lsc.loadingScreen.OnAnimationEndAddCallback(OnLoadingAnimationEnd);
-            }
-            
+            }        
         }
         
         // LateStart is called on the first update frame of this object.
@@ -316,22 +316,21 @@ namespace RM_MST
 
         }
 
-        // ANIMATION
-        // On Loading Animation Start
-        public virtual void OnLoadingAnimationStart()
-        {
-            // ...
-        }
-
-        // On Loading Animation End
-        public virtual void OnLoadingAnimationEnd()
-        {
-            // NOTE: be careful pausing/unpausing the game here in case it messes with something else.
-            // ...
-        }
-
-
         // SCENE
+        // Loads the provided scene.
+        protected void LoadScene(string sceneName)
+        {
+            // If the loading screen should be used.
+            if (LoadingScreenCanvas.IsInstantiatedAndUsingLoadingScreen())
+            {
+                LoadingScreenCanvas.Instance.LoadScene(sceneName);
+            }
+            else
+            {
+                SceneManager.LoadScene(sceneName);
+            }
+        }
+
         // Go to the title scene.
         public virtual void ToTitle()
         {
@@ -345,8 +344,7 @@ namespace RM_MST
         // Load the title scene.
         public virtual void LoadTitleScene()
         {
-            // TODO: add loading screen.
-            SceneManager.LoadScene("TitleScene");
+            LoadScene(titleScene);
         }
 
 
@@ -363,7 +361,7 @@ namespace RM_MST
         // Loads the results scene.
         public virtual void LoadResultsScene()
         {
-            SceneManager.LoadScene("ResultsScene");
+            LoadScene(resultsScene);
         }
 
         // Update is called once per frame
@@ -391,14 +389,6 @@ namespace RM_MST
 
             // Return the time scale to normal.
             Time.timeScale = 1.0F;
-
-            // If the loading screen has been instantiated.
-            if(LoadingScreenCanvas.IsInstantiatedAndUsingLoadingScreen())
-            {
-                LoadingScreenCanvas lsc = LoadingScreenCanvas.Instance;
-                lsc.loadingScreen.OnAnimationStartRemoveCallback(OnLoadingAnimationStart);
-                lsc.loadingScreen.OnAnimationEndRemoveCallback(OnLoadingAnimationEnd);
-            }
         }
     }
 }

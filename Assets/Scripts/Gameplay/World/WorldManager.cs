@@ -449,16 +449,7 @@ namespace RM_MST
         {
             UnpauseGame();
 
-            // Checks if the loading screen canvas has been instantiated.
-            if (LoadingScreenCanvas.IsInstantiatedAndUsingLoadingScreen())
-            {
-                LoadingScreenCanvas.Instance.LoadScene(stageScene);
-            }
-            else
-            {
-                // Load normally.
-                SceneManager.LoadScene(stageScene);
-            }
+            LoadScene(stageScene);
         }
 
 

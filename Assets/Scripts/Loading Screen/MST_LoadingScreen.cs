@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using util;
 
 namespace RM_MST
 {
@@ -13,7 +12,7 @@ namespace RM_MST
         public string nextScene = "";
 
         // The loader for loading scenes asynchronously.
-        public util.AsyncSceneLoader asyncLoader;
+        public MST_AsyncSceneLoader asyncLoader;
 
         // Loads the next scene on Loading Screen - Opening End.
         [Tooltip("If true, the next scene is loaded at the end of the opening animation.")]
@@ -65,9 +64,9 @@ namespace RM_MST
                 animator = GetComponent<Animator>();
 
             // Gets the asynchronous loader.
-            if(asyncLoader)
+            if(asyncLoader == null)
             {
-                asyncLoader = GetComponent<AsyncSceneLoader>();
+                asyncLoader = GetComponent<MST_AsyncSceneLoader>();
             }
         }
 

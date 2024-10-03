@@ -22,6 +22,9 @@ namespace RM_MST
         // The results audio.
         public ResultsAudio resultsAudio;
 
+        // The title scene.
+        public string titleScene = "TitleScene";
+
         // Constructor
         private ResultsManager()
         {
@@ -112,7 +115,15 @@ namespace RM_MST
         // Goes to the title scene.
         public void ToTitleScene()
         {
-            SceneManager.LoadScene("TitleScene");
+            // If the loading screen is being used.
+            if (LoadingScreenCanvas.Instance.IsUsingLoadingScreen())
+            {
+                LoadingScreenCanvas.Instance.LoadScene(titleScene);
+            }
+            else
+            {
+                SceneManager.LoadScene(titleScene);
+            }
         }
 
         // Call this function to complete the game. This is called by the "finish" button.

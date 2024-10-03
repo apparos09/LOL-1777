@@ -492,7 +492,7 @@ GameObject:
   - component: {fileID: 357804458661800269}
   - component: {fileID: 3434878828912392057}
   - component: {fileID: 7134705901801467288}
-  - component: {fileID: 4101866005096257424}
+  - component: {fileID: 5162197408750532006}
   - component: {fileID: 5500649044147079374}
   m_Layer: 5
   m_Name: MST_Loading Screen
@@ -558,13 +558,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextScene: 
-  asyncLoader: {fileID: 4101866005096257424}
+  asyncLoader: {fileID: 5162197408750532006}
   loadNextScene: 1
   loadSceneAsync: 1
   animator: {fileID: 3434878828912392057}
   openingAnim: Loading Screen - Opening Animation
   closingAnim: Loading Screen - Closing Animation
---- !u!114 &4101866005096257424
+--- !u!114 &5162197408750532006
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -573,9 +573,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7392789578004995945}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55c05405dbccd6f4ba82d528b4e4b895, type: 3}
+  m_Script: {fileID: 11500000, guid: 8baab02551bba0a4c83fa4433d08506a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadingScreen: {fileID: 7134705901801467288}
 --- !u!114 &5500649044147079374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -589,7 +590,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 1102933184866531577}
-  loader: {fileID: 4101866005096257424}
+  loader: {fileID: 5162197408750532006}
 --- !u!1001 &5531809046898897953
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -15,13 +15,34 @@ namespace util
         public AsyncSceneLoader loader;
 
         // Start is called before the first frame update
-        void Start()
+        protected virtual void Start()
         {
             // ...
         }
 
+        // Returns 'true' if the slider is at its max value.
+        public bool IsSliderAtMaxValue()
+        {
+            // Checks if the slider exists for the value to be checked.
+            if(slider != null)
+            {
+                return slider.value == slider.maxValue;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        // Called when the slider has reached its max value.
+        public virtual void OnSliderReachedMaxValue()
+        {
+            // ...
+        }
+
+
         // Update is called once per frame
-        void Update()
+        protected virtual void Update()
         {
             // Checks if the loader is loading.
             if (loader.IsLoading)
@@ -30,6 +51,12 @@ namespace util
                 if(slider != null)
                 {
                     slider.value = Mathf.Lerp(slider.minValue, slider.maxValue, loader.GetProgressLoading());
+                    
+                    // If the slider is at max, call the appropriate function.
+                    if(IsSliderAtMaxValue())
+                    {
+                        OnSliderReachedMaxValue();
+                    }
                 }
             }
         }

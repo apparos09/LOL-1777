@@ -1360,18 +1360,7 @@ namespace RM_MST
         {
             UnpauseGame();
 
-            
-            // Checks if the loading screen canvas has been instantiated and loading should be used.
-            if (LoadingScreenCanvas.IsInstantiatedAndUsingLoadingScreen())
-            {
-                LoadingScreenCanvas.Instance.LoadScene(worldScene);
-            }
-            else
-            {
-                // Load normally.
-                SceneManager.LoadScene(worldScene);
-            }
-            
+            LoadScene(worldScene);
         }
 
         // Called to run the game mechanics.

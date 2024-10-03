@@ -59,6 +59,48 @@ namespace util
             return result;
         }
 
+        // Returns 'true' if the progress is complete.
+        public bool IsProgressComplete()
+        {
+            return GetProgress() == 1.0F;
+        }
+
+        // Called when the progress is complete.
+        public virtual void OnProgressComplete()
+        {
+            // ...
+        }
+
+        // Returns 'true' if the progress loading is complete.
+        public bool IsProgressLoadingComplete()
+        {
+            return GetProgressLoading() == 1.0F;
+        }
+
+        // Called when the progress loading is complete.
+        public virtual void OnProgressLoadingComplete()
+        {
+            // ...
+        }
+
+        // Returns 'true' if the progress activation is complete.
+        public bool IsProgressActivationComplete()
+        {
+            return GetProgressActivation() == 1.0F;
+        }
+
+        // Called when the progress activation is complete.
+        public virtual void OnProgressActivationComplete()
+        {
+            // ...
+        }
+
+        // Called when the load scene async function is complete.
+        public virtual void OnLoadSceneAsyncComplete()
+        {
+            // ...
+        }
+
         // Public function to call for scene loading.
         public void LoadScene(string sceneName)
         {
@@ -97,6 +139,25 @@ namespace util
                 // Activation Phase: (0.9, 1.0]
                 progress = operation.progress;
 
+
+                // Progress is complete.
+                if(IsProgressComplete())
+                {
+                    OnProgressComplete();
+                }
+
+                // Progress loading is complete.
+                if(IsProgressLoadingComplete())
+                {
+                    OnProgressLoadingComplete();
+                }
+
+                // Progress activation is complete.
+                if(IsProgressActivationComplete())
+                {
+                    OnProgressActivationComplete();
+                }
+
                 // Tells the program to stall the operation and return controls back to Unity.
                 yield return null;
             }
@@ -107,6 +168,9 @@ namespace util
 
             // Set the coroutine to null to show that it's finished.
             coroutine = null;
+
+            // The async scene loading is finished.
+            OnLoadSceneAsyncComplete();
         }
 
 

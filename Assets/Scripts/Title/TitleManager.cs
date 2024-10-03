@@ -173,7 +173,7 @@ namespace RM_MST
         // Starts the game (general function for moving to the GameScene).
         public void StartGame()
         {
-            // If loading is being used.
+            // If the loading screen is being used.
             if (LoadingScreenCanvas.Instance.IsUsingLoadingScreen())
             {
                 LoadingScreenCanvas.Instance.LoadScene(startScene);
