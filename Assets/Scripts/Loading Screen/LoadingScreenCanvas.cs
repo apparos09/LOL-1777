@@ -152,6 +152,12 @@ namespace RM_MST
             LoadScene();
         }
 
+        // Returns 'true' if the animation is playing.
+        public bool IsAnimationPlaying()
+        {
+            return loadingScreen.IsAnimationPlaying();
+        }
+
         // This function is called when the MonoBehaviour will be destroyed.
         private void OnDestroy()
         {

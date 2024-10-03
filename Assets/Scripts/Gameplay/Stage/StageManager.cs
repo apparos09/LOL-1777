@@ -281,12 +281,6 @@ namespace RM_MST
                     tutorials.LoadFirstStageTutorial();
                 }
             }
-
-            // If the loading screen has been instantiated.
-            if(LoadingScreenCanvas.IsInstantiatedAndUsingLoadingScreen())
-            {
-                meteorSpawnTimer += 0.5F; // Add extra time to account for the loading transition.
-            }
             
         }
 
@@ -1399,8 +1393,22 @@ namespace RM_MST
         {
             base.Update();
 
+            // Checks if a loading animation is playing.
+            bool loadingAnimPlaying = false;
+
+            // Checks if the loading screen is being used. If it is, then the loading aniamtion might be playing.
+            if(LoadingScreenCanvas.IsInstantiatedAndUsingLoadingScreen())
+            {
+                // Gets the instance.
+                LoadingScreenCanvas lsc = LoadingScreenCanvas.Instance;
+                
+                // If the loading screen is beings shown, mark as true.
+                loadingAnimPlaying = lsc.IsAnimationPlaying();
+            }
+
+
             // If the game is running, the game isn't paused, and a tutorial isn't running.
-            if(runningGame && !IsGamePaused() && !IsTutorialRunning())
+            if(runningGame && !IsGamePaused() && !IsTutorialRunning() && !loadingAnimPlaying)
             {
                 // Add to the stage timer and updates the time text.
                 // TODO: maybe don't update every frame?

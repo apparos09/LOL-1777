@@ -76,6 +76,16 @@ namespace RM_MST
             // ...
         }
 
+        // Returns 'true' if the async loader is loading.
+        public bool IsLoading
+        {
+            get
+            {
+                return asyncLoader.IsLoading;
+            }
+            
+        }
+
         // CALLBACKS
         // Adds a callback for when an animation starts.
         public void OnAnimationStartAddCallback(LoadingCallback callback)
