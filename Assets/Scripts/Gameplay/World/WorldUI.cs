@@ -154,7 +154,8 @@ namespace RM_MST
             {
                 gameSettingsUI.gameObject,
                 unitsInfoMenu.gameObject,
-                saveWindow
+                saveWindow.gameObject,
+                stageWorldUI.gameObject,
             };
 
             // Only checks the settings window here.

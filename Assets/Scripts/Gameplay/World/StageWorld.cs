@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Rendering;
+using UnityEngine.EventSystems;
 
 namespace RM_MST
 {
@@ -194,13 +195,19 @@ namespace RM_MST
             if (worldManager == null)
                 worldManager = WorldManager.Instance;
 
-            // Show the challenger prompt if no window is open, and if the tutorial text box isn't open.
-            if(!worldManager.worldUI.IsWindowOpen() && !worldManager.worldUI.IsTutorialTextBoxOpen())
+            // Checks if the ray is blocked.
+            bool rayBlocked = EventSystem.current.IsPointerOverGameObject();
+
+            // If the ray is not blocked, check for collision.
+            if(!rayBlocked)
             {
-                // Shows the challenge UI.
-                ShowStageWorldUI();
+                // Show the challenger prompt if no window is open, and if the tutorial text box isn't open.
+                if (!worldManager.worldUI.IsWindowOpen() && !worldManager.worldUI.IsTutorialTextBoxOpen())
+                {
+                    // Shows the challenge UI.
+                    ShowStageWorldUI();
+                }
             }
-            
         }
 
         // Returns 'true' if the stage is available.
