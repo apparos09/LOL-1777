@@ -1816,8 +1816,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 890cd615e947b8c46b08621df3e2edbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameSettings: {fileID: 0}
-  lolManager: {fileID: 0}
 --- !u!114 &1373771070
 MonoBehaviour:
   m_ObjectHideFlags: 0
