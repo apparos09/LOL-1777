@@ -545,7 +545,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1164050666066541400, guid: 7aef28e688567a14e8dc63071602c546, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: -60
       objectReference: {fileID: 0}
     - target: {fileID: 1164050666066541400, guid: 7aef28e688567a14e8dc63071602c546, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1425,7 +1425,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1164050666066541400, guid: 7aef28e688567a14e8dc63071602c546, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 50
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 1164050666066541400, guid: 7aef28e688567a14e8dc63071602c546, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

@@ -22,6 +22,8 @@
 
     "kwd_back": "Back",
 
+    "mnu_instructions_dsc": "This game has you destroy meteors by answering unit conversion questions correctly. To interact with game elements use either the mouse or touch controls. You select stages in the world by clicking on/touching them, and you answer conversion questions by selecting one of the unit buttons.",
+
     "kwd_volume": "Volume",
     "kwd_bgmVolume": "Background Music (BGM) Volume",
     "kwd_sfxVolume": "Sound Effect (SFX) Volume",
