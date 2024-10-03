@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -279,6 +280,30 @@ namespace RM_MST
                 {
                     tutorials.LoadFirstStageTutorial();
                 }
+            }
+
+            // If the loading screen is being used.
+            if (UsingLoadingScreen())
+            {
+                // // Checks if data was loaded from stage start.
+                // bool loadedFromStageStart = false;
+                // 
+                // // If the data was valid, that means the stage was loaded from stage start.
+                // if(GameplayInfo.Instantiated)
+                // {
+                //     loadedFromStageStart = GameplayInfo.Instance.stageStartInfo.valid;
+                // }
+                // 
+                // // If loaded from stage start.
+                // if (loadedFromStageStart)
+                // {
+                //     // Play the closing animation.
+                //     stageUI.PlayLoadingScreenClosingAnimation();
+                // }
+
+                // Now plays no matter what.
+                meteorSpawnTimer += 0.5F; // Add extra time to account for the loading transition.
+                stageUI.PlayLoadingScreenClosingAnimation();
             }
         }
 

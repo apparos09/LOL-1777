@@ -15,9 +15,6 @@ namespace RM_MST
         // The loading screen.
         public MST_LoadingScreen loadingScreen;
 
-        // If the loading screen should be used.
-        private bool useLoadingScreen = false; // No loading screen.
-
         // Gets set to 'true' when late start is called.
         protected bool calledLateStart = false;
 
@@ -33,6 +30,12 @@ namespace RM_MST
 
         // The tutorial UI.
         public TutorialUI tutorialUI;
+
+        // Awake is called when the script is being loaded
+        protected virtual void Awake()
+        {
+            // ...
+        }
 
         // Start is called before the first frame update
         protected virtual void Start()
@@ -55,9 +58,10 @@ namespace RM_MST
             calledLateStart = true;
 
             // Plays the closing animation.
-            if (useLoadingScreen)
+            if (IsUsingLoadingScreen())
             {
-                PlayLoadingScreenClosingAnimation();
+                // Now handled by individual functions.
+                // PlayLoadingScreenClosingAnimation();
             }
             else
             {
@@ -213,9 +217,9 @@ namespace RM_MST
 
         // LOADING //
         // Returns 'true' if the loading screen is used.
-        public bool UsingLoadingScreen()
+        public bool IsUsingLoadingScreen()
         {
-            return useLoadingScreen && loadingScreen != null;
+            return GameSettings.Instance.IsUsingLoadingScreen() && loadingScreen != null;
         }
 
         // Plays the loading screen start animation.

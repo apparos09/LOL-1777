@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -167,6 +166,20 @@ namespace RM_MST
 
             // Loads the test tutorial.
             // tutorials.LoadTutorialTest();
+
+            // If the loading screen is being used.
+            if(UsingLoadingScreen())
+            {
+                // // If information was loaded from game info, that means the game is...
+                // // Coming back from the stage scene.
+                // if(loadedFromGameInfo)
+                // {
+                //     worldUI.PlayLoadingScreenClosingAnimation();
+                // }
+
+                // Now plays no matter what.
+                worldUI.PlayLoadingScreenClosingAnimation();
+            }
         }
 
         // Gets the instance.

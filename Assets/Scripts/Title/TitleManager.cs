@@ -173,8 +173,18 @@ namespace RM_MST
         // Starts the game (general function for moving to the GameScene).
         public void StartGame()
         {
-            // TODO: add transition.
-            SceneManager.LoadScene(startScene);
+            // If loading is being used.
+            if (titleUI.IsUsingLoadingScreen())
+            {
+                // Set the scene and play the animation.
+                titleUI.loadingScreen.nextScene = startScene;
+                titleUI.loadingScreen.PlayLoadingScreenOpeningAnimation();
+            }
+            else
+            {
+                // TODO: add transition.
+                SceneManager.LoadScene(startScene);
+            }
         }
 
         // Starts a new game.

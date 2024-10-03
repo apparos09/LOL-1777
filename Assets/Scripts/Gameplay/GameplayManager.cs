@@ -317,7 +317,7 @@ namespace RM_MST
         // Returns 'true' if the loading screen is being used.
         public bool UsingLoadingScreen()
         {
-            return gameUI.UsingLoadingScreen();
+            return gameUI.IsUsingLoadingScreen();
 
         }
 

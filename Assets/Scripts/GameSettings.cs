@@ -21,6 +21,9 @@ namespace RM_MST
         // If this is the lol build, set it to 'true'. If it's the promo build, set this to false.
         public const bool IS_LOL_BUILD = true;
 
+        // If the loading screen should be used, this is true.
+        private bool useLoadingScreen = true;
+
         [Header("Settings")]
 
         // TODO: enable by default for submission build.
@@ -256,6 +259,12 @@ namespace RM_MST
                 ttsVolume = Mathf.Clamp01(value);
                 AdjustTtsAudioLevels();
             }
+        }
+
+        // Returns 'true' if the loading screen should be used.
+        public bool IsUsingLoadingScreen()
+        {
+            return useLoadingScreen;
         }
 
         // adjusts the audio source that's supplied through this function.

@@ -84,8 +84,10 @@ namespace RM_MST
         }
 
         // Awake is called when the script is being loaded
-        protected virtual void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+
             // If the instance hasn't been set, set it to this object.
             if (instance == null)
             {

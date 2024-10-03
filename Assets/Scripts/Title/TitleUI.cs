@@ -12,7 +12,11 @@ namespace RM_MST
     // The UI for the title scene.
     public class TitleUI : MonoBehaviour
     {
+        // The manager.
         public TitleManager manager;
+
+        // The loading screen.
+        public MST_LoadingScreen loadingScreen;
 
         [Header("Buttons")]
 
@@ -72,6 +76,12 @@ namespace RM_MST
 
             // Opens the title window at the start.
             OpenWindow(titleWindow);
+
+            // If the loading screen is not being used, turn it off.
+            if(!IsUsingLoadingScreen())
+            {
+                loadingScreen.gameObject.SetActive(false);
+            }
         }
 
         // Starts the new game.
@@ -84,6 +94,12 @@ namespace RM_MST
         public void ContinueGame()
         {
             manager.ContinueGame();
+        }
+
+        // If the loading screen is being used.
+        public bool IsUsingLoadingScreen()
+        {
+            return GameSettings.Instance.IsUsingLoadingScreen() && loadingScreen != null;
         }
 
 
@@ -110,7 +126,6 @@ namespace RM_MST
             settingsWindow.gameObject.SetActive(false);
             licensesWindow.gameObject.SetActive(false);
         }
-
 
         // Other
         // Quits the game.
