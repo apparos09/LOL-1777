@@ -12,9 +12,6 @@ namespace RM_MST
         // The gameplay manager.
         public GameplayManager gameManager;
 
-        // The loading screen.
-        public MST_LoadingScreen loadingScreen;
-
         // Gets set to 'true' when late start is called.
         protected bool calledLateStart = false;
 
@@ -56,19 +53,6 @@ namespace RM_MST
         protected virtual void LateStart()
         {
             calledLateStart = true;
-
-            // Plays the closing animation.
-            if (IsUsingLoadingScreen())
-            {
-                // Now handled by individual functions.
-                // PlayLoadingScreenClosingAnimation();
-            }
-            else
-            {
-                // Turn off the loading screen if it won't be used.
-                if (loadingScreen != null)
-                    loadingScreen.gameObject.SetActive(false);
-            }
         }
 
         // TUTORIAL //
@@ -213,27 +197,6 @@ namespace RM_MST
                 if(tutorialUI.backgroundPanel != null)
                     tutorialUI.backgroundPanel.gameObject.SetActive(true);
             }
-        }
-
-        // LOADING //
-        // Returns 'true' if the loading screen is used.
-        public bool IsUsingLoadingScreen()
-        {
-            return GameSettings.Instance.IsUsingLoadingScreen() && loadingScreen != null;
-        }
-
-        // Plays the loading screen start animation.
-        public void PlayLoadingScreenOpeningAnimation()
-        {
-            loadingScreen.gameObject.SetActive(true);
-            loadingScreen.PlayLoadingScreenOpeningAnimation();
-        }
-        // Plays the loading screen end animation.
-
-        public void PlayLoadingScreenClosingAnimation()
-        {
-            loadingScreen.gameObject.SetActive(true);
-            loadingScreen.PlayLoadingScreenClosingAnimation();
         }
 
         // SCENES

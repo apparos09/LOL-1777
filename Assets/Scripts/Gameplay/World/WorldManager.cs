@@ -166,20 +166,6 @@ namespace RM_MST
 
             // Loads the test tutorial.
             // tutorials.LoadTutorialTest();
-
-            // If the loading screen is being used.
-            if(UsingLoadingScreen())
-            {
-                // // If information was loaded from game info, that means the game is...
-                // // Coming back from the stage scene.
-                // if(loadedFromGameInfo)
-                // {
-                //     worldUI.PlayLoadingScreenClosingAnimation();
-                // }
-
-                // Now plays no matter what.
-                worldUI.PlayLoadingScreenClosingAnimation();
-            }
         }
 
         // Gets the instance.
@@ -463,14 +449,14 @@ namespace RM_MST
         {
             UnpauseGame();
 
-            // Checks if the loading screen is being used.
-            if (UsingLoadingScreen())
+            // Checks if the loading screen canvas has been instantiated.
+            if (LoadingScreenCanvas.IsInstantiatedAndUsingLoadingScreen())
             {
-                worldUI.loadingScreen.nextScene = stageScene;
-                worldUI.PlayLoadingScreenOpeningAnimation();
+                LoadingScreenCanvas.Instance.LoadScene(stageScene);
             }
             else
             {
+                // Load normally.
                 SceneManager.LoadScene(stageScene);
             }
         }

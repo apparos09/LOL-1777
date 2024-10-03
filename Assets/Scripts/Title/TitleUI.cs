@@ -15,9 +15,6 @@ namespace RM_MST
         // The manager.
         public TitleManager manager;
 
-        // The loading screen.
-        public MST_LoadingScreen loadingScreen;
-
         [Header("Buttons")]
 
         // The new game button and continue button.
@@ -76,12 +73,6 @@ namespace RM_MST
 
             // Opens the title window at the start.
             OpenWindow(titleWindow);
-
-            // If the loading screen is not being used, turn it off.
-            if(!IsUsingLoadingScreen())
-            {
-                loadingScreen.gameObject.SetActive(false);
-            }
         }
 
         // Starts the new game.
@@ -94,12 +85,6 @@ namespace RM_MST
         public void ContinueGame()
         {
             manager.ContinueGame();
-        }
-
-        // If the loading screen is being used.
-        public bool IsUsingLoadingScreen()
-        {
-            return GameSettings.Instance.IsUsingLoadingScreen() && loadingScreen != null;
         }
 
 
