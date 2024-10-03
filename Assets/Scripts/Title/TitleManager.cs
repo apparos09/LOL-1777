@@ -174,15 +174,12 @@ namespace RM_MST
         public void StartGame()
         {
             // If loading is being used.
-            if (titleUI.IsUsingLoadingScreen())
+            if (LoadingScreenCanvas.Instance.IsUsingLoadingScreen())
             {
-                // Set the scene and play the animation.
-                titleUI.loadingScreen.nextScene = startScene;
-                titleUI.loadingScreen.PlayLoadingScreenOpeningAnimation();
+                LoadingScreenCanvas.Instance.LoadScene(startScene);
             }
             else
             {
-                // TODO: add transition.
                 SceneManager.LoadScene(startScene);
             }
         }

@@ -282,29 +282,12 @@ namespace RM_MST
                 }
             }
 
-            // If the loading screen is being used.
-            if (UsingLoadingScreen())
+            // If the loading screen has been instantiated.
+            if(LoadingScreenCanvas.IsInstantiatedAndUsingLoadingScreen())
             {
-                // // Checks if data was loaded from stage start.
-                // bool loadedFromStageStart = false;
-                // 
-                // // If the data was valid, that means the stage was loaded from stage start.
-                // if(GameplayInfo.Instantiated)
-                // {
-                //     loadedFromStageStart = GameplayInfo.Instance.stageStartInfo.valid;
-                // }
-                // 
-                // // If loaded from stage start.
-                // if (loadedFromStageStart)
-                // {
-                //     // Play the closing animation.
-                //     stageUI.PlayLoadingScreenClosingAnimation();
-                // }
-
-                // Now plays no matter what.
                 meteorSpawnTimer += 0.5F; // Add extra time to account for the loading transition.
-                stageUI.PlayLoadingScreenClosingAnimation();
             }
+            
         }
 
         // Gets the instance.
@@ -1377,16 +1360,18 @@ namespace RM_MST
         {
             UnpauseGame();
 
-            // Checks if the loading screen is being used.
-            if(UsingLoadingScreen())
+            
+            // Checks if the loading screen canvas has been instantiated and loading should be used.
+            if (LoadingScreenCanvas.IsInstantiatedAndUsingLoadingScreen())
             {
-                stageUI.loadingScreen.nextScene = worldScene;
-                stageUI.PlayLoadingScreenOpeningAnimation();
+                LoadingScreenCanvas.Instance.LoadScene(worldScene);
             }
             else
             {
+                // Load normally.
                 SceneManager.LoadScene(worldScene);
             }
+            
         }
 
         // Called to run the game mechanics.

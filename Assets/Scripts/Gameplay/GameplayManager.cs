@@ -78,13 +78,6 @@ namespace RM_MST
             // If the gameUI is set, check for the tutorial text box.
             if (gameUI != null)
             {
-                // Add callbacks for the loading animation.
-                if(gameUI.loadingScreen != null)
-                {
-                    gameUI.loadingScreen.OnAnimationStartAddCallback(OnLoadingAnimationStart);
-                    gameUI.loadingScreen.OnAnimationEndAddCallback(OnLoadingAnimationEnd);
-                }
-
                 // If the tutorial text box is set...
                 if (gameUI.tutorialUI.textBox != null)
                 {
@@ -93,6 +86,16 @@ namespace RM_MST
                     gameUI.AddTutorialTextBoxCallbacks(this);
                 }
             }
+
+            // The loading screen canvas exists.
+            // TODO: add these callbacks on enable and on disable.
+            if (LoadingScreenCanvas.Instance.IsUsingLoadingScreen())
+            {
+                LoadingScreenCanvas lsc = LoadingScreenCanvas.Instance;
+                lsc.loadingScreen.OnAnimationStartAddCallback(OnLoadingAnimationStart);
+                lsc.loadingScreen.OnAnimationEndAddCallback(OnLoadingAnimationEnd);
+            }
+            
         }
         
         // LateStart is called on the first update frame of this object.
@@ -314,13 +317,6 @@ namespace RM_MST
         }
 
         // ANIMATION
-        // Returns 'true' if the loading screen is being used.
-        public bool UsingLoadingScreen()
-        {
-            return gameUI.IsUsingLoadingScreen();
-
-        }
-
         // On Loading Animation Start
         public virtual void OnLoadingAnimationStart()
         {
@@ -395,6 +391,14 @@ namespace RM_MST
 
             // Return the time scale to normal.
             Time.timeScale = 1.0F;
+
+            // If the loading screen has been instantiated.
+            if(LoadingScreenCanvas.IsInstantiatedAndUsingLoadingScreen())
+            {
+                LoadingScreenCanvas lsc = LoadingScreenCanvas.Instance;
+                lsc.loadingScreen.OnAnimationStartRemoveCallback(OnLoadingAnimationStart);
+                lsc.loadingScreen.OnAnimationEndRemoveCallback(OnLoadingAnimationEnd);
+            }
         }
     }
 }
