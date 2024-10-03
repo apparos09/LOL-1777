@@ -12,6 +12,12 @@ namespace RM_MST
         // The gameplay manager.
         public GameplayManager gameManager;
 
+        // The loading screen.
+        public MST_LoadingScreen loadingScreen;
+
+        // If the loading screen should be used.
+        private bool useLoadingScreen = false; // No loading screen.
+
         // Gets set to 'true' when late start is called.
         protected bool calledLateStart = false;
 
@@ -47,6 +53,18 @@ namespace RM_MST
         protected virtual void LateStart()
         {
             calledLateStart = true;
+
+            // Plays the closing animation.
+            if (useLoadingScreen)
+            {
+                PlayLoadingScreenClosingAnimation();
+            }
+            else
+            {
+                // Turn off the loading screen if it won't be used.
+                if (loadingScreen != null)
+                    loadingScreen.gameObject.SetActive(false);
+            }
         }
 
         // TUTORIAL //
@@ -193,10 +211,38 @@ namespace RM_MST
             }
         }
 
-        // Goes to the title scene.
-        public virtual void ToTitleScene()
+        // LOADING //
+        // Returns 'true' if the loading screen is used.
+        public bool UsingLoadingScreen()
         {
-            gameManager.ToTitleScene();
+            return useLoadingScreen && loadingScreen != null;
+        }
+
+        // Plays the loading screen start animation.
+        public void PlayLoadingScreenOpeningAnimation()
+        {
+            loadingScreen.gameObject.SetActive(true);
+            loadingScreen.PlayLoadingScreenOpeningAnimation();
+        }
+        // Plays the loading screen end animation.
+
+        public void PlayLoadingScreenClosingAnimation()
+        {
+            loadingScreen.gameObject.SetActive(true);
+            loadingScreen.PlayLoadingScreenClosingAnimation();
+        }
+
+        // SCENES
+        // Goes to the title scene.
+        public virtual void ToTitle()
+        {
+            gameManager.ToTitle();
+        }
+
+        // Goes to the title scene.
+        public virtual void ToResults()
+        {
+            gameManager.ToResults();
         }
 
         // Update is called once per frame

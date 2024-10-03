@@ -78,6 +78,13 @@ namespace RM_MST
             // If the gameUI is set, check for the tutorial text box.
             if (gameUI != null)
             {
+                // Add callbacks for the loading animation.
+                if(gameUI.loadingScreen != null)
+                {
+                    gameUI.loadingScreen.OnAnimationStartAddCallback(OnLoadingAnimationStart);
+                    gameUI.loadingScreen.OnAnimationEndAddCallback(OnLoadingAnimationEnd);
+                }
+
                 // If the tutorial text box is set...
                 if (gameUI.tutorialUI.textBox != null)
                 {
@@ -264,7 +271,7 @@ namespace RM_MST
         // Called when the game is completed.
         public virtual void OnGameComplete()
         {
-            ToResultsScene();
+            ToResults();
         }
 
         // SCENES //
@@ -305,24 +312,61 @@ namespace RM_MST
             }
 
         }
-        
+
+        // ANIMATION
+        // Returns 'true' if the loading screen is being used.
+        public bool UsingLoadingScreen()
+        {
+            return gameUI.UsingLoadingScreen();
+
+        }
+
+        // On Loading Animation Start
+        public virtual void OnLoadingAnimationStart()
+        {
+            // ...
+        }
+
+        // On Loading Animation End
+        public virtual void OnLoadingAnimationEnd()
+        {
+            // NOTE: be careful pausing/unpausing the game here in case it messes with something else.
+            // ...
+        }
+
+
+        // SCENE
         // Go to the title scene.
-        public virtual void ToTitleScene()
+        public virtual void ToTitle()
         {
             // Called when the game is ending (to title or results).
             OnGameEnd();
 
+            // Loads the title scene.
+            LoadTitleScene();
+        }
+
+        // Load the title scene.
+        public virtual void LoadTitleScene()
+        {
             // TODO: add loading screen.
             SceneManager.LoadScene("TitleScene");
         }
 
-        // Go to the resultsscene.
-        public virtual void ToResultsScene()
+
+        // Go to the results scene.
+        public virtual void ToResults()
         {
             // Called when the game is ending (to title or results).
             OnGameEnd();
 
             // TODO: add loading screen.
+            LoadResultsScene();
+        }
+
+        // Loads the results scene.
+        public virtual void LoadResultsScene()
+        {
             SceneManager.LoadScene("ResultsScene");
         }
 

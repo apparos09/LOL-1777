@@ -265,9 +265,11 @@ namespace RM_MST
             stageUI.CloseAllWindows();
             stageUI.ClearConversionAndUnitsButtons();
 
+            // Time for the game to begin.
+            meteorSpawnTimer = 2.5F; // Starting wait time.
+            
             // The game is now running.
             runningGame = true;
-
 
             // Tutorial check.
             if(IsUsingTutorial())
@@ -1340,15 +1342,26 @@ namespace RM_MST
         {
             // Saves the stage info and goes into the world.
             gameInfo.SaveStageInfo(this);
-            ToWorldScene();
+            LoadWorldScene();
 
             // Play loading animation?
         }
 
         // Goes to the world scene.
-        public void ToWorldScene()
+        public void LoadWorldScene()
         {
-            SceneManager.LoadScene(worldScene);
+            UnpauseGame();
+
+            // Checks if the loading screen is being used.
+            if(UsingLoadingScreen())
+            {
+                stageUI.loadingScreen.nextScene = worldScene;
+                stageUI.PlayLoadingScreenOpeningAnimation();
+            }
+            else
+            {
+                SceneManager.LoadScene(worldScene);
+            }
         }
 
         // Called to run the game mechanics.

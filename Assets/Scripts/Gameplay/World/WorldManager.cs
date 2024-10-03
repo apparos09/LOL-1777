@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -448,13 +449,23 @@ namespace RM_MST
         public void LoadStageScene()
         {
             UnpauseGame();
-            SceneManager.LoadScene(stageScene);
+
+            // Checks if the loading screen is being used.
+            if (UsingLoadingScreen())
+            {
+                worldUI.loadingScreen.nextScene = stageScene;
+                worldUI.PlayLoadingScreenOpeningAnimation();
+            }
+            else
+            {
+                SceneManager.LoadScene(stageScene);
+            }
         }
 
 
         // GAME END
         // When going to the results scene, create the results data.
-        public override void ToResultsScene()
+        public override void ToResults()
         {
             // The results data and object.
             GameObject resultsObject = new GameObject("Results Data");
@@ -475,7 +486,7 @@ namespace RM_MST
             }
 
             // Go to the results scene.
-            base.ToResultsScene();
+            base.ToResults();
         }
 
         // Update is called once per frame
