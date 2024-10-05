@@ -139,6 +139,9 @@ namespace RM_MST
         // The meteor spawn rate.
         public float meteorSpawnRate = 1.0F;
 
+        // If 'true', the first meteor spawn is delayed when the stage starts.
+        private bool delayFirstMeteorSpawn = true;
+
         // The timer used for spawning meteors.
         private float meteorSpawnTimer = 0.0F;
 
@@ -266,8 +269,11 @@ namespace RM_MST
             stageUI.CloseAllWindows();
             stageUI.ClearConversionAndUnitsButtons();
 
-            // Time for the game to begin.
-            meteorSpawnTimer = 2.5F; // Starting wait time.
+            // Delays the first meteor to give time for the game to begin.
+            if(delayFirstMeteorSpawn)
+            {
+                meteorSpawnTimer = 2.5F; // Starting wait time.
+            }
             
             // The game is now running.
             runningGame = true;

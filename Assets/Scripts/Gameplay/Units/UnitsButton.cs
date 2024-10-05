@@ -32,6 +32,10 @@ namespace RM_MST
         // The symbol for the button.
         private string unitsSymbol = string.Empty;
 
+        // The colour for the laser.
+        [Tooltip("The colour of the laser that's shot by the units button.")]
+        public Color laserColor = Color.white;
+
         // Gets set to 'true' when this is the correct value.
         // This is an alternate way to see if this button is the correct one.
         [Tooltip("An alternate way to check that this button is correct. Call related function to auto set.")]

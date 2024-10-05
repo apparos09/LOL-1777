@@ -43,17 +43,23 @@ namespace RM_MST
                 stageManager.player = this;
         }
 
-        // Shoots the laser shot.
+        // Shoots the laser shot with the default colour.
         public LaserShot ShootLaserShot(float outputValue)
         {
+            return ShootLaserShot(outputValue, Color.white);
+        }
+
+        // Shoots the laser shot and gives it the provided color.
+        public LaserShot ShootLaserShot(float outputValue, Color color)
+        {
             // If there are not multiple laser shots.
-            if(!multipleLaserShots)
+            if (!multipleLaserShots)
             {
                 // The player already has an active laser shot.
                 if (laserShotActive != null)
                 {
                     // If the laser shot is active, return that shot.
-                    if(laserShotActive.isActiveAndEnabled)
+                    if (laserShotActive.isActiveAndEnabled)
                     {
                         return laserShotActive;
                     }
@@ -61,7 +67,7 @@ namespace RM_MST
             }
 
             // If the game is slowed down, return to normal speed.
-            if(!stageManager.IsSlowSpeed())
+            if (!stageManager.IsSlowSpeed())
                 stageManager.SetToNormalSpeed();
 
             // Generates the laser shot, sets the spawn point, and shoots it.
@@ -80,10 +86,11 @@ namespace RM_MST
             {
                 newShot.Shoot(null);
             }
-                    
 
-            // Sets the laser shot's output value, and sets it as the active laser shot.
+
+            // Sets the laser shot's output value, color, and sets it as the active laser shot.
             newShot.outputValue = outputValue;
+            newShot.spriteRenderer.color = color;
             laserShotActive = newShot;
 
             // Returns the new shot.

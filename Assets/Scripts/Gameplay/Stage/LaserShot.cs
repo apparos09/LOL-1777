@@ -17,6 +17,9 @@ namespace RM_MST
         // The rigidbody for the meteor.
         public new Rigidbody2D rigidbody;
 
+        // The sprite renderer.
+        public SpriteRenderer spriteRenderer;
+
         // The speed of the laser shot.
         public float maxSpeed = 65.0F;
 

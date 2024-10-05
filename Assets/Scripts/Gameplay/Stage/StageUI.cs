@@ -572,16 +572,17 @@ namespace RM_MST
 
                 // Use meteor's value if true. Use button's value if false.
                 if (meteor != null)
-                    stageManager.player.ShootLaserShot(meteor.GetConvertedValue());
+                    stageManager.player.ShootLaserShot(meteor.GetConvertedValue(), unitsButton.laserColor);
                 else
-                    stageManager.player.ShootLaserShot(unitsButton.GetMeasurementValue());
+                    stageManager.player.ShootLaserShot(unitsButton.GetMeasurementValue(), unitsButton.laserColor);
             }
             else // Button is not automatically correct.
             {
-                stageManager.player.ShootLaserShot(unitsButton.GetMeasurementValue());
+                stageManager.player.ShootLaserShot(unitsButton.GetMeasurementValue(), unitsButton.laserColor);
             }
             
         }
+
 
         // EVENTS
         // Called when the phase has changed.

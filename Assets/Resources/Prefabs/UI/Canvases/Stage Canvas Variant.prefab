@@ -2089,6 +2089,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2007686777204396092}
     m_Modifications:
+    - target: {fileID: 2979245329968548171, guid: 21990a7ad31d7324e84172f12405738b, type: 3}
+      propertyPath: laserColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2979245329968548171, guid: 21990a7ad31d7324e84172f12405738b, type: 3}
+      propertyPath: laserColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2979245329968548171, guid: 21990a7ad31d7324e84172f12405738b, type: 3}
+      propertyPath: laserColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5545145230909420625, guid: 21990a7ad31d7324e84172f12405738b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -2208,6 +2220,14 @@ PrefabInstance:
     - target: {fileID: 7339900826103969641, guid: 21990a7ad31d7324e84172f12405738b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8918776434367502434, guid: 21990a7ad31d7324e84172f12405738b, type: 3}
+      propertyPath: m_Color.b
+      value: 0.8039216
+      objectReference: {fileID: 0}
+    - target: {fileID: 8918776434367502434, guid: 21990a7ad31d7324e84172f12405738b, type: 3}
+      propertyPath: m_Color.g
+      value: 0.8039216
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2615,6 +2635,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2007686777204396092}
     m_Modifications:
+    - target: {fileID: 2979245329968548171, guid: 21990a7ad31d7324e84172f12405738b, type: 3}
+      propertyPath: laserColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2979245329968548171, guid: 21990a7ad31d7324e84172f12405738b, type: 3}
+      propertyPath: laserColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2979245329968548171, guid: 21990a7ad31d7324e84172f12405738b, type: 3}
+      propertyPath: laserColor.r
+      value: 0.60394
+      objectReference: {fileID: 0}
     - target: {fileID: 5545145230909420625, guid: 21990a7ad31d7324e84172f12405738b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -2734,6 +2766,14 @@ PrefabInstance:
     - target: {fileID: 7339900826103969641, guid: 21990a7ad31d7324e84172f12405738b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8918776434367502434, guid: 21990a7ad31d7324e84172f12405738b, type: 3}
+      propertyPath: m_Color.g
+      value: 0.68235296
+      objectReference: {fileID: 0}
+    - target: {fileID: 8918776434367502434, guid: 21990a7ad31d7324e84172f12405738b, type: 3}
+      propertyPath: m_Color.r
+      value: 0.8745098
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2918,6 +2958,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2007686777204396092}
     m_Modifications:
+    - target: {fileID: 2979245329968548171, guid: 21990a7ad31d7324e84172f12405738b, type: 3}
+      propertyPath: laserColor.g
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5545145230909420625, guid: 21990a7ad31d7324e84172f12405738b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -3037,6 +3081,10 @@ PrefabInstance:
     - target: {fileID: 7339900826103969641, guid: 21990a7ad31d7324e84172f12405738b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8918776434367502434, guid: 21990a7ad31d7324e84172f12405738b, type: 3}
+      propertyPath: m_Color.g
+      value: 0.8156863
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3518,7 +3566,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
-  loadingScreen: {fileID: 0}
   windowPanel: {fileID: 2510811274693906575}
   gameSettingsUI: {fileID: 1360451479903039616}
   tutorialUI: {fileID: 62561567443399544}
@@ -3914,6 +3961,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2007686777204396092}
     m_Modifications:
+    - target: {fileID: 2979245329968548171, guid: 21990a7ad31d7324e84172f12405738b, type: 3}
+      propertyPath: laserColor.b
+      value: 0.016
+      objectReference: {fileID: 0}
+    - target: {fileID: 2979245329968548171, guid: 21990a7ad31d7324e84172f12405738b, type: 3}
+      propertyPath: laserColor.g
+      value: 0.92
+      objectReference: {fileID: 0}
     - target: {fileID: 5545145230909420625, guid: 21990a7ad31d7324e84172f12405738b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -4034,6 +4089,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8918776434367502434, guid: 21990a7ad31d7324e84172f12405738b, type: 3}
+      propertyPath: m_Color.b
+      value: 0.70980394
+      objectReference: {fileID: 0}
+    - target: {fileID: 8918776434367502434, guid: 21990a7ad31d7324e84172f12405738b, type: 3}
+      propertyPath: m_Color.g
+      value: 0.9764706
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4063,6 +4126,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2007686777204396092}
     m_Modifications:
+    - target: {fileID: 2979245329968548171, guid: 21990a7ad31d7324e84172f12405738b, type: 3}
+      propertyPath: laserColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2979245329968548171, guid: 21990a7ad31d7324e84172f12405738b, type: 3}
+      propertyPath: laserColor.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5545145230909420625, guid: 21990a7ad31d7324e84172f12405738b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -4182,6 +4253,14 @@ PrefabInstance:
     - target: {fileID: 7339900826103969641, guid: 21990a7ad31d7324e84172f12405738b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8918776434367502434, guid: 21990a7ad31d7324e84172f12405738b, type: 3}
+      propertyPath: m_Color.b
+      value: 0.8156863
+      objectReference: {fileID: 0}
+    - target: {fileID: 8918776434367502434, guid: 21990a7ad31d7324e84172f12405738b, type: 3}
+      propertyPath: m_Color.r
+      value: 0.8156863
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4874,6 +4953,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2007686777204396092}
     m_Modifications:
+    - target: {fileID: 2979245329968548171, guid: 21990a7ad31d7324e84172f12405738b, type: 3}
+      propertyPath: laserColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2979245329968548171, guid: 21990a7ad31d7324e84172f12405738b, type: 3}
+      propertyPath: laserColor.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5545145230909420625, guid: 21990a7ad31d7324e84172f12405738b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -4993,6 +5080,14 @@ PrefabInstance:
     - target: {fileID: 7339900826103969641, guid: 21990a7ad31d7324e84172f12405738b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8918776434367502434, guid: 21990a7ad31d7324e84172f12405738b, type: 3}
+      propertyPath: m_Color.g
+      value: 0.79607844
+      objectReference: {fileID: 0}
+    - target: {fileID: 8918776434367502434, guid: 21990a7ad31d7324e84172f12405738b, type: 3}
+      propertyPath: m_Color.r
+      value: 0.79607844
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5164,6 +5259,10 @@ PrefabInstance:
       propertyPath: m_fontSize
       value: 64
       objectReference: {fileID: 0}
+    - target: {fileID: 2979245329968548171, guid: 21990a7ad31d7324e84172f12405738b, type: 3}
+      propertyPath: laserColor.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5545145230909420625, guid: 21990a7ad31d7324e84172f12405738b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -5287,6 +5386,10 @@ PrefabInstance:
     - target: {fileID: 8136288343633009657, guid: 21990a7ad31d7324e84172f12405738b, type: 3}
       propertyPath: m_fontSize
       value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 8918776434367502434, guid: 21990a7ad31d7324e84172f12405738b, type: 3}
+      propertyPath: m_Color.r
+      value: 0.7490196
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
