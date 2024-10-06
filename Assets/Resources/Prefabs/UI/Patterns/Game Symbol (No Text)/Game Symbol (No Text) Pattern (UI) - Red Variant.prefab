@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &2240831647429370023
+--- !u!1001 &1817117692296437514
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -90,19 +90,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6169659922183847654, guid: 55d882b871cb0cd44a610ae971942db8, type: 3}
       propertyPath: m_Name
-      value: Game Symbol (No Text) Pattern (UI) - Yellow Variant
+      value: Game Symbol (No Text) Pattern (UI) - Red Variant
       objectReference: {fileID: 0}
     - target: {fileID: 8910639897930382490, guid: 55d882b871cb0cd44a610ae971942db8, type: 3}
       propertyPath: m_Color.b
-      value: 0.06728367
+      value: 0.0712709
       objectReference: {fileID: 0}
     - target: {fileID: 8910639897930382490, guid: 55d882b871cb0cd44a610ae971942db8, type: 3}
       propertyPath: m_Color.g
-      value: 0.7637032
+      value: 0.0712709
       objectReference: {fileID: 0}
     - target: {fileID: 8910639897930382490, guid: 55d882b871cb0cd44a610ae971942db8, type: 3}
       propertyPath: m_Color.r
-      value: 0.8490566
+      value: 0.49056602
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -283,7 +283,8 @@ namespace RM_MST
             }
 
             // Hids the stage world UI.
-            stageWorldUI.gameObject.SetActive(false);
+            // stageWorldUI.gameObject.SetActive(false);
+            CloseAllWindows();
         }
 
         // Starts the stage in the world UI.
