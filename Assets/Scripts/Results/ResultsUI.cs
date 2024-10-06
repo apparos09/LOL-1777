@@ -50,20 +50,20 @@ namespace RM_MST
             if(resultsEntries == null)
                 resultsEntries = new List<ResultsEntry>(FindObjectsOfType<ResultsEntry>());
 
-
-            // If the platform is set to webGL, disable the quit button.
-            if (Application.platform == RuntimePlatform.WebGLPlayer)
-            {
-                titleButton.interactable = false; // Disable
-                
-            }
-
             // If the LOLSDK has been initialized.
             if (GameSettings.InitializedLOLSDK)
             {
-                // Turn off the title button.
+                // Turn off the title button, and turn on the finish button.
                 titleButton.gameObject.SetActive(false);
+                finishButton.gameObject.SetActive(true);
             }
+            else
+            {
+                // Turn on title button, and turn off finish button.
+                titleButton.gameObject.SetActive(true);
+                finishButton.gameObject.SetActive(false);
+            }
+
         }
 
         // Applies the results data.

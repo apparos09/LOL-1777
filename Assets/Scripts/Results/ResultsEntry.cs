@@ -25,7 +25,7 @@ namespace RM_MST
         // Start is called before the first frame update
         void Start()
         {
-
+            // ...
         }
 
         // Applies the stage data.

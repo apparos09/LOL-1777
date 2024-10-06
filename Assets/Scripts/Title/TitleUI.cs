@@ -61,7 +61,7 @@ namespace RM_MST
                 quitButton.gameObject.SetActive(false); // Turn-Off
             }
             // If the LOLSDK isn't initialized, make the continue button non-interactable.
-            else if (!GameSettings.InitializedLOLSDK)
+            else
             {
                 // Disable continue.
                 continueButton.interactable = false;

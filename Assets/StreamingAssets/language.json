@@ -122,6 +122,8 @@
     "kwd_time": "Time",
     "kwd_score": "Score",
     "kwd_points": "Points",
+    "kwd_combo": "Combo",
+    "kwd_highestCombo": "Highest Combo",
     "kwd_restart": "Restart",
     "kwd_speed": "Speed",
 
@@ -154,6 +156,7 @@
     "kwd_gameComplete": "Game Complete!",
 
     "kwd_results": "Results",
+
     "kwd_gameTime": "Game Time",
     "kwd_gameScore": "Game Score"
   }
