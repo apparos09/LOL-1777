@@ -590,7 +590,9 @@ namespace RM_MST
         {
             // TODO: this animation seems to getting overwritten by the happy animation.
             // TODO: play sound effect.
-            PlayPartnersAnimation(CharacterIcon.charIconAnim.angry);
+            
+            // Angry animation.
+            // PlayPartnersAnimation(CharacterIcon.charIconAnim.angry);
         }
 
         // Called when a meteor has been killed.
