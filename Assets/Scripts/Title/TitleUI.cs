@@ -69,7 +69,14 @@ namespace RM_MST
 
             // Save the save text as the save feedback text.
             if(LOLManager.Instantiated)
-                LOLManager.Instance.saveSystem.feedbackText = saveText;
+            {
+                // Set the save text for the save system if it exists.
+                if(LOLManager.Instance.saveSystem != null)
+                {
+                    LOLManager.Instance.saveSystem.feedbackText = saveText;
+                }
+            }
+                
 
             // Opens the title window at the start.
             OpenWindow(titleWindow);
