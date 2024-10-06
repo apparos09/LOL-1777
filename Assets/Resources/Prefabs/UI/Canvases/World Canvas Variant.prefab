@@ -167,6 +167,7 @@ RectTransform:
   - {fileID: 6740886518552800303}
   - {fileID: 755154205554530244}
   - {fileID: 2452265591970435515}
+  - {fileID: 3146421698908148810}
   - {fileID: 7370486112208147765}
   - {fileID: 4722958711991035698}
   m_Father: {fileID: 5364310516015876378}
@@ -387,6 +388,97 @@ MonoBehaviour:
   text: {fileID: 7219829334206270075}
   key: kwd_units
   markIfFailed: 1
+--- !u!1 &3873840825937926962
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3146421698908148810}
+  - component: {fileID: 9029635182150227915}
+  - component: {fileID: 1338312113527920602}
+  - component: {fileID: 7261521907000334553}
+  m_Layer: 5
+  m_Name: Units Table Background
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &3146421698908148810
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3873840825937926962}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2552865350087460498}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 35}
+  m_SizeDelta: {x: 500, y: 230}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &9029635182150227915
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3873840825937926962}
+  m_CullTransparentMesh: 1
+--- !u!114 &1338312113527920602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3873840825937926962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.0712709, g: 0.40670687, b: 0.49056602, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7261521907000334553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3873840825937926962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5529412}
+  m_EffectDistance: {x: 5, y: 5}
+  m_UseGraphicAlpha: 1
 --- !u!1 &5172810419526272006
 GameObject:
   m_ObjectHideFlags: 0
@@ -1697,15 +1789,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6571484952157070855, guid: c3bec1f79845b80499a42b7efbc4aa92, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.55
+      value: 0.45
       objectReference: {fileID: 0}
     - target: {fileID: 6571484952157070855, guid: c3bec1f79845b80499a42b7efbc4aa92, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.55
+      value: 0.45
       objectReference: {fileID: 0}
     - target: {fileID: 6571484952157070855, guid: c3bec1f79845b80499a42b7efbc4aa92, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.55
+      value: 0.45
       objectReference: {fileID: 0}
     - target: {fileID: 6571484952157070855, guid: c3bec1f79845b80499a42b7efbc4aa92, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2076,7 +2168,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
-  loadingScreen: {fileID: 0}
   windowPanel: {fileID: 1562984898422303780}
   gameSettingsUI: {fileID: 860983818998692564}
   tutorialUI: {fileID: 6748871017171806034}

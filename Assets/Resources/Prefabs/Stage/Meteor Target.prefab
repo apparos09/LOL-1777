@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 2
   m_Sprite: {fileID: -654524737, guid: 021665a9b3edd8a499e0b6f20c603896, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.135849, b: 0.15275827, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -152,7 +152,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageManager: {fileID: 0}
-  meteor: {fileID: 0}
   trackSpeed: 30
   trackExactPos: 0
   animator: {fileID: 5509096831843474561}
