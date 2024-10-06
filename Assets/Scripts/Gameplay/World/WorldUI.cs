@@ -23,9 +23,12 @@ namespace RM_MST
         // The saving text.
         public TMP_Text saveText;
 
-        [Header("WorldUI/StageUI")]
+        [Header("WorldUI/Prompts")]
         // The stage world UI.
         public StageWorldUI stageWorldUI;
+
+        // The game complete UI.
+        public GameObject gameCompleteUI;
 
         [Header("WorldUI/Options Windows")]
 
@@ -156,6 +159,7 @@ namespace RM_MST
                 unitsInfoMenu.gameObject,
                 saveWindow.gameObject,
                 stageWorldUI.gameObject,
+                gameCompleteUI.gameObject,
             };
 
             // Only checks the settings window here.
@@ -180,9 +184,11 @@ namespace RM_MST
         // Closes all the windows.
         public override void CloseAllWindows()
         {
-            // Close windows in this script.
+            // Close windows.
             unitsInfoMenu.gameObject.SetActive(false);
             saveWindow.SetActive(false);
+            stageWorldUI.gameObject.SetActive(false);
+            gameCompleteUI.SetActive(false);
 
             base.CloseAllWindows();
         }
@@ -253,8 +259,12 @@ namespace RM_MST
         // Show the stage world UI.
         public void ShowStageWorldUI(StageWorld stageWorld, int index)
         {
+            // Set the stage world.
             stageWorldUI.SetStageWorld(stageWorld, index);
-            stageWorldUI.gameObject.SetActive(true);
+            // stageWorldUI.gameObject.SetActive(true);
+
+            // Don't use the options panel, use the stage UI's own panel.
+            OpenWindow(stageWorldUI.gameObject, false);
 
             // TODO: start the tutorial where applicable
             // if(GameSettings.Instance.UseTutorial)
@@ -287,12 +297,22 @@ namespace RM_MST
         {
             HideStageWorldUI(true);
         }
+        
+        // SAVE //
 
         // Saves the game.
         public void SaveGame()
         {
             worldManager.SaveGame();
         }
+
+        // SCENES //
+        // Opens the game complete window.
+        public void OnGameComplete()
+        {
+            OpenWindow(gameCompleteUI, false);
+        }
+
 
         // Update is called once per frame
         protected override void Update()

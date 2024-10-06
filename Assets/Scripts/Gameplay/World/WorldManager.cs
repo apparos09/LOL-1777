@@ -251,30 +251,6 @@ namespace RM_MST
             return result;
         }
 
-        // Returns the game score.
-        public float CalculateGameScore()
-        {
-            // The game score result.
-            float result = 0;
-
-            // Goes through all the stages.
-            for(int i = 0; i < gameInfo.worldStages.Length; i++)
-            {
-                // Add to the score.
-                if (gameInfo.worldStages[i] != null)
-                    result += gameInfo.worldStages[i].stageScore;
-            }
-
-            // Returns the game score.
-            return result;
-        }
-
-        // Updates the game score.
-        public void CalculateAndSetGameScore()
-        {
-            gameScore = CalculateGameScore();
-        }
-
         // SAVING/LOADING
         // Generates the save data or the game.
         public MST_GameData GenerateSaveData()
@@ -301,7 +277,7 @@ namespace RM_MST
             data.tutorialData = Tutorials.Instance.GenerateTutorialsData();
 
             // Saves if the game is completed.
-            data.complete = gameCompleteEvent.cleared;
+            data.complete = IsGameComplete();
 
             // The data is valid.
             data.valid = true;
@@ -432,6 +408,8 @@ namespace RM_MST
         }
 
 
+        // SCENES/GAME END //
+
         // Goes to the stage.
         public void ToStage(StageWorld stageWorld)
         {
@@ -452,29 +430,22 @@ namespace RM_MST
             LoadScene(stageScene);
         }
 
+        // Returns cleared on game complete event.
+        public bool IsGameComplete()
+        {
+            return gameCompleteEvent.cleared;
+        }
 
-        // GAME END
+        // Overrides on game complete.
+        public override void OnGameComplete()
+        {
+            // Opens the UI.
+            worldUI.OnGameComplete();
+        }
+
         // When going to the results scene, create the results data.
         public override void ToResults()
         {
-            // The results data and object.
-            GameObject resultsObject = new GameObject("Results Data");
-            ResultsData resultsData = resultsObject.AddComponent<ResultsData>();
-            DontDestroyOnLoad(resultsObject);
-
-            // Caluclates and sets the game score.
-            CalculateAndSetGameScore();
-
-            // Sets the time and score.
-            resultsData.gameTime = gameTime;
-            resultsData.gameScore = gameScore;
-
-            // Saves the stage data.
-            for(int i = 0; i < resultsData.stageDatas.Length && i < gameInfo.worldStages.Length; i++)
-            {
-                resultsData.stageDatas[i] = gameInfo.worldStages[i];
-            }
-
             // Go to the results scene.
             base.ToResults();
         }

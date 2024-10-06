@@ -157,23 +157,37 @@ namespace RM_MST
         // Opens the provided window.
         public virtual void OpenWindow(GameObject window)
         {
+            OpenWindow(window, true);
+        }
+
+        // Opens the provided window. The 'panelActive' value determines if the background panel is on or not. 
+        public virtual void OpenWindow(GameObject window, bool panelActive)
+        {
             CloseAllWindows();
             window.gameObject.SetActive(true);
-            OnWindowOpened(window);
+            OnWindowOpened(window, panelActive);
         }
 
         // Called when a window is opened.
         public virtual void OnWindowOpened(GameObject window)
+        {
+            OnWindowOpened(window, true);
+        }
+
+        // Called when a window is opened.
+        public virtual void OnWindowOpened(GameObject window, bool panelActive)
         {
             // Pause the game.
             gameManager.PauseGame();
 
             // Enables the menu panel to block the UI under it.
             if (windowPanel != null)
-                windowPanel.gameObject.SetActive(true);
+            {
+                windowPanel.gameObject.SetActive(panelActive);
+            }
 
             // If the tutorial text box is open.
-            if(IsTutorialTextBoxOpen() && tutorialUI.backgroundPanel != null)
+            if (IsTutorialTextBoxOpen() && tutorialUI.backgroundPanel != null)
             {
                 // Turns off the tutorial panel so that they aren't overlayed.
                 tutorialUI.backgroundPanel.gameObject.SetActive(false);

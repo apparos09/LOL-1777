@@ -129,8 +129,6 @@
     "kwd_stageWon": "Stage Won",
     "kwd_stageLost": "Stage Lost",
 
-    "kwd_gameComplete": "Game Complete!",
-
 
     "trl_intro_00": "Welcome to the Meteor Strike Team (MST)! Our job is to track down meteors and destroy them before they hit the Earth's surface! But to destroy meteors, we need to solve measurement conversions. I'm Reteor...",
     "trl_intro_01": "And I'm Astrite! We'll be your partners and guides for this game. This is the world area, which is where you can change the settings, save your game, view the units info, and select a stage. The game automatically saves after every completed stage, but manual saving is done via the 'save button'.",
@@ -153,6 +151,7 @@
     "trl_capacity_00": "These units are used to measure the volume of a container. 1 liter (l) is equal to 1000 millilitres (mL).",
 
 
+    "kwd_gameComplete": "Game Complete!",
 
     "kwd_results": "Results",
     "kwd_gameTime": "Game Time",

@@ -103,6 +103,34 @@ namespace RM_MST
             calledLateStart = true;
         }
 
+
+        // GAME SCORE //
+        // Returns the game score.
+        public float CalculateGameScore()
+        {
+            // The game score result.
+            float result = 0;
+
+            // Goes through all the stages.
+            for (int i = 0; i < gameInfo.worldStages.Length; i++)
+            {
+                // Add to the score.
+                if (gameInfo.worldStages[i] != null)
+                    result += gameInfo.worldStages[i].stageScore;
+            }
+
+            // Returns the game score.
+            return result;
+        }
+
+        // Updates the game score.
+        public void CalculateAndSetGameScore()
+        {
+            gameScore = CalculateGameScore();
+        }
+
+
+        // GAME TIME
         // Returns the provided time (in seconds), formatted.
         public static string GetTimeFormatted(float seconds, bool roundUp = true)
         {
@@ -116,7 +144,6 @@ namespace RM_MST
             return formatted;
         }
 
-        // TIME
         // Gets the game time scale.
         public float GetGameTimeScale()
         {
@@ -270,13 +297,30 @@ namespace RM_MST
             gameUI.OnTutorialEnd();
         }
 
+        // SAVING
+        // If saving and loading is enabled.
+        public bool IsSavingLoadingEnabled()
+        {
+            // It's disabled if the save system is not instantiated.
+            if (SaveSystem.Instantiated)
+            {
+                SaveSystem saveSystem = SaveSystem.Instance;
+                return saveSystem.SavingLoadingEnabled;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+        // SCENES //
         // Called when the game is completed.
         public virtual void OnGameComplete()
         {
             ToResults();
         }
 
-        // SCENES //
         // Called when leaving the scene.
         protected virtual void OnGameEnd()
         {
@@ -299,23 +343,6 @@ namespace RM_MST
             UnpauseGame();
         }
 
-        // If saving and loading is enabled.
-        public bool IsSavingLoadingEnabled()
-        {
-            // It's disabled if the save system is not instantiated.
-            if(SaveSystem.Instantiated)
-            {
-                SaveSystem saveSystem = SaveSystem.Instance;
-                return saveSystem.SavingLoadingEnabled;
-            }
-            else
-            {
-                return false;
-            }
-
-        }
-
-        // SCENE
         // Loads the provided scene.
         protected void LoadScene(string sceneName)
         {
@@ -350,6 +377,24 @@ namespace RM_MST
         // Go to the results scene.
         public virtual void ToResults()
         {
+            // The results data and object.
+            GameObject resultsObject = new GameObject("Results Data");
+            ResultsData resultsData = resultsObject.AddComponent<ResultsData>();
+            DontDestroyOnLoad(resultsObject);
+
+            // Caluclates and sets the game score.
+            CalculateAndSetGameScore();
+
+            // Sets the time and score.
+            resultsData.gameTime = gameTime;
+            resultsData.gameScore = gameScore;
+
+            // Saves the stage data.
+            for (int i = 0; i < resultsData.stageDatas.Length && i < gameInfo.worldStages.Length; i++)
+            {
+                resultsData.stageDatas[i] = gameInfo.worldStages[i];
+            }
+
             // Called when the game is ending (to title or results).
             OnGameEnd();
 
