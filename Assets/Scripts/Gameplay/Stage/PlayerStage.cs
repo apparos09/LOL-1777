@@ -172,7 +172,12 @@ namespace RM_MST
         protected virtual void OnPlayerStunEnded()
         {
             playerStunTimer = 0.0F;
-            stageManager.stageUI.MakeUnitButtonsInteractable();
+
+            // The meteor's target is being targeted exactly, make the buttons interactable again.
+            if(stageManager.meteorTarget.IsMeteorTargetedExactly())
+            {
+                stageManager.stageUI.MakeUnitButtonsInteractable();
+            }            
         }
 
         // Update is called once per frame

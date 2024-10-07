@@ -18,7 +18,7 @@ namespace RM_MST
         public float trackSpeed = 30.0F;
 
         // If 'true', the exact meteor position is tracked.
-        public bool trackExactPos = false;
+        private bool trackExactPos = false;
 
         [Header("Animation")]
 
@@ -64,6 +64,19 @@ namespace RM_MST
 
             // Plays the animation.
             PlayLockInAnimation();
+        }
+
+        // Returns 'true' if a meteor is targeted.
+        public bool IsMetoerTargeted()
+        {
+            return meteor != null;
+        }
+
+        // Returns 'true' if the meteor's exact position is being targeted.
+        // If 'false', the meteor is either not being targeted, or the target is not on the meteor's exact position.
+        public bool IsMeteorTargetedExactly()
+        {
+            return meteor != null && trackExactPos;
         }
 
         // Sets the meteor.
@@ -118,6 +131,12 @@ namespace RM_MST
                 if (trackExactPos) // Yes
                 {
                     transform.position = meteor.transform.position;
+
+                    // If the player is not stunned, make sure the buttons are interactable.
+                    if (!stageManager.player.IsPlayerStunned() && meteor.IsAlive())
+                    {
+                        stageManager.stageUI.MakeUnitButtonsInteractable();
+                    }
                 }
                 else // No
                 {
@@ -140,6 +159,10 @@ namespace RM_MST
             {
                 // Don't track the exact position if there's no meteor.
                 trackExactPos = false;
+
+                // Keep the unit buttons disabled and cleared if nothing is targeted.
+                stageManager.stageUI.MakeUnitButtonsUninteractable();
+                stageManager.stageUI.ClearConversionAndUnitsButtons();
             }
         }
 

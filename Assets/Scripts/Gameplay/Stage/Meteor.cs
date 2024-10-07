@@ -30,6 +30,12 @@ namespace RM_MST
         // One of these will be correct.
         public float[] possibleOutputs = new float[POSSIBLE_OUTPUTS_COUNT];
 
+        // The max health of the meteor.
+        public float maxHealth = 1.0F;
+
+        // This value gets set to 0 when the meteor dies. This is just used to check if it's dead.
+        private float health = 1.0F;
+
         // Gets set to 'true' when the meteor is suffering from knockback.
         private bool inKnockback = false;
 
@@ -214,6 +220,7 @@ namespace RM_MST
             }
 
             // Other
+            SetHealthToMax();
             ResetVelocity();
             SetMeteorToSpawnPoint();
             RandomizeAngularVelocity();
@@ -389,6 +396,33 @@ namespace RM_MST
             }
         }
 
+        // HEALTH/DAMAGE
+        
+        // Returns 'true 'if the meteor is alive.
+        public bool IsAlive()
+        {
+            return health > 0.0F;
+        }
+
+        // Returns the health.
+        public float GetHealth()
+        {
+            return health;
+        }
+
+        // Sets the health.
+        public void SetHealth(float newHealth)
+        {
+            health = Mathf.Clamp(newHealth, 0, maxHealth);
+        }
+
+        // Sets the health to the max.
+        private void SetHealthToMax()
+        {
+            SetHealth(maxHealth);
+        }
+
+
         // OTHER
         // Give points to the player.
         public bool TryGivePoints(LaserShot laserShot)
@@ -471,7 +505,8 @@ namespace RM_MST
         // Kills the meteor.
         public void Kill()
         {
-            // Meteor killed, so stop moving and call on killed function.
+            // Meteor killed, so set health to 0, stop moving and call on killed function.
+            SetHealth(0);
             ResetVelocity();
             stageManager.OnMeteorKilled(this);
 

@@ -1363,6 +1363,13 @@ namespace RM_MST
             LoadScene(worldScene);
         }
 
+        // Returns 'true' if the stage is running.
+        public bool IsRunningGame()
+        {
+            return runningGame;
+        }
+
+
         // Called to run the game mechanics.
         public void RunGame()
         {
