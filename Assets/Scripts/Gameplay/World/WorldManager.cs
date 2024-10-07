@@ -385,7 +385,7 @@ namespace RM_MST
             gameTime = loadedData.gameTime;
 
             // Sets the game score.
-            gameScore = loadedData.gameScore;
+            // gameScore = loadedData.gameScore; // Not needed.
 
             // Loads the stage data.
             for (int i = 0; i < loadedData.stageDatas.Length && i < stages.Count; i++)
@@ -393,7 +393,8 @@ namespace RM_MST
                 // The data exists.
                 if(loadedData.stageDatas[i] != null)
                 {
-                    stages[i].LoadStageDataFromSavedGame(loadedData.stageDatas[i]);
+                    gameInfo.worldStages[i] = loadedData.stageDatas[i]; // Game Info
+                    stages[i].LoadStageDataFromSavedGame(loadedData.stageDatas[i]); // Stages
                 }
             }
 
@@ -414,7 +415,7 @@ namespace RM_MST
         public void ToStage(StageWorld stageWorld)
         {
             // Saves the world info and goes into the stage.
-            CalculateAndSetGameScore();
+            // CalculateAndSetGameScore(); // Not needed.
             gameInfo.SaveWorldInfo(this);
             LoadStageScene();
         }
@@ -452,11 +453,12 @@ namespace RM_MST
             DontDestroyOnLoad(resultsObject);
 
             // Caluclates and sets the game score.
-            CalculateAndSetGameScore();
+            // CalculateAndSetGameScore(); - Not Needed
 
             // Sets the time and score.
             resultsData.gameTime = gameTime;
-            resultsData.gameScore = gameScore;
+            // resultsData.gameScore = gameScore; // Old
+            resultsData.gameScore = CalculateGameScore(); // New
 
             // Saves the stage data.
             for (int i = 0; i < resultsData.stageDatas.Length && i < gameInfo.worldStages.Length; i++)

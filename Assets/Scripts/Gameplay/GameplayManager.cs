@@ -17,8 +17,8 @@ namespace RM_MST
         // The timer for the game.
         public float gameTime = 0;
 
-        // The game score
-        public float gameScore = 0;
+        // The game score. This isn't saved since it gets calculated when needed.
+        // public float gameScore = 0;
 
         // Pauses the timer if true.
         private bool gamePaused = false;
@@ -123,11 +123,11 @@ namespace RM_MST
             return result;
         }
 
-        // Updates the game score.
-        public void CalculateAndSetGameScore()
-        {
-            gameScore = CalculateGameScore();
-        }
+        // // Updates the game score.
+        // public void CalculateAndSetGameScore()
+        // {
+        //     gameScore = CalculateGameScore();
+        // }
 
 
         // GAME TIME

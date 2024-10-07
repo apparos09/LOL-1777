@@ -1268,7 +1268,7 @@ namespace RM_MST
 
             // Calculate the final score, and add it to the game score.
             CalculateAndSetStageFinalScore();
-            gameScore += stageFinalScore;
+            // gameScore += stageFinalScore; // Not needed.
 
             // Stage won.
             stageUI.OnStageWon();

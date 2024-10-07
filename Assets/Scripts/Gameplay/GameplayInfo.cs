@@ -39,8 +39,8 @@ namespace RM_MST
         // The game time.
         public float gameTime = 0.0F;
 
-        // The game score.
-        public float gameScore = 0;
+        // The game score - no longer needed.
+        // public float gameScore = 0;
 
         [Header("WorldInfo")]
 
@@ -142,14 +142,14 @@ namespace RM_MST
         public void SaveGameplayInfo(GameplayManager gameManager)
         {
             gameTime = gameManager.gameTime;
-            gameScore = gameManager.gameScore;
+            // gameScore = gameManager.gameScore;
         }
 
         // Loads game info into the game manager.
         public void LoadGameplayInfo(GameplayManager gameManager)
         {
             gameManager.gameTime = gameTime;
-            gameManager.gameScore = gameScore;
+            // gameManager.gameScore = gameScore;
         }
 
 

@@ -47,6 +47,14 @@ namespace RM_MST
         // The units types for the stage.
         public List<UnitsInfo.unitGroups> unitGroups = new List<UnitsInfo.unitGroups>();
 
+        // The most recent saved time for the stage.
+        [Tooltip("The time for the most recent attmept on the stage.")]
+        private float stageTime = 0;
+
+        // The most recent score for the stage.
+        [Tooltip("The score for the most recent attempt on the stage.")]
+        private float stageScore = 0;
+
         // The difficulty of the stage.
         public int difficulty = 0;
 
@@ -413,6 +421,8 @@ namespace RM_MST
         // Loads the stage data from a saved game. Only certains parts are kept.
         public void LoadStageDataFromSavedGame(StageData data)
         {
+            stageTime = data.stageTime;
+            stageScore = data.stageScore;
             losses = data.losses;
             SetStageCleared(data.cleared);
         }
