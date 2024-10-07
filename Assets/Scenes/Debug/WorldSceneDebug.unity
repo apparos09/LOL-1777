@@ -294,18 +294,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
   tutorialsUI: {fileID: 0}
-  clearedTutorials: 
-  constantTutorialStartCheck: 1
-  introTutorial: 0
-  stageTutorial: 0
+  clearedIntroTutorial: 0
   clearedFirstStageTutorial: 0
-  mixStageTutorial: 0
-  clearedWeightImperial: 0
-  clearedLengthImperial: 0
-  clearedTime: 0
-  clearedLengthMetric: 0
-  clearedWeightMetric: 0
-  clearedCapcity: 0
+  clearedFirstWinTutorial: 0
+  clearedMixStageTutorial: 0
+  clearedLengthImperialTutorial: 0
+  clearedWeightImperialTutorial: 0
+  clearedTimeTutorial: 0
+  clearedLengthMetricTutorial: 0
+  clearedWeightMetricTutorial: 0
+  clearedCapacityTutorial: 0
 --- !u!4 &1219986239
 Transform:
   m_ObjectHideFlags: 0

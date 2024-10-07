@@ -25,12 +25,12 @@ namespace RM_MST
             public bool clearedCapacityTutorial;
         }
 
-        // The tutorial types.
-        // TODO: add the rest.
-        public enum tutorialType
-        {
-            none, intro, stage, firstWin, mixStage, weightImperial, lengthImperial, time, lengthMetric, weightMetric, capacity
-        };
+        // The tutorial types 
+        // TODO: remove.
+        // public enum tutorialType
+        // {
+        //     none, intro, stage, firstWin, mixStage, weightImperial, lengthImperial, time, lengthMetric, weightMetric, capacity
+        // };
 
 
         // The tutorial type count.
@@ -317,11 +317,11 @@ namespace RM_MST
             }
         }
 
-        // Loads the tutorial of the provided type.
-        public void LoadTutorial(tutorialType tutorial)
-        {
-            // ...
-        }
+        // // Loads the tutorial of the provided type.
+        // public void LoadTutorial(tutorialType tutorial)
+        // {
+        //     // ...
+        // }
 
 
         // Load the tutorial (template)

@@ -220,8 +220,8 @@ namespace RM_MST
                             case UnitsInfo.unitGroups.weightMetric:
 
                                 // Tutorial not cleared, load it.
-                                if (!tutorials.clearedWeightImperialTutorial)
-                                    tutorials.LoadWeightImperialTutorial();
+                                if (!tutorials.clearedWeightMetricTutorial)
+                                    tutorials.LoadWeightMetricTutorial();
 
                                 break;
 

@@ -2,7 +2,159 @@
   "_meta": {
     "maxChars": {
       "_stop_": 0,
-      "gameTitle": 60
+
+      "gameTitle": 60,
+      "gameTitleShort": 60,
+
+      "kwd_title": 28,
+      "kwd_start": 28,
+      "kwd_newGame": 28,
+      "kwd_continue": 28,
+      "kwd_instructions": 28,
+      "kwd_settings": 28,
+      "kwd_licenses": 28,
+      "kwd_quit": 28,
+
+      "kwd_back": 28,
+
+      "mnu_instructions_dsc": 330,
+
+      "kwd_volume": 28,
+      "kwd_bgmVolume": 70,
+      "kwd_sfxVolume": 70,
+      "kwd_ttsVolume": 70,
+      "kwd_mute": 28,
+      "kwd_textToSpeech": 28,
+      "kwd_tutorial": 28,
+      "kwd_tutorials": 28,
+
+      "kwd_units": 28,
+      "kwd_unitsInfo": 28,
+
+      "kwd_save": 28,
+      "sve_msg_savingGame": 28,
+
+      "unt_lengthImperial_nme": 28,
+      "unt_lengthImperial_dsc": 200,
+
+      "unt_weightImperial_nme": 28,
+      "unt_weightImperial_dsc": 200,
+
+      "unt_time_nme": 28,
+      "unt_time_dsc": 200,
+
+      "unt_lengthMetric_nme": 28,
+      "unt_lengthMetric_dsc": 200,
+
+      "unt_weightMetric_nme": 28,
+      "unt_weightMetric_dsc": 200,
+
+      "unt_capacity_nme": 28,
+      "unt_capacity_dsc": 200,
+
+
+
+      "unt_inches_nme": 28,
+      "unt_inches_sbl": 8,
+      "unt_feet_nme": 28,
+      "unt_feet_sbl": 8,
+      "unt_yards_nme": 28,
+      "unt_yards_sbl": 8,
+
+      "unt_millimeters_nme": 28,
+      "unt_millimeters_sbl": 8,
+      "unt_centimeters_nme": 28,
+      "unt_centimeters_sbl": 8,
+      "unt_decimeters_nme": 28,
+      "unt_decimeters_sbl": 8,
+      "unt_meters_nme": 28,
+      "unt_meters_sbl": 8,
+      "unt_kilometers_nme": 28,
+      "unt_kilometers_sbl": 8,
+
+      "unt_pounds_nme": 28,
+      "unt_pounds_sbl": 8,
+      "unt_ounces_nme": 28,
+      "unt_ounces_sbl": 8,
+      "unt_milligrams_nme": 28,
+      "unt_milligrams_sbl": 8,
+      "unt_grams_nme": 28,
+      "unt_grams_sbl": 8,
+      "unt_kilograms_nme": 28,
+      "unt_kilograms_sbl": 8,
+
+      "unt_seconds_nme": 28,
+      "unt_seconds_sbl": 8,
+      "unt_minutes_nme": 28,
+      "unt_minutes_sbl": 8,
+      "unt_hours_nme": 28,
+      "unt_hours_sbl": 8,
+
+      "unt_milliliters_nme": 28,
+      "unt_milliliters_sbl": 8,
+      "unt_liters_nme": 28,
+      "unt_liters_sbl": 8,
+
+      "kwd_input": 28,
+      "kwd_output": 28,
+
+      "kwd_world": 28,
+      "kwd_stageSelect": 28,
+      "kwd_stage": 28,
+
+      "kwd_all": 28,
+      "kwd_none": 28,
+
+      "stg_mix1_nme": 28,
+      "stg_mix1_dsc": 240,
+
+      "stg_mix2_nme": 28,
+      "stg_mix2_dsc": 240,
+
+      "stg_mix3_nme": 28,
+      "stg_mix3_dsc": 240,
+
+      "kwd_time": 28,
+      "kwd_score": 28,
+      "kwd_points": 28,
+      "kwd_combo": 28,
+      "kwd_highestCombo": 70,
+      "kwd_restart": 28,
+      "kwd_speed": 28,
+
+      "kwd_stageClear": 70,
+      "kwd_stageWon": 70,
+      "kwd_stageLost": 70,
+
+
+      "trl_intro_00": 500,
+      "trl_intro_01": 500,
+      "trl_intro_02": 500,
+      "trl_intro_03": 500,
+
+      "trl_firstStage_00": 500,
+      "trl_firstStage_01": 500,
+      "trl_firstStage_02": 500,
+      "trl_firstStage_03": 500,
+
+      "trl_firstWin_00": 500,
+      "trl_mixStage_00": 500,
+
+      "trl_lengthImperial_00": 500,
+      "trl_weightImperial_00": 500,
+      "trl_time_00": 500,
+      "trl_lengthMetric_00": 500,
+      "trl_weightMetric_00": 500,
+      "trl_capacity_00": 500,
+
+
+      "kwd_gameComplete": 70,
+
+      "kwd_results": 28,
+
+      "kwd_gameTime": 28,
+      "kwd_gameScore": 28,
+      "kwd_finish": 28
 
     }
   },
@@ -10,6 +162,7 @@
     "_stop_": "",
 
     "gameTitle": "Meteor Strike Team",
+    "gameTitleShort": "MST",
 
     "kwd_title": "Title",
     "kwd_start": "Start",
@@ -110,14 +263,14 @@
     "kwd_all": "All",
     "kwd_none": "None",
 
-    "kwd_mix1_nme": "Mix 1",
-    "kwd_mix1_dsc": "Length (Imperial), Weight (Imperial), Time",
+    "stg_mix1_nme": "Mix 1",
+    "stg_mix1_dsc": "Length (Imperial), Weight (Imperial), Time",
 
-    "kwd_mix2_nme": "Mix 2",
-    "kwd_mix2_dsc": "Length (Metric), Weight (Metric), Capacity",
+    "stg_mix2_nme": "Mix 2",
+    "stg_mix2_dsc": "Length (Metric), Weight (Metric), Capacity",
 
-    "kwd_mix3_nme": "Mix 3",
-    "kwd_mix3_dsc": "All",
+    "stg_mix3_nme": "Mix 3",
+    "stg_mix3_dsc": "All",
 
     "kwd_time": "Time",
     "kwd_score": "Score",
