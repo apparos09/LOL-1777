@@ -55,6 +55,10 @@ namespace RM_MST
         [Tooltip("The score for the most recent attempt on the stage.")]
         private float stageScore = 0;
 
+        // THe highest combo from the most recent successful attmept for this stage.
+        [Tooltip("The highest combo from the most recent attempt on this stage.")]
+        private int highestCombo = 0;
+
         // The difficulty of the stage.
         public int difficulty = 0;
 
@@ -423,6 +427,7 @@ namespace RM_MST
         {
             stageTime = data.stageTime;
             stageScore = data.stageScore;
+            highestCombo = data.highestCombo;
             losses = data.losses;
             SetStageCleared(data.cleared);
         }
@@ -433,11 +438,11 @@ namespace RM_MST
             // The stage data.
             StageData data = new StageData();
 
-            // Set values.
+            // Set values. This is just for saving information.
             data.stageName = stageName;
-            data.stageTime = 0;
-            data.stageScore = 0;
-            data.highestCombo = 0;
+            data.stageTime = stageTime;
+            data.stageScore = stageScore;
+            data.highestCombo = highestCombo;
             data.cleared = cleared;
 
             // Return the values.
