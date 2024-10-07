@@ -60,7 +60,13 @@ namespace RM_MST
         // Loads the BGM credits.
         private void LoadBackgroundMusicCredits()
         {
-            // AudioCredits.AudioCredit credit;
+            AudioCredits.AudioCredit credit;
+
+            credit = new AudioCredits.AudioCredit();
+            credit.title = "BGM Debug";
+            credit.artist = "BGM Artist";
+            credit.copyright = "BGM Copyright";
+            bgmCredits.audioCredits.Add(credit);
 
             // TODO: implement
         }
@@ -68,16 +74,27 @@ namespace RM_MST
         // Loads the SFX credits.
         private void LoadSoundEffectCredits()
         {
-            // AudioCredits.AudioCredit credit = new AudioCredits.AudioCredit();
+            AudioCredits.AudioCredit credit;
 
-            // SOUND EFFECTS //
+            credit = new AudioCredits.AudioCredit();
+            credit.title = "SFX Debug";
+            credit.artist = "SFX Artist";
+            credit.copyright = "SFX Copyright";
+            sfxCredits.audioCredits.Add(credit);
+
             // TODO: implement
         }
 
         // Loads the font credits.
         private void LoadFontCredits()
         {
-            // AudioCredits.AudioCredit credit = new AudioCredits.AudioCredit();
+            AudioCredits.AudioCredit credit;
+
+            credit = new AudioCredits.AudioCredit();
+            credit.title = "Font Debug";
+            credit.artist = "Font Artist";
+            credit.copyright = "Font Copyright";
+            fontsCredits.audioCredits.Add(credit);
 
             // TODO: implement
         }
