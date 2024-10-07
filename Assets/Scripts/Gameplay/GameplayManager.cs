@@ -376,25 +376,7 @@ namespace RM_MST
 
         // Go to the results scene.
         public virtual void ToResults()
-        {
-            // The results data and object.
-            GameObject resultsObject = new GameObject("Results Data");
-            ResultsData resultsData = resultsObject.AddComponent<ResultsData>();
-            DontDestroyOnLoad(resultsObject);
-
-            // Caluclates and sets the game score.
-            CalculateAndSetGameScore();
-
-            // Sets the time and score.
-            resultsData.gameTime = gameTime;
-            resultsData.gameScore = gameScore;
-
-            // Saves the stage data.
-            for (int i = 0; i < resultsData.stageDatas.Length && i < gameInfo.worldStages.Length; i++)
-            {
-                resultsData.stageDatas[i] = gameInfo.worldStages[i];
-            }
-
+        {            
             // Called when the game is ending (to title or results).
             OnGameEnd();
 

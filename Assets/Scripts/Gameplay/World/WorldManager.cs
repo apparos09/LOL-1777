@@ -417,9 +417,6 @@ namespace RM_MST
             CalculateAndSetGameScore();
             gameInfo.SaveWorldInfo(this);
             LoadStageScene();
-
-            // TODO: play to stage animation?
-
         }
 
         // Loads the stage scene.
@@ -446,6 +443,30 @@ namespace RM_MST
         // When going to the results scene, create the results data.
         public override void ToResults()
         {
+            // Loads the world information and saves the game.
+            gameInfo.SaveWorldInfo(this);
+
+            // The results data and object.
+            GameObject resultsObject = new GameObject("Results Data");
+            ResultsData resultsData = resultsObject.AddComponent<ResultsData>();
+            DontDestroyOnLoad(resultsObject);
+
+            // Caluclates and sets the game score.
+            CalculateAndSetGameScore();
+
+            // Sets the time and score.
+            resultsData.gameTime = gameTime;
+            resultsData.gameScore = gameScore;
+
+            // Saves the stage data.
+            for (int i = 0; i < resultsData.stageDatas.Length && i < gameInfo.worldStages.Length; i++)
+            {
+                resultsData.stageDatas[i] = gameInfo.worldStages[i];
+            }
+
+            // Saves the game.
+            SaveGame();
+
             // Go to the results scene.
             base.ToResults();
         }
