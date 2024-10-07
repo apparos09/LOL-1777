@@ -135,7 +135,7 @@ MonoBehaviour:
   collider: {fileID: 4325135792498934122}
   rigidbody: {fileID: 3855639866833693991}
   spriteRenderer: {fileID: 8329124214029315863}
-  maxSpeed: 65
+  maxSpeed: 60
   moveDirec: {x: 0, y: 1, z: 0}
   meteorHitForce: 10
   applyForce: 1

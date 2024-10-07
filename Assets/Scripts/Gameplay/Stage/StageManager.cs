@@ -172,7 +172,7 @@ namespace RM_MST
         private float comboTimer = 0;
 
         // The maximum time for the combo (in seconds).
-        private const float COMBO_TIMER_MAX = 5.0F;
+        private const float COMBO_TIMER_MAX = 7.0F;
 
         // The combo display.
         public ComboDisplay comboDisplay;
@@ -1098,7 +1098,7 @@ namespace RM_MST
             
             // Base amount, combo bonus, and difficulty bonus.
             points += 15;
-            points += 10 * combo;
+            points += 15 * combo;
             points += 5 * difficulty;
 
             // Returns the points.

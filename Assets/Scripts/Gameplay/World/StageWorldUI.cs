@@ -235,6 +235,19 @@ namespace RM_MST
                         }
                     }
                 }
+
+
+                // If TTS is enabled, and the LOL SDK is active.
+                if(GameSettings.Instance.UseTextToSpeech && LOLManager.Instantiated && LOLManager.IsLOLSDKInitialized())
+                {
+                    // If the tutorial is not running, and TTS is set, read the description.
+                    if (!worldManager.IsTutorialRunning() && LOLManager.Instance.textToSpeech != null)
+                    {
+                        // Speak the text.
+                        LOLManager.Instance.textToSpeech.SpeakText(stageWorld.stageDescKey);
+                    }
+                }
+
             }
         }
 

@@ -10,7 +10,6 @@ namespace RM_MST
         // The stage manager.
         public StageManager stageManager;
 
-        // TODO: set as trigger collision.
         // The collider for the meteor.
         public new Collider2D collider;
 
@@ -21,7 +20,7 @@ namespace RM_MST
         public SpriteRenderer spriteRenderer;
 
         // The speed of the laser shot.
-        public float maxSpeed = 65.0F;
+        public float maxSpeed = 60.0F;
 
         // The movement direction.
         public Vector3 moveDirec = Vector3.up;
