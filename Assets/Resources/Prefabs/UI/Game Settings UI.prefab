@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4485732602538511573}
   - component: {fileID: 5275178359453614675}
   - component: {fileID: 1958444924943535205}
+  - component: {fileID: 958764682141576143}
   m_Layer: 5
   m_Name: Window Title Text (TMP)
   m_TagString: Untagged
@@ -150,6 +151,20 @@ MonoBehaviour:
   text: {fileID: 5275178359453614675}
   key: kwd_settings
   markIfFailed: 1
+--- !u!114 &958764682141576143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1898181578715265694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb2f0677134bae84fb90268ee8288578, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: kwd_settings
+  speakTextOnStart: 1
 --- !u!1 &3594644471254809834
 GameObject:
   m_ObjectHideFlags: 0

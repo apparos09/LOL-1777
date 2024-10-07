@@ -105,12 +105,20 @@ PrefabInstance:
       value: Partner B - Sad Animation
       objectReference: {fileID: 0}
     - target: {fileID: 4712457573445462117, guid: 754a8c43d1114a244a499cfe092d4552, type: 3}
+      propertyPath: charName
+      value: Astrite
+      objectReference: {fileID: 0}
+    - target: {fileID: 4712457573445462117, guid: 754a8c43d1114a244a499cfe092d4552, type: 3}
       propertyPath: angryAnim
       value: Partner B - Angry Animation
       objectReference: {fileID: 0}
     - target: {fileID: 4712457573445462117, guid: 754a8c43d1114a244a499cfe092d4552, type: 3}
       propertyPath: happyAnim
       value: Partner B - Happy Animation
+      objectReference: {fileID: 0}
+    - target: {fileID: 4712457573445462117, guid: 754a8c43d1114a244a499cfe092d4552, type: 3}
+      propertyPath: charNameKey
+      value: chr_partnerB_nme
       objectReference: {fileID: 0}
     - target: {fileID: 4712457573445462117, guid: 754a8c43d1114a244a499cfe092d4552, type: 3}
       propertyPath: neutralAnim

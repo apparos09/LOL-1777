@@ -52,6 +52,9 @@ namespace RM_MST
         // This is false by default so that it's called from Start() first.
         private bool loadEntriesOnEnable = false;
 
+        // Gets set to 'true' during LateStart to show that TTS is allowed.
+        private bool allowTTS = false;
+
         // Set to true when late start is called.
         private bool calledLateStart = false;
 
@@ -75,8 +78,13 @@ namespace RM_MST
             if (unitsInfo == null)
                 unitsInfo = UnitsInfo.Instance;
 
-            // Loads the entires.
+            // Loads the entries.
             LoadEntries();
+
+            // Allow TTS to be used.
+            allowTTS = true;
+
+            // Load entries on enable.
             loadEntriesOnEnable = true;
         }
 
@@ -285,7 +293,7 @@ namespace RM_MST
             unitsTable.SetGroup(entry.group);
 
             // If the LOL Manager has been instantiated.
-            if(GameSettings.Instance.UseTextToSpeech)
+            if(GameSettings.Instance.UseTextToSpeech && allowTTS)
             {
                 // The LOL Manager
                 LOLManager lolManager = LOLManager.Instance;

@@ -105,12 +105,20 @@ PrefabInstance:
       value: Partner A - Sad Animation
       objectReference: {fileID: 0}
     - target: {fileID: 4712457573445462117, guid: 754a8c43d1114a244a499cfe092d4552, type: 3}
+      propertyPath: charName
+      value: Reteor
+      objectReference: {fileID: 0}
+    - target: {fileID: 4712457573445462117, guid: 754a8c43d1114a244a499cfe092d4552, type: 3}
       propertyPath: angryAnim
       value: Partner A - Angry Animation
       objectReference: {fileID: 0}
     - target: {fileID: 4712457573445462117, guid: 754a8c43d1114a244a499cfe092d4552, type: 3}
       propertyPath: happyAnim
       value: Partner A - Happy Animation
+      objectReference: {fileID: 0}
+    - target: {fileID: 4712457573445462117, guid: 754a8c43d1114a244a499cfe092d4552, type: 3}
+      propertyPath: charNameKey
+      value: chr_partnerA_nme
       objectReference: {fileID: 0}
     - target: {fileID: 4712457573445462117, guid: 754a8c43d1114a244a499cfe092d4552, type: 3}
       propertyPath: neutralAnim

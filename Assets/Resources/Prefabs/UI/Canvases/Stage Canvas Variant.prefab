@@ -4307,7 +4307,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Stage Lost
+  m_text: 'Stage Failed
 
 '
   m_isRightToLeft: 0
@@ -4391,7 +4391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 3959912128662922677}
-  key: kwd_stageLost
+  key: kwd_stageFailed
   markIfFailed: 1
 --- !u!114 &9074904042273271313
 MonoBehaviour:
@@ -4405,7 +4405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb2f0677134bae84fb90268ee8288578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: kwd_stageLost
+  key: kwd_stageFailed
   speakTextOnStart: 1
 --- !u!1 &8135924994149659831
 GameObject:
@@ -5038,7 +5038,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: -Stage Name-
+  m_text: '[Stage Name]'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

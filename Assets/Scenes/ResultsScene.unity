@@ -2816,6 +2816,7 @@ GameObject:
   - component: {fileID: 1377668120}
   - component: {fileID: 1377668119}
   - component: {fileID: 1377668121}
+  - component: {fileID: 1377668122}
   m_Layer: 5
   m_Name: Results Title Text (TMP)
   m_TagString: Untagged
@@ -2954,6 +2955,20 @@ MonoBehaviour:
   text: {fileID: 1377668119}
   key: kwd_results
   markIfFailed: 1
+--- !u!114 &1377668122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1377668117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb2f0677134bae84fb90268ee8288578, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: kwd_results
+  speakTextOnStart: 1
 --- !u!1001 &1503840451
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -10,11 +10,17 @@ namespace RM_MST
         // Character icon animation enum.
         public enum charIconAnim { none, neutral, happy, sad, angry, shocked }
 
+        // The character name.
+        public string charName = "";
+
+        // The translation key for the character name.
+        public string charNameKey = "";
+
+        [Header("Animations")]
         // The aniamtor.
         public Animator animator;
 
-        [Header("Animations")]
-
+        // The animation names.
         public string neutralAnim = "";
         public string happyAnim = "";
         public string sadAnim = "";
@@ -27,6 +33,15 @@ namespace RM_MST
             // If the animator isn't set, try getting it.
             if(animator == null)
                 animator = GetComponent<Animator>();
+
+
+            // If the LOL Manager and the LOL SDK is initialized.
+            if(LOLManager.Instantiated && LOLManager.IsLOLSDKInitialized())
+            {
+                // Translate the name if it's available.
+                if(charNameKey != string.Empty)
+                    charName = LOLManager.Instance.GetLanguageText(charNameKey);
+            }
         }
 
         // NOTE: these functions aren't necessarily called by all animations. They're here for utility reasons.

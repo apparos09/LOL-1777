@@ -25,7 +25,7 @@ namespace RM_MST
 
         // TODO: enable by default for submission build.
         // Use the text-to-speech options.
-        private bool useTTS = false;
+        private bool useTTS = true;
 
         // TODO: enable by default for submission build.
         // Use the tutorial for the game.

@@ -424,7 +424,7 @@ namespace RM_MST
         // Weight
         private string poundsName = "Pounds";
         public const string POUNDS_NAME_KEY = "unt_pounds_nme";
-        private string poundsSymbol = "lbs";
+        private string poundsSymbol = "lb";
         public const string POUNDS_SYMBOL_KEY = "unt_pounds_sbl";
 
         private string ouncesName = "Ounces";
@@ -889,7 +889,7 @@ namespace RM_MST
                     break;
 
                 case unitGroups.weightMetric: // Weight
-                    result = WEIGHT_METRIC_NAME_KEY;
+                    result = WEIGHT_METRIC_DESC_KEY;
                     break;
 
                 case unitGroups.capacity: // Capacity

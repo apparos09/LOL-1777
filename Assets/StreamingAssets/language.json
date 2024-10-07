@@ -28,11 +28,14 @@
       "kwd_tutorial": 28,
       "kwd_tutorials": 28,
 
+
       "kwd_units": 28,
       "kwd_unitsInfo": 28,
 
+
       "kwd_save": 28,
       "sve_msg_savingGame": 28,
+
 
       "unt_lengthImperial_nme": 28,
       "unt_lengthImperial_dsc": 200,
@@ -51,7 +54,6 @@
 
       "unt_capacity_nme": 28,
       "unt_capacity_dsc": 200,
-
 
 
       "unt_inches_nme": 28,
@@ -95,8 +97,10 @@
       "unt_liters_nme": 28,
       "unt_liters_sbl": 8,
 
+
       "kwd_input": 28,
       "kwd_output": 28,
+
 
       "kwd_world": 28,
       "kwd_stageSelect": 28,
@@ -114,6 +118,7 @@
       "stg_mix3_nme": 28,
       "stg_mix3_dsc": 240,
 
+
       "kwd_time": 28,
       "kwd_score": 28,
       "kwd_points": 28,
@@ -124,7 +129,12 @@
 
       "kwd_stageClear": 70,
       "kwd_stageWon": 70,
+      "kwd_stageFailed": 70,
       "kwd_stageLost": 70,
+
+
+      "chr_partnerA_nme": 28,
+      "chr_partnerB_nme": 28,
 
 
       "trl_intro_00": 500,
@@ -186,11 +196,14 @@
     "kwd_tutorial": "Tutorial",
     "kwd_tutorials": "Tutorials",
 
+
     "kwd_units": "Units",
     "kwd_unitsInfo": "Units Info",
 
+
     "kwd_save": "Save",
     "sve_msg_savingGame": "Saving Game",
+
 
     "unt_lengthImperial_nme": "Length (Imperial)",
     "unt_lengthImperial_dsc": "Inches (in), Feet (ft), Yards (yd)",
@@ -209,7 +222,6 @@
 
     "unt_capacity_nme": "Capacity",
     "unt_capacity_dsc": "Liters (l), Milliliters (mL)",
-
 
 
     "unt_inches_nme": "Inches",
@@ -231,7 +243,7 @@
     "unt_kilometers_sbl": "km",
 
     "unt_pounds_nme": "Pounds",
-    "unt_pounds_sbl": "lbs",
+    "unt_pounds_sbl": "lb",
     "unt_ounces_nme": "Ounces",
     "unt_ounces_sbl": "oz",
     "unt_milligrams_nme": "Milligrams",
@@ -253,8 +265,10 @@
     "unt_liters_nme": "Liters",
     "unt_liters_sbl": "l",
 
+
     "kwd_input": "Input",
     "kwd_output": "Output",
+
 
     "kwd_world": "World",
     "kwd_stageSelect": "Stage Select",
@@ -272,6 +286,7 @@
     "stg_mix3_nme": "Mix 3",
     "stg_mix3_dsc": "All",
 
+
     "kwd_time": "Time",
     "kwd_score": "Score",
     "kwd_points": "Points",
@@ -282,7 +297,12 @@
 
     "kwd_stageClear": "Stage Clear",
     "kwd_stageWon": "Stage Won",
+    "kwd_stageFailed": "Stage Failed",
     "kwd_stageLost": "Stage Lost",
+
+
+    "chr_partnerA_nme": "Reteor",
+    "chr_partnerB_nme": "Astrite",
 
 
     "trl_intro_00": "Welcome to the <b>Meteor Strike Team (MST)</b>! Our job is to track down meteors and destroy them before they hit the Earth's surface! But to destroy meteors, we need to solve measurement conversions. I'm <b>Reteor</b>...",
