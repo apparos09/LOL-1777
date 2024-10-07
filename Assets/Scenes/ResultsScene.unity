@@ -972,6 +972,10 @@ PrefabInstance:
       propertyPath: m_text
       value: Finish
       objectReference: {fileID: 0}
+    - target: {fileID: 4241256281479156035, guid: 2b3453dfd0e20b24b9a165392d78af22, type: 3}
+      propertyPath: key
+      value: kwd_finish
+      objectReference: {fileID: 0}
     - target: {fileID: 5077771038468991552, guid: 2b3453dfd0e20b24b9a165392d78af22, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -1673,7 +1677,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1241144837}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.566
+  m_Size: 0.56600004
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2361,6 +2365,10 @@ PrefabInstance:
       propertyPath: m_text
       value: Title
       objectReference: {fileID: 0}
+    - target: {fileID: 4241256281479156035, guid: 2b3453dfd0e20b24b9a165392d78af22, type: 3}
+      propertyPath: key
+      value: kwd_title
+      objectReference: {fileID: 0}
     - target: {fileID: 5077771038468991552, guid: 2b3453dfd0e20b24b9a165392d78af22, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -2592,7 +2600,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 976226098}
   m_HandleRect: {fileID: 976226097}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
