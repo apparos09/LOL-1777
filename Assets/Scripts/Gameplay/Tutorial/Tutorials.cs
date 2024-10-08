@@ -368,8 +368,8 @@ namespace RM_MST
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new MST_Page("Welcome to the <b>Meteor Strike Team (MST)</b>! Our job is to track down meteors and destroy them before they hit the Earth's surface! But to destroy meteors, we need to solve measurement conversions. I'm <b>Reteor</b>...", "trl_intro_00"),
-                new MST_Page("And I'm <b>Astrite</b>! We'll be your partners and guides for this game. This is the <b>world area</b>, which is where you can change the settings, save your game, view the units info, and select a stage. The game automatically saves after every completed stage, but manual saving is done via the 'save button'.", "trl_intro_01"),
+                new MST_Page("Welcome to the Meteor Strike Team (MST)! Our job is to track down meteors and destroy them before they hit the Earth's surface! But to destroy meteors, we need to solve measurement conversions. I'm Reteor...", "trl_intro_00"),
+                new MST_Page("And I'm Astrite! We'll be your partners and guides for this game. This is the world area, which is where you can change the settings, save your game, view the units info, and select a stage. The game automatically saves after every completed stage, but manual saving is done via the 'save button'.", "trl_intro_01"),
                 new MST_Page("When a stage is selected, the stage's measurement units are displayed. Once introduced to a unit group, its conversion information is added to the units info screen, which is accessed with the 'units info button'. Notably, you'll only be asked to convert from larger units to smaller units.", "trl_intro_02"),
                 new MST_Page("With all that explained, please select the available stage to start destroying meteors!", "trl_intro_03")
             };
@@ -402,7 +402,7 @@ namespace RM_MST
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new MST_Page("Welcome to the <b>stage area</b>! This is where you'll shoot down meteors with unit conversions! The meteor closest to the Earth's surface is automatically targeted, so all you must do is shoot at it by solving the conversion equation. If the meteor is successfully destroyed, you'll get points, which will fill up the points bar to the left. Once the points bar is filled, the stage is complete!", "trl_firstStage_00"),
+                new MST_Page("Welcome to the stage area! This is where you'll shoot down meteors with unit conversions! The meteor closest to the Earth's surface is automatically targeted, so all you must do is shoot at it by solving the conversion equation. If the meteor is successfully destroyed, you'll get points, which will fill up the points bar to the left. Once the points bar is filled, the stage is complete!", "trl_firstStage_00"),
                 new MST_Page("To answer a conversion question, you must select one of the unit buttons at the bottom of the screen. A unit button shows its output, and the math operation that was used to get it. If you select the correct unit button, the meteor is destroyed. If you choose the wrong unit button, the meteor is knocked back, but not destroyed.", "trl_firstStage_01"),
                 new MST_Page("If a meteor hits one of the barriers, the meteor will be destroyed, but the barrier will take damage. If a barrier takes too much damage, it will disappear, which will leave an opening for the meteors to reach the Earth's surface. The surface's health is shown on the left, next to the points bar. If the Earth's surface takes too much damage, the stage is lost.", "trl_firstStage_02"),
                 new MST_Page("On the right are the settings button, the world button, the units table, and the speed button. The units table shows all the conversions for the current unit group you're dealing with, and the speed button allows you to change the game's speed. With all that said, time to start the stage!", "trl_firstStage_03"),
@@ -448,7 +448,7 @@ namespace RM_MST
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new MST_Page("This is a <b>mix stage</b>. Mix stages have you deal with multiple unit groups at once. You'll only deal with a mix stage after you've experienced all relevant unit groups.", "trl_mixStage_00"),
+                new MST_Page("This is a mix stage. Mix stages have you deal with multiple unit groups at once. You'll only deal with a mix stage after you've experienced all relevant unit groups.", "trl_mixStage_00"),
             };
 
             // Change the display image when certain pages are opened using callbacks.
