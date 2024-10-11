@@ -58,7 +58,7 @@ namespace util
         // Called when the slider has been changed.
         private void OnValueChanged(float value)
         {
-            if (audioSource != null && audioClip != null)
+            if (IsPlaySafe())
                 audioSource.PlayOneShot(audioClip);
         }
 

@@ -66,7 +66,7 @@ namespace util
         private void OnClick()
         {
             // If both the audio source and the audio clip are set, play the audio.
-            if (audioSource != null && audioClip != null)
+            if (IsPlaySafe())
                 audioSource.PlayOneShot(audioClip);
         }
 

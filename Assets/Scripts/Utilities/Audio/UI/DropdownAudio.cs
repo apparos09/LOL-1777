@@ -58,7 +58,7 @@ namespace util
         // Called when the dropdown has been changed.
         private void OnValueChanged(int value)
         {
-            if (audioSource != null && audioClip != null)
+            if (IsPlaySafe())
                 audioSource.PlayOneShot(audioClip);
         }
 

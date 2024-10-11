@@ -58,7 +58,7 @@ namespace util
         // Called when the toggle is clicked.
         protected virtual void OnValueChanged(bool isOn)
         {
-            if (audioSource != null && audioClip != null)
+            if (IsPlaySafe())
                 audioSource.PlayOneShot(audioClip);
         }
     }
