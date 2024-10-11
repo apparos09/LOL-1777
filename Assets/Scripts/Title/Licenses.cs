@@ -62,27 +62,226 @@ namespace RM_MST
         {
             AudioCredits.AudioCredit credit;
 
+            // Title
             credit = new AudioCredits.AudioCredit();
-            credit.title = "BGM Debug";
-            credit.artist = "BGM Artist";
-            credit.copyright = "BGM Copyright";
+            credit.title = "Space Dominator Squadron";
+            credit.artist = "Antti Luode";
+            credit.collection = "GameSounds.xyz/Anttis instrumentals/Songs";
+            credit.source = "GameSounds.xyz";
+            credit.link1 = "https://gamesounds.xyz/?dir=Anttis%20instrumentals/Songs";
+            credit.link2 = "";
+            credit.copyright = 
+                "\"Space Dominator Squadron\"" +
+                "\nAntti Luode" +
+                "\nLicensed under Creative Commons: By Attribution 3.0" +
+                "\nhttps://creativecommons.org/licenses/by/3.0/";
+
             bgmCredits.audioCredits.Add(credit);
 
-            // TODO: implement
+
+            // World / Stage Select
+            credit = new AudioCredits.AudioCredit();
+            credit.title = "Galactic Rap";
+            credit.artist = "Kevin MacLeod";
+            credit.collection = "Incompetech.com";
+            credit.source = "Incompetech.com";
+            credit.link1 = "https://incompetech.com/music/royalty-free/music.html";
+            credit.link2 = "";
+            credit.copyright = 
+                "\"Galactic Rap\" Kevin MacLeod (incompetech.com)" +
+                "\nLicensed under Creative Commons: By Attribution 4.0 License" +
+                "\nhttp://creativecommons.org/licenses/by/4.0/";
+
+            bgmCredits.audioCredits.Add(credit);
+
+
+            // Stage - Theme 1
+            credit = new AudioCredits.AudioCredit();
+            credit.title = "Vanishing Horizon";
+            credit.artist = "Jason Shaw";
+            credit.collection = "GameSounds.xyz/Audionautix/Dance";
+            credit.source = "GameSounds.xyz, Audionautix.com";
+            credit.link1 = "https://gamesounds.xyz/?dir=Audionautix/Dance";
+            credit.link2 = "https://audionautix.com/";
+            credit.copyright = 
+                "\"Vanishing Horizon\"" +
+                "\nMusic by Jason Shaw on Audionautix.com (https://audionautix.com)" +
+                "\nLicensed under Creative Commons: By Attribution 4.0 License" +
+                "\nhttp://creativecommons.org/licenses/by/4.0/";
+
+            bgmCredits.audioCredits.Add(credit);
+
+
+            // Stage - Theme 2
+            credit = new AudioCredits.AudioCredit();
+            credit.title = "Thump";
+            credit.artist = "Jason Shaw";
+            credit.collection = "GameSounds.xyz/Audionautix/Dance";
+            credit.source = "GameSounds.xyz, Audionautix.com";
+            credit.link1 = "https://gamesounds.xyz/?dir=Audionautix/Dance";
+            credit.link2 = "https://audionautix.com/";
+            credit.copyright =
+                "\"Thump\"" +
+                "\nMusic by Jason Shaw on Audionautix.com (https://audionautix.com)" +
+                "\nLicensed under Creative Commons: By Attribution 4.0 License" +
+                "\nhttp://creativecommons.org/licenses/by/4.0/";
+
+            bgmCredits.audioCredits.Add(credit);
+
+            // Stage - Theme 3/Final Stage
+            credit = new AudioCredits.AudioCredit();
+            credit.title = "Sports Action";
+            credit.artist = "Jason Shaw";
+            credit.collection = "GameSounds.xyz/Audionautix/Soundtrack";
+            credit.source = "GameSounds.xyz, Audionautix.com";
+            credit.link1 = "https://gamesounds.xyz/?dir=Audionautix/Soundtrack";
+            credit.link2 = "https://audionautix.com/";
+            credit.copyright =
+                "\"Sports Action\"" +
+                "\nMusic by Jason Shaw on Audionautix.com (https://audionautix.com)" +
+                "\nLicensed under Creative Commons: By Attribution 4.0 License" +
+                "\nhttp://creativecommons.org/licenses/by/4.0/";
+
+            bgmCredits.audioCredits.Add(credit);
+
+            // Stage - Results
+            credit = new AudioCredits.AudioCredit();
+            credit.title = "Tired";
+            credit.artist = "Antti Luode";
+            credit.collection = "GameSounds.xyz/Anttis instrumentals/Songs";
+            credit.source = "GameSounds.xyz";
+            credit.link1 = "https://gamesounds.xyz/?dir=Anttis%20instrumentals/Songs";
+            credit.link2 = "";
+            credit.copyright =
+                "\"Tired\"" +
+                "\nAntti Luode" +
+                "\nLicensed under Creative Commons: By Attribution 3.0" +
+                "\nhttps://creativecommons.org/licenses/by/3.0/";
+
+            bgmCredits.audioCredits.Add(credit);
         }
 
-        // Loads the SFX credits.
+        // Loads the SFX and JNG credits.
         private void LoadSoundEffectCredits()
         {
             AudioCredits.AudioCredit credit;
 
+            // Loads sound effects and jingles.
+
+            // Sound Effects
+            // World - Stage Select
             credit = new AudioCredits.AudioCredit();
-            credit.title = "SFX Debug";
-            credit.artist = "SFX Artist";
-            credit.copyright = "SFX Copyright";
+            credit.title = "Text Message Alert 5";
+            credit.artist = "Daniel Simon";
+            credit.collection = "SoundBible.com";
+            credit.source = "SoundBible.com";
+            credit.link1 = "https://soundbible.com/2158-Text-Message-Alert-5.html";
+            credit.link2 = "";
+            credit.copyright = 
+                "\"Text Message Alert 5\"" +
+                "\nDaniel Simon" +
+                "\nLicensed under Creative Commons: By Attribution 3.0 License" +
+                "\nhttps://creativecommons.org/licenses/by/3.0/";
+
             sfxCredits.audioCredits.Add(credit);
 
-            // TODO: implement
+            // World - Stage Select - Confirm
+            credit = new AudioCredits.AudioCredit();
+            credit.title = "Text Message Alert 2";
+            credit.artist = "Daniel Simon";
+            credit.collection = "SoundBible.com";
+            credit.source = "SoundBible.com";
+            credit.link1 = "https://soundbible.com/2155-Text-Message-Alert-2.html";
+            credit.link2 = "";
+            credit.copyright =
+                "\"Text Message Alert 2\"" +
+                "\nDaniel Simon" +
+                "\nLicensed under Creative Commons: By Attribution 3.0 License" +
+                "\nhttps://creativecommons.org/licenses/by/3.0/";
+
+            sfxCredits.audioCredits.Add(credit);
+
+            // World - Stage Select - Decline
+            credit = new AudioCredits.AudioCredit();
+            credit.title = "Text Message Alert 1";
+            credit.artist = "Daniel Simon";
+            credit.collection = "SoundBible.com";
+            credit.source = "SoundBible.com";
+            credit.link1 = "https://soundbible.com/2154-Text-Message-Alert-1.html";
+            credit.link2 = "";
+            credit.copyright =
+                "\"Text Message Alert 1\"" +
+                "\nDaniel Simon" +
+                "\nLicensed under Creative Commons: By Attribution 3.0 License" +
+                "\nhttps://creativecommons.org/licenses/by/3.0/";
+
+            sfxCredits.audioCredits.Add(credit);
+
+            // Stage - Units Button
+            credit = new AudioCredits.AudioCredit();
+            credit.title = "Button";
+            credit.artist = "Mike Koenig";
+            credit.collection = "SoundBible.com";
+            credit.source = "SoundBible.com";
+            credit.link1 = "https://soundbible.com/772-Button.html";
+            credit.link2 = "";
+            credit.copyright =
+                "\"Button\"" +
+                "\nMike Koenig" +
+                "\nLicensed under Creative Commons: By Attribution 3.0 License" +
+                "\nhttps://creativecommons.org/licenses/by/3.0/";
+
+            sfxCredits.audioCredits.Add(credit);
+
+            // Stage - Laser Shot Destruction / Stage - Barrier - Destroyed
+            credit = new AudioCredits.AudioCredit();
+            credit.title = "Power Failure";
+            credit.artist = "Mike Koenig";
+            credit.collection = "SoundBible.com";
+            credit.source = "SoundBible.com";
+            credit.link1 = "https://soundbible.com/1610-Power-Failure.html";
+            credit.link2 = "";
+            credit.copyright =
+                "\"Power Failure\"" +
+                "\nMike Koenig" +
+                "\nLicensed under Creative Commons: By Attribution 3.0 License" +
+                "\nhttps://creativecommons.org/licenses/by/3.0/";
+
+            sfxCredits.audioCredits.Add(credit);
+
+
+            // Jingles
+            // Stage Cleared / Game Complete
+            credit = new AudioCredits.AudioCredit();
+            credit.title = "Big Intro";
+            credit.artist = "Jason Shaw";
+            credit.collection = "GameSounds.xyz/Audionautix/Soundtrack";
+            credit.source = "GameSounds.xyz, Audionautix.com";
+            credit.link1 = "https://gamesounds.xyz/?dir=Audionautix/Soundtrack";
+            credit.link2 = "https://audionautix.com/";
+            credit.copyright =
+                "\"Big Intro\"" +
+                "\nMusic by Jason Shaw on Audionautix.com (https://audionautix.com)" +
+                "\nLicensed under Creative Commons: By Attribution 4.0 License" +
+                "\nhttp://creativecommons.org/licenses/by/4.0/";
+
+            sfxCredits.audioCredits.Add(credit);
+
+            // Stage Failed
+            credit = new AudioCredits.AudioCredit();
+            credit.title = "Suspense Action";
+            credit.artist = "Jason Shaw";
+            credit.collection = "GameSounds.xyz/Audionautix/Soundtrack";
+            credit.source = "GameSounds.xyz, Audionautix.com";
+            credit.link1 = "https://gamesounds.xyz/?dir=Audionautix/Soundtrack";
+            credit.link2 = "https://audionautix.com/";
+            credit.copyright =
+                "\"Suspense Action\"" +
+                "\nMusic by Jason Shaw on Audionautix.com (https://audionautix.com)" +
+                "\nLicensed under Creative Commons: By Attribution 4.0 License" +
+                "\nhttp://creativecommons.org/licenses/by/4.0/";
+
+            sfxCredits.audioCredits.Add(credit);
         }
 
         // Loads the font credits.
@@ -91,12 +290,17 @@ namespace RM_MST
             AudioCredits.AudioCredit credit;
 
             credit = new AudioCredits.AudioCredit();
-            credit.title = "Font Debug";
+            credit.title = "Font Title";
             credit.artist = "Font Artist";
+            credit.collection = "Font Collection";
+            credit.source = "Font Source";
+            credit.link1 = "Font Link 1 Debug";
+            credit.link2 = "Font Link 2 Debug";
             credit.copyright = "Font Copyright";
+            
             fontsCredits.audioCredits.Add(credit);
 
-            // TODO: implement
+            // TODO: implement imported fonts.
         }
 
         // Enables all the credit buttons.

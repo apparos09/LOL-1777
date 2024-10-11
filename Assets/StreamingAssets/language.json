@@ -28,6 +28,10 @@
       "kwd_tutorial": 28,
       "kwd_tutorials": 28,
 
+      "kwd_bgms": 8,
+      "kwd_sfxs": 8,
+      "kwd_fonts": 8,
+
 
       "kwd_units": 28,
       "kwd_unitsInfo": 28,
@@ -195,6 +199,10 @@
     "kwd_textToSpeech": "Text-to-Speech",
     "kwd_tutorial": "Tutorial",
     "kwd_tutorials": "Tutorials",
+
+    "kwd_bgms": "BGMs",
+    "kwd_sfxs": "SFXs",
+    "kwd_fonts": "Fonts",
 
 
     "kwd_units": "Units",

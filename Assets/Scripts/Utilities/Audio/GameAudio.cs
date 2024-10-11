@@ -13,7 +13,8 @@ namespace util
         public AudioSourceLooper bgmLooper;
 
         // Sound Effects
-        public AudioSource sfxSource;
+        public AudioSource sfxWorldSource;
+        public AudioSource sfxUISource;
 
         // Voice
         public AudioSource vceSource;
@@ -33,6 +34,9 @@ namespace util
             }
         }
 
+
+
+        // BACKGROUND MUSIC
         // Plays the provided background music.
         // The arguments 'clipStart' and 'clipEnd' are used for the BGM looper.
         public void PlayBackgroundMusic(AudioClip bgmClip, float clipStart, float clipEnd)
@@ -62,7 +66,7 @@ namespace util
                     // Play the BGM with the normal settings.
                     bgmSource.Play();
                 }
-            }
+            }    
 
         }
 
@@ -76,7 +80,7 @@ namespace util
         // If 'stopAudio' is 'true', then the BGM is stopped before playing the one shot.
         public void PlayBackgroundMusicOneShot(AudioClip bgmClip, bool stopCurrAudio = true)
         {
-            if (bgmSource != null)
+            if(bgmSource != null)
             {
                 // If the current audio should be stopped.
                 if (stopCurrAudio)
@@ -84,34 +88,109 @@ namespace util
 
                 bgmSource.PlayOneShot(bgmClip);
             }
-
+            
         }
 
         // Stops the provided background music.
         public void StopBackgroundMusic()
         {
-            if (bgmSource != null)
+            if(bgmSource != null)
                 bgmSource.Stop();
         }
 
-        // Plays the sound effect.
-        public void PlaySoundEffect(AudioClip sfxClip)
+
+
+        // SOUND EFFECTS
+        // Plays the provided sound effect.
+        // If 'inWorld' is true, it's played using the world SFX source.
+        // IF 'inWorld' is false, it's played using the UI SFX source.
+        public void PlaySoundEffect(AudioClip sfxClip, bool inWorld)
         {
-            if (sfxSource != null)
-                sfxSource.PlayOneShot(sfxClip);
+            // Gets set to 'true' when a sound effect has been successfully played.
+            bool playedSfx = false;
+
+            // Checks the audio source to use.
+            if (inWorld) // World SFX
+            {
+                // If the source is activate and enabled, use it.
+                if (sfxWorldSource.isActiveAndEnabled)
+                {
+                    sfxWorldSource.PlayOneShot(sfxClip);
+                    playedSfx = true;
+                }
+                else
+                {
+                    playedSfx = false;
+                }
+
+
+            }
+            else // UI SFX
+            {
+                // If the source is activate and enabled, use it.
+                if (sfxUISource.isActiveAndEnabled)
+                {
+                    sfxUISource.PlayOneShot(sfxClip);
+                    playedSfx = true;
+                }
+                else
+                {
+                    playedSfx = false;
+                }
+
+            }
+
+            // If it's in the editor, throw this message.
+            // Unity provides a message anyway if you attempt to play a disabled audio source...
+            // So this is to hide that.
+            if (Application.isEditor && !playedSfx)
+            {
+                Debug.LogWarning("The SFX source is disabled, so it can't be played.");
+            }
+
         }
 
-        // Stops the sound effect source.
-        public void StopSoundEffect()
+        // Plays the sound effect for the world.
+        public void PlaySoundEffectWorld(AudioClip sfxClip)
         {
-            if (sfxSource != null)
-                sfxSource.Stop();
+            PlaySoundEffect(sfxClip, true);
         }
 
+        // Plays the sound effect for the UI.
+        public void PlaySoundEffectUI(AudioClip sfxClip)
+        {
+            PlaySoundEffect(sfxClip, false);
+        }
+
+        // Stops the sound effect.
+        public void StopSoundEffect(bool inWorld)
+        {
+            // Checks which sound effect to stop.
+            if (inWorld)
+                sfxWorldSource.Stop();
+            else
+                sfxUISource.Stop();
+        }
+
+        // Stops the sound effect for the world.
+        public void StopSoundEffectWorld()
+        {
+            StopSoundEffect(true);
+        }
+
+        // Stops the sound effect for the UI.
+        public void StopSoundEffectUI()
+        {
+            StopSoundEffect(false);
+        }
+
+
+
+        // VOICE
         // Plays the voice clip.
         public void PlayVoice(AudioClip vceClip)
         {
-            if (vceSource != null)
+            if(vceSource != null)
                 vceSource.PlayOneShot(vceClip);
         }
 

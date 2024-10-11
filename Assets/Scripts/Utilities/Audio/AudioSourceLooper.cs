@@ -70,8 +70,9 @@ namespace util
                 // If the audio source is set.
                 if(audioSource.clip != null)
                 {
-                    // If the clip end is greater than the clip length, clamp it.
-                    if (clipEnd > audioSource.clip.length)
+                    // If the clip end is less than 0, equal to 0, or is greater than the clip length...
+                    // Set it to the clip length.
+                    if (clipEnd <= 0.0F || clipEnd > audioSource.clip.length)
                         clipEnd = audioSource.clip.length;
 
                     // NOTE: this throws an error if clipStart is greater than the length of the audio.

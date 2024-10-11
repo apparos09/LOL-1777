@@ -45,6 +45,12 @@ namespace RM_MST
         // The volume for the sound effects.
         private float sfxVolume = 0.35F;
 
+        // The tag for the voice objects.
+        public const string VCE_TAG = "VCE";
+
+        // The volume for the voices.
+        private float vceVolume = 1.0F;
+
         // The audio for the TTS.
         public const string TTS_TAG = "TTS";
 
@@ -81,24 +87,11 @@ namespace RM_MST
             }
         }
 
-        //// Start is called before the first frame update
-        //void Start()
-        //{
-        //    // ...
-        //}
-
-        // TODO: why did you take this out? I don't remember, but leave it out I guess.
-        // // This function is called when the object is enabled and active
-        // private void OnEnable()
-        // {
-        //     SceneManager.sceneLoaded += OnSceneLoaded;
-        // }
-        // 
-        // // This function is called when the behaviour becomes disabled or inactive
-        // private void OnDisable()
-        // {
-        //     SceneManager.sceneLoaded -= OnSceneLoaded;
-        // }
+        // Start is called before the first frame update
+        void Start()
+        {
+            // ...
+        }
 
         // Returns the instance of the game settings.
         public static GameSettings Instance
@@ -270,6 +263,10 @@ namespace RM_MST
             else if (audio.CompareTag(SFX_TAG)) // SFX
             {
                 audio.audioSource.volume = audio.MaxVolume * sfxVolume;
+            }
+            else if (audio.CompareTag(VCE_TAG)) // VCE
+            {
+                audio.audioSource.volume = audio.MaxVolume * vceVolume;
             }
             else if (audio.CompareTag(TTS_TAG)) // TTS (Text-To-Speech);
             {

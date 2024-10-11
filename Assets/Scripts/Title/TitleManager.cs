@@ -120,9 +120,6 @@ namespace RM_MST
                     // TODO: do you need this?
                     // // Have the button be turned on no matter what for testing purposes.
                     // titleUI.continueButton.interactable = true;
-
-                    // Adjust the audio settings since the InitScene was not used.
-                    settings.AdjustAllAudioLevels();
                 }
             }
         }
@@ -130,8 +127,8 @@ namespace RM_MST
         // Start is called before the first frame update
         void Start()
         {
-            // ...
-
+            // Makes sure the audio is adjusted to the current settings.
+            GameSettings.Instance.AdjustAllAudioLevels();
         }
 
         // Gets the instance.
