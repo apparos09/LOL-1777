@@ -89,7 +89,7 @@ namespace util
         }
 
         // Plays the audio - if limited to the clip start, it starts from the loop point.
-        public void PlayAudio(bool resetAudio)
+        public void PlayAudio(bool resetAudio, float delay)
         {
             // Audio source or audio clip doesn't exist.
             if (audioSource == null || audioSource.clip == null)
@@ -112,8 +112,22 @@ namespace util
                 }
             }
 
-            // Plays the audio
-            audioSource.Play();
+            // Plays the audio. If there is a delay, use play delayed.
+            if(delay > 0)
+            {
+                audioSource.PlayDelayed(delay);
+            }
+            else
+            {
+                audioSource.Play();
+            }
+            
+        }
+
+        // Plays the audio with no delay.
+        public void PlayAudio(bool resetAudio)
+        {
+            PlayAudio(resetAudio, 0);
         }
 
         // Stops the audio

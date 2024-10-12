@@ -54,6 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 306346296116758905, guid: c3cb19426e98e8e438c3b9d6e2572398, type: 3}
+    - {fileID: 2309767889810451648, guid: c3cb19426e98e8e438c3b9d6e2572398, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -103,8 +104,8 @@ MonoBehaviour:
   sfxWorldSource: {fileID: 4861713030902801826}
   sfxUISource: {fileID: 2803785361128673775}
   vceSource: {fileID: 2008734233465331219}
-  buttonMenuSfx: {fileID: 0}
-  sliderMenuSfx: {fileID: 0}
+  buttonUISfx: {fileID: 8300000, guid: e180d18d36e431c4ebd17e3d9d0a9190, type: 3}
+  sliderUISfx: {fileID: 8300000, guid: 1d25cfff243ecc946a70461c794c6a3d, type: 3}
   manager: {fileID: 0}
 --- !u!114 &7039773978808574410 stripped
 MonoBehaviour:

@@ -18,6 +18,19 @@ namespace RM_MST
         // Manager
         public WorldManager manager;
 
+
+        [Header("World/BGMs")]
+        // The world background music.
+        public AudioClip worldBgm;
+
+        // The game results BGM.
+        public AudioClip gameResultsBgm;
+
+        [Header("World/JNGs")]
+
+        // The game complete jingle.
+        public AudioClip gameCompleteJng;
+
         // Constructor
         private WorldAudio()
         {
@@ -53,6 +66,12 @@ namespace RM_MST
 
             if (manager == null)
                 manager = WorldManager.Instance;
+
+            // If nothing is set, and the world bgm is set, play it.
+            if(bgmSource.clip == null && worldBgm != null)
+            {
+                PlayBackgroundMusic(worldBgm);
+            }
         }
 
         // Gets the instance.
@@ -89,6 +108,28 @@ namespace RM_MST
             {
                 return instanced;
             }
+        }
+
+        // Plays the world background music.
+        public void PlayWorldBgm()
+        {
+            PlayBackgroundMusic(worldBgm);
+        }
+
+        // Play the game complete music. It plays a jingle, then plays the results music.
+        // The provided BGM delay is the gap between the jingle and the resuls music.
+        public void PlayGameCompleteMusic(float bgmDelay)
+        {
+            float totalDelay = gameCompleteJng.length + bgmDelay;
+            PlayBackgroundMusic(gameResultsBgm, totalDelay);
+            PlayBackgroundMusicOneShot(gameCompleteJng, false);
+        }
+
+        // Plays the game complete music with a preset delay.
+        public void PlayGameCompleteMusic()
+        {
+            // Starts the BGM 1 second after the jingle is done.
+            PlayGameCompleteMusic(1.0F);
         }
 
         // This function is called when the MonoBehaviour will be destroyed.

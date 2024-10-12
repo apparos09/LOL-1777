@@ -1950,8 +1950,8 @@ MonoBehaviour:
   sfxWorldSource: {fileID: 1036308870}
   sfxUISource: {fileID: 1213205348}
   vceSource: {fileID: 1036308869}
-  buttonMenuSfx: {fileID: 0}
-  sliderMenuSfx: {fileID: 0}
+  buttonUISfx: {fileID: 8300000, guid: e180d18d36e431c4ebd17e3d9d0a9190, type: 3}
+  sliderUISfx: {fileID: 8300000, guid: 1d25cfff243ecc946a70461c794c6a3d, type: 3}
   manager: {fileID: 692810579}
   resultsBgm: {fileID: 8300000, guid: cfaa3de06df0d8145ae23e8b7b1bd038, type: 3}
 --- !u!1 &1054378293 stripped

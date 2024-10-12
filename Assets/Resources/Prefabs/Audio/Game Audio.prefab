@@ -503,8 +503,8 @@ MonoBehaviour:
   sfxWorldSource: {fileID: 2769005536380792162}
   sfxUISource: {fileID: 4898849924726888751}
   vceSource: {fileID: 9148298241603163859}
-  buttonMenuSfx: {fileID: 0}
-  sliderMenuSfx: {fileID: 0}
+  buttonUISfx: {fileID: 8300000, guid: e180d18d36e431c4ebd17e3d9d0a9190, type: 3}
+  sliderUISfx: {fileID: 8300000, guid: 1d25cfff243ecc946a70461c794c6a3d, type: 3}
 --- !u!1 &9165119815108696933
 GameObject:
   m_ObjectHideFlags: 0

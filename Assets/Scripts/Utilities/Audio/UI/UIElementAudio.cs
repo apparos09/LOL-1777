@@ -57,21 +57,29 @@ namespace util
             // Result to be returned.
             bool result;
 
-            // Initial check to see if audio can be used.
+            // Checks if the provided elements are set to play the audio.
             result = audioSource != null && audioClip != null && audioReady;
 
-            // A warning message is thrown if you attempt to use a disabled audio source.
-            // This block is commented out so that the message can be seen.
-            // // If the initial check returned true.
-            // if(result)
-            // {
-            //     // The audio source can only be played if it's active and enabled.
-            //     result = audioSource.isActiveAndEnabled;
-            // }
+            // Returns the result.
+            return result;
+        }
 
+        // Returns 'true' if the audio can play. If the audio object is unusable, this returns false.
+        public virtual bool IsPlayable()
+        {
+            // First checks if playing is safe.
+            bool result = IsPlaySafe();
+
+            // Safe to play.
+            if(result)
+            {
+                // Checks if the audio source is active and enabled.
+                result = audioSource.isActiveAndEnabled;
+            }
 
             return result;
         }
+
 
         // NOTE: this can vary from element to element, so it cannot be inherited.
         // Called when the UI element is triggered.

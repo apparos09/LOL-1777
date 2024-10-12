@@ -564,10 +564,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: World Audio
       objectReference: {fileID: 0}
-    - target: {fileID: 6940648163981259171, guid: e6f11c3d25bf2144db20fb70bbb720d0, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -13,11 +13,11 @@ namespace RM_MST
         // If 'true', the audio sources for the UI are automatically set.
         private bool autoSetUIAudio = true;
 
-        // The button (menu) SFX.
-        public AudioClip buttonMenuSfx;
+        // The button (UI) SFX.
+        public AudioClip buttonUISfx;
 
-        // The slider (menu) SFX.
-        public AudioClip sliderMenuSfx;
+        // The slider (UI) SFX.
+        public AudioClip sliderUISfx;
 
         // Start is called before the first frame update
         protected override void Start()
@@ -29,31 +29,15 @@ namespace RM_MST
             // Take out this autoset if you're going to manually set things.
             if(autoSetUIAudio)
             {
-                // Button Audios
-                ButtonAudio[] buttonAudios = FindObjectsOfType<ButtonAudio>(true);
+                // Finds all the ui element audio objects.
+                UIElementAudio[] uIElementAudios = FindObjectsOfType<UIElementAudio>(true);
 
-                foreach(ButtonAudio buttonAudio in buttonAudios)
+                // Goes through the list,and sets the audio source.
+                foreach (UIElementAudio uiElementAudio in uIElementAudios)
                 {
-                    if(buttonAudio.audioSource == null)
-                        buttonAudio.audioSource = sfxUISource;
-                }
-
-                // Toggle Audios
-                ToggleAudio[] toggleAudios = FindObjectsOfType<ToggleAudio>(true);
-
-                foreach (ToggleAudio toggleAudio in toggleAudios)
-                {
-                    if (toggleAudio.audioSource == null)
-                        toggleAudio.audioSource = sfxUISource;
-                }
-
-                // Slider Audios
-                SliderAudio[] sliderAudios = FindObjectsOfType<SliderAudio>(true);
-
-                foreach (SliderAudio sliderAudio in sliderAudios)
-                {
-                    if (sliderAudio.audioSource == null)
-                        sliderAudio.audioSource = sfxUISource;
+                    // If the audio source isn't set, set it.
+                    if (uiElementAudio.audioSource == null)
+                        uiElementAudio.audioSource = sfxUISource;
                 }
             }
         }
@@ -61,13 +45,13 @@ namespace RM_MST
         // Plays the button menu SFX.
         public void PlayButtonUISfx()
         {
-            PlaySoundEffectUI(buttonMenuSfx);
+            PlaySoundEffectUI(buttonUISfx);
         }
 
         // Plays the slider menu SFX.
         public void PlaySliderUISfx()
         {
-            PlaySoundEffectUI(sliderMenuSfx);
+            PlaySoundEffectUI(sliderUISfx);
         }
     }
 }
