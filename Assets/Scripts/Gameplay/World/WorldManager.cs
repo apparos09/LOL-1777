@@ -22,6 +22,9 @@ namespace RM_MST
         // The world user interface.
         public WorldUI worldUI;
 
+        // The world audio for the game.
+        public WorldAudio worldAudio;
+
         // The player in the world.
         public PlayerWorld playerWorld;
 
@@ -80,6 +83,10 @@ namespace RM_MST
             // Sets the world UI.
             if (worldUI == null)
                 worldUI = WorldUI.Instance;
+
+            // Sets the world audio.
+            if(worldAudio == null)
+                worldAudio = WorldAudio.Instance;
 
             // If there are no stages in the stage list.
             if(stages.Count == 0)
@@ -439,6 +446,9 @@ namespace RM_MST
         {
             // Opens the UI.
             worldUI.OnGameComplete();
+
+            // Play the game complete music.
+            worldAudio.PlayGameCompleteMusic();
         }
 
         // When going to the results scene, create the results data.

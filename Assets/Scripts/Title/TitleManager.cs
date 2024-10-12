@@ -127,8 +127,7 @@ namespace RM_MST
         // Start is called before the first frame update
         void Start()
         {
-            // Makes sure the audio is adjusted to the current settings.
-            GameSettings.Instance.AdjustAllAudioLevels();
+            // ...
         }
 
         // Gets the instance.

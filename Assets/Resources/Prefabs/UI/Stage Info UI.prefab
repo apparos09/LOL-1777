@@ -705,6 +705,10 @@ PrefabInstance:
       propertyPath: key
       value: kwd_back
       objectReference: {fileID: 0}
+    - target: {fileID: 4004739139758883738, guid: 3eb77aaff20e4064a9f4940aa2079af1, type: 3}
+      propertyPath: audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: a630e3f5e9a03f24eb9ec71b1e32f2d3, type: 3}
     - target: {fileID: 6632412097355346787, guid: 3eb77aaff20e4064a9f4940aa2079af1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -866,6 +870,10 @@ PrefabInstance:
       propertyPath: key
       value: kwd_start
       objectReference: {fileID: 0}
+    - target: {fileID: 4004739139758883738, guid: 3eb77aaff20e4064a9f4940aa2079af1, type: 3}
+      propertyPath: audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: a4afaf33b5c577048a49b755976fab9a, type: 3}
     - target: {fileID: 6632412097355346787, guid: 3eb77aaff20e4064a9f4940aa2079af1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1

@@ -40,6 +40,9 @@ namespace RM_MST
                         uiElementAudio.audioSource = sfxUISource;
                 }
             }
+
+            // Makes sure the audio is adjusted to the current settings.
+            GameSettings.Instance.AdjustAllAudioLevels();
         }
 
         // Plays the button menu SFX.

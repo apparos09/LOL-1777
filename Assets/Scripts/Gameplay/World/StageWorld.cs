@@ -89,7 +89,7 @@ namespace RM_MST
         // The cleared sprite.
         public Sprite clearedSprite;
 
-        [Header("Animator")]
+        [Header("Animation")]
 
         // The animator for stage world.
         public Animator animator;
@@ -114,6 +114,10 @@ namespace RM_MST
         // Greyed
         public string borderGreyedAnim = "Stage Icon - Border - Greyed Animation";
 
+        [Header("Audio")]
+
+        // The sfx for selecting this stage.
+        public AudioClip stageSelectSfx;
 
         // Start is called before the first frame update
         void Start()
@@ -349,6 +353,9 @@ namespace RM_MST
 
                     // Shows the selected stage.
                     worldManager.worldUI.ShowStageWorldUI(this, worldManager.GetStageWorldIndex(this));
+
+                    // Plays the stage select sound effect in the world.
+                    worldManager.worldAudio.PlaySoundEffectWorld(stageSelectSfx);
                 }    
             }
         }

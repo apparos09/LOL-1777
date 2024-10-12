@@ -139,6 +139,7 @@ MonoBehaviour:
   iconClearedAnim: Stage Icon - Icon - Cleared Animation
   borderBlinkingAnim: Stage Icon - Border - Blinking Animation
   borderGreyedAnim: Stage Icon - Border - Greyed Animation
+  stageSelectSfx: {fileID: 8300000, guid: f715f7f3fbe3ca24b89c2086ad9b27a7, type: 3}
 --- !u!114 &3414718615701894934
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -159,6 +159,40 @@ namespace RM_MST
                 "\nhttps://creativecommons.org/licenses/by/3.0/";
 
             bgmCredits.audioCredits.Add(credit);
+
+
+            // Jingles
+            // Stage Cleared / Game Complete
+            credit = new AudioCredits.AudioCredit();
+            credit.title = "Big Intro";
+            credit.artist = "Jason Shaw";
+            credit.collection = "GameSounds.xyz/Audionautix/Soundtrack";
+            credit.source = "GameSounds.xyz, Audionautix.com";
+            credit.link1 = "https://gamesounds.xyz/?dir=Audionautix/Soundtrack";
+            credit.link2 = "https://audionautix.com/";
+            credit.copyright =
+                "\"Big Intro\"" +
+                "\nMusic by Jason Shaw on Audionautix.com (https://audionautix.com)" +
+                "\nLicensed under Creative Commons: By Attribution 4.0 License" +
+                "\nhttp://creativecommons.org/licenses/by/4.0/";
+
+            bgmCredits.audioCredits.Add(credit);
+
+            // Stage Failed
+            credit = new AudioCredits.AudioCredit();
+            credit.title = "Suspense Action";
+            credit.artist = "Jason Shaw";
+            credit.collection = "GameSounds.xyz/Audionautix/Soundtrack";
+            credit.source = "GameSounds.xyz, Audionautix.com";
+            credit.link1 = "https://gamesounds.xyz/?dir=Audionautix/Soundtrack";
+            credit.link2 = "https://audionautix.com/";
+            credit.copyright =
+                "\"Suspense Action\"" +
+                "\nMusic by Jason Shaw on Audionautix.com (https://audionautix.com)" +
+                "\nLicensed under Creative Commons: By Attribution 4.0 License" +
+                "\nhttp://creativecommons.org/licenses/by/4.0/";
+
+            bgmCredits.audioCredits.Add(credit);
         }
 
         // Loads the SFX and JNG credits.
@@ -246,40 +280,6 @@ namespace RM_MST
                 "\nMike Koenig" +
                 "\nLicensed under Creative Commons: By Attribution 3.0 License" +
                 "\nhttps://creativecommons.org/licenses/by/3.0/";
-
-            sfxCredits.audioCredits.Add(credit);
-
-
-            // Jingles
-            // Stage Cleared / Game Complete
-            credit = new AudioCredits.AudioCredit();
-            credit.title = "Big Intro";
-            credit.artist = "Jason Shaw";
-            credit.collection = "GameSounds.xyz/Audionautix/Soundtrack";
-            credit.source = "GameSounds.xyz, Audionautix.com";
-            credit.link1 = "https://gamesounds.xyz/?dir=Audionautix/Soundtrack";
-            credit.link2 = "https://audionautix.com/";
-            credit.copyright =
-                "\"Big Intro\"" +
-                "\nMusic by Jason Shaw on Audionautix.com (https://audionautix.com)" +
-                "\nLicensed under Creative Commons: By Attribution 4.0 License" +
-                "\nhttp://creativecommons.org/licenses/by/4.0/";
-
-            sfxCredits.audioCredits.Add(credit);
-
-            // Stage Failed
-            credit = new AudioCredits.AudioCredit();
-            credit.title = "Suspense Action";
-            credit.artist = "Jason Shaw";
-            credit.collection = "GameSounds.xyz/Audionautix/Soundtrack";
-            credit.source = "GameSounds.xyz, Audionautix.com";
-            credit.link1 = "https://gamesounds.xyz/?dir=Audionautix/Soundtrack";
-            credit.link2 = "https://audionautix.com/";
-            credit.copyright =
-                "\"Suspense Action\"" +
-                "\nMusic by Jason Shaw on Audionautix.com (https://audionautix.com)" +
-                "\nLicensed under Creative Commons: By Attribution 4.0 License" +
-                "\nhttp://creativecommons.org/licenses/by/4.0/";
 
             sfxCredits.audioCredits.Add(credit);
         }
