@@ -19,6 +19,9 @@ namespace RM_MST
             // Unit Groups
             public List<UnitsInfo.unitGroups> stageUnitGroups;
 
+            // Music/BGM Number
+            public int bgmNumber;
+
             // Difficulty
             public int difficulty;
 

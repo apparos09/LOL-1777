@@ -18,6 +18,24 @@ namespace RM_MST
         // Manager
         public StageManager manager;
 
+        [Header("Stage/BGMs")]
+        // The stage BGMs. BGM 0 is the debug BGM.
+        public AudioClip stageBgm00;
+        public AudioClip stageBgm01;
+        public AudioClip stageBgm02;
+        public AudioClip stageBgm03;
+
+        // The stage results bgms.
+        public AudioClip stageResultsBgm;
+
+        [Header("Stage/JNGs")]
+
+        // The stage cleared jingle.
+        public AudioClip stageClearedJng;
+
+        // The stage failed jingle.
+        public AudioClip stageFailedJng;
+
         // Constructor
         private StageAudio()
         {
@@ -53,6 +71,12 @@ namespace RM_MST
 
             if (manager == null)
                 manager = StageManager.Instance;
+
+            // If nothing is set, play the default stage bgm.
+            if (bgmSource.clip == null && stageBgm00 != null)
+            {
+                PlayBackgroundMusic(stageBgm00);
+            }
         }
 
         // Gets the instance.
@@ -89,6 +113,37 @@ namespace RM_MST
             {
                 return instanced;
             }
+        }
+
+        // Plays the stage BGM using the provided number.
+        public void PlayStageBgm(int bgmNumber)
+        {
+            // The clip to be played.
+            AudioClip clip;
+
+            // Checks the BGM number to know which one to play.
+            switch(bgmNumber)
+            {
+                default:
+                case 0:
+                    clip = stageBgm00;
+                    break;
+
+                case 1:
+                    clip = stageBgm01;
+                    break;
+
+                case 2:
+                    clip = stageBgm02;
+                    break;
+
+                case 3:
+                    clip = stageBgm03;
+                    break;
+            }
+
+            // Play the music.
+            PlayBackgroundMusic(clip);
         }
 
         // This function is called when the MonoBehaviour will be destroyed.

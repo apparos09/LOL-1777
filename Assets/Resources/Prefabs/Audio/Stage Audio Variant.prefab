@@ -107,6 +107,13 @@ MonoBehaviour:
   buttonUISfx: {fileID: 8300000, guid: e180d18d36e431c4ebd17e3d9d0a9190, type: 3}
   sliderUISfx: {fileID: 8300000, guid: 1d25cfff243ecc946a70461c794c6a3d, type: 3}
   manager: {fileID: 0}
+  stageBgm00: {fileID: 8300000, guid: aea289f790ed6734881beb8898db68fc, type: 3}
+  stageBgm01: {fileID: 8300000, guid: aea289f790ed6734881beb8898db68fc, type: 3}
+  stageBgm02: {fileID: 8300000, guid: 7a2eab8f2efcd744cbef58e2705a8f92, type: 3}
+  stageBgm03: {fileID: 8300000, guid: fc73b940ca505d3479c008af1033bdcd, type: 3}
+  stageResultsBgm: {fileID: 8300000, guid: 8ba64db95e0f9ca4780929a09c992d83, type: 3}
+  stageClearedJng: {fileID: 8300000, guid: 16e942006a253294ca18113fb4f16e93, type: 3}
+  stageFailedJng: {fileID: 8300000, guid: f29130f2765431049836a0b130d2d1b2, type: 3}
 --- !u!114 &7039773978808574410 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 335360674817648906, guid: c3cb19426e98e8e438c3b9d6e2572398, type: 3}

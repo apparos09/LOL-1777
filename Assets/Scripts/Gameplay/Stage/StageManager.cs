@@ -22,11 +22,17 @@ namespace RM_MST
         // The stage user interface.
         public StageUI stageUI;
 
+        // The audio for the stage.
+        public StageAudio stageAudio;
+
         // The stage.
         public Stage stage;
 
         // The stage's name.
         public string stageName;
+
+        // The stage's BGM number.
+        public int stageBgmNumber = 0;
 
         // The stage index.
         public int stageIndex = -1;
@@ -210,6 +216,14 @@ namespace RM_MST
         {
             base.Start();
 
+            // Gets the UI instance.
+            if (stageUI == null)
+                stageUI = StageUI.Instance;
+
+            // Gets the audio isntance.
+            if(stageAudio == null)
+                stageAudio = StageAudio.Instance;
+
             // If the gameplay info has been instantiated.
             if (GameplayInfo.Instantiated)
             {
@@ -240,6 +254,9 @@ namespace RM_MST
             // If the difficulty should be dynamically adjusted.
             if(dynamicDifficulty)
                 AdjustDifficultyByLosses();
+
+            // Plays the background music using the provided BGM number.
+            stageAudio.PlayStageBgm(stageBgmNumber);
         }
 
         // The function called after the start function.
@@ -334,6 +351,7 @@ namespace RM_MST
             {
                 stageName = stageStartInfo.name;
                 stageUnitGroups = stageStartInfo.stageUnitGroups;
+                stageBgmNumber = stageStartInfo.bgmNumber;
                 difficulty = stageStartInfo.difficulty;
                 losses = stageStartInfo.losses;
                 stageIndex = stageStartInfo.index;

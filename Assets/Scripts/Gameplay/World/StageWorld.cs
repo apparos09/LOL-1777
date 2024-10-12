@@ -47,6 +47,9 @@ namespace RM_MST
         // The units types for the stage.
         public List<UnitsInfo.unitGroups> unitGroups = new List<UnitsInfo.unitGroups>();
 
+        // The BGM number for the stage.
+        public int stageBgmNumber = 0;
+
         // The most recent saved time for the stage.
         [Tooltip("The time for the most recent attmept on the stage.")]
         private float stageTime = 0;
@@ -413,9 +416,10 @@ namespace RM_MST
             // The stage start info.
             GameplayInfo.StageStartInfo stageStartInfo = new GameplayInfo.StageStartInfo();
 
-            // Sets the name, units groups, and difficulty.
+            // Sets the name, units groups, bgm number, difficulty, and losses.
             stageStartInfo.name = stageName;
             stageStartInfo.stageUnitGroups = unitGroups;
+            stageStartInfo.bgmNumber = stageBgmNumber;
             stageStartInfo.difficulty = difficulty;
             stageStartInfo.losses = losses;
 

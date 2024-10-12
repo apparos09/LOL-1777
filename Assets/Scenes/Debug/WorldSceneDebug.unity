@@ -253,6 +253,10 @@ PrefabInstance:
       propertyPath: worldManager
       value: 
       objectReference: {fileID: 142188536}
+    - target: {fileID: 6622377654606349290, guid: db4b37199e3470e49a5c2ff2ef80e384, type: 3}
+      propertyPath: stageBgmNumber
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -479,6 +483,10 @@ PrefabInstance:
       propertyPath: worldManager
       value: 
       objectReference: {fileID: 142188536}
+    - target: {fileID: 6622377654606349290, guid: db4b37199e3470e49a5c2ff2ef80e384, type: 3}
+      propertyPath: stageBgmNumber
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6622377654606349290, guid: db4b37199e3470e49a5c2ff2ef80e384, type: 3}
       propertyPath: unitGroups.Array.size
       value: 2
@@ -883,6 +891,10 @@ PrefabInstance:
       propertyPath: worldManager
       value: 
       objectReference: {fileID: 142188536}
+    - target: {fileID: 6622377654606349290, guid: db4b37199e3470e49a5c2ff2ef80e384, type: 3}
+      propertyPath: stageBgmNumber
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6622377654606349290, guid: db4b37199e3470e49a5c2ff2ef80e384, type: 3}
       propertyPath: unitGroups.Array.size
       value: 1
