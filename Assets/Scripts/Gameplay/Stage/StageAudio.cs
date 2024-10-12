@@ -146,6 +146,27 @@ namespace RM_MST
             PlayBackgroundMusic(clip);
         }
 
+        // Play the stage results music, which is preceded by a jingle.
+        // The type of jingle used depends on if the player won or lost.
+        public void PlayStageCompleteMusic(bool playerWon, float bgmDelay)
+        {
+            // The jingle clip.
+            AudioClip jngClip = (playerWon) ? stageClearedJng : stageFailedJng;
+
+            // The total delay. This is the sum of the jingle length plus the additional delay.
+            float totalDelay = jngClip.length + bgmDelay;
+
+            PlayBackgroundMusic(stageResultsBgm, totalDelay);
+            PlayBackgroundMusicOneShot(jngClip, false);
+        }
+
+        // Plays the stage complete music. The playerWon argument determines what jingle used.
+        public void PlayStageCompleteMusic(bool playerWon)
+        {
+            // Starts the BGM 1 second after the jingle is done.
+            PlayStageCompleteMusic(playerWon, 1.0F);
+        }
+
         // This function is called when the MonoBehaviour will be destroyed.
         private void OnDestroy()
         {

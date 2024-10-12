@@ -48,7 +48,7 @@ namespace RM_MST
         public List<UnitsInfo.unitGroups> unitGroups = new List<UnitsInfo.unitGroups>();
 
         // The BGM number for the stage.
-        public int stageBgmNumber = 0;
+        public int bgmNumber = 0;
 
         // The most recent saved time for the stage.
         [Tooltip("The time for the most recent attmept on the stage.")]
@@ -419,7 +419,7 @@ namespace RM_MST
             // Sets the name, units groups, bgm number, difficulty, and losses.
             stageStartInfo.name = stageName;
             stageStartInfo.stageUnitGroups = unitGroups;
-            stageStartInfo.bgmNumber = stageBgmNumber;
+            stageStartInfo.bgmNumber = bgmNumber;
             stageStartInfo.difficulty = difficulty;
             stageStartInfo.losses = losses;
 

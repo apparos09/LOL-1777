@@ -250,6 +250,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1493222276}
     - target: {fileID: 6622377654606349290, guid: db4b37199e3470e49a5c2ff2ef80e384, type: 3}
+      propertyPath: bgmNumber
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6622377654606349290, guid: db4b37199e3470e49a5c2ff2ef80e384, type: 3}
       propertyPath: worldManager
       value: 
       objectReference: {fileID: 142188536}
@@ -470,6 +474,10 @@ PrefabInstance:
     - target: {fileID: 3414718615701894934, guid: db4b37199e3470e49a5c2ff2ef80e384, type: 3}
       propertyPath: cleared
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6622377654606349290, guid: db4b37199e3470e49a5c2ff2ef80e384, type: 3}
+      propertyPath: bgmNumber
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6622377654606349290, guid: db4b37199e3470e49a5c2ff2ef80e384, type: 3}
       propertyPath: stageName
@@ -886,6 +894,10 @@ PrefabInstance:
     - target: {fileID: 1414131656288307116, guid: db4b37199e3470e49a5c2ff2ef80e384, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6622377654606349290, guid: db4b37199e3470e49a5c2ff2ef80e384, type: 3}
+      propertyPath: bgmNumber
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6622377654606349290, guid: db4b37199e3470e49a5c2ff2ef80e384, type: 3}
       propertyPath: worldManager

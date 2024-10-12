@@ -32,7 +32,7 @@ namespace RM_MST
         public string stageName;
 
         // The stage's BGM number.
-        public int stageBgmNumber = 0;
+        public int bgmNumber = 0;
 
         // The stage index.
         public int stageIndex = -1;
@@ -256,7 +256,7 @@ namespace RM_MST
                 AdjustDifficultyByLosses();
 
             // Plays the background music using the provided BGM number.
-            stageAudio.PlayStageBgm(stageBgmNumber);
+            stageAudio.PlayStageBgm(bgmNumber);
         }
 
         // The function called after the start function.
@@ -351,7 +351,7 @@ namespace RM_MST
             {
                 stageName = stageStartInfo.name;
                 stageUnitGroups = stageStartInfo.stageUnitGroups;
-                stageBgmNumber = stageStartInfo.bgmNumber;
+                bgmNumber = stageStartInfo.bgmNumber;
                 difficulty = stageStartInfo.difficulty;
                 losses = stageStartInfo.losses;
                 stageIndex = stageStartInfo.index;
@@ -1266,12 +1266,13 @@ namespace RM_MST
         // Called when the stage has ended.
         public void OnStageEnd()
         {
+            // Change settings.
             runningGame = false;
             SetToNormalSpeed();
             PauseGame();
             FindAndKillAllMeteors();
 
-            // UI call.
+            // UI stage end.
             stageUI.OnStageEnd();
         }
 
@@ -1290,6 +1291,9 @@ namespace RM_MST
 
             // Stage won.
             stageUI.OnStageWon();
+
+            // Plays the stage complete music.
+            stageAudio.PlayStageCompleteMusic(true);
         }
 
         // Called when the game has been lost.
@@ -1307,8 +1311,11 @@ namespace RM_MST
             losses++;
             AdjustDifficultyByLosses();
 
-            // Stage lost.
+            // Stage lost UI.
             stageUI.OnStageLost();
+
+            // Plays the stage complete music.
+            stageAudio.PlayStageCompleteMusic(false);
         }
 
         // Called to restart the stage.
@@ -1340,6 +1347,9 @@ namespace RM_MST
 
             // Restarts the stage.
             stageUI.OnStageReset();
+
+            // Play the stage music.
+            stageAudio.PlayStageBgm(bgmNumber);
 
             // Unpause game and start running.
             UnpauseGame();
