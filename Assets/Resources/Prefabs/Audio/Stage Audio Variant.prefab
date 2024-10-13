@@ -112,6 +112,7 @@ MonoBehaviour:
   stageBgm02: {fileID: 8300000, guid: 7a2eab8f2efcd744cbef58e2705a8f92, type: 3}
   stageBgm03: {fileID: 8300000, guid: fc73b940ca505d3479c008af1033bdcd, type: 3}
   stageResultsBgm: {fileID: 8300000, guid: 8ba64db95e0f9ca4780929a09c992d83, type: 3}
+  phaseSfx: {fileID: 8300000, guid: c56941a3367135c4b9ea6d49a2b5935a, type: 3}
   stageClearedJng: {fileID: 8300000, guid: 16e942006a253294ca18113fb4f16e93, type: 3}
   stageFailedJng: {fileID: 8300000, guid: f29130f2765431049836a0b130d2d1b2, type: 3}
 --- !u!114 &7039773978808574410 stripped

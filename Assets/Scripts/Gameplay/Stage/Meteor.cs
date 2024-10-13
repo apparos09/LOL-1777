@@ -67,6 +67,14 @@ namespace RM_MST
         // Sets if animations are being used.
         private bool useAnimations = true;
 
+        [Header("Audio")]
+
+        // The successful destruction SFX.
+        public AudioClip meteorDestroySuccessSfx;
+
+        // The failed destruction sfx.
+        public AudioClip meteorDestroyFailSfx;
+
         // Awake is called when the script instance is being loaded
         private void Awake()
         {
@@ -480,6 +488,9 @@ namespace RM_MST
                 stageManager.ResetCombo(false); // Reset the combo.
                 laserShot.Kill(success); // Kill the laser.
                 stageManager.OnMeteorSurivived(this);
+
+                // Plays the sound effect.
+                PlayDestroyFailureSfx();
             }
             
 
@@ -546,6 +557,20 @@ namespace RM_MST
         {
             OnDeath();
         }
+
+        // Audio
+        // Plays the destruction success SFX.
+        public void PlayDestroySuccessSfx()
+        {
+            stageManager.stageAudio.PlaySoundEffectWorld(meteorDestroySuccessSfx);
+        }
+
+        // Plays the destruction fail SFX.
+        public void PlayDestroyFailureSfx()
+        {
+            stageManager.stageAudio.PlaySoundEffectWorld(meteorDestroyFailSfx);
+        }
+
 
         // Update is called once per frame
         void Update()

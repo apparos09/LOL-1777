@@ -31,6 +31,14 @@ namespace RM_MST
         // Lock Out Animation
         public string lockOutAnim = "Target - Lock Out Animation";
 
+        [Header("Audio")]
+
+        // The lock-in sound effect.
+        public AudioClip lockInSfx;
+
+        // The lock-out sound effect.
+        public AudioClip lockOutSfx;
+
 
         // Start is called before the first frame update
         void Start()
@@ -112,6 +120,19 @@ namespace RM_MST
         protected void PlayLockOutAnimation()
         {
             animator.Play(lockOutAnim);
+        }
+
+        // AUDIO
+        // Plays the lock in sound effect.
+        public void PlayLockInSfx()
+        {
+            stageManager.stageAudio.PlaySoundEffectWorld(lockInSfx);
+        }
+
+        // Plays the lock out SFX.
+        public void PlayLockOutSfx()
+        {
+            stageManager.stageAudio.PlaySoundEffectWorld(lockOutSfx);
         }
 
         // Update is called once per frame

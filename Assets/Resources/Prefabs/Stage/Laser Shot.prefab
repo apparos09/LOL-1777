@@ -145,6 +145,8 @@ MonoBehaviour:
   launchAnim: Laser Shot - Launch Animation
   idleAnim: Laser Shot - Idle Animation
   deathAnim: Laser Shot - Death Animation
+  launchSfx: {fileID: 8300000, guid: 1f0c2d8d0d2a9754bb3d82c3e33c364f, type: 3}
+  deathSfx: {fileID: 8300000, guid: 3eb238b1206817b45ad56c2c599047d8, type: 3}
 --- !u!1 &8664669877864708538
 GameObject:
   m_ObjectHideFlags: 0

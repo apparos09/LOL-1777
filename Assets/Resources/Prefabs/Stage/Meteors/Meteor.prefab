@@ -312,6 +312,7 @@ MonoBehaviour:
   - 0
   - 0
   - 0
+  maxHealth: 1
   meteorSpriteRenderer: {fileID: 8412027103704025470}
   meteorSprites:
   - {fileID: -1931177097, guid: e52d44dcad8031840ab286153775ca92, type: 3}
@@ -333,3 +334,5 @@ MonoBehaviour:
   randomSpriteOnSpawn: 1
   animator: {fileID: 5269074780684359340}
   deathAnim: Meteor - Death Animation
+  meteorDestroySuccessSfx: {fileID: 8300000, guid: f822081f3f6339f489a9d64654518aad, type: 3}
+  meteorDestroyFailSfx: {fileID: 8300000, guid: 3fd1f9040cee5e842815d849b43bd798, type: 3}

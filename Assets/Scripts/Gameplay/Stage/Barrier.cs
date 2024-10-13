@@ -48,6 +48,14 @@ namespace RM_MST
         // Uses the animations if set to 'true'.
         private bool useAnimations = true;
 
+        [Header("Audio")]
+
+        // The barrier revival SFX.
+        public AudioClip reviveSfx;
+
+        // The barrier death SFX.
+        public AudioClip deathSfx;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -217,22 +225,36 @@ namespace RM_MST
             SetHealthToMax();
         }
 
-        // Death animation.
+        // Death Animation.
         public void PlayBarrierDeathAnimation()
         {
             animator.Play(barrierDeathAnim);
         }
 
-        // Death start
+        // Death Start
         public void OnBarrierDeathAnimationStart()
         {
             // ...
         }
 
-        // Death end
+        // Death End
         public void OnBarrierDeathAnimationEnd()
         {
             OnBarrierKilled();
+        }
+
+
+        // AUDIO
+        // Plays the revive SFX.
+        public void PlayReviveSfx()
+        {
+            stageManager.stageAudio.PlaySoundEffectWorld(reviveSfx);
+        }
+
+        // Plays the death SFX.
+        public void PlayDeathSfx()
+        {
+            stageManager.stageAudio.PlaySoundEffectWorld(deathSfx);
         }
     }
 }

@@ -59,6 +59,14 @@ namespace RM_MST
         // Sets if animations are being used.
         private bool useAnimations = true;
 
+        [Header("Audio")]
+
+        // The launch sound effect.
+        public AudioClip launchSfx;
+
+        // The death sound effect.
+        public AudioClip deathSfx;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -288,6 +296,19 @@ namespace RM_MST
         {
             applyForce = true;
             OnDeath();
+        }
+
+        // AUDIO
+        // Plays the launch sound effect.
+        public void PlayLaunchSfx()
+        {
+            stageManager.stageAudio.PlaySoundEffectWorld(launchSfx);
+        }
+
+        // Plays the death sound effect.
+        public void PlayDeathSfx()
+        {
+            stageManager.stageAudio.PlaySoundEffectWorld(deathSfx);
         }
 
 

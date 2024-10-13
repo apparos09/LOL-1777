@@ -28,6 +28,11 @@ namespace RM_MST
         // The stage results bgms.
         public AudioClip stageResultsBgm;
 
+        [Header("Stage/SFXs")]
+
+        // The phase change sound effect.
+        public AudioClip phaseSfx;
+
         [Header("Stage/JNGs")]
 
         // The stage cleared jingle.
@@ -165,6 +170,13 @@ namespace RM_MST
         {
             // Starts the BGM 1 second after the jingle is done.
             PlayStageCompleteMusic(playerWon, 1.0F);
+        }
+
+        // SOUND EFFECTS
+        // Plays the phase SFX.
+        public void PlayPhaseSfx()
+        {
+            PlaySoundEffectWorld(phaseSfx);
         }
 
         // This function is called when the MonoBehaviour will be destroyed.

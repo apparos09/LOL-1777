@@ -124,6 +124,8 @@ MonoBehaviour:
   animator: {fileID: 8209046605798320810}
   barrierReviveAnim: Barrier - Revive Animation
   barrierDeathAnim: Barrier - Death Animation
+  reviveSfx: {fileID: 8300000, guid: b8a11ccb55b164c499474708ed4c4de7, type: 3}
+  deathSfx: {fileID: 8300000, guid: c36b0001f127736469a4f69a89c6be21, type: 3}
 --- !u!1 &8455294649518548360
 GameObject:
   m_ObjectHideFlags: 0

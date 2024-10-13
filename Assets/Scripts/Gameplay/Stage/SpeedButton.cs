@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using util;
 
 namespace RM_MST
 {
@@ -13,6 +14,9 @@ namespace RM_MST
 
         // The button.
         public Button button;
+
+        // The button audo.
+        public ButtonAudio buttonAudio;
 
         // Symbols
         [Header("Images, Sprites")]
@@ -29,6 +33,15 @@ namespace RM_MST
         // The sprite for fast speed.
         public Sprite fastSpeedSprite;
 
+        // Audio
+        [Header("Audio")]
+
+        // The slow down SFX.
+        public AudioClip slowDownSfx;
+
+        // The speed up SFX.
+        public AudioClip speedUpSfx;
+
         // Awake is called when the script instance is being loaded.
         void Awake()
         {
@@ -43,6 +56,10 @@ namespace RM_MST
             // Gets the stage manager.
             if (stageManager == null)
                 stageManager = StageManager.Instance;
+
+            // Gets the button audio.
+            if (buttonAudio == null)
+                buttonAudio = GetComponent<ButtonAudio>();
 
             // Add on click.
             AddOnClick();
@@ -82,18 +99,24 @@ namespace RM_MST
             if (stageManager == null)
                 stageManager = StageManager.Instance;
 
-            // Checks the game speed.
+            // Checks the game speed to know what sprite to display.
+            // The audio clip is also changed so that it goes along with...
+            // What the next operation will be.
+            // While there is a speed up SFX, there is no option to make the game go faster.
             if(stageManager.IsNormalSpeed()) // Normal
             {
                 speedSymbolImage.sprite = normalSpeedSprite;
+                buttonAudio.audioClip = slowDownSfx;
             }
             else if(stageManager.IsFastSpeed()) // Fast
             {
                 speedSymbolImage.sprite = fastSpeedSprite;
+                buttonAudio.audioClip = slowDownSfx;
             }
             else if(stageManager.IsSlowSpeed()) // Slow
             {
                 speedSymbolImage.sprite= slowSpeedSprite;
+                buttonAudio.audioClip = speedUpSfx;
             }
         }
     }
