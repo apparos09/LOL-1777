@@ -293,6 +293,55 @@ namespace RM_MST
             }
         }
 
+        // Gets the alternate value multipliers.
+        public static float[] GenerateAlternateValueMultipliers(UnitsInfo.unitGroups group)
+        {
+            // The output multiples.
+            float[] outputMults = new float[POSSIBLE_OUTPUTS_COUNT];
+
+            // Checks the group to know what set to use.
+            switch (group)
+            {
+                // Set 1 (specific multiples, mainly of 3)
+                case UnitsInfo.unitGroups.lengthImperial:
+                case UnitsInfo.unitGroups.weightImperial:
+                case UnitsInfo.unitGroups.time:
+                   
+                    // Factors
+                    // 3, 6, 12, 16, 24, 30, 60
+                    outputMults[0] = 3.0F;
+                    outputMults[1] = 6.0F;
+                    outputMults[2] = 12.0F;
+                    outputMults[3] = 16.0F;
+                    outputMults[4] = 24.0F;
+                    outputMults[5] = 30.0F;
+                    outputMults[6] = 60.0F;
+
+                    break;
+
+                // Set 2 (multiples of 10)
+                default:
+                case UnitsInfo.unitGroups.lengthMetric:
+                case UnitsInfo.unitGroups.weightMetric:
+                case UnitsInfo.unitGroups.capacity:
+                    // Factors (multiples of 10)
+                    // 0.1, 1, 10, 100, 1000, 10,000, 100,000
+
+                    outputMults[0] = 0.1F;
+                    outputMults[1] = 1.0F;
+                    outputMults[2] = 10.0F;
+                    outputMults[3] = 100.0F;
+                    outputMults[4] = 1000.0F;
+                    outputMults[5] = 10000.0F;
+                    outputMults[6] = 100000.0F;
+
+                    break;
+            }
+
+            // Returns the output multipliers.
+            return outputMults;
+        }
+
         // Generates possible conversion outputs.
         public void GenerateAlternateOutputs()
         {
@@ -312,88 +361,21 @@ namespace RM_MST
             float inputValue = conversion.inputValue;
             float trueOutputValue = conversion.GetConvertedValue();
 
-            // Checks the group to know what set to use.
-            switch (conversion.group)
+            // Generates the alternate value multipliers.
+            float[] outputMults = GenerateAlternateValueMultipliers(conversion.group);
+
+            // Goes through all indexes to generate the alternate results.
+            for (int i = 0; i < possibleOutputs.Length; i++)
             {
-                // Set 1 (specific multiples)
-                case UnitsInfo.unitGroups.lengthImperial:
-                case UnitsInfo.unitGroups.weightImperial:
-                case UnitsInfo.unitGroups.time:
-                    // Factors
-                    // 3, 6, 12, 16, 24, 30, 60
+                // The multiplication factor.
+                float factor = outputMults[i];
 
-                    // Goes through all indexes.
-                    for (int i = 0; i < possibleOutputs.Length; i++)
-                    {
-                        // The multiplication factor.
-                        float factor = 0;
+                // Generates the result and rounds it.
+                float result = inputValue * factor;
+                result = util.CustomMath.Round(result, StageManager.UNITS_DECIMAL_PLACES);
 
-                        // Set the factor.
-                        switch (i)
-                        {
-                            case 0: // yd to ft
-                                factor = 3;
-                                break;
-
-                            case 1:
-                                factor = 6;
-                                break;
-
-                            case 2: // ft to in
-                                factor = 12;
-                                break;
-
-                            case 3: // lbs to oz
-                                factor = 16;
-                                break;
-
-                            case 4:
-                                factor = 24;
-                                break;
-
-                            case 5:
-                                factor = 30;
-                                break;
-
-                            case 6: // min to sec, hour to min
-                                factor = 60;
-                                break;
-
-                            default:
-                                factor = (i + 1) * 10;
-                                break;
-                        }
-
-                        // Generates the result and rounds it.
-                        float result = inputValue * factor;
-                        result = util.CustomMath.Round(result, StageManager.UNITS_DECIMAL_PLACES);
-
-                        // Save the result.
-                        possibleOutputs[i] = result;
-                    }
-
-                    break;
-
-                // Set 2 (multiples of 10)
-                case UnitsInfo.unitGroups.lengthMetric:
-                case UnitsInfo.unitGroups.weightMetric:
-                case UnitsInfo.unitGroups.capacity:
-                    // Factors
-                    // 0.1, 1, 10, 100, 1000, 10,000, 100,000
-
-                    // TODO: change selected values to remove 1?
-                    // Goes through all the outputs.
-                    for (int i = 0; i < possibleOutputs.Length; i++)
-                    {
-                        // Generates the value and rounds the decimals.
-                        float factor = 0.01F * (Mathf.Pow(10, i + 1));
-                        float result = inputValue * factor;
-                        result = util.CustomMath.Round(result, StageManager.UNITS_DECIMAL_PLACES);
-
-                        // Save the result.
-                        possibleOutputs[i] = result;
-                    }
-                    break;
+                // Save the result.
+                possibleOutputs[i] = result;
             }
 
             // If the output value is not in the list, put it in a random location.
