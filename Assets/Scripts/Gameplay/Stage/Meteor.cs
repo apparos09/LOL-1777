@@ -26,9 +26,14 @@ namespace RM_MST
         // The possible outputs count.
         public const int POSSIBLE_OUTPUTS_COUNT = 7;
 
+        // TODO: make the possible outputs private?
         // A list of possible outputs for the meteor.
         // One of these will be correct.
+        [HideInInspector()]
         public float[] possibleOutputs = new float[POSSIBLE_OUTPUTS_COUNT];
+
+        // The possible output multipliers.
+        public float[] possibleOutputMults = new float[POSSIBLE_OUTPUTS_COUNT];
 
         // The max health of the meteor.
         public float maxHealth = 1.0F;
@@ -103,6 +108,8 @@ namespace RM_MST
         // Late start function.
         void LateStart()
         {
+            calledLateStart = true;
+
             // Regenerates alternate outputs to fix a bug.
             GenerateAlternateOutputs();
         }
@@ -368,14 +375,15 @@ namespace RM_MST
             for (int i = 0; i < possibleOutputs.Length; i++)
             {
                 // The multiplication factor.
-                float factor = outputMults[i];
+                float mult = outputMults[i];
 
                 // Generates the result and rounds it.
-                float result = inputValue * factor;
+                float result = inputValue * mult;
                 result = util.CustomMath.Round(result, StageManager.UNITS_DECIMAL_PLACES);
 
-                // Save the result.
+                // Save the result and the output mult.                
                 possibleOutputs[i] = result;
+                possibleOutputMults[i] = mult;
             }
 
             // If the output value is not in the list, put it in a random location.
@@ -383,6 +391,7 @@ namespace RM_MST
             {
                 int randIndex = Random.Range(0, possibleOutputs.Length);
                 possibleOutputs[randIndex] = trueOutputValue;
+                possibleOutputMults[randIndex] = conversion.GetsConverisonMultiplier();
             }
         }
 

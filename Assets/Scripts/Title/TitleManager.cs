@@ -28,6 +28,9 @@ namespace RM_MST
         // The scene loaded when start is selected.
         public string startScene = "WorldScene";
 
+        // Gets set to 'true' when late start is called.
+        private bool calledLateStart = false;
+
         // Constructor
         private TitleManager()
         {
@@ -130,6 +133,20 @@ namespace RM_MST
             // ...
         }
 
+        // Called on the first update frame.
+        public void LateStart()
+        {
+            // Late start has been called.
+            calledLateStart = true;
+
+            // Makes sure the audio is adjusted to the current settings.
+            // For some reason, this doesn't happen properly in the LOL harness when done in Start()...
+            // By other scripts, so it's done here to make another correction.
+            // Opening the settings window automatically adjusts the audio levels...
+            // So doing this in the title script should be fine.
+            GameSettings.Instance.AdjustAllAudioLevels();
+        }
+
         // Gets the instance.
         public static TitleManager Instance
         {
@@ -226,7 +243,11 @@ namespace RM_MST
         // Update is called once per frame
         void Update()
         {
-            // ...
+            // Call late start.
+            if(!calledLateStart)
+            {
+                LateStart();
+            }
         }
 
         // This function is called when the MonoBehaviour will be destroyed.

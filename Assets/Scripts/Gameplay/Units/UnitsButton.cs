@@ -111,7 +111,7 @@ namespace RM_MST
         public void SetMeasurementValueAndSymbol(UnitsInfo.UnitsConversion conversion, bool showFraction)
         {
             // Set the measurement value.
-            SetMeasurementValueAndSymbol(conversion.GetConvertedValue(), conversion.CalculateConversionMultiple(), conversion.GetOutputSymbol(), showFraction);
+            SetMeasurementValueAndSymbol(conversion.GetConvertedValue(), conversion.CalculateConversionMultiplier(), conversion.GetOutputSymbol(), showFraction);
         }
 
         // Gets the conversion multiple's display string.

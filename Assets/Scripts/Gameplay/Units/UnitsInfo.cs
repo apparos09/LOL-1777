@@ -39,10 +39,10 @@ namespace RM_MST
             public abstract float GetConvertedValue();
 
             // Gets the conversion multiple based on the units type.
-            public abstract float GetsConverisonMultiple();
+            public abstract float GetsConverisonMultiplier();
 
             // Calculates the converison multiple using the input value and output value.
-            public float CalculateConversionMultiple()
+            public float CalculateConversionMultiplier()
             {
                 // Used to calculate the conversion multiple.
                 float outputValue = GetConvertedValue();
@@ -103,7 +103,7 @@ namespace RM_MST
             }
 
             // Gets the conversion multiple.
-            public override float GetsConverisonMultiple()
+            public override float GetsConverisonMultiplier()
             {
                 return GetWeightUnitsMultiple(inputUnits, outputUnits);
             }
@@ -155,7 +155,7 @@ namespace RM_MST
             }
 
             // Gets the conversion multiple.
-            public override float GetsConverisonMultiple()
+            public override float GetsConverisonMultiplier()
             {
                 return GetLengthUnitsMultiple(inputUnits, outputUnits);
             }
@@ -208,7 +208,7 @@ namespace RM_MST
             }
 
             // Gets the conversion multiple.
-            public override float GetsConverisonMultiple()
+            public override float GetsConverisonMultiplier()
             {
                 return GetTimeUnitsMultiple(inputUnits, outputUnits);
             }
@@ -260,7 +260,7 @@ namespace RM_MST
             }
 
             // Gets the conversion multiple.
-            public override float GetsConverisonMultiple()
+            public override float GetsConverisonMultiplier()
             {
                 return GetCapacityUnitsMultiple(inputUnits, outputUnits);
             }

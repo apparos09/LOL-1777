@@ -380,20 +380,30 @@ namespace RM_MST
 
 
 
-            // Goes through all buttons and gets the values.
+            // Goes through all buttons, getting nad setting values.
             for (int i = 0; i < unitsButtons.Count && i < meteor.possibleOutputs.Length; i++)
             {
                 // Used to calculate the conversion multiple for the possible output.
                 float multiple;
 
-                // If the input value is 0, have the conversion be 1.0.
-                if (meteor.conversion.inputValue == 0)
+                // If the possible output multiplier is 0, try calculating it.
+                // If it isn't 0, take it directly.
+                if(meteor.possibleOutputMults[i] == 0)
                 {
-                    multiple = 1;
+                    // If the input value is 0, have the conversion be 1.0.
+                    if (meteor.conversion.inputValue == 0)
+                    {
+                        multiple = 1;
+                    }
+                    else // The input isn't 0, so calculate the conversion.
+                    {
+                        multiple = meteor.possibleOutputs[i] / meteor.conversion.inputValue;
+                    }
                 }
-                else // The input isn't 0, so calculate the conversion.
+                else
                 {
-                    multiple = meteor.possibleOutputs[i] / meteor.conversion.inputValue;
+                    // Gets the multipler from the meteor.
+                    multiple = meteor.possibleOutputMults[i];
                 }
 
                 unitsButtons[i].SetMeasurementValueAndSymbol(meteor.possibleOutputs[i], multiple, 
