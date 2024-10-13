@@ -87,6 +87,9 @@ namespace RM_MST
         // The timer for the stage.
         public float stageTime = 0.0F;
 
+        // The normal game time scale.
+        private float NORMAL_GAME_TIME_SCALE = 1.0F;
+
         // The fast game time scale.
         private float FAST_GAME_TIME_SCALE = 2.0F;
 
@@ -98,6 +101,9 @@ namespace RM_MST
 
         // Times how long the game is going slow for.
         private float slowStageTime = 0.0F;
+
+        // If 'true', the audio speed is changed with the game speed.
+        private bool adjustAudioSpeed = true;
 
         // The final score for the stage.
         public float stageFinalScore = 0.0F;
@@ -983,30 +989,62 @@ namespace RM_MST
         {
             // Sets the time scale.
             SetGameTimeScale(timeScale);
+
+            // If the audio speed should be adjusted.
+            if(adjustAudioSpeed)
+            {
+                // The new pitch.
+                float newPitch;
+
+                // Checks the game speed to know what the audio pitch should be.
+                if (timeScale > 1.0F) // Fast
+                {
+                    newPitch = 1.25F;
+                }
+                else if (timeScale < 1.0F) // Slow
+                {
+                    newPitch = 0.75F;
+                }
+                else // Normal
+                {
+                    newPitch = 1.0F;
+                }
+
+                // Change the BGM and the World SFX Pitches
+                stageAudio.bgmSource.pitch = newPitch;
+                stageAudio.sfxWorldSource.pitch = newPitch;
+            }
+        }
+
+        // Resets the game's speed.
+        public void ResetGameSpeed()
+        {
+            SetGameSpeed(NORMAL_GAME_TIME_SCALE);
         }
 
         // Returns 'true' if the time scale is normal.
         public bool IsNormalSpeed()
         {
-            return IsGameTimeScaleNormal();
+            return GetGameSpeed() == NORMAL_GAME_TIME_SCALE;
         }
 
         // Sets the game to normal speed.
         public void SetToNormalSpeed()
         {
-            ResetGameTimeScale();
+            // Call the reset function.
+            SetGameSpeed(NORMAL_GAME_TIME_SCALE);
         }
 
         // Returns 'true' if the game is at a fast speed.
         public bool IsFastSpeed()
         {
-            return GetGameTimeScale() == FAST_GAME_TIME_SCALE;
+            return GetGameSpeed() == FAST_GAME_TIME_SCALE;
         }
 
         // Sets the game to fast speed.
         public void SetToFastSpeed()
         {
-            SetGameTimeScale(FAST_GAME_TIME_SCALE);
+            SetGameSpeed(FAST_GAME_TIME_SCALE);
         }
 
         // Toggles fast speed.
@@ -1027,13 +1065,13 @@ namespace RM_MST
         // Returns 'true' if the game is at a slow speed.
         public bool IsSlowSpeed()
         {
-            return GetGameTimeScale() == SLOW_GAME_TIME_SCALE;
+            return GetGameSpeed() == SLOW_GAME_TIME_SCALE;
         }
 
         // Sets the game to slow speed.
         public void SetToSlowSpeed()
         {
-            SetGameTimeScale(SLOW_GAME_TIME_SCALE);
+            SetGameSpeed(SLOW_GAME_TIME_SCALE);
         }
 
         // Toggles slow speed.
