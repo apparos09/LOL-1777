@@ -186,12 +186,13 @@ namespace RM_MST
                 windowPanel.gameObject.SetActive(panelActive);
             }
 
-            // If the tutorial text box is open.
-            if (IsTutorialTextBoxOpen() && tutorialUI.backgroundPanel != null)
-            {
-                // Turns off the tutorial panel so that they aren't overlayed.
-                tutorialUI.backgroundPanel.gameObject.SetActive(false);
-            }
+            // // If the tutorial text box is open.
+            // if (IsTutorialTextBoxOpen() && tutorialUI.backgroundPanel != null)
+            // {
+            //     // Turns off the tutorial panel so that they aren't overlayed.
+            //     tutorialUI.backgroundPanel.gameObject.SetActive(false);
+            // 
+            // }
         }
 
         // Called when a window is closed.
@@ -204,13 +205,13 @@ namespace RM_MST
             if (windowPanel != null)
                 windowPanel.gameObject.SetActive(false);
 
-            // If the tutorial text box is open.
-            if (IsTutorialTextBoxOpen())
-            {
-                // Turns on the tutorial panel since the menu panel isn't showing now.
-                if(tutorialUI.backgroundPanel != null)
-                    tutorialUI.backgroundPanel.gameObject.SetActive(true);
-            }
+            // // If the tutorial text box is open.
+            // if (IsTutorialTextBoxOpen())
+            // {
+            //     // Turns on the tutorial panel since the menu panel isn't showing now.
+            //     if(tutorialUI.backgroundPanel != null)
+            //         tutorialUI.backgroundPanel.gameObject.SetActive(true);
+            // }
         }
 
         // SCENES
