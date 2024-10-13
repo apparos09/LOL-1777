@@ -560,6 +560,13 @@ namespace RM_MST
                 {
                     meteorSpawnRate = 0;
                 }
+
+                // Play the phase sound effect if the phase has changed.
+                // Don't play it if it's phase 1.
+                if(phase > 1)
+                {
+                    stageAudio.PlayPhaseSfx();
+                }
             }
 
             // If a barrier should be restored on a phase change.
@@ -1315,6 +1322,14 @@ namespace RM_MST
             // Kill all the meteors.
             FindAndKillAllMeteors();
 
+            // Resets the barriers. This is done here so that the sound effects don't play.
+            foreach (Barrier barrier in stageBarriers)
+            {
+                // Restore the barrier.
+                if (barrier != null)
+                    barrier.RestoreBarrier();
+            }
+
             // UI stage end.
             stageUI.OnStageEnd();
         }
@@ -1369,13 +1384,7 @@ namespace RM_MST
             KillAllMeteorsInList();
             SetPhaseByPlayerPointsProgress();
 
-            // Resets the barrier and surface.
-            foreach(Barrier barrier in stageBarriers)
-            {
-                // Restore the barrier.
-                if (barrier != null)
-                    barrier.RestoreBarrier();
-            }
+            // Barriers are now restored when the stage ends to stop the sound effects from playing.
 
             // Restores the surface to full health.
             stageSurface.RestoreSurface();
