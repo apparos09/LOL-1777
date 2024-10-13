@@ -1308,6 +1308,11 @@ namespace RM_MST
             runningGame = false;
             SetToNormalSpeed();
             PauseGame();
+
+            // Mutes the stage world audio so that animations don't play sounds.
+            stageAudio.sfxWorldSource.mute = true;
+
+            // Kill all the meteors.
             FindAndKillAllMeteors();
 
             // UI stage end.
@@ -1388,6 +1393,9 @@ namespace RM_MST
 
             // Play the stage music.
             stageAudio.PlayStageBgm(bgmNumber);
+
+            // Unmute the SFX world audio.
+            stageAudio.sfxWorldSource.mute = false;
 
             // Unpause game and start running.
             UnpauseGame();
