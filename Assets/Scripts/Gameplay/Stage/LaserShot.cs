@@ -10,6 +10,9 @@ namespace RM_MST
         // The stage manager.
         public StageManager stageManager;
 
+        // The player that this laser shot belongs to. 
+        public PlayerStage player;
+
         // The collider for the meteor.
         public new Collider2D collider;
 
@@ -36,6 +39,9 @@ namespace RM_MST
         [Tooltip("The output value attached to this laser shot. If it matches that of the meteor's, it is correct.")]
         public float outputValue = 0;
 
+        // Gets set to 'true' when start has been called.
+        private bool startCalled = false;
+
         [Header("Animation")]
 
         // The animator.
@@ -56,10 +62,12 @@ namespace RM_MST
         // Start is called before the first frame update
         void Start()
         {
+            // Start has been called.
+            startCalled = true;
+
             // If the stage manager is not set, set it.
             if (stageManager == null)
                 stageManager = StageManager.Instance;
-
 
             // If the collider is not set, try to set it.
             if (collider == null)
@@ -69,20 +77,12 @@ namespace RM_MST
             if (rigidbody == null)
                 rigidbody = GetComponent<Rigidbody2D>();
 
-
-            // TODO: maybe ignore by layer instead?
-
-            // Ignore collision with the stage surface.
-            Physics2D.IgnoreCollision(collider, stageManager.stageSurface.collider, true);
-
-            // Goes through all the barriers and ignores collision with them.
-            foreach(Barrier barrier in stageManager.stageBarriers)
-            {
-                Physics2D.IgnoreCollision(collider, barrier.collider, true);
-            }
+            // Apply the ignores for the physics bodies.
+            ApplyPhysicsBodyIgnores();
 
             // Sets if animations are being used.
-            animator.enabled = useAnimations;       
+            animator.enabled = useAnimations;  
+           
         }
 
         // Shoots the shot at the provided target.
@@ -108,10 +108,19 @@ namespace RM_MST
                 moveDirec = Vector3.up;
             }
 
-            // TODO: rotate in direction of movement.
+            // TODO: rotate in direction of movement. This may not be necessary, but you may want to do this.
 
             // Apply force to the object.
             applyForce = true;
+
+            // Re-applies the physics body ignores since the laser shot has been activated.
+            // For some reason, turning off the laser shot resets all these physics ignores...
+            // So they need to be set again.
+            // Start called is checked to know that everything that's needed has been set properly.
+            if(startCalled)
+            {
+                ApplyPhysicsBodyIgnores();
+            }
 
             // Plays the launch animation.
             if(useAnimations)
@@ -134,6 +143,28 @@ namespace RM_MST
                 // No target, so send the laser shot's position.
                 Shoot(transform.position);
             }
+        }
+
+        // Applies the ignore settings for the physics bodies.
+        public void ApplyPhysicsBodyIgnores()
+        {
+            // TODO: maybe ignore by layer instead?
+
+            // Ignore collision with the stage surface.
+            Physics2D.IgnoreCollision(collider, stageManager.stageSurface.collider, true);
+
+            // Goes through all the barriers and ignores collision with them.
+            foreach (Barrier barrier in stageManager.stageBarriers)
+            {
+                Physics2D.IgnoreCollision(collider, barrier.collider, true);
+            }
+        }
+
+        // Resets the laser shot's velocity.
+        public void ResetVelocity()
+        {
+            rigidbody.velocity = Vector2.zero;
+            rigidbody.angularVelocity = 0;
         }
 
         // Kills the laser shot. If 'true', then the laser shot's hit was a success.
@@ -164,7 +195,7 @@ namespace RM_MST
                 player.laserShotActive = null;
 
             // Kill the rigidbody velocity.
-            rigidbody.velocity = Vector2.zero;
+            ResetVelocity();
             
             // Checks if animations should be used.
             if(useAnimations)
@@ -180,15 +211,36 @@ namespace RM_MST
         // Called when the laser shot has died.
         protected virtual void OnDeath()
         {
-            Destroy(gameObject);
+            // If the player has been set.
+            if(player != null)
+            {
+                // Checks if the laser shot pool is being used.
+                // If so, return the shot to the pool. If not, destroy the object.
+                if(player.UseLaserShotPool())
+                {
+                    player.ReturnLaserShotToPool(this);
+                }
+                else
+                {
+                    Destroy(gameObject);
+                }
+            }
+            else // Destroy the object.
+            {
+                Destroy(gameObject);
+            }
         }
 
         // Resets the laser shot.
         public void ResetLaserShot()
         {
+            // Resets the transform and force.
             transform.forward = Vector3.forward;
             moveDirec = Vector3.up;
             applyForce = true;
+
+            // Resets the velocity.
+            ResetVelocity();
         }
 
         // ANIMATION

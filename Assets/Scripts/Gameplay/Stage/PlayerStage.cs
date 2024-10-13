@@ -16,6 +16,12 @@ namespace RM_MST
         // The player's active laser shot.
         public LaserShot laserShotActive;
 
+        // The laser shot object pool.
+        private List<LaserShot> laserShotPool = new List<LaserShot>();
+
+        // If the laser shot pool should be used.
+        private bool useLaserShotPool = true;
+
         // If 'true', the player can shoot multiple laser shots.
         private bool multipleLaserShots = false;
 
@@ -66,12 +72,42 @@ namespace RM_MST
                 }
             }
 
-            // If the game is slowed down, return to normal speed.
-            if (!stageManager.IsSlowSpeed())
-                stageManager.SetToNormalSpeed();
+            
+            // // If the game is slowed down, return to normal speed.
+            // if (stageManager.IsSlowSpeed())
+            //     stageManager.SetToNormalSpeed();
 
-            // Generates the laser shot, sets the spawn point, and shoots it.
-            LaserShot newShot = Instantiate(laserShotPrefab);
+            // The laser shot to be set.
+            LaserShot newShot = null;
+
+            // Checks if the laser shot pool should be used.
+            if(useLaserShotPool)
+            {
+                // There's a laser shot in the pool.
+                if(laserShotPool.Count > 0)
+                {
+                    // Get the shot at the front of the list, and remove it.
+                    newShot = laserShotPool[0];
+                    laserShotPool.RemoveAt(0);
+
+                    // Turn the shot on.
+                    newShot.gameObject.SetActive(true);
+
+                }
+                else // No laser shot in the pool.
+                {
+                    newShot = Instantiate(laserShotPrefab);
+                }
+            }
+            else // Don't use the pool, so make a new object.
+            {
+                newShot = Instantiate(laserShotPrefab);
+            }
+
+            // Set the player for the laser shot.
+            newShot.player = this;
+
+            // Set the spawn point.
             stageManager.stage.SetLaserShotToSpawnPositionY(newShot);
 
             // Gets the meteor.
@@ -95,6 +131,27 @@ namespace RM_MST
 
             // Returns the new shot.
             return newShot;
+        }
+
+        // Returns 'true' if the laser shot pool should be used.
+        public bool UseLaserShotPool()
+        {
+            return useLaserShotPool;
+        }
+
+        // Returns the laser shot to the object pool.
+        public void ReturnLaserShotToPool(LaserShot laserShot)
+        {
+            // If this is the active laser shot, remove it.
+            if (laserShotActive == laserShot)
+                laserShotActive = null;
+
+            // Resets the laser shot.
+            laserShot.ResetLaserShot();
+
+            // Turn off the laser shot and return it to the pool.
+            laserShot.gameObject.SetActive(false);
+            laserShotPool.Add(laserShot);
         }
 
         // Gets the points.

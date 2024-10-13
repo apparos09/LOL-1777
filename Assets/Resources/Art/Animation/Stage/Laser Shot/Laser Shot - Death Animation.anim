@@ -31,7 +31,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.26666668
+        time: 0.28333333
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -68,6 +68,8 @@ AnimationClip:
       value: {fileID: -1447772080, guid: 7da9513778acccf4f87a67a199569d69, type: 3}
     - time: 0.26666668
       value: {fileID: -1447772080, guid: 7da9513778acccf4f87a67a199569d69, type: 3}
+    - time: 0.28333333
+      value: {fileID: 0}
     attribute: m_Sprite
     path: Sprite
     classID: 212
@@ -108,12 +110,13 @@ AnimationClip:
     - {fileID: 1498434123, guid: 7da9513778acccf4f87a67a199569d69, type: 3}
     - {fileID: -1447772080, guid: 7da9513778acccf4f87a67a199569d69, type: 3}
     - {fileID: -1447772080, guid: 7da9513778acccf4f87a67a199569d69, type: 3}
+    - {fileID: 0}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.28333336
+    m_StopTime: 0.3
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -143,7 +146,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.26666668
+        time: 0.28333333
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -170,7 +173,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.26666668
+  - time: 0.28333333
     functionName: OnDeathAnimationEnd
     data: 
     objectReferenceParameter: {fileID: 0}
