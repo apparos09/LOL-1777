@@ -1301,6 +1301,18 @@ namespace RM_MST
             stageUI.OnBarrierDamaged();
         }
 
+        // Restores all barriers.
+        public void RestoreAllBarriers()
+        {
+            // Goes through all the barriers and restores them.
+            foreach (Barrier barrier in stageBarriers)
+            {
+                // Restore the barrier.
+                if (barrier != null)
+                    barrier.RestoreBarrier();
+            }
+        }
+
         // Called when the surface has been damaged.
         public void OnSurfaceDamaged()
         {
@@ -1323,12 +1335,7 @@ namespace RM_MST
             FindAndKillAllMeteors();
 
             // Resets the barriers. This is done here so that the sound effects don't play.
-            foreach (Barrier barrier in stageBarriers)
-            {
-                // Restore the barrier.
-                if (barrier != null)
-                    barrier.RestoreBarrier();
-            }
+            RestoreAllBarriers();
 
             // UI stage end.
             stageUI.OnStageEnd();
