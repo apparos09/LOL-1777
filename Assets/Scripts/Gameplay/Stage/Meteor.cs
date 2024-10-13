@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 namespace RM_MST
@@ -386,12 +387,41 @@ namespace RM_MST
                 possibleOutputMults[i] = mult;
             }
 
-            // If the output value is not in the list, put it in a random location.
-            if (System.Array.IndexOf(possibleOutputs, trueOutputValue) == -1)
+            // TODO: replace the value that's the closest to the correct output value, or do an approx equals check instead.
+
+            // The input for the correct output.
+            int trueOutputIndex = -1;
+
+            // Checks if the possible output is set.
+            // It's done this way instead of using System.Array.IndexOf()...
+            // Because of floating point impreicision
+            for(int i = 0; i < possibleOutputs.Length; i++)
             {
+                // If these values are approximately the same...
+                // Then the correct value has been set.
+                if (Mathf.Approximately(possibleOutputs[i], trueOutputValue))
+                {
+                    // Sets the possible outputs and possible mult.
+                    possibleOutputs[i] = trueOutputValue;
+                    possibleOutputMults[i] = conversion.GetsConverisonMultiplier();
+
+                    // Saves the index and breaks the loop.
+                    trueOutputIndex = i;
+                    break;
+                }
+            }
+
+
+            // If the output value is not in the list, put it in a random location.
+            if (trueOutputIndex < 0)
+            {
+                // Generate a random index.
                 int randIndex = Random.Range(0, possibleOutputs.Length);
+                
+                // Save the values.
                 possibleOutputs[randIndex] = trueOutputValue;
                 possibleOutputMults[randIndex] = conversion.GetsConverisonMultiplier();
+                trueOutputIndex = randIndex;
             }
         }
 

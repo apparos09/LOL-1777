@@ -406,11 +406,21 @@ namespace RM_MST
                     multiple = meteor.possibleOutputMults[i];
                 }
 
+                // Checks if the output if correct.
+                bool correct = meteor.possibleOutputs[i] == trueOutputValue;
+
+                // If this is the correct value, use the true mult instead.
+                // This is to make sure the proper mult is displayed.
+                if(correct)
+                {
+                    multiple = trueMult;
+                }
+
                 unitsButtons[i].SetMeasurementValueAndSymbol(meteor.possibleOutputs[i], multiple, 
                     meteor.conversion.GetOutputSymbol(), isFraction);              
 
                 // If this is the true output value, set that it's been found.
-                if (meteor.possibleOutputs[i] == trueOutputValue)
+                if (correct)
                 {
                     foundRightValue = true;
                     unitsButtons[i].correctValue = true;
