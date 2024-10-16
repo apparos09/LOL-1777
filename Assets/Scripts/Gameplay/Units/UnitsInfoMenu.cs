@@ -68,9 +68,6 @@ namespace RM_MST
         public bool clearedWeightMetric;
         public bool clearedCapcity;
 
-
-        // TODO: don't allow the player to open the units info menu if there are no entries.
-
         // Start is called before the first frame update
         void Start()
         {
@@ -119,6 +116,11 @@ namespace RM_MST
                 SetEntry(oldIndex);
         }
 
+        // // This function is called when the behaviour becomes disabled or inactive
+        // private void OnDisable()
+        // {
+        // }
+
         // Generates the units info entry.
         public UnitsInfoEntry GenerateUnitsInfoEntry(UnitsInfo.unitGroups group)
         {
@@ -136,6 +138,17 @@ namespace RM_MST
             newEntry.groupDescKey = UnitsInfo.GetUnitsGroupDescriptionKey(group);
 
             return newEntry;
+        }
+
+        // Enables all entry objects in the units table.
+        private void EnableAllEntryObjects()
+        {
+            // Enables all entries.
+            foreach(UnitsTableEntry tableEntry in unitsTable.entries)
+            {
+                if(tableEntry != null)
+                    tableEntry.gameObject.SetActive(true);
+            }
         }
 
         // Loads the entries.
@@ -293,7 +306,7 @@ namespace RM_MST
             unitsTable.SetGroup(entry.group);
 
             // If the LOL Manager has been instantiated.
-            if(GameSettings.Instance.UseTextToSpeech && allowTTS)
+            if(GameSettings.Instance.UseTextToSpeech && LOLManager.IsInstantiatedAndIsLOLSDKInitialized() && allowTTS)
             {
                 // The LOL Manager
                 LOLManager lolManager = LOLManager.Instance;

@@ -12,6 +12,9 @@ namespace RM_MST
         // The language key for the page.
         public string languageKey = string.Empty;
 
+        // The speak key for the page.
+        public string speakKey = string.Empty;
+
         // Adds a page.
         public MST_Page() : base()
         {
@@ -26,11 +29,22 @@ namespace RM_MST
             AddSpeakTextCallback();
         }
 
-        // Adds a page with text and a speak key.
+        // Adds a page with text and a language/speak key.
         public MST_Page(string text, string languageKey) : base(text)
         {
             // Sets the language key and translates the text.
-            SetLanguageText(languageKey);
+            SetLanguageText(languageKey, true);
+
+            // Adds the speak text callback.
+            AddSpeakTextCallback();
+        }
+
+        // Adds a page with text, a langauge key, and a speak key.
+        public MST_Page(string text, string languageKey, string speakKey) : base(text)
+        {
+            // Sets the language key and translates the text.
+            // Also sets the speak key, which may be different than the language key.
+            SetLanguageTextAndSpeakKey(languageKey, speakKey);
 
             // Adds the speak text callback.
             AddSpeakTextCallback();
@@ -54,13 +68,45 @@ namespace RM_MST
             SetLanguageText();
         }
 
+        // Sets the language key and translates it.
+        // If setSpeakKey is true, the speak key is also set.
+        public void SetLanguageText(string newLangKey, bool setSpeakKey)
+        {
+            // Sets the language key.
+            SetLanguageText(newLangKey);
+
+            // If this is also the speak key, set it as the speak key.
+            if(setSpeakKey)
+            {
+                SetSpeakKey(newLangKey);
+            }
+        }
+
+        // Sets the new speak key.
+        public void SetSpeakKey(string newSpeakKey)
+        {
+            speakKey = newSpeakKey;
+        }
+
+        public void SetLanguageTextAndSpeakKey(string newLangKey, string newSpeakKey)
+        {
+            SetLanguageText(newLangKey);
+            SetSpeakKey(newSpeakKey);
+        }
+
         // Speaks the text for the tutorial page.
         public void SpeakText()
         {
+            // If there is no speak key, do nothing.
+            // if(speakKey == string.Empty)
+            // {
+            //     return;
+            // }
+
             // If the LOL SDK is initialized, and TTS is on.
             if (LOLManager.IsInstantiatedAndIsLOLSDKInitialized() && GameSettings.Instance.UseTextToSpeech)
             {
-                LOLManager.Instance.SpeakText(languageKey);
+                LOLManager.Instance.SpeakText(speakKey);
             }
         }
 

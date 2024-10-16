@@ -9,7 +9,7 @@ namespace RM_MST
     public class UnitsTableEntry : MonoBehaviour
     {
         // The units table.
-        public UnitsTable UnitsTable;
+        public UnitsTable unitsTable;
 
         // The units info object.
         public UnitsInfo unitsInfo;
