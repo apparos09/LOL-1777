@@ -75,8 +75,9 @@ namespace RM_MST
             if (unitsInfo == null)
                 unitsInfo = UnitsInfo.Instance;
 
-            // Loads the entries.
-            LoadEntries();
+            // Running this in Start() caused issues where the text was not being replaced consistently.
+            // Now, the entries are blank by default, and the entries are loaded in LateStart() first.
+            // LoadEntries();
 
             // Allow TTS to be used.
             allowTTS = true;
@@ -95,8 +96,8 @@ namespace RM_MST
 
             // Loads the entries, and sets it to do this on enable.
             // OnEnable is triggered before start.
-            // LoadEntries();
-            // loadEntriesOnEnable = true;
+            LoadEntries();
+            loadEntriesOnEnable = true;
         }
 
         // This function is called when the object becomes enabled and active.
@@ -116,10 +117,15 @@ namespace RM_MST
                 SetEntry(oldIndex);
         }
 
-        // // This function is called when the behaviour becomes disabled or inactive
-        // private void OnDisable()
-        // {
-        // }
+        // This function is called when the behaviour becomes disabled or inactive
+        private void OnDisable()
+        {
+            // Clears all the entries.
+            foreach(UnitsTableEntry entry in unitsTable.entries)
+            {
+                entry.ClearText();
+            }
+        }
 
         // Generates the units info entry.
         public UnitsInfoEntry GenerateUnitsInfoEntry(UnitsInfo.unitGroups group)
