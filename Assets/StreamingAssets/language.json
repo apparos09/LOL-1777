@@ -28,6 +28,7 @@
       "kwd_tutorial": 28,
       "kwd_tutorials": 28,
 
+      "mnu_licenses_dsc": 100,
       "kwd_bgms": 8,
       "kwd_sfxs": 8,
       "kwd_fonts": 8,
@@ -200,6 +201,7 @@
     "kwd_tutorial": "Tutorial",
     "kwd_tutorials": "Tutorials",
 
+    "mnu_licenses_dsc": "Sourced assets have been modified for use in this game.",
     "kwd_bgms": "BGMs",
     "kwd_sfxs": "SFXs",
     "kwd_fonts": "Fonts",

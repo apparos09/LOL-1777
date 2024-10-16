@@ -1522,10 +1522,11 @@ namespace RM_MST
                 RunGame();
 
                 // If the combo timer is greater than 0, and a meteor is targeted.
-                if(comboTimer > 0.0F && meteorTarget.GetMeteor() != null)
+                // If the player has fired a laser shot, don't run the timer.
+                if(comboTimer > 0.0F && meteorTarget.GetMeteor() != null && player.laserShotActive == null)
                 {
                     // Reduce the timer.
-                    comboTimer -= Time.deltaTime;
+                    comboTimer -= Time.unscaledDeltaTime; // Uses unscaled delta time.
 
                     // Reset the combo if the timer has run out.
                     if(comboTimer <= 0.0F)
