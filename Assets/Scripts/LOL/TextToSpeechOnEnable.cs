@@ -24,8 +24,8 @@ namespace RM_MST
                 return;
 
 
-            // The SDK is not initialized.
-            if (!LOLManager.IsLOLSDKInitialized())
+            // The manager and/or SDK is not initialized.
+            if (!LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
                 return;
 
             // TTS is not enabled.

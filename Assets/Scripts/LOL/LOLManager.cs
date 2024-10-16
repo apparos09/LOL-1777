@@ -115,6 +115,12 @@ namespace RM_MST
             return LOLSDK.Instance.IsInitialized;
         }
 
+        // Checks if the LOL manager is instantiated, and if the LOL SDK is initialized.
+        public static bool IsInstantiatedAndIsLOLSDKInitialized()
+        {
+            return Instantiated && IsLOLSDKInitialized();
+        }
+
         // Gets the text from the language file.
         public string GetLanguageText(string key)
         {

@@ -168,7 +168,7 @@ namespace RM_MST
                 // If the name key is not empty, translate the name.
                 if(stageNameKey != "")
                 {
-                    if(LOLManager.IsLOLSDKInitialized())
+                    if(LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
                         stageName = LOLManager.Instance.GetLanguageText(stageNameKey);
                 }
             }
@@ -195,7 +195,7 @@ namespace RM_MST
                 // If the description key is not empty, translate the name.
                 if (stageDescKey != "")
                 {
-                    if (LOLManager.IsLOLSDKInitialized())
+                    if (LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
                         stageDesc = LOLManager.Instance.GetLanguageText(stageDescKey);
                 }
             }

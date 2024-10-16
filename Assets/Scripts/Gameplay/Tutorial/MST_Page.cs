@@ -40,7 +40,7 @@ namespace RM_MST
         public void SetLanguageText()
         {
             // If the LOL Manager is instantiated...
-            if(LOLManager.Instantiated)
+            if(LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
             {
                 string newText = LOLManager.Instance.GetLanguageText(languageKey);
                 text = newText;
@@ -58,7 +58,7 @@ namespace RM_MST
         public void SpeakText()
         {
             // If the LOL SDK is initialized, and TTS is on.
-            if (LOLManager.IsLOLSDKInitialized() && GameSettings.Instance.UseTextToSpeech)
+            if (LOLManager.IsInstantiatedAndIsLOLSDKInitialized() && GameSettings.Instance.UseTextToSpeech)
             {
                 LOLManager.Instance.SpeakText(languageKey);
             }

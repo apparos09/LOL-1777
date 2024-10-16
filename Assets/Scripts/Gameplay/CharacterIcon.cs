@@ -36,7 +36,7 @@ namespace RM_MST
 
 
             // If the LOL Manager and the LOL SDK is initialized.
-            if(LOLManager.Instantiated && LOLManager.IsLOLSDKInitialized())
+            if(LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
             {
                 // Translate the name if it's available.
                 if(charNameKey != string.Empty)

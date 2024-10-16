@@ -11,7 +11,7 @@ namespace RM_MST
         public void SpeakText(string key)
         {
             // Checks if the instances exist.
-            if (GameSettings.Instantiated && LOLManager.Instantiated)
+            if (GameSettings.Instantiated && LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
             {
                 // Gets the instances.
                 GameSettings gameSettings = GameSettings.Instance;

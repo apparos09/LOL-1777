@@ -596,7 +596,7 @@ namespace RM_MST
         {
             
             // Translate the text if the LOL Manager and the LOL SDK are initialized.
-            if (LOLManager.Instantiated && LOLManager.IsLOLSDKInitialized())
+            if (LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
             {
                 // Grabs the LOL manager instance.
                 LOLManager lolManager = LOLManager.Instance;

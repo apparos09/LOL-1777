@@ -238,7 +238,7 @@ namespace RM_MST
 
 
                 // If TTS is enabled, and the LOL SDK is active.
-                if(GameSettings.Instance.UseTextToSpeech && LOLManager.Instantiated && LOLManager.IsLOLSDKInitialized())
+                if(GameSettings.Instance.UseTextToSpeech && LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
                 {
                     // If the tutorial is not running, and TTS is set, read the description.
                     if (!worldManager.IsTutorialRunning() && LOLManager.Instance.textToSpeech != null)

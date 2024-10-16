@@ -68,7 +68,7 @@ namespace RM_MST
             }
 
             // Save the save text as the save feedback text.
-            if(LOLManager.Instantiated)
+            if(LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
             {
                 // Set the save text for the save system if it exists.
                 if(LOLManager.Instance.saveSystem != null)
@@ -131,7 +131,7 @@ namespace RM_MST
         public void SpeakText(string key)
         {
             // Checks if the instances exist.
-            if(GameSettings.Instantiated && LOLManager.Instantiated)
+            if(GameSettings.Instantiated && LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
             {
                 // Checks if TTS should be used.
                 if(GameSettings.Instance.UseTextToSpeech)
