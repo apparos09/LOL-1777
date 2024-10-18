@@ -640,6 +640,9 @@ namespace RM_MST
         public void OnStageEnd()
         {
             UpdateHUD();
+
+            // Play the offline animation.
+            PlayPartnersAnimation(CharacterIcon.charIconAnim.offline);
         }
 
         // Called when the stage has been won.
@@ -652,8 +655,9 @@ namespace RM_MST
             stageWonTimeText.text = StringFormatter.FormatTime(stageManager.stageTime, false, true, false);
             stageWonScoreText.text = stageManager.stageFinalScore.ToString(); // Already calculated.
 
+            // The offline animation is played instead.
             // Play happy animation.
-            PlayPartnersAnimation(CharacterIcon.charIconAnim.happy);
+            // PlayPartnersAnimation(CharacterIcon.charIconAnim.happy);
         }
 
         // Called when the stage has been lost.
@@ -662,8 +666,9 @@ namespace RM_MST
             CloseAllWindows();
             stageLostWindow.SetActive(true);
 
-            // Play sad animation.
-            PlayPartnersAnimation(CharacterIcon.charIconAnim.sad);
+            // The offline aniamtion is played instead.
+            // // Play sad animation.
+            // PlayPartnersAnimation(CharacterIcon.charIconAnim.sad);
         }
 
         // Called to restart the stage.

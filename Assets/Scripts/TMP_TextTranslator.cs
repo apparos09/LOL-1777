@@ -17,7 +17,7 @@ namespace RM_MST
         public string key = "";
 
         // Marks text if the language file is not loaded.
-        public bool markIfFailed = true;
+        public static bool markIfFailed = true;
 
         // Start is called before the first frame update
         void Start()
@@ -26,18 +26,33 @@ namespace RM_MST
             if (text == null)
                 text = GetComponent<TMP_Text>();
 
+            // Gets set if the text should be marked for a failed translation.
+            bool markText;
+
             // If the SDK is initialized, the text is set, and the key is set.
-            if (LOLSDK.Instance.IsInitialized && text != null && key != "")
+            if (LOLManager.IsInstantiatedAndIsLOLSDKInitialized() && text != null && key != "")
             {
                 text.text = LOLManager.Instance.GetLanguageText(key);
 
                 // Text is blank, so mark the text to show that the translation failed.
                 if(text.text == "")
-                    LanguageMarker.Instance.MarkText(text);
+                {
+                    markText = true;
+                }
+                else
+                {
+                    markText = false;
+                }
             }
             else
             {
                 // Mark the text.
+                markText = true;
+            }
+
+            // If the text should be marked, and text marking is enabled.
+            if(markText && markIfFailed)
+            {
                 LanguageMarker.Instance.MarkText(text);
             }
         }

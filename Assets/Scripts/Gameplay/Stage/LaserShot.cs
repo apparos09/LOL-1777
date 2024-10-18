@@ -185,7 +185,11 @@ namespace RM_MST
             if(success)
             {
                 // Play a happy animation.
-                stageManager.stageUI.PlayPartnersAnimation(CharacterIcon.charIconAnim.happy);
+                // If the points goal has been reached, don't play the happy animation because it would...
+                // Override a different animation.
+                if(!stageManager.IsPointsGoalReached(player))
+                    stageManager.stageUI.PlayPartnersAnimation(CharacterIcon.charIconAnim.happy);
+
                 
             }
             else // Not a success.

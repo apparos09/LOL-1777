@@ -18,7 +18,8 @@ namespace RM_MST
         MST_GameData gameData;
 
         // Becomes 'true' when the game has been initialized.
-        public bool initGame = false;
+        [HideInInspector]
+        public bool initializedGame = false;
 
         // LOL //
         // Relative to Assets /StreamingAssets/
@@ -99,7 +100,7 @@ namespace RM_MST
 
             // TODO: take this out?
             // Shows that the game has been initialized?
-            initGame = true;
+            initializedGame = true;
         }
 
         // Start is called just before any of the Update methods is called the first time.
@@ -115,6 +116,9 @@ namespace RM_MST
             //     // Do this just in case 
             //     // initText.text = defs["kwd_loading"]; // Loading
             // }
+
+            // Makes the TMP text get marked if translation failed.
+            TMP_TextTranslator.markIfFailed = true;
         }
 
         private void OnDestroy()
@@ -210,7 +214,7 @@ namespace RM_MST
             }
 
             // Becomes set to 'true' when the game data has been loaded.
-            initGame = true;
+            initializedGame = true;
         }
 
         // Gets translated text.

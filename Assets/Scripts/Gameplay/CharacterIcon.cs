@@ -8,7 +8,7 @@ namespace RM_MST
     public class CharacterIcon : MonoBehaviour
     {
         // Character icon animation enum.
-        public enum charIconAnim { none, neutral, happy, sad, angry, shocked }
+        public enum charIconAnim { none, neutral, happy, sad, angry, shocked, offline }
 
         // The character name.
         public string charName = "";
@@ -26,6 +26,7 @@ namespace RM_MST
         public string sadAnim = "";
         public string angryAnim = "";
         public string shockedAnim = "";
+        public string offlineAnim = "";
 
         // Start is called before the first frame update
         void Start()
@@ -84,6 +85,10 @@ namespace RM_MST
                     PlayShockedAnimation();
                     break;
 
+                case charIconAnim.offline:
+                    PlayOfflineAnimation();
+                    break;
+
             }
         }
 
@@ -115,6 +120,12 @@ namespace RM_MST
         public void PlayShockedAnimation()
         {
             animator.Play(shockedAnim);
+        }
+
+        // Plays the offline animation.
+        public void PlayOfflineAnimation()
+        {
+            animator.Play(offlineAnim);
         }
 
     }

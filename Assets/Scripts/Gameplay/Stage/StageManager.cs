@@ -1174,6 +1174,12 @@ namespace RM_MST
             return points >= pointsGoal;
         }
 
+        // Checks if the provided player has reached the points goal.
+        public bool IsPointsGoalReached(PlayerStage playerStage)
+        {
+            return IsPointsGoalReached(playerStage.GetPoints());
+        }
+
         // Gets the progress of the player's points towards the goal.
         public float GetPlayerPointsProgress()
         {

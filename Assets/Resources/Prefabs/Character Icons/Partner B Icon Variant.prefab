@@ -125,6 +125,10 @@ PrefabInstance:
       value: Partner B - Neutral Animation
       objectReference: {fileID: 0}
     - target: {fileID: 4712457573445462117, guid: 754a8c43d1114a244a499cfe092d4552, type: 3}
+      propertyPath: offlineAnim
+      value: Partner B - Offline Animation
+      objectReference: {fileID: 0}
+    - target: {fileID: 4712457573445462117, guid: 754a8c43d1114a244a499cfe092d4552, type: 3}
       propertyPath: shockedAnim
       value: Partner B - Shocked Animation
       objectReference: {fileID: 0}
