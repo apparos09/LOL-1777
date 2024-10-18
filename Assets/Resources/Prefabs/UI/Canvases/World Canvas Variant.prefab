@@ -150,7 +150,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 361965201366761756}
   key: kwd_gameComplete
-  markIfFailed: 1
 --- !u!114 &2859056935212328025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -588,7 +587,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 7219829334206270075}
   key: kwd_units
-  markIfFailed: 1
 --- !u!1 &2834254431250383597
 GameObject:
   m_ObjectHideFlags: 0
@@ -3353,6 +3351,10 @@ PrefabInstance:
     - target: {fileID: 921815124889804857, guid: bae7993cb43f8a441a2458c36504f40f, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1199647988011661969, guid: bae7993cb43f8a441a2458c36504f40f, type: 3}
+      propertyPath: m_Interactable
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1998903306612060066, guid: bae7993cb43f8a441a2458c36504f40f, type: 3}
       propertyPath: m_AnchorMax.y

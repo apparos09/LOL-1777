@@ -1264,7 +1264,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2560191254705346538
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1703,7 +1703,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 3959088139489594367}
   key: kwd_stageClear
-  markIfFailed: 1
 --- !u!114 &751506129704486576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3639,7 +3638,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 4947945494922991712}
   key: kwd_time
-  markIfFailed: 1
 --- !u!1 &6028489931188147870
 GameObject:
   m_ObjectHideFlags: 0
@@ -4467,7 +4465,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 3959912128662922677}
   key: kwd_stageFailed
-  markIfFailed: 1
 --- !u!114 &9074904042273271313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4706,7 +4703,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 8040767313090927305}
   key: kwd_score
-  markIfFailed: 1
 --- !u!1 &8246212785304253997
 GameObject:
   m_ObjectHideFlags: 0
@@ -8160,6 +8156,10 @@ PrefabInstance:
     - target: {fileID: 921815124889804857, guid: bae7993cb43f8a441a2458c36504f40f, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1199647988011661969, guid: bae7993cb43f8a441a2458c36504f40f, type: 3}
+      propertyPath: m_Interactable
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1998903306612060066, guid: bae7993cb43f8a441a2458c36504f40f, type: 3}
       propertyPath: m_AnchorMax.y
