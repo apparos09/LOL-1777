@@ -433,6 +433,12 @@ namespace RM_MST
             return health > 0.0F;
         }
 
+        // Returns 'true' if the meteor is dead.
+        public bool IsDead()
+        {
+            return health <= 0.0F;
+        }
+
         // Returns the health.
         public float GetHealth()
         {

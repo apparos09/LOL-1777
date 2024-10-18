@@ -705,6 +705,11 @@ namespace RM_MST
                 {
                     meteorsActive.RemoveAt(i);
                 }
+                // Don't target meteors that are dead.
+                else if (meteorsActive[i].IsDead())
+                {
+                    meteorsActive.RemoveAt(i);
+                }
                 else // Check the position.
                 {
                     // If there is no meteor, track it by default.
