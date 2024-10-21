@@ -171,7 +171,7 @@ namespace RM_MST
         // On the end of the damage animation.
         public void OnDamageAnimationEnd()
         {
-            // Plays the empty animation.
+            // Plays the empty animation so that the damage animation can play again.
             animator.Play(emptyAnim);
         }
     }
