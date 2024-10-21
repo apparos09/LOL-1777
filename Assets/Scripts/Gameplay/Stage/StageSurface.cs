@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,6 +31,17 @@ namespace RM_MST
 
         // Bottom
         public SpriteRenderer bottomLayerRenderer;
+
+        [Header("Animation")]
+
+        // The animator for the surface.
+        public Animator animator;
+
+        // The empty animation state.
+        public string emptyAnim = "Empty State";
+
+        // The damage animation.
+        public string damageAnim = "Surface - Damage Animation";
 
         // Start is called before the first frame update
         void Start()
@@ -74,6 +86,10 @@ namespace RM_MST
             // The surface has been damaged.
             if (health < oldHealth)
             {
+                // Play the damage animation.
+                PlayDamageAnimation();
+
+                // The surface has been damaged.
                 stageManager.OnSurfaceDamaged();
             }
 
@@ -139,6 +155,25 @@ namespace RM_MST
             stageManager.stageUI.UpdateSurfaceHealthBar();
         }
 
+        // ANIMATIONS
+        // Plays the damage animation.
+        public void PlayDamageAnimation()
+        {
+            animator.Play(damageAnim);
+        }
+
+        // On the start of the damage animation.
+        public void OnDamageAnimationStart()
+        {
+            // ...
+        }
+
+        // On the end of the damage animation.
+        public void OnDamageAnimationEnd()
+        {
+            // Plays the empty animation.
+            animator.Play(emptyAnim);
+        }
     }
 
 }

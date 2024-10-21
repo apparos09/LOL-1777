@@ -94,6 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2529973974174926919}
   - component: {fileID: 2432530945380616017}
+  - component: {fileID: 2242568900754821510}
   - component: {fileID: 2636146139663677143}
   m_Layer: 0
   m_Name: Surface
@@ -165,6 +166,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 48, y: 3}
   m_EdgeRadius: 0
+--- !u!95 &2242568900754821510
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4796912850335616126}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7e8a1e46f44b3324c89a4cf06b4b4712, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &2636146139663677143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,11 +201,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageManager: {fileID: 0}
   collider: {fileID: 2432530945380616017}
-  health: 1
+  health: 10
   maxHealth: 10
   topLayerRenderer: {fileID: 8881044321162392118}
   middleLayerRenderer: {fileID: 3090228585807294844}
   bottomLayerRenderer: {fileID: 7921497559230990887}
+  animator: {fileID: 2242568900754821510}
+  damageAnim: Surface - Damage Animation
 --- !u!1 &5314422698505505276
 GameObject:
   m_ObjectHideFlags: 0
