@@ -1348,6 +1348,9 @@ namespace RM_MST
             // Resets the barriers. This is done here so that the sound effects don't play.
             RestoreAllBarriers();
 
+            // Calculate the final score, and add it to the game score.
+            CalculateAndSetStageFinalScore();
+
             // UI stage end.
             stageUI.OnStageEnd();
         }
@@ -1360,9 +1363,7 @@ namespace RM_MST
 
             // The stage has been cleared.
             cleared = true;
-
-            // Calculate the final score, and add it to the game score.
-            CalculateAndSetStageFinalScore();
+            
             // gameScore += stageFinalScore; // Not needed.
 
             // Stage won.

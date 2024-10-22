@@ -67,16 +67,10 @@ namespace RM_MST
         [Header("End Windows")]
 
         // The game win window.
-        public GameObject stageWonWindow;
-
-        // The stage clear time text.
-        public TMP_Text stageWonTimeText;
-
-        // The time clear score text.
-        public TMP_Text stageWonScoreText;
+        public StageEndUI stageWonWindow;
 
         // The game lost window.
-        public GameObject stageLostWindow;
+        public StageEndUI stageLostWindow;
         // Constructor
         private StageUI()
         {
@@ -171,8 +165,8 @@ namespace RM_MST
         {
             base.CloseAllWindows();
 
-            stageWonWindow.SetActive(false);
-            stageLostWindow.SetActive(false);
+            stageWonWindow.gameObject.SetActive(false);
+            stageLostWindow.gameObject.SetActive(false);
         }
 
 
@@ -649,11 +643,11 @@ namespace RM_MST
         public void OnStageWon()
         {
             CloseAllWindows();
-            stageWonWindow.SetActive(true);
+            stageWonWindow.gameObject.SetActive(true);
 
             // Set the time and score text.
-            stageWonTimeText.text = StringFormatter.FormatTime(stageManager.stageTime, false, true, false);
-            stageWonScoreText.text = stageManager.stageFinalScore.ToString(); // Already calculated.
+            stageWonWindow.SetTimeText(stageManager.stageTime);
+            stageWonWindow.SetScoreText(stageManager.stageFinalScore);
 
             // The offline animation is played instead.
             // Play happy animation.
@@ -664,7 +658,11 @@ namespace RM_MST
         public void OnStageLost()
         {
             CloseAllWindows();
-            stageLostWindow.SetActive(true);
+            stageLostWindow.gameObject.SetActive(true);
+
+            // Set the time and score text.
+            stageLostWindow.SetTimeText(stageManager.stageTime);
+            stageLostWindow.SetScoreText(stageManager.stageFinalScore);
 
             // The offline aniamtion is played instead.
             // // Play sad animation.
