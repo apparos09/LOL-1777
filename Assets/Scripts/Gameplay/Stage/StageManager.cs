@@ -1166,7 +1166,7 @@ namespace RM_MST
             
             // Base amount, combo bonus, and difficulty bonus.
             points += 15;
-            points += 15 * combo;
+            points += 12 * combo;
             points += 5 * difficulty;
 
             // Returns the points.

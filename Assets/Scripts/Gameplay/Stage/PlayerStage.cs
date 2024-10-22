@@ -35,7 +35,7 @@ namespace RM_MST
         private float playerStunTimer = 0.0F;
 
         // Player stun timer max.
-        public const float PLAYER_STUN_TIMER_MAX = 0.5F;
+        public const float PLAYER_STUN_TIMER_MAX = 0.8F;
 
         // Start is called before the first frame update
         void Start()
