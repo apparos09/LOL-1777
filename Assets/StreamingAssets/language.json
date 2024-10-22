@@ -132,6 +132,7 @@
       "kwd_restart": 28,
       "kwd_speed": 28,
 
+      "kwd_stageEnd": 70,
       "kwd_stageClear": 70,
       "kwd_stageWon": 70,
       "kwd_stageFailed": 70,
@@ -305,6 +306,7 @@
     "kwd_restart": "Restart",
     "kwd_speed": "Speed",
 
+    "kwd_stageEnd": "Stage End",
     "kwd_stageClear": "Stage Clear",
     "kwd_stageWon": "Stage Won",
     "kwd_stageFailed": "Stage Failed",
