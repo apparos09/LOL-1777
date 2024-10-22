@@ -48,6 +48,10 @@ namespace util
         [Tooltip("If true, clipStart is offset by where the audio is in reference to clipEnd when a loop is being performed.")]
         public bool loopRelative = true;
 
+        // If 'true', the clip loop is applied. If false, this script does not apply the clip loop.
+        [Tooltip("Enables the clip loop if true. It's recommended that this is set to false if the audio clip file loops perfectly.")]
+        public bool clipLoopEnabled = true;
+
         // Start is called before the first frame update
         protected virtual void Start()
         {
@@ -367,8 +371,8 @@ namespace util
                 clipEnd = temp;
             }
 
-            // If the audio source is playing
-            if (audioSource.isPlaying)
+            // If the clip loop is enabled, and the audio source is playing.
+            if (clipLoopEnabled && audioSource.isPlaying)
             {
                 // This isn't needed since using the Play() function in this class handles this.
                 // Puts the audio source at the clip start.

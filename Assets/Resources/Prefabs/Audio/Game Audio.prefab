@@ -306,6 +306,7 @@ MonoBehaviour:
   clipEnd: 0
   playAtClipStart: 0
   loopRelative: 1
+  clipLoopEnabled: 0
 --- !u!1 &2265234962807370617
 GameObject:
   m_ObjectHideFlags: 0
