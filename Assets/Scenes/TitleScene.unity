@@ -1546,7 +1546,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 645895924}
   key: mnu_instructions_dsc
-  markIfFailed: 1
 --- !u!114 &645895927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3285,7 +3284,7 @@ GameObject:
   - component: {fileID: 1373771070}
   - component: {fileID: 1373771069}
   m_Layer: 5
-  m_Name: Game Logo Image
+  m_Name: Game Logo Image/Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3307,7 +3306,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 175}
+  m_AnchoredPosition: {x: 0, y: 170}
   m_SizeDelta: {x: 1280, y: 720}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1373771066
@@ -3553,7 +3552,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 1478983653}
   key: kwd_licenses
-  markIfFailed: 1
 --- !u!114 &1478983653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4151,7 +4149,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 1723686326}
   key: mnu_licenses_dsc
-  markIfFailed: 1
 --- !u!114 &1723686326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4301,7 +4298,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 1766458509}
   key: kwd_instructions
-  markIfFailed: 1
 --- !u!114 &1766458509
 MonoBehaviour:
   m_ObjectHideFlags: 0
