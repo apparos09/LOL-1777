@@ -400,56 +400,56 @@ namespace RM_MST
                 {
                     default:
                     case 1:
-                        meteorSpawnRate = 3.00F;
-                        meteorSpeedMax = 0.25F;
+                        meteorSpawnRate = 3.20F;
+                        meteorSpeedMax = 0.20F;
                         pointsGoal = 500.0F;
                         break;
 
                     case 2:
-                        meteorSpawnRate = 3.00F;
+                        meteorSpawnRate = 3.15F;
                         meteorSpeedMax = 0.25F;
                         pointsGoal = 500.0F;
                         break;
 
                     case 3:
-                        meteorSpawnRate = 3.00F;
-                        meteorSpeedMax = 0.50F;
+                        meteorSpawnRate = 3.10F;
+                        meteorSpeedMax = 0.30F;
                         pointsGoal = 600.0F;
                         break;
 
                     case 4:
-                        meteorSpawnRate = 3.00F;
-                        meteorSpeedMax = 0.50F;
+                        meteorSpawnRate = 3.05F;
+                        meteorSpeedMax = 0.35F;
                         pointsGoal = 600.0F;
                         break;
 
                     case 5:
-                        meteorSpawnRate = 2.75F;
-                        meteorSpeedMax = 0.75F;
+                        meteorSpawnRate = 3.00F;
+                        meteorSpeedMax = 0.40F;
                         pointsGoal = 700.0F;
                         break;
 
                     case 6:
-                        meteorSpawnRate = 2.75F;
-                        meteorSpeedMax = 0.75F;
+                        meteorSpawnRate = 2.95F;
+                        meteorSpeedMax = 0.45F;
                         pointsGoal = 700.0F;
                         break;
 
                     case 7:
-                        meteorSpawnRate = 2.75F;
-                        meteorSpeedMax = 1.00F;
+                        meteorSpawnRate = 2.90F;
+                        meteorSpeedMax = 0.50F;
                         pointsGoal = 800.0F;
                         break;
 
                     case 8:
-                        meteorSpawnRate = 2.50F;
-                        meteorSpeedMax = 1.00F;
+                        meteorSpawnRate = 2.85F;
+                        meteorSpeedMax = 0.55F;
                         pointsGoal = 800.0F;
                         break;
 
                     case 9:
-                        meteorSpawnRate = 2.50F;
-                        meteorSpeedMax = 1.00F;
+                        meteorSpawnRate = 2.80F;
+                        meteorSpeedMax = 0.60F;
                         pointsGoal = 900.0F;
                         break;
                 }

@@ -93,12 +93,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 26
+  m_fontSize: 30
   m_fontSizeBase: 26
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 16
-  m_fontSizeMax: 26
+  m_fontSizeMax: 30
   m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -149,7 +149,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 4583445786915172405}
   key: kwd_output
-  markIfFailed: 1
 --- !u!1 &4155590865891882303
 GameObject:
   m_ObjectHideFlags: 0
@@ -494,12 +493,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 26
+  m_fontSize: 30
   m_fontSizeBase: 26
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 16
-  m_fontSizeMax: 26
+  m_fontSizeMax: 30
   m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -550,7 +549,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 3518403882637386403}
   key: kwd_input
-  markIfFailed: 1
 --- !u!1001 &2253145382125871552
 PrefabInstance:
   m_ObjectHideFlags: 0

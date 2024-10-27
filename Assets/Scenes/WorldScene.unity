@@ -1912,6 +1912,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grid Sphere
       objectReference: {fileID: 0}
+    - target: {fileID: 2974883234227418549, guid: 4d9ebcf4b0604c64a8fa0eccc6f00006, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3876997264726819337, guid: 4d9ebcf4b0604c64a8fa0eccc6f00006, type: 3}
       propertyPath: m_Color.a
       value: 0.2509804
