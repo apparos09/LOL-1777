@@ -94,6 +94,12 @@ namespace RM_MST
                 // Finds all the stages in the world and puts them in the list.
                 stages = new List<StageWorld>(FindObjectsOfType<StageWorld>(true));
             }
+
+            // Checks that the stage count matches the expected count.
+            if(stages.Count != STAGE_COUNT)
+            {
+                Debug.LogWarning("The stage list length does not match the expected stage count.");
+            }
         }
 
         // The function called after the start function.
@@ -112,12 +118,20 @@ namespace RM_MST
                 {
                     gameInfo.LoadWorldInfo(this);
 
-                    // If the game should auto save, the game can save...
-                    // And the most recent stage was cleared.
-                    if (autoSave && IsSavingLoadingEnabled() && gameInfo.recentStageCleared)
+                    // Checks if the most recently used stage was cleared.
+                    if(gameInfo.recentStageCleared)
                     {
-                        SaveGame();
+                        // If the game should auto save, the game can save...
+                        // And the most recent stage was cleared.
+                        if (autoSave && IsSavingLoadingEnabled())
+                        {
+                            SaveGame();
+                        }
+
+                        // Submits progress
+                        SubmitProgress();
                     }
+
                 }
                 else
                 {
@@ -415,6 +429,63 @@ namespace RM_MST
             return true;
         }
 
+        // GAME PROGRESS
+
+        // Gets the game progress.
+        public int GetGameProgress()
+        {
+            // Progress
+            int progress = 0;
+
+            // Increases progress for every defeated challenger.
+            for (int i = 0; i < stages.Count; i++)
+            {
+                // If the stage is cleared, mark it as complete.
+                if (stages[i].IsStageCleared())
+                    progress++;
+            }
+
+            // Returns the progress.
+            return progress;
+        }
+
+        // Submits the current game progress.
+        public void SubmitProgress()
+        {
+            // If the LOLManager and the SDK have both been initialized, submit the score and game progress.
+            if (LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
+                LOLManager.Instance.SubmitProgress(CalculateGameScoreAsInt(), GetGameProgress());
+        }
+
+        // Submits the game progress complete.
+        public void SubmitProgressComplete()
+        {
+            // Submits the game score and progress complete.
+            if (LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
+                LOLManager.Instance.SubmitProgressComplete(CalculateGameScoreAsInt());
+        }
+
+
+        // Returns cleared on game complete event.
+        public bool IsGameComplete()
+        {
+            return gameCompleteEvent.cleared;
+        }
+
+        // Overrides on game complete.
+        public override void OnGameComplete()
+        {
+            // Opens the UI.
+            worldUI.OnGameComplete();
+
+            // Play the game complete music.
+            worldAudio.PlayGameCompleteMusic();
+
+            // Called when going to the results scene.
+            // Submit progress complete.
+            // SubmitProgressComplete();
+        }
+
 
         // SCENES/GAME END //
 
@@ -435,21 +506,6 @@ namespace RM_MST
             LoadScene(stageScene);
         }
 
-        // Returns cleared on game complete event.
-        public bool IsGameComplete()
-        {
-            return gameCompleteEvent.cleared;
-        }
-
-        // Overrides on game complete.
-        public override void OnGameComplete()
-        {
-            // Opens the UI.
-            worldUI.OnGameComplete();
-
-            // Play the game complete music.
-            worldAudio.PlayGameCompleteMusic();
-        }
 
         // When going to the results scene, create the results data.
         public override void ToResults()
@@ -478,6 +534,9 @@ namespace RM_MST
 
             // Saves the game.
             SaveGame();
+
+            // Submit progress complete.
+            SubmitProgressComplete();
 
             // Go to the results scene.
             base.ToResults();

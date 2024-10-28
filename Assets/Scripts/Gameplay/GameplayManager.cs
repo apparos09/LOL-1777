@@ -123,6 +123,19 @@ namespace RM_MST
             return result;
         }
 
+        // Calcualtes the game score as an int and returns it.
+        public int CalculateGameScoreAsInt()
+        {
+            // Gets the result as an int. It rounds up to the nearest integer.
+            int result = Mathf.CeilToInt(CalculateGameScore());
+
+            // Bounds check.
+            if (result < 0)
+                result = 0;
+
+            return result;
+        }
+
         // // Updates the game score.
         // public void CalculateAndSetGameScore()
         // {
