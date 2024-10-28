@@ -157,12 +157,12 @@ SpriteRenderer:
   m_SortingLayerID: -1589969025
   m_SortingLayer: 2
   m_SortingOrder: 2
-  m_Sprite: {fileID: -1931177097, guid: e52d44dcad8031840ab286153775ca92, type: 3}
+  m_Sprite: {fileID: 643567043, guid: e52d44dcad8031840ab286153775ca92, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.28, y: 1.28}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -239,7 +239,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.6
+  m_Radius: 0.65
 --- !u!50 &3357909935922858574
 Rigidbody2D:
   serializedVersion: 4
@@ -312,25 +312,33 @@ MonoBehaviour:
   - 0
   - 0
   - 0
+  possibleOutputMults:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
   maxHealth: 1
   meteorSpriteRenderer: {fileID: 8412027103704025470}
   meteorSprites:
-  - {fileID: -1931177097, guid: e52d44dcad8031840ab286153775ca92, type: 3}
-  - {fileID: -190762150, guid: e52d44dcad8031840ab286153775ca92, type: 3}
-  - {fileID: -1552574479, guid: e52d44dcad8031840ab286153775ca92, type: 3}
-  - {fileID: 458397987, guid: e52d44dcad8031840ab286153775ca92, type: 3}
-  - {fileID: -153976185, guid: e52d44dcad8031840ab286153775ca92, type: 3}
-  - {fileID: 2029413048, guid: e52d44dcad8031840ab286153775ca92, type: 3}
-  - {fileID: -2071510026, guid: e52d44dcad8031840ab286153775ca92, type: 3}
-  - {fileID: -1749170397, guid: e52d44dcad8031840ab286153775ca92, type: 3}
-  - {fileID: -1731081926, guid: e52d44dcad8031840ab286153775ca92, type: 3}
-  - {fileID: 2008071754, guid: e52d44dcad8031840ab286153775ca92, type: 3}
-  - {fileID: -1351516923, guid: e52d44dcad8031840ab286153775ca92, type: 3}
-  - {fileID: 2142886901, guid: e52d44dcad8031840ab286153775ca92, type: 3}
-  - {fileID: 1566499641, guid: e52d44dcad8031840ab286153775ca92, type: 3}
-  - {fileID: 1912843761, guid: e52d44dcad8031840ab286153775ca92, type: 3}
-  - {fileID: -67771792, guid: e52d44dcad8031840ab286153775ca92, type: 3}
-  - {fileID: -817026624, guid: e52d44dcad8031840ab286153775ca92, type: 3}
+  - {fileID: 643567043, guid: e52d44dcad8031840ab286153775ca92, type: 3}
+  - {fileID: 734156740, guid: e52d44dcad8031840ab286153775ca92, type: 3}
+  - {fileID: -547787318, guid: e52d44dcad8031840ab286153775ca92, type: 3}
+  - {fileID: 204297772, guid: e52d44dcad8031840ab286153775ca92, type: 3}
+  - {fileID: -2028264425, guid: e52d44dcad8031840ab286153775ca92, type: 3}
+  - {fileID: 720169839, guid: e52d44dcad8031840ab286153775ca92, type: 3}
+  - {fileID: -1183291865, guid: e52d44dcad8031840ab286153775ca92, type: 3}
+  - {fileID: 2055922067, guid: e52d44dcad8031840ab286153775ca92, type: 3}
+  - {fileID: -1920909489, guid: e52d44dcad8031840ab286153775ca92, type: 3}
+  - {fileID: 1182335887, guid: e52d44dcad8031840ab286153775ca92, type: 3}
+  - {fileID: -1886906862, guid: e52d44dcad8031840ab286153775ca92, type: 3}
+  - {fileID: -893709903, guid: e52d44dcad8031840ab286153775ca92, type: 3}
+  - {fileID: -74791496, guid: e52d44dcad8031840ab286153775ca92, type: 3}
+  - {fileID: 1007996678, guid: e52d44dcad8031840ab286153775ca92, type: 3}
+  - {fileID: -1984108622, guid: e52d44dcad8031840ab286153775ca92, type: 3}
+  - {fileID: -694822571, guid: e52d44dcad8031840ab286153775ca92, type: 3}
   randomSpriteOnSpawn: 1
   animator: {fileID: 5269074780684359340}
   deathAnim: Meteor - Death Animation

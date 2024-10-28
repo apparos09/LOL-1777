@@ -136,13 +136,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: stg_-_meteors_0
+      name: stg_meteors_-_white_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 768
-        width: 256
-        height: 256
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,20 +150,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9bfe764db2d593c49a84749d4a37bfdb
-      internalID: -1931177097
+      spriteID: 1a034bed6f1b3294082e793605cb07a7
+      internalID: 643567043
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stg_-_meteors_1
+      name: stg_meteors_-_white_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 228fd730538bb294ab137aa516cbb30a
+      internalID: 734156740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stg_meteors_-_white_2
       rect:
         serializedVersion: 2
         x: 256
-        y: 768
-        width: 256
-        height: 256
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,20 +192,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 81a242e45ebd6234fad987f0446c284e
-      internalID: -190762150
+      spriteID: 933c1a717de43364892b8a510a401655
+      internalID: -547787318
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stg_-_meteors_2
+      name: stg_meteors_-_white_3
       rect:
         serializedVersion: 2
-        x: 512
-        y: 768
-        width: 256
-        height: 256
+        x: 384
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,125 +213,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3c402a431b9cadf468b86f35982dc710
-      internalID: -1552574479
+      spriteID: 8d0b6d41d9b3f7e43a6ee4e76345e44c
+      internalID: 204297772
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stg_-_meteors_3
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 768
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f021d53456e94d54db7ac6ca49b75940
-      internalID: 458397987
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: stg_-_meteors_4
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 512
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fe2f7ba29c02e55489007d215315e303
-      internalID: -153976185
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: stg_-_meteors_5
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 512
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ed2a760b273cd1a49ba9e1d0145d3b5d
-      internalID: 2029413048
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: stg_-_meteors_6
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 512
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 48049ae45b85f524eb0d3aa41e32993f
-      internalID: -2071510026
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: stg_-_meteors_7
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 512
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d0822d762e8e0f54794b0fd4b5d659d5
-      internalID: -1749170397
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: stg_-_meteors_8
+      name: stg_meteors_-_white_4
       rect:
         serializedVersion: 2
         x: 0
         y: 256
-        width: 256
-        height: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -318,20 +234,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b92cb50a8ecf8fd4486369809b4d8580
-      internalID: -1731081926
+      spriteID: d6e238d6677ec9041994ae23dec61430
+      internalID: -2028264425
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stg_-_meteors_9
+      name: stg_meteors_-_white_5
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fa8de39c5e348c4695d49946b6dc5c9
+      internalID: 720169839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stg_meteors_-_white_6
       rect:
         serializedVersion: 2
         x: 256
         y: 256
-        width: 256
-        height: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -339,20 +276,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f92d3f9ef3c700d47805368d5373a636
-      internalID: 2008071754
+      spriteID: 8c609e445e0bd0542b375103831900f3
+      internalID: -1183291865
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stg_-_meteors_10
+      name: stg_meteors_-_white_7
       rect:
         serializedVersion: 2
-        x: 512
+        x: 384
         y: 256
-        width: 256
-        height: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -360,20 +297,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 46117b0e99da29443b792b8275947063
-      internalID: -1351516923
+      spriteID: 7203580f8c4e7694b9fceb31f0d30d21
+      internalID: 2055922067
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stg_-_meteors_11
+      name: stg_meteors_-_white_8
       rect:
         serializedVersion: 2
-        x: 768
-        y: 256
-        width: 256
-        height: 256
+        x: 0
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -381,20 +318,83 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0eb821b16ed3b1f40afa82613606f927
-      internalID: 2142886901
+      spriteID: 4edf5f30e98e74f49a462f960e443fb6
+      internalID: -1920909489
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stg_-_meteors_12
+      name: stg_meteors_-_white_9
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 728beaed3017ba34b9b221208a8f051b
+      internalID: 1182335887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stg_meteors_-_white_10
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: edbdacb8ef7406c459edae02bf262fed
+      internalID: -1886906862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stg_meteors_-_white_11
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67eda25f0399c5047b5146f2cfd0b974
+      internalID: -893709903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stg_meteors_-_white_12
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 256
-        height: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -402,20 +402,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 65d6130b119fffc40890bea6e934dbec
-      internalID: 1566499641
+      spriteID: c94b9e874e15a3a45a671b0515e751c2
+      internalID: -74791496
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stg_-_meteors_13
+      name: stg_meteors_-_white_13
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 843ae9ef21e083045b0ee7eed93aab52
+      internalID: 1007996678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stg_meteors_-_white_14
       rect:
         serializedVersion: 2
         x: 256
         y: 0
-        width: 256
-        height: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -423,20 +444,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b2784bd8a45240438143c725cc508c3
-      internalID: 1912843761
+      spriteID: 6e2f7fb7232859e4c8ebcaa225c6b5b3
+      internalID: -1984108622
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stg_-_meteors_14
+      name: stg_meteors_-_white_15
       rect:
         serializedVersion: 2
-        x: 512
+        x: 384
         y: 0
-        width: 256
-        height: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -444,29 +465,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7cc942562e42e2545857b4fc0d1ea401
-      internalID: -67771792
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: stg_-_meteors_15
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 0
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5a476c0a8213c8446a0804a37b3afac1
-      internalID: -817026624
+      spriteID: 57087688dbaf1a241822a43bce69006a
+      internalID: -694822571
       vertices: []
       indices: 
       edges: []
@@ -482,22 +482,22 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      stg_-_meteors_0: -1931177097
-      stg_-_meteors_1: -190762150
-      stg_-_meteors_10: -1351516923
-      stg_-_meteors_11: 2142886901
-      stg_-_meteors_12: 1566499641
-      stg_-_meteors_13: 1912843761
-      stg_-_meteors_14: -67771792
-      stg_-_meteors_15: -817026624
-      stg_-_meteors_2: -1552574479
-      stg_-_meteors_3: 458397987
-      stg_-_meteors_4: -153976185
-      stg_-_meteors_5: 2029413048
-      stg_-_meteors_6: -2071510026
-      stg_-_meteors_7: -1749170397
-      stg_-_meteors_8: -1731081926
-      stg_-_meteors_9: 2008071754
+      stg_meteors_-_white_0: 643567043
+      stg_meteors_-_white_1: 734156740
+      stg_meteors_-_white_10: -1886906862
+      stg_meteors_-_white_11: -893709903
+      stg_meteors_-_white_12: -74791496
+      stg_meteors_-_white_13: 1007996678
+      stg_meteors_-_white_14: -1984108622
+      stg_meteors_-_white_15: -694822571
+      stg_meteors_-_white_2: -547787318
+      stg_meteors_-_white_3: 204297772
+      stg_meteors_-_white_4: -2028264425
+      stg_meteors_-_white_5: 720169839
+      stg_meteors_-_white_6: -1183291865
+      stg_meteors_-_white_7: 2055922067
+      stg_meteors_-_white_8: -1920909489
+      stg_meteors_-_white_9: 1182335887
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
