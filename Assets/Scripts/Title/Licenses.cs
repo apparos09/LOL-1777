@@ -146,6 +146,22 @@ namespace RM_MST
 
             // Stage - Results
             credit = new AudioCredits.AudioCredit();
+            credit.title = "Transcend";
+            credit.artist = "Jason Shaw";
+            credit.collection = "GameSounds.xyz/Audionautix/Soundtrack";
+            credit.source = "GameSounds.xyz, Audionautix.com";
+            credit.link1 = "https://gamesounds.xyz/?dir=Audionautix/Soundtrack";
+            credit.link2 = "https://audionautix.com/";
+            credit.copyright =
+                "\"Transcend\"" +
+                "\nMusic by Jason Shaw on Audionautix.com (https://audionautix.com)" +
+                "\nLicensed under Creative Commons: By Attribution 4.0 License" +
+                "\nhttp://creativecommons.org/licenses/by/4.0/";
+
+            bgmCredits.audioCredits.Add(credit);
+
+            // Game - Results
+            credit = new AudioCredits.AudioCredit();
             credit.title = "Tired";
             credit.artist = "Antti Luode";
             credit.collection = "GameSounds.xyz/Anttis instrumentals/Songs";
