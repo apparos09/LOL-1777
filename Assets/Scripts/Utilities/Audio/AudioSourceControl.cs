@@ -20,33 +20,24 @@ namespace util
         [Tooltip("Sets the maixmum volume automatically to the audio source's default volume.")]
         public bool autoSetMaxVolume = true;
 
-        //// Awake is called when the script instance is being loaded.
-        //private void Awake()
-        //{
-        //    // Added this to help with creating an audio source with source control through a script.
-        //    // If the audio source wans't set then try to grab the component.
-        //    if (audioSource == null)
-        //        audioSource = gameObject.GetComponent<AudioSource>();
+        // Awake is called when the script instance is being loaded.
+        private void Awake()
+        {
+            // These elements were moved here in case the audio gets adjusted during the Start() phase.
 
-        //    // The max volume has not been set.
-        //    if (autoSetMaxVolume)
-        //        maxVolume = audioSource.volume;
-        //}
+            // If the audio source hasn't been set, try to get the component.
+            if (audioSource == null)
+                audioSource = gameObject.GetComponent<AudioSource>();
+
+            // The max volume has not been set, so set it to the audio source's volume.
+            if (autoSetMaxVolume)
+                maxVolume = audioSource.volume;
+        }
 
         // Start is called before the first frame update
         void Start()
         {
-            // Added this to help with creating an audio source with source control through a script.
-            // If the audio source wans't set then try to grab the component.
-            if (audioSource == null)
-                audioSource = GetComponent<AudioSource>();
-
-            // The max volume has not been set.
-            if (autoSetMaxVolume)
-                maxVolume = audioSource.volume;
-
-            // adjusts the audio.
-            // GameSettings.Instance.AdjustAudio(this);
+            // ...
         }
 
         // called when the object becomes active.

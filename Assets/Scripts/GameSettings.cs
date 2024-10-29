@@ -37,13 +37,13 @@ namespace RM_MST
         public const string BGM_TAG = "BGM";
 
         // The volume for the background music.
-        private float bgmVolume = 0.35F;
+        private float bgmVolume = 0.25F;
 
         // The tag for the SFX objects.
         public const string SFX_TAG = "SFX";
 
         // The volume for the sound effects.
-        private float sfxVolume = 0.5F;
+        private float sfxVolume = 0.40F;
 
         // The tag for the voice objects.
         public const string VCE_TAG = "VCE";
