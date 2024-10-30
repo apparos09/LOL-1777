@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3855639866833693991}
   - component: {fileID: 7165494914697652301}
   - component: {fileID: 4725303725601913545}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Laser Shot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,7 +157,7 @@ GameObject:
   m_Component:
   - component: {fileID: 761673160482795978}
   - component: {fileID: 8329124214029315863}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

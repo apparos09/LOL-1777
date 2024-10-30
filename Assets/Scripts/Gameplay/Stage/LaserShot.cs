@@ -93,6 +93,7 @@ namespace RM_MST
            
         }
 
+        // Shoot
         // Shoots the shot at the provided target.
         public void Shoot(Vector3 target)
         {
@@ -158,6 +159,7 @@ namespace RM_MST
         {
             // TODO: maybe ignore by layer instead?
 
+            // Does manual ignores just to be sure. These aren't really necessary, but they're here regardless.
             // Ignore collision with the stage surface.
             Physics2D.IgnoreCollision(collider, stageManager.stageSurface.collider, true);
 

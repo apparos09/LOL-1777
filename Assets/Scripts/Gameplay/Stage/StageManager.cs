@@ -214,6 +214,17 @@ namespace RM_MST
             if (!instanced)
             {
                 instanced = true;
+
+                // Physics Ignores
+                // Gets the laser shot and ignore laser shot layer.
+                int layer1 = LayerMask.NameToLayer("Laser Shot");
+                int layer2 = LayerMask.NameToLayer("Ignore Laser Shot");
+
+                // If both layers have been found, set up the ignores.
+                if (layer1 != -1 && layer2 != -1)
+                {
+                    Physics2D.IgnoreLayerCollision(layer1, layer2, true);
+                }
             }
         }
 

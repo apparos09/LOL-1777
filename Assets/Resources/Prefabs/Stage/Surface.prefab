@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2432901490026603180}
   - component: {fileID: 3090228585807294844}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Middle Layer Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 2432530945380616017}
   - component: {fileID: 2242568900754821510}
   - component: {fileID: 2636146139663677143}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Surface
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,6 +207,7 @@ MonoBehaviour:
   middleLayerRenderer: {fileID: 3090228585807294844}
   bottomLayerRenderer: {fileID: 7921497559230990887}
   animator: {fileID: 2242568900754821510}
+  emptyAnim: Empty State
   damageAnim: Surface - Damage Animation
 --- !u!1 &5314422698505505276
 GameObject:
@@ -218,7 +219,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8763619419274951042}
   - component: {fileID: 7921497559230990887}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bottom Layer Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -302,7 +303,7 @@ GameObject:
   m_Component:
   - component: {fileID: 372020947958024992}
   - component: {fileID: 8881044321162392118}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Top Layer Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

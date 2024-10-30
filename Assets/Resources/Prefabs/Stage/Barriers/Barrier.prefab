@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2404120556112063925}
   - component: {fileID: 8209046605798320810}
   - component: {fileID: 5451690922107062638}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Barrier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,7 +136,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3695281618603147570}
   - component: {fileID: 2121794509328006473}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
