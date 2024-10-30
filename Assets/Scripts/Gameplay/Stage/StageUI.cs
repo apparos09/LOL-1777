@@ -28,6 +28,9 @@ namespace RM_MST
         // The partner B icon.
         public CharacterIcon partnerBIcon;
 
+        // The speed change button.
+        public SpeedButton speedButton;
+
         [Header("Text")]
 
         // The stage name text.
@@ -637,6 +640,9 @@ namespace RM_MST
 
             // Play the offline animation.
             PlayPartnersAnimation(CharacterIcon.charIconAnim.offline);
+
+            // Refreshes the speed button's icon since the game speed is back to normal.
+            speedButton.RefreshButtonIcon();
         }
 
         // Called when the stage has been won.

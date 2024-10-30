@@ -95,28 +95,57 @@ namespace RM_MST
         // Called when the button is clicked.
         private void OnClick()
         {
-            // Gets the instance if it's not already set.
-            if (stageManager == null)
-                stageManager = StageManager.Instance;
+            // Refreshes the stage manager.
+            AutosetStageManager();
 
             // Checks the game speed to know what sprite to display.
             // The audio clip is also changed so that it goes along with...
             // What the next operation will be.
             // While there is a speed up SFX, there is no option to make the game go faster.
-            if(stageManager.IsNormalSpeed()) // Normal
+            if (stageManager.IsNormalSpeed()) // Normal
             {
                 speedSymbolImage.sprite = normalSpeedSprite;
                 buttonAudio.audioClip = slowDownSfx;
             }
-            else if(stageManager.IsFastSpeed()) // Fast
+            else if (stageManager.IsFastSpeed()) // Fast
             {
                 speedSymbolImage.sprite = fastSpeedSprite;
                 buttonAudio.audioClip = slowDownSfx;
             }
-            else if(stageManager.IsSlowSpeed()) // Slow
+            else if (stageManager.IsSlowSpeed()) // Slow
             {
-                speedSymbolImage.sprite= slowSpeedSprite;
+                speedSymbolImage.sprite = slowSpeedSprite;
                 buttonAudio.audioClip = speedUpSfx;
+            }
+        }
+
+        // Refreshes the stage manager to check that it's set.
+        private void AutosetStageManager()
+        {
+            // Gets the instance if it's not already set.
+            if (stageManager == null)
+                stageManager = StageManager.Instance;
+        }
+
+        // Refreshes the button icon.
+        public void RefreshButtonIcon()
+        {
+            // Makes sure the stage manager is set.
+            AutosetStageManager();
+
+            // Checks the game speed to know what icon to display.
+            if (stageManager.IsNormalSpeed()) // Normal
+            {
+                speedSymbolImage.sprite = normalSpeedSprite;
+            }
+            else if (stageManager.IsFastSpeed()) // Fast
+            {
+                speedSymbolImage.sprite = fastSpeedSprite;
+            }
+            else if (stageManager.IsSlowSpeed()) // Slow
+            {
+                speedSymbolImage.sprite = slowSpeedSprite;
+
             }
         }
     }
