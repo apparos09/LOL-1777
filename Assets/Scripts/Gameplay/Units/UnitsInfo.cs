@@ -373,7 +373,7 @@ namespace RM_MST
         public const string WEIGHT_METRIC_DESC_KEY = "unt_weightMetric_dsc";
 
         // Capacity
-        private string capacityName = "Capacity";
+        private string capacityName = "Capacity (Metric)";
         public const string CAPACITY_NAME_KEY = "unt_capacity_nme";
         private string capacityDesc = "Liters (l), Milliliters (mL)";
         public const string CAPACITY_DESC_KEY = "unt_capacity_dsc";
