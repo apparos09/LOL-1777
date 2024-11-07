@@ -23,14 +23,40 @@ namespace RM_MST
 
         [Header("Sprites")]
 
+        // The sprite set for the surface.
+        public int spriteSet = 0;
+
+        // The number of surface sprite sets.
+        public const int SURFACE_SPRITE_SET_COUNT = 3;
+
+        [Header("Sprites/Top Layer")]
         // Top
         public SpriteRenderer topLayerRenderer;
+
+        // Sprites
+        public Sprite topLayerSprite01;
+        public Sprite topLayerSprite02;
+        public Sprite topLayerSprite03;
+
+        [Header("Sprites/Middle Layer")]
 
         // Middle
         public SpriteRenderer middleLayerRenderer;
 
+        // Sprites
+        public Sprite middleLayerSprite01;
+        public Sprite middleLayerSprite02;
+        public Sprite middleLayerSprite03;
+
+        [Header("Sprites/Bottom Layer")]
+
         // Bottom
         public SpriteRenderer bottomLayerRenderer;
+
+        // Sprites
+        public Sprite bottomLayerSprite01;
+        public Sprite bottomLayerSprite02;
+        public Sprite bottomLayerSprite03;
 
         [Header("Animation")]
 
@@ -54,10 +80,60 @@ namespace RM_MST
             if (collider == null)
                 collider = GetComponent<Collider2D>();
 
+            // Sets the surface sprites.
+            SetSurfaceSpriteSet(spriteSet);
+
             // Set health to max.
             SetHealthToMax();
         }
 
+        // SPRITES
+        // Sets the surface sprites.
+        public void SetSurfaceSpriteSet(int newSpriteSet)
+        {
+            // Sets the sprite set.
+            spriteSet = Mathf.Clamp(newSpriteSet, 1, SURFACE_SPRITE_SET_COUNT);
+
+            // The top, middle, and bottom sprites.
+            Sprite topSprite = null;
+            Sprite middleSprite = null;
+            Sprite bottomSprite = null;
+
+            // Checks the sprite set number to know...
+            // Which one to use.
+            switch(spriteSet)
+            {
+                default:
+                case 1:
+                    topSprite = topLayerSprite01;
+                    middleSprite = middleLayerSprite01;
+                    bottomSprite = bottomLayerSprite01;
+                    break;
+
+                case 2:
+                    topSprite = topLayerSprite02;
+                    middleSprite = middleLayerSprite02;
+                    bottomSprite = bottomLayerSprite02;
+                    break;
+
+                case 3:
+                    topSprite = topLayerSprite03;
+                    middleSprite = middleLayerSprite03;
+                    bottomSprite = bottomLayerSprite03;
+                    break;
+            }
+
+            // If all of the sprites are set, change the layers.
+            if(topSprite != null && middleSprite != null && bottomSprite != null)
+            {
+                topLayerRenderer.sprite = topSprite;
+                middleLayerRenderer.sprite = middleSprite;
+                bottomLayerRenderer.sprite = bottomSprite;
+            }
+        }
+
+
+        // MECHANICS
         // Returns 'true' if health is at max.
         public bool IsHealthAtMax()
         {
@@ -154,6 +230,7 @@ namespace RM_MST
             SetHealthToMax();
             stageManager.stageUI.UpdateSurfaceHealthBar();
         }
+
 
         // ANIMATIONS
         // Plays the damage animation.

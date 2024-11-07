@@ -203,9 +203,19 @@ MonoBehaviour:
   collider: {fileID: 2432530945380616017}
   health: 10
   maxHealth: 10
+  spriteSet: 0
   topLayerRenderer: {fileID: 8881044321162392118}
+  topLayerSprite01: {fileID: -854255056, guid: 309fe5e74ee8c934a85dee3c7d1d468a, type: 3}
+  topLayerSprite02: {fileID: -1218247805, guid: 309fe5e74ee8c934a85dee3c7d1d468a, type: 3}
+  topLayerSprite03: {fileID: -1999504820, guid: 309fe5e74ee8c934a85dee3c7d1d468a, type: 3}
   middleLayerRenderer: {fileID: 3090228585807294844}
+  middleLayerSprite01: {fileID: -1613357030, guid: 309fe5e74ee8c934a85dee3c7d1d468a, type: 3}
+  middleLayerSprite02: {fileID: 1894409470, guid: 309fe5e74ee8c934a85dee3c7d1d468a, type: 3}
+  middleLayerSprite03: {fileID: 1068309672, guid: 309fe5e74ee8c934a85dee3c7d1d468a, type: 3}
   bottomLayerRenderer: {fileID: 7921497559230990887}
+  bottomLayerSprite01: {fileID: -815813241, guid: 309fe5e74ee8c934a85dee3c7d1d468a, type: 3}
+  bottomLayerSprite02: {fileID: 1527685, guid: 309fe5e74ee8c934a85dee3c7d1d468a, type: 3}
+  bottomLayerSprite03: {fileID: -2005917058, guid: 309fe5e74ee8c934a85dee3c7d1d468a, type: 3}
   animator: {fileID: 2242568900754821510}
   emptyAnim: Empty State
   damageAnim: Surface - Damage Animation

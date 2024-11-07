@@ -277,8 +277,10 @@ namespace RM_MST
             if(dynamicDifficulty)
                 AdjustDifficultyByLosses();
 
-            // Sets the stage background
+            // Sets the stage background and surface.
+            // The background number is reused for the surface sprite set.
             stage.SetBackground(bgdNumber);
+            stage.surface.SetSurfaceSpriteSet(bgdNumber);
 
             // Plays the background music using the provided BGM number.
             stageAudio.PlayStageBgm(bgmNumber);

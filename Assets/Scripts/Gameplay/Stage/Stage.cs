@@ -52,6 +52,11 @@ namespace RM_MST
         [Tooltip("The laser shot spawn point. This only concerns the y-position.")]
         public GameObject laserShotSpawnPoint;
 
+        [Header("Surface")]
+
+        // The stage surface.
+        public StageSurface surface;
+
         [Header("Backgrounds")]
 
         // The background renderer.
