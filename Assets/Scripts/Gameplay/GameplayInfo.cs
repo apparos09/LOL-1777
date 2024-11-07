@@ -19,6 +19,9 @@ namespace RM_MST
             // Unit Groups
             public List<UnitsInfo.unitGroups> stageUnitGroups;
 
+            // Background Number
+            public int bgdNumber;
+
             // Music/BGM Number
             public int bgmNumber;
 

@@ -475,6 +475,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4185861477174107382}
     - target: {fileID: 8926715613063369270, guid: 73a75f6c51139734ba6a715750f08e1d, type: 3}
+      propertyPath: bgdNumber
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8926715613063369270, guid: 73a75f6c51139734ba6a715750f08e1d, type: 3}
       propertyPath: difficulty
       value: 9
       objectReference: {fileID: 0}

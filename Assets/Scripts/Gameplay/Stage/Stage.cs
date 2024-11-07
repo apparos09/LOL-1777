@@ -52,6 +52,20 @@ namespace RM_MST
         [Tooltip("The laser shot spawn point. This only concerns the y-position.")]
         public GameObject laserShotSpawnPoint;
 
+        [Header("Backgrounds")]
+
+        // The background renderer.
+        public SpriteRenderer backgroundRenderer;
+
+        // Background 1
+        public Sprite background01;
+
+        // Background 2
+        public Sprite background02;
+
+        // Background 3
+        public Sprite background03;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -62,6 +76,34 @@ namespace RM_MST
             // Sets the stage.
             if(stageManager.stage == null)
                 stageManager.stage = this;
+        }
+
+        // Sets the background by the provided number.
+        public void SetBackground(int bgdNumber)
+        {
+            // The new sprite background.
+            Sprite newBgd = null;
+
+            // Checks the background number.
+            switch(bgdNumber)
+            {
+                default:
+                case 1: // BGD 1
+                    newBgd = background01;
+                    break;
+
+                case 2: // BGD 2
+                    newBgd = background02;
+                    break;
+
+                case 3: // BGD 3
+                    newBgd = background03;
+                    break;
+            }
+
+            // Sets the background.
+            if(newBgd != null)
+                backgroundRenderer.sprite = newBgd;
         }
 
         // Checks if the provided position is in the game area.

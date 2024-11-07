@@ -24,11 +24,13 @@ namespace RM_MST
 
         [Header("Images")]
 
-        // The background of the UI.
-        public Image background;
-
         // The renderer of the stage art.
         public Image stageRenderer;
+
+        // The stage backgrounds that are used for the stage art.
+        public Sprite stageThumbnail01;
+        public Sprite stageThumbnail02;
+        public Sprite stageThumbnail03;
 
         [Header("Text")]
 
@@ -127,7 +129,28 @@ namespace RM_MST
         {
             if(stageWorld != null) // Set sprite.
             {
-                stageRenderer.sprite = stageWorld.stageSprite;
+                // The new sprite to be set.
+                Sprite newSprite = null;
+            
+                // Checks the BGM number.
+                switch(stageWorld.bgdNumber)
+                {
+                    default:
+                    case 1:
+                        newSprite = stageThumbnail01;
+                        break;
+
+                    case 2:
+                        newSprite = stageThumbnail02;
+                        break;
+
+                    case 3:
+                        newSprite = stageThumbnail03;
+                        break;
+                }
+
+                // Sets the background for the sprite renderer.
+                stageRenderer.sprite = newSprite;
             }
             else // Clear sprite.
             {

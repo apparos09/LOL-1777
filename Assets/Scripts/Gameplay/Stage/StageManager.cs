@@ -31,7 +31,12 @@ namespace RM_MST
         // The stage's name.
         public string stageName;
 
+        // The stage's background number.
+        [Tooltip("The stage's background number.")]
+        public int bgdNumber = 0;
+
         // The stage's BGM number.
+        [Tooltip("The stage's BGM number.")]
         public int bgmNumber = 0;
 
         // The stage index.
@@ -272,6 +277,9 @@ namespace RM_MST
             if(dynamicDifficulty)
                 AdjustDifficultyByLosses();
 
+            // Sets the stage background
+            stage.SetBackground(bgdNumber);
+
             // Plays the background music using the provided BGM number.
             stageAudio.PlayStageBgm(bgmNumber);
         }
@@ -368,6 +376,7 @@ namespace RM_MST
             {
                 stageName = stageStartInfo.name;
                 stageUnitGroups = stageStartInfo.stageUnitGroups;
+                bgdNumber = stageStartInfo.bgdNumber;
                 bgmNumber = stageStartInfo.bgmNumber;
                 difficulty = stageStartInfo.difficulty;
                 losses = stageStartInfo.losses;

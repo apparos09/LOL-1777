@@ -439,8 +439,10 @@ MonoBehaviour:
   worldUI: {fileID: 0}
   stageWorld: {fileID: 0}
   stageWorldIndex: -1
-  background: {fileID: 0}
   stageRenderer: {fileID: 5222836267626927281}
+  stageThumbnail01: {fileID: 21300000, guid: a67605080dace4b41888f366125bda88, type: 3}
+  stageThumbnail02: {fileID: 21300000, guid: 06c80a6b72207a043bae17c0f1335a81, type: 3}
+  stageThumbnail03: {fileID: 21300000, guid: 79fb457b7547b704baa1f9c12f832fbf, type: 3}
   stageNameText: {fileID: 8776488822575136003}
   stageDescText: {fileID: 1720579032206804983}
   startButton: {fileID: 8961837210225833261}

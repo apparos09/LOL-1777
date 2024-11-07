@@ -47,7 +47,12 @@ namespace RM_MST
         // The units types for the stage.
         public List<UnitsInfo.unitGroups> unitGroups = new List<UnitsInfo.unitGroups>();
 
+        // The background number for the stage.
+        [Tooltip("The background number of the stage.")]
+        public int bgdNumber = 0;
+
         // The BGM number for the stage.
+        [Tooltip("The BGM number of the stage.")]
         public int bgmNumber = 0;
 
         // The most recent saved time for the stage.
@@ -419,6 +424,7 @@ namespace RM_MST
             // Sets the name, units groups, bgm number, difficulty, and losses.
             stageStartInfo.name = stageName;
             stageStartInfo.stageUnitGroups = unitGroups;
+            stageStartInfo.bgdNumber = bgdNumber;
             stageStartInfo.bgmNumber = bgmNumber;
             stageStartInfo.difficulty = difficulty;
             stageStartInfo.losses = losses;
