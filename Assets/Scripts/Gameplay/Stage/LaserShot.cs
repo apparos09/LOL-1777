@@ -157,7 +157,7 @@ namespace RM_MST
         // Applies the ignore settings for the physics bodies.
         public void ApplyPhysicsBodyIgnores()
         {
-            // TODO: maybe ignore by layer instead?
+            // Layer-based ignores are handled by the stage manager.
 
             // Does manual ignores just to be sure. These aren't really necessary, but they're here regardless.
             // Ignore collision with the stage surface.
@@ -168,6 +168,15 @@ namespace RM_MST
             {
                 Physics2D.IgnoreCollision(collider, barrier.collider, true);
             }
+        }
+
+        // Clamps velocity using the provided max velocity.
+        public void ClampVelocity(float maxVelocity)
+        {
+            // Clamp the velocity at the max speed.
+            Vector2 velocity = rigidbody.velocity;
+            velocity = Vector2.ClampMagnitude(velocity, maxVelocity);
+            rigidbody.velocity = velocity;
         }
 
         // Resets the laser shot's velocity.
@@ -192,6 +201,12 @@ namespace RM_MST
                 if(!stageManager.IsPointsGoalReached(player))
                     stageManager.stageUI.PlayPartnersAnimation(CharacterIcon.charIconAnim.happy);
 
+                // Release a laser wave.
+                if(player.IsUsingLaserWave())
+                {
+                    // Shoot the laser wave.
+                    player.ShootLaserWave(spriteRenderer.color);
+                }
                 
             }
             else // Not a success.
@@ -334,17 +349,15 @@ namespace RM_MST
                 rigidbody.AddForce(force, ForceMode2D.Impulse);
 
                 // Clamp the velocity at the max speed.
-                Vector2 velocity = rigidbody.velocity;
-                velocity = Vector2.ClampMagnitude(velocity, maxSpeed);
-                rigidbody.velocity = velocity;
-
-                // If the laser isn't in the game area, destroy it.
-                if (!stageManager.stage.InGameArea(gameObject))
-                {
-                    Kill(false);
-                }
+                ClampVelocity(maxSpeed);
             }
-            
+
+            // If the laser isn't in the game area, destroy it.
+            if (!stageManager.stage.InGameArea(gameObject))
+            {
+                Kill(false);
+            }
+
         }
     }
 }

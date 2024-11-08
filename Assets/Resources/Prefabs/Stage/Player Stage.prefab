@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageManager: {fileID: 0}
+  stunPlayer: 1
   laserShotPrefab: {fileID: 4725303725601913545, guid: 7bf713998058b2644a048011ec725293, type: 3}
   laserShotActive: {fileID: 0}
-  stunPlayer: 1
+  laserWavePrefab: {fileID: 5881021278493077326, guid: affd7203118e8a1428afad0af5cac29a, type: 3}

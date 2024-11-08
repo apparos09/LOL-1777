@@ -489,9 +489,7 @@ namespace RM_MST
                 forceDirec = laserShot.transform.forward;
 
             // Add force for knockback.
-            rigidbody.velocity = Vector2.zero;
-            rigidbody.AddForce(forceDirec.normalized * laserShot.meteorHitForce, ForceMode2D.Impulse);
-            inKnockback = true;
+            ApplyKnockbackForce(forceDirec, laserShot.meteorHitForce);
 
             // If the laser shot was a success, kill the meteor.
             if(success)
@@ -523,6 +521,14 @@ namespace RM_MST
 
             // Returns the success value.
             return success;
+        }
+
+        // Applies knockback force to the meteor.
+        public void ApplyKnockbackForce(Vector2 forceDirec, float knockbackForce)
+        {
+            rigidbody.velocity = Vector2.zero;
+            rigidbody.AddForce(forceDirec.normalized * knockbackForce, ForceMode2D.Impulse);
+            inKnockback = true;
         }
 
         // Damage the barrier.
@@ -613,7 +619,13 @@ namespace RM_MST
                 if(inKnockback)
                 {
                     // Look for a target again to see if another meteor has gotten closer.
-                    stageManager.meteorTarget.RemoveTarget();
+                    // Only do this if this was the meteor being targeted.
+                    if(stageManager.meteorTarget.IsMeteorTargeted(this))
+                    {
+                        stageManager.meteorTarget.RemoveTarget();
+                    }
+
+                    // Set knockback to false.
                     inKnockback = false;
                 }
 

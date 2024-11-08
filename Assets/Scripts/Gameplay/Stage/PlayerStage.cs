@@ -10,6 +10,19 @@ namespace RM_MST
         // The stage manager.
         public StageManager stageManager;
 
+        // The number of points.
+        private float points = 0;
+
+        // If 'true', the player can be stunned.
+        public bool stunPlayer = true;
+
+        // The player stun timer.
+        private float playerStunTimer = 0.0F;
+
+        // Player stun timer max.
+        public const float PLAYER_STUN_TIMER_MAX = 0.8F;
+
+        [Header("Laser Shot, Wave")]
         // The laser prefab.
         public LaserShot laserShotPrefab;
 
@@ -25,17 +38,11 @@ namespace RM_MST
         // If 'true', the player can shoot multiple laser shots.
         private bool multipleLaserShots = false;
 
-        // The number of points.
-        private float points = 0;
+        // The laser wave prefab.
+        public LaserWave laserWavePrefab;
 
-        // If 'true', the player can be stunned.
-        public bool stunPlayer = true;
-
-        // The player stun timer.
-        private float playerStunTimer = 0.0F;
-
-        // Player stun timer max.
-        public const float PLAYER_STUN_TIMER_MAX = 0.8F;
+        // If 'true', the laser wave is used.
+        private bool useLaserWave = true;
 
         // Start is called before the first frame update
         void Start()
@@ -154,6 +161,36 @@ namespace RM_MST
             laserShotPool.Add(laserShot);
         }
 
+        // Returns 'true' if the laser wave is used.
+        public bool IsUsingLaserWave()
+        {
+            return useLaserWave;
+        }
+
+        // Shoots a laser wave.
+        public LaserWave ShootLaserWave()
+        {
+            // Generate the wave and set its colour.
+            LaserWave newWave = Instantiate(laserWavePrefab);
+            
+            // Set the wave to the spawn point and launch it.
+            stageManager.stage.SetLaserWaveToSpawnPosition(newWave);
+            newWave.Launch();
+            
+            return newWave;
+        }
+
+        // Shoots a laser wave and sets its colour.
+        public LaserWave ShootLaserWave(Color waveColor)
+        {
+            LaserWave newWave = ShootLaserWave();
+            newWave.spriteRenderer.color = waveColor;
+
+            return newWave;
+        }
+
+
+        // OTHER 
         // Gets the points.
         public float GetPoints()
         {

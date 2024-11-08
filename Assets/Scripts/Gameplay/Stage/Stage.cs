@@ -52,6 +52,10 @@ namespace RM_MST
         [Tooltip("The laser shot spawn point. This only concerns the y-position.")]
         public GameObject laserShotSpawnPoint;
 
+        // Laser wave spawn point.
+        [Tooltip("The laser wave spawn point.")]
+        public GameObject laserWaveSpawnPoint;
+
         [Header("Surface")]
 
         // The stage surface.
@@ -111,11 +115,17 @@ namespace RM_MST
                 backgroundRenderer.sprite = newBgd;
         }
 
+        // Returns 'true' if the game area is defined.
+        public bool IsGameAreaDefined()
+        {
+            return gameAreaMin != null && gameAreaMax != null;
+        }
+
         // Checks if the provided position is in the game area.
         public bool InGameArea(Vector3 position)
         {
             // If the game area is not defined.
-            if(gameAreaMin == null || gameAreaMax == null)
+            if(!IsGameAreaDefined())
             {
                 Debug.LogWarning("Game area is undefined. Returning true by default.");
                 return true;
@@ -185,6 +195,12 @@ namespace RM_MST
             Vector3 newPos = laserShot.transform.position;
             newPos.y = laserShotSpawnPoint.transform.position.y;
             laserShot.transform.position = newPos;
+        }
+
+        // Sets the laser wave to its spawn position.
+        public void SetLaserWaveToSpawnPosition(LaserWave laserWave)
+        {
+            laserWave.transform.position = laserWaveSpawnPoint.transform.position;
         }
 
         // // Update is called once per frame

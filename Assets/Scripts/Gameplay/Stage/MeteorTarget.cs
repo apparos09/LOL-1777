@@ -74,10 +74,17 @@ namespace RM_MST
             PlayLockInAnimation();
         }
 
-        // Returns 'true' if a meteor is targeted.
+        // Returns 'true' if any meteor is targeted.
         public bool IsMetoerTargeted()
         {
             return meteor != null;
+        }
+
+        // Retruns 'true' if the provided meteor is being targeted.
+        // If the provided meteor is null, and the targeted meteor is null, it still returns true.
+        public bool IsMeteorTargeted(Meteor meteor)
+        {
+            return this.meteor == meteor;
         }
 
         // Returns 'true' if the meteor's exact position is being targeted.
