@@ -249,7 +249,7 @@ namespace RM_MST
             {
                 // Checks if the laser shot pool is being used.
                 // If so, return the shot to the pool. If not, destroy the object.
-                if(player.UseLaserShotPool())
+                if(player.IsUsingLaserShotPool())
                 {
                     player.ReturnLaserShotToPool(this);
                 }

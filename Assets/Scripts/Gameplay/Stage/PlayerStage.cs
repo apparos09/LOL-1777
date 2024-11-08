@@ -44,6 +44,12 @@ namespace RM_MST
         // If 'true', the laser wave is used.
         private bool useLaserWave = true;
 
+        // The laser wave object pool.
+        private List<LaserWave> laserWavePool = new List<LaserWave>();
+
+        // If the laser wave pool should be used.
+        private bool useLaserWavePool = true;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -56,6 +62,7 @@ namespace RM_MST
                 stageManager.player = this;
         }
 
+        // LASER SHOT
         // Shoots the laser shot with the default colour.
         public LaserShot ShootLaserShot(float outputValue)
         {
@@ -141,7 +148,7 @@ namespace RM_MST
         }
 
         // Returns 'true' if the laser shot pool should be used.
-        public bool UseLaserShotPool()
+        public bool IsUsingLaserShotPool()
         {
             return useLaserShotPool;
         }
@@ -161,6 +168,7 @@ namespace RM_MST
             laserShotPool.Add(laserShot);
         }
 
+        // LASER WAVE
         // Returns 'true' if the laser wave is used.
         public bool IsUsingLaserWave()
         {
@@ -171,8 +179,35 @@ namespace RM_MST
         public LaserWave ShootLaserWave()
         {
             // Generate the wave and set its colour.
-            LaserWave newWave = Instantiate(laserWavePrefab);
-            
+            LaserWave newWave = null;
+
+            // Checks if the laser wave pool should be used.
+            if (useLaserWavePool)
+            {
+                // There's a laser wave in the pool.
+                if (laserWavePool.Count > 0)
+                {
+                    // Get the wave at the front of the list, and remove it.
+                    newWave = laserWavePool[0];
+                    laserWavePool.RemoveAt(0);
+
+                    // Turn the wave on.
+                    newWave.gameObject.SetActive(true);
+
+                }
+                else // No laser wave in the pool, so instantiate one.
+                {
+                    newWave = Instantiate(laserWavePrefab);
+                }
+            }
+            else // Don't use the pool, so make a new object.
+            {
+                newWave = Instantiate(laserWavePrefab);
+            }
+
+            // Sets the new wave's player.
+            newWave.player = this;
+
             // Set the wave to the spawn point and launch it.
             stageManager.stage.SetLaserWaveToSpawnPosition(newWave);
             newWave.Launch();
@@ -187,6 +222,23 @@ namespace RM_MST
             newWave.spriteRenderer.color = waveColor;
 
             return newWave;
+        }
+
+        // Returns 'true' if the laser wave pool should be used.
+        public bool IsUsingLaserWavePool()
+        {
+            return useLaserWavePool;
+        }
+
+        // Returns the laser wave to the object pool.
+        public void ReturnLaserWaveToPool(LaserWave laserWave)
+        {
+            // Returns the laser wave to its spawn position.
+            stageManager.stage.SetLaserWaveToSpawnPosition(laserWave);
+
+            // Turn off the laser wave and puts it back in the pool.
+            laserWave.gameObject.SetActive(false);
+            laserWavePool.Add(laserWave);
         }
 
 

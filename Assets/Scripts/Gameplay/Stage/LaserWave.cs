@@ -23,7 +23,7 @@ namespace RM_MST
         public SpriteRenderer spriteRenderer;
 
         // The speed of the laser shot.
-        public float maxSpeed = 100.0F;
+        public float maxSpeed = 85.0F;
 
         // The force for the laser shot when it hits the meteor. 
         public float meteorHitForce = 10.0F;
@@ -116,8 +116,17 @@ namespace RM_MST
         // Kills the wave.
         public void Kill()
         {
-            // TODO: implement object pool.
-            Destroy(gameObject);
+            // If the player is using the laser wave pool...
+            // Return this to the laser wave pool.
+            if(player.IsUsingLaserWavePool())
+            {
+                player.ReturnLaserWaveToPool(this);
+            }
+            // Not using the laser wave pool, so just destroy it.
+            else
+            {
+                Destroy(gameObject);
+            }
         }
 
         // Update is called once per frame
