@@ -59,7 +59,8 @@ namespace RM_MST
             // Tries to get a meteor from the collision object.
             if(collision.gameObject.TryGetComponent(out meteor))
             {
-                meteor.ApplyKnockbackForce(Vector2.up, meteorHitForce);
+                // Don't untarget a meteor if it gets targeted while being effected by a wave.
+                meteor.ApplyKnockbackForce(Vector2.up, meteorHitForce, false);
             }
         }
 
@@ -71,12 +72,19 @@ namespace RM_MST
 
             // Reset the velocity.
             ResetVelocity();
+
+            // Applies the physics body ignores.
+            ApplyPhysicsBodyIgnores();
         }
 
         // Applies the ignore settings for the physics bodies.
         public void ApplyPhysicsBodyIgnores()
         {
             // Layer-based ignores are handled by the stage manager.
+
+            // If the stage manager has not been set, set it.
+            if (stageManager == null)
+                stageManager = StageManager.Instance;
 
             // Does manual ignores just to be sure. These aren't really necessary, but they're here regardless.
             // Ignore collision with the stage surface.

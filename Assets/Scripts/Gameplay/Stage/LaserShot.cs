@@ -159,6 +159,10 @@ namespace RM_MST
         {
             // Layer-based ignores are handled by the stage manager.
 
+            // If the stage manager has not been set, set it.
+            if (stageManager == null)
+                stageManager = StageManager.Instance;
+
             // Does manual ignores just to be sure. These aren't really necessary, but they're here regardless.
             // Ignore collision with the stage surface.
             Physics2D.IgnoreCollision(collider, stageManager.stageSurface.collider, true);

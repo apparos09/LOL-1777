@@ -33,7 +33,8 @@ namespace RM_MST
         [HideInInspector()]
         public float[] possibleOutputs = new float[POSSIBLE_OUTPUTS_COUNT];
 
-        // The possible output multipliers.
+        // The possible output multipliers. These are set based on the unit group.
+        [HideInInspector()]
         public float[] possibleOutputMults = new float[POSSIBLE_OUTPUTS_COUNT];
 
         // The max health of the meteor.
@@ -44,6 +45,9 @@ namespace RM_MST
 
         // Gets set to 'true' when the meteor is suffering from knockback.
         private bool inKnockback = false;
+
+        // If 'true', the target on the meteor is released upon knockback wearing off.
+        private bool untargetOnKnockbackEnd = true;
 
         // Called the late start.
         private bool calledLateStart = false;
@@ -457,6 +461,26 @@ namespace RM_MST
             SetHealth(maxHealth);
         }
 
+        // Checks if this is the closest meteor to the surface.
+        // If no closest meteor is found, this returns false.
+        public bool IsClosestMeteor()
+        {
+            // Gets the closest meteor.
+            Meteor m1 = stageManager.GetClosestMeteor();
+
+            // If a meteor was found.
+            if(m1 != null)
+            {
+                // Returns 'true' if this the closest meteor is this meteor.
+                return m1 == this;
+            }
+            else
+            {
+                // It's not known which is the cloest meteor.
+                return false;
+            }
+        }
+
 
         // OTHER
         // Give points to the player.
@@ -489,7 +513,7 @@ namespace RM_MST
                 forceDirec = laserShot.transform.forward;
 
             // Add force for knockback.
-            ApplyKnockbackForce(forceDirec, laserShot.meteorHitForce);
+            ApplyKnockbackForce(forceDirec, laserShot.meteorHitForce, true);
 
             // If the laser shot was a success, kill the meteor.
             if(success)
@@ -524,11 +548,21 @@ namespace RM_MST
         }
 
         // Applies knockback force to the meteor.
-        public void ApplyKnockbackForce(Vector2 forceDirec, float knockbackForce)
+        // If 'untargetOnEnd' is true, the meteor is untargeted once the knockback wears off.
+        public void ApplyKnockbackForce(Vector2 forceDirec, float knockbackForce, bool untargetOnEnd)
         {
             rigidbody.velocity = Vector2.zero;
             rigidbody.AddForce(forceDirec.normalized * knockbackForce, ForceMode2D.Impulse);
             inKnockback = true;
+
+            // Sets if the meteor should be untargeted upon the knockback wearing off.
+            untargetOnKnockbackEnd = untargetOnEnd;
+        }
+
+        // Returns 'true' if the meteor is in a knockback state.
+        public bool IsInKnockback()
+        {
+            return inKnockback;
         }
 
         // Damage the barrier.
@@ -619,11 +653,27 @@ namespace RM_MST
                 if(inKnockback)
                 {
                     // Look for a target again to see if another meteor has gotten closer.
-                    // Only do this if this was the meteor being targeted.
+                    // Only do this if this was the meteor being targeted...
+                    // And this meteor should be untargeted when the knockback ends.
+                    // Checks first if this is the meteor being targeted.
                     if(stageManager.meteorTarget.IsMeteorTargeted(this))
                     {
-                        stageManager.meteorTarget.RemoveTarget();
+                        // Remove the meteor from the target if it should be untargeted.
+                        if(untargetOnKnockbackEnd)
+                        {
+                            stageManager.meteorTarget.RemoveTarget();
+                        }
+                        else // If this meteor should still be targeted...
+                        {
+                            // Check to make sure that it's still the closest meteor.
+                            // If it isn't the closest meteor, remove it from the target.
+                            if(!IsClosestMeteor())
+                            {
+                                stageManager.meteorTarget.RemoveTarget();
+                            }
+                        }
                     }
+
 
                     // Set knockback to false.
                     inKnockback = false;
