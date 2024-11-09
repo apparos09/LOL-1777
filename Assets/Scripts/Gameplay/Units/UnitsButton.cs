@@ -41,6 +41,7 @@ namespace RM_MST
         [Tooltip("An alternate way to check that this button is correct. Call related function to auto set.")]
         public bool correctValue = false;
 
+        // The Multiplier Reveal
         // The timer for the multipler on this button to be revealed.
         private float multRevealTimer = 0.0F;
 

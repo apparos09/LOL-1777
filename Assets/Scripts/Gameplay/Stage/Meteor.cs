@@ -522,6 +522,9 @@ namespace RM_MST
                 stageManager.player.CalculateAndGivePoints(this); // Give the player points.                                                                  // Kill the laser shot.
                 laserShot.Kill(success); // Kill the laser.
 
+                // Add to the consecutive success counter.
+                stageManager.IncreaseConsecutiveSuccessesCount();
+
                 // Play the combo animation if the player has more than one in the combo count.
                 if (stageManager.combo > 1)
                 {
@@ -529,12 +532,19 @@ namespace RM_MST
                     stageManager.comboDisplay.PlayComboAnimationAtPosition(transform.position);
                 }
 
-                Kill(); // Kill the meteor.
+                // Kill the meteor.
+                Kill();
             }
             else
             {
                 // The meteor has survived.
+
+                // Reset the success count, unit button text reveals, and the combo.
+                stageManager.ResetConsecutiveSuccessesCount();
+                stageManager.stageUI.EndUnitButtonMultipleReveals();
                 stageManager.ResetCombo(false); // Reset the combo.
+                
+                
                 laserShot.Kill(success); // Kill the laser.
                 stageManager.OnMeteorSurivived(this);
 

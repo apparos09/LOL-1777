@@ -71,11 +71,17 @@ namespace RM_MST
         // Applies changes to the game difficulty based on the phase.
         private bool applyPhaseDifficultyChanges = false;
 
-        // If 'true', the text reveal mechanic is applied as part of the difficulty.
-        private bool applyMultReveals = true;
-
         // The score that must be met to win the game.
         public float pointsGoal = 1000.0F;
+
+        // The number of consecutive correct answers given by the player.
+        public int consecutiveSuccesses = 0;
+
+        // The the threshold for the multipier effect threshold.
+        public const int MULT_REVEAL_EFFECT_THRESHOLD = 3;
+
+        // If 'true', the text reveal mechanic is applied as part of the difficulty.
+        private bool applyMultReveals = true;
 
         [Header("StageManager/Objects, Stats")]
 
@@ -1303,7 +1309,32 @@ namespace RM_MST
                 stageFinalScore = 0;
         }
 
+        // SUCCESSES
+        // Gets the number of consecutive successes.
+        public int GetConsecutiveSuccessesCount()
+        {
+            return consecutiveSuccesses;
+        }
+
+        // Adds to the consecutive number of successful meteor destroys.
+        public void IncreaseConsecutiveSuccessesCount()
+        {
+            consecutiveSuccesses++;
+        }
+
+        // Resets the number of consecutive successes.
+        public void ResetConsecutiveSuccessesCount()
+        {
+            consecutiveSuccesses = 0;
+        }
+
         // COMBO
+        // Gets the combo count.
+        public int GetComboCount()
+        {
+            return combo;
+        }
+
         // Increaes the combo.
         public void IncreaseCombo()
         {
@@ -1440,7 +1471,8 @@ namespace RM_MST
             stageTime = 0;
             stageFinalScore = 0;
 
-            // Resets the combo and game speed time trackers.
+            // Resets the successes count, combo, and game speed time trackers.
+            ResetConsecutiveSuccessesCount();
             ResetCombo(true);
             ResetGameSpeedTimeTrackers();
 
@@ -1553,8 +1585,11 @@ namespace RM_MST
                     // Run the text reveal animation.
                     if(applyMultReveals)
                     {
-                        // Apply the multiple reveals.
-                        stageUI.StartUnitButtonMultipleReveals();
+                        // Apply the multiple reveals if the correct answer threshold has been met.
+                        if(consecutiveSuccesses >= MULT_REVEAL_EFFECT_THRESHOLD)
+                        {
+                            stageUI.StartUnitButtonMultipleReveals();
+                        }
                     }
                 }
             }

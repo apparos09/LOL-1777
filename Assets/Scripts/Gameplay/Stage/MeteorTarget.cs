@@ -110,7 +110,10 @@ namespace RM_MST
             // Remove the meteor, stop tracking the exactp position, and clear the buttons.
             meteor = null;
             trackExactPos = false;
+            
+            // End the unit button multiple revelas.
             stageManager.stageUI.ClearConversionAndUnitsButtons();
+            stageManager.stageUI.EndUnitButtonMultipleReveals();
 
             // Plays teh animation.
             PlayLockOutAnimation();
