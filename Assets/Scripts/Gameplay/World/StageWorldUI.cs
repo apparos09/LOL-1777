@@ -1,6 +1,7 @@
 using SimpleJSON;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,8 +23,19 @@ namespace RM_MST
         // The index of the challenger.
         public int stageWorldIndex = -1;
 
+        [Header("Units Table")]
         // The units table that's used to show the converison information.
         public UnitsTable unitsTable;
+
+        // The name text for the units table's group name.
+        public TMP_Text unitsTableGroupNameText;
+
+        // The number of frames that the game waits before refreshing the units table.
+        // This is to fix an issue where the units table isn't refreshed properly.
+        private int unitsTableRefreshFrames = 0;
+
+        // Gets set to 'true' when late start has been called.
+        protected bool calledLateStart = false;
 
         // Gets set to 'true' when the late on opened function for the stage UI is called.
         protected bool calledLateOnOpened = false;
@@ -80,6 +92,16 @@ namespace RM_MST
             // Sets the world UI.
             if (worldUI == null)
                 worldUI = WorldUI.Instance;
+        }
+
+        // Late Start is called on the first frame update.
+        protected void LateStart()
+        {
+            calledLateStart = true;
+
+            // Wait 2 update loops to refresh the units table.
+            // Since this is checked after late start, it will be decreased by 1 by default.
+            unitsTableRefreshFrames = 2;
         }
 
         // This function is called when the object becomes enabled and active
@@ -213,94 +235,13 @@ namespace RM_MST
                 if (unitsTable.unitsInfo == null)
                     unitsTable.unitsInfo = UnitsInfo.Instance;
 
+                // Clear the units table to start off.
+                ClearUnitsTable();
+
                 // Load the unit group conversion information.
                 SetUnitsTableGroupByIndex(0);
 
-                // If the tutorial is being used.
-                if(worldManager.IsUsingTutorial() && worldManager.tutorials != null)
-                {
-                    // Gets the tutorials object.
-                    Tutorials tutorials = worldManager.tutorials;
-
-                    // If there are multiple unit groups, try loading the mix stage tutorial.
-                    if(stageWorld.unitGroups.Count > 1)
-                    {
-                        // Loads the mix stage tutorial if it hasn't been used.
-                        if(!tutorials.clearedMixStageTutorial)
-                        {
-                            tutorials.LoadMixStageTutorial();
-                        }
-                    }
-                    else if(stageWorld.unitGroups.Count == 1)
-                    {
-                        // Gets the group.
-                        UnitsInfo.unitGroups group = stageWorld.unitGroups[0];
-
-                        // Checks the group to see what intro should be loaded.
-                        switch (group)
-                        {
-                            case UnitsInfo.unitGroups.lengthImperial:
-
-                                // Tutorial not cleared, load it.
-                                if (!tutorials.clearedLengthImperialTutorial)
-                                    tutorials.LoadLengthImperialTutorial();
-
-                                break;
-
-                            case UnitsInfo.unitGroups.weightImperial:
-
-                                // Tutorial not cleared, load it.
-                                if (!tutorials.clearedWeightImperialTutorial)
-                                    tutorials.LoadWeightImperialTutorial();
-
-                                break;
-
-                            case UnitsInfo.unitGroups.time:
-
-                                // Tutorial not cleared, load it.
-                                if (!tutorials.clearedTimeTutorial)
-                                    tutorials.LoadTimeTutorial();
-
-                                break;
-
-                            case UnitsInfo.unitGroups.lengthMetric:
-
-                                // Tutorial not cleared, load it.
-                                if (!tutorials.clearedLengthMetricTutorial)
-                                    tutorials.LoadLengthMetricTutorial();
-
-                                break;
-
-                            case UnitsInfo.unitGroups.weightMetric:
-
-                                // Tutorial not cleared, load it.
-                                if (!tutorials.clearedWeightMetricTutorial)
-                                    tutorials.LoadWeightMetricTutorial();
-
-                                break;
-
-                            case UnitsInfo.unitGroups.capacity:
-
-                                // Tutorial not cleared, load it.
-                                if (!tutorials.clearedCapacityTutorial)
-                                    tutorials.LoadCapacityTutorial();
-
-                                break;
-                        }
-                    }
-                }
-
-
-                // If TTS is enabled, and the LOL SDK is active.
-                if(GameSettings.Instance.UseTextToSpeech && LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
-                {
-                    // If the tutorial is not running, and TTS is set, read the description.
-                    if (!worldManager.IsTutorialRunning() && LOLManager.Instance.textToSpeech != null)
-                    {
-                        // Speak the text.
-                        LOLManager.Instance.textToSpeech.SpeakText(stageWorld.stageDescKey);
-                    }
-                }
+                // Tutorial running and reading the UI is now done in a late opened update.
 
                 // Call the late opened function.
                 calledLateOnOpened = false;
@@ -310,11 +251,26 @@ namespace RM_MST
         // Called on the first frame after the stage world UI has been opened.
         public void LateOnStageWorldUIOpened()
         {
+            // The late opened has been called.
             calledLateOnOpened = true;
 
-            // There's an issue where this is not being updated with the proper unit group.
-            // As such, the units table is cleared so that it is refreshed right after.
-            ClearUnitsTable();
+            // Load the unit group conversion information.
+            // This is done again to make sure that it properly updated.
+            SetUnitsTableGroupByIndex(0);
+
+            // Tries to run the tutorial.
+            RunTutorial();
+
+            // If TTS is enabled, and the LOL SDK is active.
+            if (GameSettings.Instance.UseTextToSpeech && LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
+            {
+                // If the tutorial is not running, and TTS is set, read the description.
+                if (!worldManager.IsTutorialRunning() && LOLManager.Instance.textToSpeech != null)
+                {
+                    // Speak the text.
+                    LOLManager.Instance.textToSpeech.SpeakText(stageWorld.stageDescKey);
+                }
+            }
         }
 
         // Taken out because it is no longer needed, and because it could cause issues.
@@ -377,6 +333,9 @@ namespace RM_MST
         {
             // Set the group.
             unitsTable.SetGroup(group);
+
+            // Gets the group name for the units table.
+            unitsTableGroupNameText.text = unitsTable.unitsInfo.GetUnitsGroupName(group);
 
             // Refresh the buttons.
             RefreshUnitsTableButtons();
@@ -453,7 +412,7 @@ namespace RM_MST
             int index = GetCurrentUnitsTableGroupIndex() + 1;
 
             // Loop to the start if out of bounds.
-            if (index > GetStageWorldUnitGroupsCount())
+            if (index >= GetStageWorldUnitGroupsCount())
                 index = 0;
 
             // Set the index.
@@ -529,21 +488,112 @@ namespace RM_MST
             rejectButton.interactable = false;
         }
 
+        // Tutorials
+        // Tries to run a tutorial for the stage world.
+        public void RunTutorial()
+        {
+            // If the tutorial is being used.
+            if (worldManager.IsUsingTutorial() && worldManager.tutorials != null)
+            {
+                // Gets the tutorials object.
+                Tutorials tutorials = worldManager.tutorials;
+
+                // If there are multiple unit groups, try loading the mix stage tutorial.
+                if (stageWorld.unitGroups.Count > 1)
+                {
+                    // Loads the mix stage tutorial if it hasn't been used.
+                    if (!tutorials.clearedMixStageTutorial)
+                    {
+                        tutorials.LoadMixStageTutorial();
+                    }
+                }
+                else if (stageWorld.unitGroups.Count == 1)
+                {
+                    // Gets the group.
+                    UnitsInfo.unitGroups group = stageWorld.unitGroups[0];
+
+                    // Checks the group to see what intro should be loaded.
+                    switch (group)
+                    {
+                        case UnitsInfo.unitGroups.lengthImperial:
+
+                            // Tutorial not cleared, load it.
+                            if (!tutorials.clearedLengthImperialTutorial)
+                                tutorials.LoadLengthImperialTutorial();
+
+                            break;
+
+                        case UnitsInfo.unitGroups.weightImperial:
+
+                            // Tutorial not cleared, load it.
+                            if (!tutorials.clearedWeightImperialTutorial)
+                                tutorials.LoadWeightImperialTutorial();
+
+                            break;
+
+                        case UnitsInfo.unitGroups.time:
+
+                            // Tutorial not cleared, load it.
+                            if (!tutorials.clearedTimeTutorial)
+                                tutorials.LoadTimeTutorial();
+
+                            break;
+
+                        case UnitsInfo.unitGroups.lengthMetric:
+
+                            // Tutorial not cleared, load it.
+                            if (!tutorials.clearedLengthMetricTutorial)
+                                tutorials.LoadLengthMetricTutorial();
+
+                            break;
+
+                        case UnitsInfo.unitGroups.weightMetric:
+
+                            // Tutorial not cleared, load it.
+                            if (!tutorials.clearedWeightMetricTutorial)
+                                tutorials.LoadWeightMetricTutorial();
+
+                            break;
+
+                        case UnitsInfo.unitGroups.capacity:
+
+                            // Tutorial not cleared, load it.
+                            if (!tutorials.clearedCapacityTutorial)
+                                tutorials.LoadCapacityTutorial();
+
+                            break;
+                    }
+                }
+            }
+        }
+
         // Update is called once per frame
         void Update()
         {
+            // Calls LateStart if it hasn't been called yet.
+            if(!calledLateStart)
+            {
+                LateStart();
+            }
+
             // If the late function has not been called yet, call it.
             if(!calledLateOnOpened)
             {
                 LateOnStageWorldUIOpened();
             }
 
-            // If the stage world is set.
-            if (stageWorld != null)
+            // If the game is waiting for a set amount of frames to update the units table.
+            if(unitsTableRefreshFrames > 0)
             {
-                // This is used to fix an issue where the group isn't set.
-                // If no group is set, and the list doesn't contain the 'none' group, try to set it.
-                if (unitsTable.GetGroup() == UnitsInfo.unitGroups.none && !StageWorldContainsGroup(UnitsInfo.unitGroups.none))
+                // Reduce the frame counter.
+                unitsTableRefreshFrames--;
+
+                // Bounds check.
+                if(unitsTableRefreshFrames < 0)
+                    unitsTableRefreshFrames = 0;
+
+                // Refresh the units table.
+                if(unitsTableRefreshFrames <= 0)
                 {
                     SetUnitsTableGroupByIndex(0);
                 }
