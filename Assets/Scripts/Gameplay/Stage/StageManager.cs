@@ -71,8 +71,13 @@ namespace RM_MST
         // Applies changes to the game difficulty based on the phase.
         private bool applyPhaseDifficultyChanges = false;
 
+        // If 'true', the text reveal mechanic is applied as part of the difficulty.
+        private bool applyMultReveals = true;
+
         // The score that must be met to win the game.
         public float pointsGoal = 1000.0F;
+
+        [Header("StageManager/Objects, Stats")]
 
         // The player for the stage.
         public PlayerStage player;
@@ -122,7 +127,7 @@ namespace RM_MST
         // Gets set to 'true' when the game is running.
         private bool runningGame = false;
 
-        [Header("Conversions")]
+        [Header("StageManager/Conversions")]
         // The units used for the stage.
         public List<UnitsInfo.unitGroups> stageUnitGroups = new List<UnitsInfo.unitGroups>();
 
@@ -189,7 +194,8 @@ namespace RM_MST
         private float comboTimer = 0;
 
         // The maximum time for the combo (in seconds).
-        private const float COMBO_TIMER_MAX = 7.0F;
+        // Raised from 7 seconds to 16 seconds to account for multiplier fade-ins.
+        private const float COMBO_TIMER_MAX = 16.0F; 
 
         // The combo display.
         public ComboDisplay comboDisplay;
@@ -1487,12 +1493,32 @@ namespace RM_MST
             LoadScene(worldScene);
         }
 
+        // Returns 'true' if the game is playing.
+        // This returns 'false' if the game is paused, the game is not running, a tutorial has frozen the game...
+        // Or if the game is loading.
+        public bool IsGamePlaying()
+        {
+            // Checks if a loading animation is playing.
+            bool loadingAnimPlaying = false;
+
+            // Checks if the loading screen is being used. If it is, then the loading aniamtion might be playing.
+            if (LoadingScreenCanvas.IsInstantiatedAndUsingLoadingScreen())
+            {
+                // Gets the instance.
+                LoadingScreenCanvas lsc = LoadingScreenCanvas.Instance;
+
+                // If the loading screen is beings shown, mark as true.
+                loadingAnimPlaying = lsc.IsAnimationPlaying();
+            }
+
+            return runningGame && !IsGamePaused() && !IsTutorialRunning() && !loadingAnimPlaying;
+        }
+
         // Returns 'true' if the stage is running.
         public bool IsRunningGame()
         {
             return runningGame;
         }
-
 
         // Called to run the game mechanics.
         public void RunGame()
@@ -1520,32 +1546,29 @@ namespace RM_MST
             {
                 // Gets the closest meteor, and move towards it.
                 meteorTarget.SetTarget(GetClosestMeteor());
+
+                // If a meteor is being targeted...
+                if(meteorTarget.IsMeteorTargeted())
+                {
+                    // Run the text reveal animation.
+                    if(applyMultReveals)
+                    {
+                        // Apply the multiple reveals.
+                        stageUI.StartUnitButtonMultipleReveals();
+                    }
+                }
             }
 
             // TODO: check points and damage for a game win?
         }
-       
+
         // Update is called once per frame
         protected override void Update()
         {
             base.Update();
 
-            // Checks if a loading animation is playing.
-            bool loadingAnimPlaying = false;
-
-            // Checks if the loading screen is being used. If it is, then the loading aniamtion might be playing.
-            if(LoadingScreenCanvas.IsInstantiatedAndUsingLoadingScreen())
-            {
-                // Gets the instance.
-                LoadingScreenCanvas lsc = LoadingScreenCanvas.Instance;
-                
-                // If the loading screen is beings shown, mark as true.
-                loadingAnimPlaying = lsc.IsAnimationPlaying();
-            }
-
-
-            // If the game is running, the game isn't paused, and a tutorial isn't running.
-            if(runningGame && !IsGamePaused() && !IsTutorialRunning() && !loadingAnimPlaying)
+            // If the game is running, the game isn't paused, a tutorial isn't running, and the loading animation isn't playing.
+            if(IsGamePlaying())
             {
                 // Add to the stage timer and updates the time text.
                 // TODO: maybe don't update every frame?

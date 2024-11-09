@@ -449,6 +449,28 @@ namespace RM_MST
             return progress;
         }
 
+        // Gets the game progress as a percentage.
+        // If the percentage can't be calculated, -1 is returned.
+        public float GetGameProgressAsPercentage()
+        {
+            // Gets the number of cleared stages.
+            int clearedCount = GetGameProgress();
+            float progress = 0;
+
+            // Calculates the amount of progress that has been made.
+            if(stages.Count > 0)
+            {
+                progress = (float)clearedCount / stages.Count;
+            }
+            else // Count is unknown, so just set it to -1.
+            {
+                progress = -1;
+            }
+
+            // Returns the progress.
+            return progress;
+        }
+
         // Submits the current game progress.
         public void SubmitProgress()
         {

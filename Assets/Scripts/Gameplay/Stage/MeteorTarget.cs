@@ -75,7 +75,7 @@ namespace RM_MST
         }
 
         // Returns 'true' if any meteor is targeted.
-        public bool IsMetoerTargeted()
+        public bool IsMeteorTargeted()
         {
             return meteor != null;
         }

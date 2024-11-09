@@ -244,16 +244,34 @@ namespace RM_MST
             unitsTable.SetGroup(group);
         }
 
+        // Generates a list of all the unit buttons.
+        public List<UnitsButton> GenerateUnitButtonsList()
+        {
+            // Returns the unit buttons list.
+            List<UnitsButton> unitButtons = new List<UnitsButton>
+            {
+                unitsButton0,
+                unitsButton1,
+                unitsButton2,
+                unitsButton3,
+                unitsButton4,
+                unitsButton5,
+                unitsButton6,
+            };
+
+            return unitButtons;
+        }
+
         // Set all the unit buttons to be active or inactive.
         public void SetAllUnitButtonsActive(bool active)
         {
+            unitsButton0.gameObject.SetActive(active);
             unitsButton1.gameObject.SetActive(active);
             unitsButton2.gameObject.SetActive(active);
             unitsButton3.gameObject.SetActive(active);
             unitsButton4.gameObject.SetActive(active);
             unitsButton5.gameObject.SetActive(active);
             unitsButton6.gameObject.SetActive(active);
-            unitsButton0.gameObject.SetActive(active);
         }
 
         // Makes all unit buttons active.
@@ -602,6 +620,32 @@ namespace RM_MST
 
 
         // EVENTS
+        // Start the unit button multiplier reveals.
+        public void StartUnitButtonMultipleReveals()
+        {
+            unitsButton0.StartMultipleReveal();
+            unitsButton1.StartMultipleReveal();
+            unitsButton2.StartMultipleReveal();
+            unitsButton3.StartMultipleReveal();
+            unitsButton4.StartMultipleReveal();
+            unitsButton5.StartMultipleReveal();
+            unitsButton6.StartMultipleReveal();
+        }
+
+        // Ends the unit button multiple reveals.
+        public void EndUnitButtonMultipleReveals()
+        {
+            unitsButton0.EndMultipleReveal();
+            unitsButton1.EndMultipleReveal();
+            unitsButton2.EndMultipleReveal();
+            unitsButton3.EndMultipleReveal();
+            unitsButton4.EndMultipleReveal();
+            unitsButton5.EndMultipleReveal();
+            unitsButton6.EndMultipleReveal();
+        }
+
+        // Ends the unit button multiplier reveals.
+
         // Called when the phase has changed.
         public void OnPhaseChanged()
         {
@@ -636,6 +680,7 @@ namespace RM_MST
         // Updates the HUD one last time after the stage ends.
         public void OnStageEnd()
         {
+            // Updates the HUD.
             UpdateHUD();
 
             // Play the offline animation.
@@ -643,6 +688,9 @@ namespace RM_MST
 
             // Refreshes the speed button's icon since the game speed is back to normal.
             speedButton.RefreshButtonIcon();
+
+            // Make sure the multipliers are all available.
+            EndUnitButtonMultipleReveals();
         }
 
         // Called when the stage has been won.

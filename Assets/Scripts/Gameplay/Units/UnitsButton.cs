@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using JetBrains.Annotations;
 using util;
 
 namespace RM_MST
@@ -21,6 +20,7 @@ namespace RM_MST
         public TMP_Text measurementValueText;
 
         // The button's conversion text.
+        // This should probably be named "multiplier" not "multiple", but it's too late to fix it.
         public TMP_Text conversionMultipleText;
 
         // The measurement value.
@@ -40,6 +40,16 @@ namespace RM_MST
         // This is an alternate way to see if this button is the correct one.
         [Tooltip("An alternate way to check that this button is correct. Call related function to auto set.")]
         public bool correctValue = false;
+
+        // The timer for the multipler on this button to be revealed.
+        private float multRevealTimer = 0.0F;
+
+        // The time threshold for when the mult should be revealed.
+        // When the reveal timer goes below this threshold, the multiplier starts to fade in.
+        private float multRevealThreshold = 3.0F;
+
+        // The maximum amount of time for the text to be revealed.
+        public const float MULT_REVEAL_TIME_MAX = 7.5F;
 
         // Start is called before the first frame update
         void Start()
@@ -217,6 +227,98 @@ namespace RM_MST
 
             // Return result.
             return correctValue;
+        }
+
+        // MULTIPLIER REVEAL TIMER
+        // Checks if the multiplier reveal is playing.
+        public bool IsMultipleRevealPlaying()
+        {
+            // Bounds check.
+            if(multRevealTimer < 0.0F)
+                multRevealTimer = 0;
+
+            // If greater than 0, it means the animation is playing.
+            return multRevealTimer > 0.0F;
+        }
+
+        // Starts the multiplier reveal
+        public void StartMultipleReveal()
+        {
+            // Sets the timer to the max.
+            multRevealTimer = MULT_REVEAL_TIME_MAX;
+
+            // If the multiplier reveal threshold is below 0, or greater than the max of the timer...
+            // Set it to the maximum of the timer.
+            if(multRevealThreshold < 0 || multRevealThreshold > MULT_REVEAL_TIME_MAX)
+                multRevealThreshold = MULT_REVEAL_TIME_MAX;
+
+            // Hides the text by default.
+            Color textColor = conversionMultipleText.color;
+            textColor.a = 0.0F;
+            conversionMultipleText.color = textColor;
+
+        }
+
+        // Resets the multiple reveal.
+        public void EndMultipleReveal()
+        {
+            // Take the text colour, make the alpha 1.0 (full opacity), and set it.
+            Color textColor = conversionMultipleText.color;
+            textColor.a = 1.0F;
+            conversionMultipleText.color = textColor;
+
+            // Sets the timer to 0.
+            multRevealTimer = 0.0F;
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            // Checks if the game is playing. If so, run the timer.
+            if(stageManager.IsGamePlaying())
+            {
+                // The timer is running.
+                if(multRevealTimer > 0.0F)
+                {
+                    // Reduce the timer.
+                    multRevealTimer -= Time.unscaledDeltaTime;
+
+                    // Bounds check to prevent this from going below 0.
+                    if (multRevealTimer <= 0.0F)
+                        multRevealTimer = 0.0F;
+
+                    // Gets the text color.
+                    Color textColor = conversionMultipleText.color;
+
+                    // If the mult reveal timer is over the threshold, hide the text.
+                    if(multRevealTimer > multRevealThreshold)
+                    {
+                        // Alpha 0
+                        textColor.a = 0.0F;
+                    }
+                    // If the mult reveal timer is less than or equal to 0, set the alpha to 1.
+                    else if(multRevealTimer <= 0.0F)
+                    {
+                        // Alpha 1
+                        textColor.a = 1.0F;
+                    }
+                    // Calculate the alpha value.
+                    else
+                    {
+                        // Calculate the t value, and make sure it's clamped within 0-1.
+                        float t = Mathf.InverseLerp(multRevealThreshold, 0, multRevealTimer);
+                        t = Mathf.Clamp01(t);
+
+                        // Calculates the result and set the alpha value.
+                        float result = Mathf.Lerp(0.0F, 1.0F, t);
+                        textColor.a = result;
+
+                    }
+
+                    // Sets the text colour.
+                    conversionMultipleText.color = textColor;
+                }
+            }
         }
 
     }
