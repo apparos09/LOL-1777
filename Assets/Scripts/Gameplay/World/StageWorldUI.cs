@@ -22,6 +22,12 @@ namespace RM_MST
         // The index of the challenger.
         public int stageWorldIndex = -1;
 
+        // The units table that's used to show the converison information.
+        public UnitsTable unitsTable;
+
+        // Gets set to 'true' when the late on opened function for the stage UI is called.
+        protected bool calledLateOnOpened = false;
+
         [Header("Images")]
 
         // The renderer of the stage art.
@@ -44,6 +50,12 @@ namespace RM_MST
 
         [Header("Buttons")]
 
+        // The button for going to the previous group.
+        public Button previousGroupButton;
+
+        // The button for going to the next group.
+        public Button nextGroupButton;
+
         // The stage accept button.
         public Button startButton;
 
@@ -54,7 +66,8 @@ namespace RM_MST
         // Awake is called when the script instance is being loaded
         private void Awake()
         {
-            // ...
+            // Clear the entries to start.
+            unitsTable.ClearEntries();
         }
 
         // Start is called before the first frame update
@@ -93,6 +106,14 @@ namespace RM_MST
 
         }
 
+        // Not needed since this is called by another function.
+        // // This function is called when the behaviour becomes disabled or inactive.
+        // private void OnDisable()
+        // {
+        //     // This technically gets called twice due to another function.
+        //     OnStageWorldUIClosed();
+        // }
+
         // TODO: add clear challenger option?
         // Sets the challenger.
         public void SetStageWorld(StageWorld newStageWorld, int index)
@@ -122,6 +143,9 @@ namespace RM_MST
             UpdateStageSprite();
             UpdateStageNameText();
             UpdateStageDescriptionText();
+
+            // Clears the units table.
+            ClearUnitsTable();
         }
 
         // Updates the Challenger Sprite
@@ -185,6 +209,13 @@ namespace RM_MST
             // If the stage world is not equal to none.
             if (stageWorld != null)
             {
+                // If the units info table's units info is not set, set it.
+                if (unitsTable.unitsInfo == null)
+                    unitsTable.unitsInfo = UnitsInfo.Instance;
+
+                // Load the unit group conversion information.
+                SetUnitsTableGroupByIndex(0);
+
                 // If the tutorial is being used.
                 if(worldManager.IsUsingTutorial() && worldManager.tutorials != null)
                 {
@@ -271,7 +302,196 @@ namespace RM_MST
                     }
                 }
 
+                // Call the late opened function.
+                calledLateOnOpened = false;
             }
+        }
+
+        // Called on the first frame after the stage world UI has been opened.
+        public void LateOnStageWorldUIOpened()
+        {
+            calledLateOnOpened = true;
+
+            // There's an issue where this is not being updated with the proper unit group.
+            // As such, the units table is cleared so that it is refreshed right after.
+            ClearUnitsTable();
+        }
+
+        // Taken out because it is no longer needed, and because it could cause issues.
+        // // Called when the stage world UI has been closed.
+        // public void OnStageWorldUIClosed()
+        // {
+        //     ClearStageWorld();
+        // }
+
+        // CONVERSIONS
+        // Gets the stage world unit groups count.
+        public int GetStageWorldUnitGroupsCount()
+        {
+            // If the stage world is set, use it. If there is no stage world, return -1;
+            if(stageWorld != null)
+            {
+                return stageWorld.unitGroups.Count;
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
+        // Checks if the stage world contains the provided group.
+        public bool StageWorldContainsGroup(UnitsInfo.unitGroups group)
+        {
+            // If there is no group, return false by default.
+            if(stageWorld != null)
+            {
+                return stageWorld.unitGroups.Contains(group);
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        // Generates the stage world unit groups list.
+        public List<UnitsInfo.unitGroups> GenerateStageWorldUnitGroupsList()
+        {
+            // The group list.
+            List<UnitsInfo.unitGroups> groupsList;
+            
+            // The stage world is not equal to null.
+            if(stageWorld != null)
+            {
+                groupsList = new List<UnitsInfo.unitGroups>(stageWorld.unitGroups);
+            }
+            else // Equal to null, so make empty list.
+            {
+                groupsList = new List<UnitsInfo.unitGroups>();
+            }
+            
+            return groupsList;
+        }
+
+        // Sets the units table group.
+        public void SetUnitsTableGroup(UnitsInfo.unitGroups group)
+        {
+            // Set the group.
+            unitsTable.SetGroup(group);
+
+            // Refresh the buttons.
+            RefreshUnitsTableButtons();
+        }
+
+        // Gets the current index of the units table.
+        public int GetCurrentUnitsTableGroupIndex()
+        {
+            // The group list and the index.
+            List<UnitsInfo.unitGroups> groupList = GenerateStageWorldUnitGroupsList();
+            int index;
+
+            // There are entries.
+            if(groupList.Count > 0)
+            {
+                // Gets the index.
+                index = groupList.IndexOf(unitsTable.GetGroup());
+            }
+            else // No entries.
+            {
+                index = -1;
+            }
+
+            return index;
+        }
+
+        // Sets the untis table's group by an index value of the stage world's unit groups.
+        public void SetUnitsTableGroupByIndex(int index)
+        {
+            // If the stage world does not exist, clear the entries.
+            if(stageWorld == null)
+            {
+                unitsTable.ClearEntries();
+                return;
+            }
+
+            // There are no unit groups, so do nothing.
+            if(stageWorld.unitGroups.Count <= 0)
+            {
+                return;
+            }
+
+            // Gets the group count.
+            int groupCount = GetStageWorldUnitGroupsCount();
+
+            // Clamp the index.
+            index = Mathf.Clamp(index, 0, groupCount);
+
+            // Gets the units group.
+            UnitsInfo.unitGroups newGroup = stageWorld.unitGroups[index];
+            
+            // Sets the units group.
+            SetUnitsTableGroup(newGroup);
+        }
+
+        // Goes to the previous stage world units group.
+        public void PreviousUnitsTableGroup()
+        {
+            // Get the index and subtrat 1.
+            int index = GetCurrentUnitsTableGroupIndex() - 1;
+
+            // Loop to the end if out of bounds.
+            if (index < 0)
+                index = GetStageWorldUnitGroupsCount() - 1;
+
+            // Set the index.
+            SetUnitsTableGroupByIndex(index);
+        }
+
+        // Goes to the next stage world units group.
+        public void NextUnitsTableGroup()
+        {
+            // Get the index and add 1.
+            int index = GetCurrentUnitsTableGroupIndex() + 1;
+
+            // Loop to the start if out of bounds.
+            if (index > GetStageWorldUnitGroupsCount())
+                index = 0;
+
+            // Set the index.
+            SetUnitsTableGroupByIndex(index);
+        }
+
+        // Refreshes the units table buttons.
+        public void RefreshUnitsTableButtons()
+        {
+            // If there are multiple groups, enable the buttons.
+            // If there's one group or less, disable the buttons.
+            if(stageWorld != null)
+            {
+                // Only turn them on if there's more than one group.
+                if (stageWorld.unitGroups.Count > 1)
+                {
+                    previousGroupButton.interactable = true;
+                    nextGroupButton.interactable = true;
+                }
+                else
+                {
+                    previousGroupButton.interactable = false;
+                    nextGroupButton.interactable = false;
+                }
+            }
+            else // No stage world, so turn them both off.
+            {
+                previousGroupButton.interactable = false;
+                nextGroupButton.interactable = false;
+            }
+            
+        }
+
+        // Clears the units table and refreshes the buttons.
+        public void ClearUnitsTable()
+        {
+            unitsTable.ClearGroupAndEntries();
+            RefreshUnitsTableButtons();
         }
 
         // Start/Reject
@@ -292,6 +512,9 @@ namespace RM_MST
         // Enables the buttons for the challenger UI.
         public void EnableButtons()
         {
+            previousGroupButton.interactable = true;
+            nextGroupButton.interactable = true;
+
             startButton.interactable = true;
             rejectButton.interactable = true;
         }
@@ -299,8 +522,32 @@ namespace RM_MST
         // Disables the buttons for the challenger UI.
         public void DisableButtons()
         {
+            previousGroupButton.interactable = false;
+            nextGroupButton.interactable = false;
+
             startButton.interactable = false;
             rejectButton.interactable = false;
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            // If the late function has not been called yet, call it.
+            if(!calledLateOnOpened)
+            {
+                LateOnStageWorldUIOpened();
+            }
+
+            // If the stage world is set.
+            if (stageWorld != null)
+            {
+                // This is used to fix an issue where the group isn't set.
+                // If no group is set, and the list doesn't contain the 'none' group, try to set it.
+                if (unitsTable.GetGroup() == UnitsInfo.unitGroups.none && !StageWorldContainsGroup(UnitsInfo.unitGroups.none))
+                {
+                    SetUnitsTableGroupByIndex(0);
+                }
+            }
         }
     }
 }

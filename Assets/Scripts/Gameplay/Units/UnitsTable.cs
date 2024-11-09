@@ -11,6 +11,7 @@ namespace RM_MST
         public UnitsInfo unitsInfo;
 
         // The unit group.
+        // TODO: this should probably be private.
         public UnitsInfo.unitGroups group = UnitsInfo.unitGroups.none;
 
         // The entries for the units table.
@@ -71,6 +72,12 @@ namespace RM_MST
                 groupsInits = true;
             }
             
+        }
+
+        // Gets the group.
+        public UnitsInfo.unitGroups GetGroup()
+        {
+            return group;
         }
 
         // Sets the group
@@ -209,6 +216,13 @@ namespace RM_MST
                 entry.ClearText();
                 entry.gameObject.SetActive(false);
             }
+        }
+
+        // Clears the group and the entries.
+        public void ClearGroupAndEntries()
+        {
+            group = UnitsInfo.unitGroups.none;
+            ClearEntries();
         }
     }
 }
