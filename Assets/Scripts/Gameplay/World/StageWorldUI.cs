@@ -23,12 +23,9 @@ namespace RM_MST
         // The index of the challenger.
         public int stageWorldIndex = -1;
 
-        [Header("Units Table")]
-        // The units table that's used to show the converison information.
-        public UnitsTable unitsTable;
-
-        // The name text for the units table's group name.
-        public TMP_Text unitsTableGroupNameText;
+        // If 'true', group tutorials are enabled.
+        // Since they are no longer necessary, this variable stops them from showing.
+        private bool useUnitGroupTutorials = false;
 
         // The number of frames that the game waits before refreshing the units table.
         // This is to fix an issue where the units table isn't refreshed properly.
@@ -39,6 +36,13 @@ namespace RM_MST
 
         // Gets set to 'true' when the late on opened function for the stage UI is called.
         protected bool calledLateOnOpened = false;
+
+        [Header("Units Table")]
+        // The units table that's used to show the converison information.
+        public UnitsTable unitsTable;
+
+        // The name text for the units table's group name.
+        public TMP_Text unitsTableGroupNameText;
 
         [Header("Images")]
 
@@ -99,9 +103,7 @@ namespace RM_MST
         {
             calledLateStart = true;
 
-            // Wait 2 update loops to refresh the units table.
-            // Since this is checked after late start, it will be decreased by 1 by default.
-            unitsTableRefreshFrames = 2;
+            // Nothing needed here since other functions handle it.
         }
 
         // This function is called when the object becomes enabled and active
@@ -257,6 +259,10 @@ namespace RM_MST
             // Load the unit group conversion information.
             // This is done again to make sure that it properly updated.
             SetUnitsTableGroupByIndex(0);
+
+            // Wait 2 update loops to refresh the units table.
+            // Since this is checked after late start, it will be decreased by 1 by default.
+            unitsTableRefreshFrames = 1;
 
             // Tries to run the tutorial.
             RunTutorial();
@@ -509,59 +515,115 @@ namespace RM_MST
                 }
                 else if (stageWorld.unitGroups.Count == 1)
                 {
+                    // Gets set to 'true' if a tutorial was skipped.
+                    bool tutorialSkipped = false;
+
                     // Gets the group.
                     UnitsInfo.unitGroups group = stageWorld.unitGroups[0];
 
                     // Checks the group to see what intro should be loaded.
+                    // If group unit tutorials are not being used, they are automatically cleared.
                     switch (group)
                     {
                         case UnitsInfo.unitGroups.lengthImperial:
 
                             // Tutorial not cleared, load it.
-                            if (!tutorials.clearedLengthImperialTutorial)
+                            if (!tutorials.clearedLengthImperialTutorial && useUnitGroupTutorials)
+                            {
                                 tutorials.LoadLengthImperialTutorial();
+                            }
+                            else
+                            {
+                                tutorials.clearedLengthImperialTutorial = true;
+                                tutorialSkipped = true;
+                            }
 
                             break;
 
                         case UnitsInfo.unitGroups.weightImperial:
 
                             // Tutorial not cleared, load it.
-                            if (!tutorials.clearedWeightImperialTutorial)
+                            if (!tutorials.clearedWeightImperialTutorial && useUnitGroupTutorials)
+                            {
                                 tutorials.LoadWeightImperialTutorial();
+                            }
+                            else
+                            {
+                                tutorials.clearedWeightImperialTutorial = true;
+                                tutorialSkipped = true;
+                            }
 
                             break;
 
                         case UnitsInfo.unitGroups.time:
 
                             // Tutorial not cleared, load it.
-                            if (!tutorials.clearedTimeTutorial)
+                            if (!tutorials.clearedTimeTutorial && useUnitGroupTutorials)
+                            {
                                 tutorials.LoadTimeTutorial();
+                            }
+                            else
+                            {
+                                tutorials.clearedTimeTutorial = true;
+                                tutorialSkipped = true;
+                            }
 
                             break;
 
                         case UnitsInfo.unitGroups.lengthMetric:
 
                             // Tutorial not cleared, load it.
-                            if (!tutorials.clearedLengthMetricTutorial)
+                            if (!tutorials.clearedLengthMetricTutorial && useUnitGroupTutorials)
+                            {
                                 tutorials.LoadLengthMetricTutorial();
+                            }
+                            else
+                            {
+                                tutorials.clearedLengthMetricTutorial = true;
+                                tutorialSkipped = true;
+                            }
 
                             break;
 
                         case UnitsInfo.unitGroups.weightMetric:
 
                             // Tutorial not cleared, load it.
-                            if (!tutorials.clearedWeightMetricTutorial)
+                            if (!tutorials.clearedWeightMetricTutorial && useUnitGroupTutorials)
+                            {
                                 tutorials.LoadWeightMetricTutorial();
-
+                            }
+                            else
+                            {
+                                tutorials.clearedWeightMetricTutorial = true;
+                                tutorialSkipped = true;
+                            }
+                                
                             break;
 
                         case UnitsInfo.unitGroups.capacity:
 
                             // Tutorial not cleared, load it.
-                            if (!tutorials.clearedCapacityTutorial)
+                            if (!tutorials.clearedCapacityTutorial && useUnitGroupTutorials)
+                            {
                                 tutorials.LoadCapacityTutorial();
+                            }
+                            else
+                            {
+                                tutorials.clearedCapacityTutorial = true;
+                                tutorialSkipped = true;
+                            }
 
                             break;
+                    }
+
+                    // If a tutorial was skipped.
+                    if(tutorialSkipped)
+                    {
+                        // If the world UI's unit info button is disabled, make it interactable.
+                        if(!worldManager.worldUI.unitsInfoButton.interactable)
+                        {
+                            worldManager.worldUI.unitsInfoButton.interactable = true;
+                        }
                     }
                 }
             }
@@ -581,19 +643,22 @@ namespace RM_MST
             {
                 LateOnStageWorldUIOpened();
             }
+        }
 
+        private void LateUpdate()
+        {
             // If the game is waiting for a set amount of frames to update the units table.
-            if(unitsTableRefreshFrames > 0)
+            if (unitsTableRefreshFrames > 0)
             {
                 // Reduce the frame counter.
                 unitsTableRefreshFrames--;
 
                 // Bounds check.
-                if(unitsTableRefreshFrames < 0)
+                if (unitsTableRefreshFrames < 0)
                     unitsTableRefreshFrames = 0;
 
                 // Refresh the units table.
-                if(unitsTableRefreshFrames <= 0)
+                if (unitsTableRefreshFrames <= 0)
                 {
                     SetUnitsTableGroupByIndex(0);
                 }

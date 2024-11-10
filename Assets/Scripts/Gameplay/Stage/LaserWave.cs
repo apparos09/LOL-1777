@@ -26,7 +26,7 @@ namespace RM_MST
         public float maxSpeed = 85.0F;
 
         // The force for the laser shot when it hits the meteor. 
-        public float meteorHitForce = 10.0F;
+        public float meteorHitForce = 9.0F;
 
         // Gets set to 'true' when force should be applied.
         public bool applyForce = true;
