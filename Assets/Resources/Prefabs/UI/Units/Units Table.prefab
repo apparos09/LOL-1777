@@ -665,7 +665,9 @@ PrefabInstance:
       propertyPath: m_fontSize
       value: 26
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6774999764390556200, guid: 524445b9384e12e488903e2dbc381094, type: 3}
+    - {fileID: 6306847962685392953, guid: 524445b9384e12e488903e2dbc381094, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -802,7 +804,9 @@ PrefabInstance:
       propertyPath: m_fontSize
       value: 26
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6774999764390556200, guid: 524445b9384e12e488903e2dbc381094, type: 3}
+    - {fileID: 6306847962685392953, guid: 524445b9384e12e488903e2dbc381094, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -939,7 +943,9 @@ PrefabInstance:
       propertyPath: m_fontSize
       value: 26
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6774999764390556200, guid: 524445b9384e12e488903e2dbc381094, type: 3}
+    - {fileID: 6306847962685392953, guid: 524445b9384e12e488903e2dbc381094, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1076,7 +1082,9 @@ PrefabInstance:
       propertyPath: m_fontSize
       value: 26
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6774999764390556200, guid: 524445b9384e12e488903e2dbc381094, type: 3}
+    - {fileID: 6306847962685392953, guid: 524445b9384e12e488903e2dbc381094, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1213,7 +1221,9 @@ PrefabInstance:
       propertyPath: m_fontSize
       value: 26
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6774999764390556200, guid: 524445b9384e12e488903e2dbc381094, type: 3}
+    - {fileID: 6306847962685392953, guid: 524445b9384e12e488903e2dbc381094, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

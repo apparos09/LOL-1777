@@ -262,6 +262,8 @@ namespace RM_MST
 
             // Wait 2 update loops to refresh the units table.
             // Since this is checked after late start, it will be decreased by 1 by default.
+            // As it turns out, this fix isn't needed since the problem was being caused by another script.
+            // It's being kept in, but it's not needed anymore.
             unitsTableRefreshFrames = 1;
 
             // Tries to run the tutorial.

@@ -1678,6 +1678,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Units Table Entry (Eqauls) Variant 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6750838809501700709, guid: 635e623d1e5724747a8afa7d585bc906, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6750838809501700709, guid: 635e623d1e5724747a8afa7d585bc906, type: 3}
+      propertyPath: m_fontSize
+      value: 26
+      objectReference: {fileID: 0}
     - target: {fileID: 6772197649531894333, guid: 635e623d1e5724747a8afa7d585bc906, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1770,7 +1778,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7297896877829122383, guid: 635e623d1e5724747a8afa7d585bc906, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7297896877829122383, guid: 635e623d1e5724747a8afa7d585bc906, type: 3}
+      propertyPath: m_fontSize
+      value: 26
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6773817964873308999, guid: 635e623d1e5724747a8afa7d585bc906, type: 3}
+    - {fileID: 6305779594347028822, guid: 635e623d1e5724747a8afa7d585bc906, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1802,6 +1820,14 @@ PrefabInstance:
     - target: {fileID: 2106767950897174523, guid: 635e623d1e5724747a8afa7d585bc906, type: 3}
       propertyPath: m_Name
       value: Units Table Entry (Eqauls) Variant 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6750838809501700709, guid: 635e623d1e5724747a8afa7d585bc906, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6750838809501700709, guid: 635e623d1e5724747a8afa7d585bc906, type: 3}
+      propertyPath: m_fontSize
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 6772197649531894333, guid: 635e623d1e5724747a8afa7d585bc906, type: 3}
       propertyPath: m_Pivot.x
@@ -1895,7 +1921,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7297896877829122383, guid: 635e623d1e5724747a8afa7d585bc906, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7297896877829122383, guid: 635e623d1e5724747a8afa7d585bc906, type: 3}
+      propertyPath: m_fontSize
+      value: 26
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6773817964873308999, guid: 635e623d1e5724747a8afa7d585bc906, type: 3}
+    - {fileID: 6305779594347028822, guid: 635e623d1e5724747a8afa7d585bc906, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1927,6 +1963,14 @@ PrefabInstance:
     - target: {fileID: 2106767950897174523, guid: 635e623d1e5724747a8afa7d585bc906, type: 3}
       propertyPath: m_Name
       value: Units Table Entry (Eqauls) Variant 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6750838809501700709, guid: 635e623d1e5724747a8afa7d585bc906, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6750838809501700709, guid: 635e623d1e5724747a8afa7d585bc906, type: 3}
+      propertyPath: m_fontSize
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 6772197649531894333, guid: 635e623d1e5724747a8afa7d585bc906, type: 3}
       propertyPath: m_Pivot.x
@@ -2020,7 +2064,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7297896877829122383, guid: 635e623d1e5724747a8afa7d585bc906, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7297896877829122383, guid: 635e623d1e5724747a8afa7d585bc906, type: 3}
+      propertyPath: m_fontSize
+      value: 26
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6773817964873308999, guid: 635e623d1e5724747a8afa7d585bc906, type: 3}
+    - {fileID: 6305779594347028822, guid: 635e623d1e5724747a8afa7d585bc906, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2371,6 +2425,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Units Table Entry (Eqauls) Variant 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6750838809501700709, guid: 635e623d1e5724747a8afa7d585bc906, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6750838809501700709, guid: 635e623d1e5724747a8afa7d585bc906, type: 3}
+      propertyPath: m_fontSize
+      value: 26
+      objectReference: {fileID: 0}
     - target: {fileID: 6772197649531894333, guid: 635e623d1e5724747a8afa7d585bc906, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2459,7 +2521,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7297896877829122383, guid: 635e623d1e5724747a8afa7d585bc906, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7297896877829122383, guid: 635e623d1e5724747a8afa7d585bc906, type: 3}
+      propertyPath: m_fontSize
+      value: 26
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6773817964873308999, guid: 635e623d1e5724747a8afa7d585bc906, type: 3}
+    - {fileID: 6305779594347028822, guid: 635e623d1e5724747a8afa7d585bc906, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2491,6 +2563,14 @@ PrefabInstance:
     - target: {fileID: 2106767950897174523, guid: 635e623d1e5724747a8afa7d585bc906, type: 3}
       propertyPath: m_Name
       value: Units Table Entry (Eqauls) Variant 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6750838809501700709, guid: 635e623d1e5724747a8afa7d585bc906, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6750838809501700709, guid: 635e623d1e5724747a8afa7d585bc906, type: 3}
+      propertyPath: m_fontSize
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 6772197649531894333, guid: 635e623d1e5724747a8afa7d585bc906, type: 3}
       propertyPath: m_Pivot.x
@@ -2584,7 +2664,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7297896877829122383, guid: 635e623d1e5724747a8afa7d585bc906, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7297896877829122383, guid: 635e623d1e5724747a8afa7d585bc906, type: 3}
+      propertyPath: m_fontSize
+      value: 26
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6773817964873308999, guid: 635e623d1e5724747a8afa7d585bc906, type: 3}
+    - {fileID: 6305779594347028822, guid: 635e623d1e5724747a8afa7d585bc906, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2616,6 +2706,14 @@ PrefabInstance:
     - target: {fileID: 2106767950897174523, guid: 635e623d1e5724747a8afa7d585bc906, type: 3}
       propertyPath: m_Name
       value: Units Table Entry (Eqauls) Variant 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6750838809501700709, guid: 635e623d1e5724747a8afa7d585bc906, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6750838809501700709, guid: 635e623d1e5724747a8afa7d585bc906, type: 3}
+      propertyPath: m_fontSize
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 6772197649531894333, guid: 635e623d1e5724747a8afa7d585bc906, type: 3}
       propertyPath: m_Pivot.x
@@ -2705,7 +2803,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7297896877829122383, guid: 635e623d1e5724747a8afa7d585bc906, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7297896877829122383, guid: 635e623d1e5724747a8afa7d585bc906, type: 3}
+      propertyPath: m_fontSize
+      value: 26
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6773817964873308999, guid: 635e623d1e5724747a8afa7d585bc906, type: 3}
+    - {fileID: 6305779594347028822, guid: 635e623d1e5724747a8afa7d585bc906, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
