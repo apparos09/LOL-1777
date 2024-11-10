@@ -403,9 +403,10 @@ namespace RM_MST
             {
                 // Load the pages.
                 new MST_Page("Welcome to the stage area! This is where you'll shoot down meteors with unit conversions! The meteor closest to the Earth's surface is automatically targeted, so all you must do is shoot at it by solving the conversion equation. If the meteor is successfully destroyed, you'll get points, which will fill up the points bar to the left. Once the points bar is filled, the stage is complete!", "trl_firstStage_00"),
-                new MST_Page("To answer a conversion question, you must select one of the unit buttons at the bottom of the screen. A unit button shows its output, and the math operation that was used to get it. If you select the correct unit button, the meteor is destroyed. If you choose the wrong unit button, the meteor is knocked back, but not destroyed.", "trl_firstStage_01"),
-                new MST_Page("If a meteor hits one of the barriers, the meteor will be destroyed, but the barrier will take damage. If a barrier takes too much damage, it will disappear, which will leave an opening for the meteors to reach the Earth's surface. If the Earth's surface takes too much damage, the stage is lost. On the left are the time, the points, the points bar, and the surface's health bar.", "trl_firstStage_02"),
-                new MST_Page("On the right are the settings button, the world button, the units table, and the speed button. The units table shows all the conversions for the current unit group you're dealing with, and the speed button allows you to change the game's speed. With all that said, time to start the stage!", "trl_firstStage_03"),
+                new MST_Page("To answer a conversion question, you must select one of the unit buttons at the bottom of the screen. A unit button shows its output, and the multiplier that was used to get it. If you select the correct unit button, the targeted meteor is destroyed, and the other meteors get pushed back. If you choose the wrong unit button, the targeted meteor is knocked back, but it's not destroyed. All other meteors remain unaffected when you answer a conversion question incorrectly.", "trl_firstStage_01"),
+                new MST_Page("If a meteor hits one of the barriers, the meteor will be destroyed, but you will get no points for it, and the barrier will take damage. If a barrier takes too much damage, it will disappear, which will leave an opening for the meteors to reach the Earth's surface. If the Earth's surface takes too much damage, the stage is lost.", "trl_firstStage_02"),
+                new MST_Page("If you answer enough conversion questions correctly in a row, the conversion multipliers on the unit buttons will disappear. They will come back a few seconds after the question has been given, but waiting for this to happen will give the meteors more time to reach the Earth's surface. Wait for the multipliers to appear or try to answer the question without them, it's up to you!", "trl_firstStage_03"),
+                new MST_Page("On the left are the time, the points, the points bar, and the surface's health bar. On the right are the settings button, the world button, the units table, and the speed button. The units table shows all the conversions for the current unit group you're dealing with, and the speed button allows you to change the game's speed. With all that said, time to start the stage!", "trl_firstStage_04"),
             };
 
             // Change the display image when certain pages are opened using callbacks.
@@ -413,8 +414,9 @@ namespace RM_MST
 
             pages[0].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerA);
             pages[1].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerA);
-            pages[2].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerB);
+            pages[2].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerA);
             pages[3].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerB);
+            pages[4].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerB);
 
 
             // Sets the bool and loads the tutorial.
