@@ -187,7 +187,9 @@ namespace RM_MST
         // The total number of meteors that can be active at once.
         private int ACTIVE_METEORS_COUNT_MAX = 12;
 
-
+        // If 'true', the closest meteor is constantly checked for potential retargeting.
+        // This addresses an issue where a meteor behind another meteor gets targeted.
+        private bool constClosestMeteorCheck = true;
 
         [Header("Combo")]
         // The combo for the stage.
@@ -1572,24 +1574,52 @@ namespace RM_MST
                 meteorSpawnTimer = GetModifiedMeteorSpawnRate();
             }
 
+            // Gets set to 'true' if there is a new meteor being targeted.
+            bool newTarget = false;
 
             // If there is no meteor being target.
-            if(meteorTarget.GetMeteor() == null)
+            if(!meteorTarget.HasMeteor())
             {
                 // Gets the closest meteor, and move towards it.
                 meteorTarget.SetTarget(GetClosestMeteor());
-
-                // If a meteor is being targeted...
-                if(meteorTarget.IsMeteorTargeted())
+                newTarget = true;
+            }
+            else // There's already a meteor being targeted.
+            {
+                // If the closest meteor should be constantly searched for...
+                // And there are meteors to be targeted.
+                if(constClosestMeteorCheck)
                 {
-                    // Run the text reveal animation.
-                    if(applyMultReveals)
+                    // If the active meteor count is greater than 0, then there are meteors to find.
+                    if(Meteor.GetMeteorsActiveCount() > 0)
                     {
-                        // Apply the multiple reveals if the correct answer threshold has been met.
-                        if(consecutiveSuccesses >= MULT_REVEAL_EFFECT_THRESHOLD)
+                        // Gets the closest meteor.
+                        Meteor closestMeteor = GetClosestMeteor();
+
+                        // If the targeted meteor is not the closest meteor...
+                        // Target the closest meteor.
+                        if (meteorTarget.GetMeteor() != closestMeteor)
                         {
-                            stageUI.StartUnitButtonMultipleReveals();
+                            // Target the closest meteor.
+                            meteorTarget.SetTarget(closestMeteor);
+                            newTarget = true;
                         }
+                    }
+                    
+                }
+            }
+
+            // If a meteor is being targeted...
+            if (meteorTarget.IsMeteorTargeted())
+            {
+                // Run the text reveal animation.
+                if (applyMultReveals)
+                {
+                    // Apply the multiple reveals if the correct answer threshold has been met.
+                    // Only do this if it's a new meteor target.
+                    if (newTarget && consecutiveSuccesses >= MULT_REVEAL_EFFECT_THRESHOLD)
+                    {
+                        stageUI.StartUnitButtonMultipleReveals();
                     }
                 }
             }

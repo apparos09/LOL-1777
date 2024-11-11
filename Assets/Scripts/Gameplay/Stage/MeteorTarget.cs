@@ -48,6 +48,12 @@ namespace RM_MST
                 stageManager = StageManager.Instance;
         }
 
+        // Returns 'true' if the meteor target has a meteor set.
+        public bool HasMeteor()
+        {
+            return meteor != null;
+        }
+
         // Returns the meteor being targeted.
         public Meteor GetMeteor()
         {
