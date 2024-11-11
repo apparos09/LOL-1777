@@ -28,8 +28,14 @@ namespace RM_MST
         // The force for the laser shot when it hits the meteor. 
         public float meteorHitForce = 9.0F;
 
+        // The meteors that have been hit by the wave.
+        private List<Meteor> hitMeteors = new List<Meteor>();
+
         // Gets set to 'true' when force should be applied.
         public bool applyForce = true;
+
+        // Used to check for meteor knockbacks and correct meteors that may have been missed due to collision issues.
+        private bool knockbackCorrection = true;
 
         // Start is called before the first frame update
         void Start()
@@ -59,8 +65,7 @@ namespace RM_MST
             // Tries to get a meteor from the collision object.
             if(collision.gameObject.TryGetComponent(out meteor))
             {
-                // Don't untarget a meteor if it gets targeted while being effected by a wave.
-                meteor.ApplyKnockbackForce(Vector2.up, meteorHitForce, false);
+                HitMeteor(meteor);
             }
         }
 
@@ -75,6 +80,9 @@ namespace RM_MST
 
             // Applies the physics body ignores.
             ApplyPhysicsBodyIgnores();
+
+            // Clear the list of hit meteors.
+            ClearHitMeteorsList();
         }
 
         // Applies the ignore settings for the physics bodies.
@@ -113,9 +121,28 @@ namespace RM_MST
             rigidbody.angularVelocity = 0;
         }
 
+        // Clears the list of hit meteors by the wave.
+        public void ClearHitMeteorsList()
+        {
+            hitMeteors.Clear();
+        }
+
+        // Called to hit the provided meteor.
+        public void HitMeteor(Meteor meteor)
+        {
+            // Don't untarget a meteor if it gets targeted while being effected by a wave.
+            meteor.ApplyKnockbackForce(Vector2.up, meteorHitForce, false);
+
+            // Add the meteor to the hit list.
+            hitMeteors.Add(meteor);
+        }
+
         // Kills the wave.
         public void Kill()
         {
+            // The wave is being killed, so clear the list.
+            ClearHitMeteorsList();
+
             // If the player is using the laser wave pool...
             // Return this to the laser wave pool.
             if(player.IsUsingLaserWavePool())
@@ -158,6 +185,42 @@ namespace RM_MST
                     Kill();
                 }
             }
+        }
+
+        // LateUpdate is called every frame, if the behaviour is enabled.
+        private void LateUpdate()
+        {
+            // If force is being applied.
+            if(applyForce)
+            {
+                // If knockback correctin is enabled.
+                if(knockbackCorrection)
+                {
+                    // Gets a list of the active meteors.
+                    List<Meteor> meteorList = Meteor.GetMeteorsActiveListCopy();
+
+                    // Goes through all meteors.
+                    foreach (Meteor meteor in meteorList)
+                    {
+                        // If the meteor is alive, is not experiencing knockback, and has not been hit already...
+                        if (meteor.IsAlive() && !meteor.IsInKnockback() && !hitMeteors.Contains(meteor))
+                        {
+                            // If the meteor is under the wave, that means the wave has already passed it.
+                            // If so, that means the wave did not trigger the knockback, and that the knockback must be corrected.
+                            if(meteor.transform.position.y < transform.position.y)
+                            {
+                                HitMeteor(meteor);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // This function is called when the MonoBehaviour will be destroyed
+        private void OnDestroy()
+        {
+            ClearHitMeteorsList();
         }
     }
 }
