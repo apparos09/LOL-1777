@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageManager: {fileID: 0}
-  trackSpeed: 40
+  trackSpeed: 50
   animator: {fileID: 5509096831843474561}
   lockInAnim: Target - Lock In Animation
   lockOutAnim: Target - Lock Out Animation

@@ -23,7 +23,7 @@ namespace RM_MST
         public SpriteRenderer spriteRenderer;
 
         // The speed of the laser shot.
-        public float maxSpeed = 85.0F;
+        public float maxSpeed = 100.0F;
 
         // The force for the laser shot when it hits the meteor. 
         public float meteorHitForce = 9.0F;

@@ -15,7 +15,7 @@ namespace RM_MST
 
         // The target's movement speed.
         [Tooltip("The movement speed for the target when it homes in on a meteor's position.")]
-        public float trackSpeed = 40.0F;
+        public float trackSpeed = 50.0F;
 
         // If 'true', the exact meteor position is tracked.
         private bool trackExactPos = false;

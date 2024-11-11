@@ -293,7 +293,7 @@
     "stg_mix1_dsc": "Length (Imperial), Weight (Imperial), Time",
 
     "stg_mix2_nme": "Mix 2",
-    "stg_mix2_dsc": "Length (Metric), Weight (Metric), Capacity",
+    "stg_mix2_dsc": "Length (Metric), Weight (Metric), Capacity (Metric)",
 
     "stg_mix3_nme": "Mix 3",
     "stg_mix3_dsc": "All",

@@ -189,7 +189,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!114 &5881021278493077326
 MonoBehaviour:
@@ -208,6 +208,6 @@ MonoBehaviour:
   collider: {fileID: 8102618312680143735}
   rigidbody: {fileID: 3309157949649501107}
   spriteRenderer: {fileID: 5726859174762021250}
-  maxSpeed: 85
+  maxSpeed: 100
   meteorHitForce: 9
   applyForce: 1
