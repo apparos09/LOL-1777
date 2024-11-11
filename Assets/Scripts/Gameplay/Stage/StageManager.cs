@@ -1201,9 +1201,9 @@ namespace RM_MST
             float points = 0;
             
             // Base amount, combo bonus, and difficulty bonus.
-            points += 20;
+            points += 25;
             points += 10 * combo;
-            points += 5 * difficulty;
+            points += 10 * difficulty;
 
             // Returns the points.
             return points;
