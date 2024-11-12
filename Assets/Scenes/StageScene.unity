@@ -227,10 +227,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2582117487669579948, guid: e017c4a555637dc4398780904a9288ad, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2979344536415619258, guid: e017c4a555637dc4398780904a9288ad, type: 3}
       propertyPath: m_Name
       value: Window Title Text (TMP)
