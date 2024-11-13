@@ -96,8 +96,9 @@ namespace RM_MST
                 saveText.text = string.Empty;
             }
 
+            // Not needed anymore.
             // Open the units info window. This is done so that the units info menu gets initialized.
-            OpenWindow(unitsInfoMenu.gameObject);
+            // OpenWindow(unitsInfoMenu.gameObject);
         }
 
         // The late start function.

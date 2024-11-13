@@ -75,9 +75,10 @@ namespace RM_MST
             if (unitsInfo == null)
                 unitsInfo = UnitsInfo.Instance;
 
-            // Running this in Start() caused issues where the text was not being replaced consistently.
-            // Now, the entries are blank by default, and the entries are loaded in LateStart() first.
-            // LoadEntries();
+            // Entries are blank by default, and the entries are loaded in LateStart() first.
+            // Loads the entries in Start. This is done to make sure the default text isn't shown.
+            // Originally this caused issues due to translated text overriding it, but that has been addressed.
+            LoadEntries();
 
             // Allow TTS to be used.
             allowTTS = true;
@@ -96,6 +97,7 @@ namespace RM_MST
 
             // Loads the entries, and sets it to do this on enable.
             // OnEnable is triggered before start.
+            // This probably isn't needed anymore, but this is still here just to be sure it loaded properly.
             LoadEntries();
             loadEntriesOnEnable = true;
         }
@@ -109,12 +111,15 @@ namespace RM_MST
 
             // Loads entries on enable.
             if(loadEntriesOnEnable)
+            {
                 LoadEntries();
-
+            }
 
             // If the count hasn't changed, set the entry to the old index.
             if (oldCount == entries.Count)
+            {
                 SetEntry(oldIndex);
+            }
         }
 
         // This function is called when the behaviour becomes disabled or inactive
@@ -294,7 +299,7 @@ namespace RM_MST
         // Sets the entry.
         public void SetEntry(int index)
         {
-            // No entry to set.
+            // No entry to set if the index is invalid.
             if (index < 0 || index >= entries.Count)
                 return;
 
