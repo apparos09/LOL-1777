@@ -53,6 +53,36 @@ namespace util
             return result;
         }
 
+        // Truncates to the provided number of decimal places.
+        public static float Truncate(float value, int decimalPlaces)
+        {
+            // Floors the value to get the whole number, and uses it to calculate the decimal portion.
+            float wholePart = Mathf.Floor(value);
+            float decimalPart = value - wholePart;
+
+            // The result to be returned.
+            float result;
+
+            // If there should be no decimal places, return the whole number.
+            // Also return the whole number if there is no decimal portion.
+            // This is checked by seeing if the original value is approximately equal to the whole part.
+            if(decimalPlaces <= 0 || Mathf.Approximately(value, wholePart))
+            {
+                result = wholePart;
+            }
+            //  Round the decimal part and add it to the result.
+            else
+            {
+                // Round the decimal part to the provided number of digits.
+                float decimalRounded = Round(decimalPart, decimalPlaces);
+
+                // Add the rounded decimal to the whole portion.
+                result = wholePart + decimalRounded;
+            }
+
+            return result;
+        }
+
         // ROTATE //
 
         // Rotates the 2D vector (around its z-axis).

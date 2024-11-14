@@ -565,13 +565,13 @@ namespace RM_MST
                 // Resets the difficulty (doesn't change base difficulty).
                 SetDifficulty(difficulty, false);
 
-
-                // TODO: add changes based on phase change.
                 // Sets the phase.
                 switch (phase)
                 {
                     case 1:
                         // ...
+                        // There are no changes here since the values have been reset back to their defaults...
+                        // From the SetDifficulty function.
                         break;
 
                     case 2:
