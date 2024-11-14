@@ -1,8 +1,5 @@
-using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -951,6 +948,61 @@ namespace RM_MST
             // Set and return the value.
             conversion.inputValue = value;
             return value;
+        }
+
+        // Tries to fix floating point imprecision through rounding and float-double conversion.
+        // This is not guranteed to work, since the floating point error digit is not in a consistent place...
+        // Within values that cause these errors to occur.
+        public static float TryFixFloatingPointImprecision(float value, int decimalPlaces)
+        {
+            // Converts the value to a string.
+            string valueStr = value.ToString();
+
+            // The exponent multiplier.
+            // If the decimal points provided are 0 or less, set to 1.
+            int dpCorrected = (decimalPlaces > 0) ? decimalPlaces : 1;
+            double expMult = Mathf.Pow(10.0F, dpCorrected);
+
+            // If there is no decimal point, that means the provided float is a whole number.
+            // As such, return the value as is.
+            if (!valueStr.Contains("."))
+            {
+                return value;
+            }
+
+            // The whole part and the decimal part of the value.
+            double wholePart, decimalPart; 
+            
+            // Tries to get the whole part of the value.
+            if(!double.TryParse(valueStr.Substring(0, valueStr.IndexOf(".")), out wholePart))
+            {
+                Debug.LogWarning("Conversion failure finding the whole portion of the value.");
+            }
+
+            // Tries to get the decimal part of the value. Includes 0 and the decimal point.
+            if (!double.TryParse("0." + valueStr.Substring(valueStr.IndexOf(".") + 1), out decimalPart))
+            {
+                Debug.LogWarning("Conversion failure finding the decimal portion of the value.");
+            }
+
+            // Round the decimal part to 5 decimal places (not using Mathf.Pow since it uses floats).
+            double decimalRounded = decimalPart * expMult;
+
+            // Round the value using both the float conversion and the rounding function.
+            // Floor is used so that it doesn't effect the value.
+            decimalRounded = (Mathf.Floor((float)decimalRounded));
+
+            // Return to original value by converting back from decimals.
+            decimalRounded = decimalRounded / expMult;
+
+            // Add the decimal rounded and the whole part together.
+            double valueRounded = wholePart + decimalRounded;
+
+            // Convert the rounded value to get the result.
+            float result = (float)valueRounded;
+
+            // Returns the result.
+            return result;
         }
 
         // Gets the meteor spawn rate, modified by the phase.
