@@ -185,8 +185,8 @@ namespace RM_MST
                 // Gets the tutorial.
                 Tutorials tutorials = Tutorials.Instance;
 
-                clearedWeightImperial = tutorials.clearedWeightImperialTutorial;
                 clearedLengthImperial = tutorials.clearedLengthImperialTutorial;
+                clearedWeightImperial = tutorials.clearedWeightImperialTutorial;
                 clearedTime = tutorials.clearedTimeTutorial;
                 clearedLengthMetric = tutorials.clearedLengthMetricTutorial;
                 clearedWeightMetric = tutorials.clearedWeightMetricTutorial;
@@ -194,8 +194,8 @@ namespace RM_MST
             }
             else // Not being used, so enable all.
             {
-                clearedWeightImperial = true;
                 clearedLengthImperial = true;
+                clearedWeightImperial = true;
                 clearedTime = true;
                 clearedLengthMetric = true;
                 clearedWeightMetric = true;
@@ -207,11 +207,8 @@ namespace RM_MST
             entries.Clear();
 
             // Creating Entries
-            // Weight (Imperial)
-            if(clearedWeightImperial)
-            {
-                entries.Add(GenerateUnitsInfoEntry(UnitsInfo.unitGroups.weightImperial));
-            }
+            // While the weight (imperial) stage is set to be the first one the player does...
+            // It is not the first unit group by number.
 
             // Length (Imperial)
             if(clearedLengthImperial)
@@ -219,8 +216,14 @@ namespace RM_MST
                 entries.Add(GenerateUnitsInfoEntry(UnitsInfo.unitGroups.lengthImperial));
             }
 
+            // Weight (Imperial)
+            if (clearedWeightImperial)
+            {
+                entries.Add(GenerateUnitsInfoEntry(UnitsInfo.unitGroups.weightImperial));
+            }
+
             // Time
-            if(clearedTime)
+            if (clearedTime)
             {
                 entries.Add(GenerateUnitsInfoEntry(UnitsInfo.unitGroups.time));
             }
