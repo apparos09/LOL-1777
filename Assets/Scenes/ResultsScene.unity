@@ -389,7 +389,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 58844740}
   key: kwd_score
-  markIfFailed: 1
 --- !u!114 &58844740 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1212022255313666683, guid: 6d0ef08bc6db7ee4599fd60807b8698d, type: 3}
@@ -529,7 +528,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 302794548}
   key: kwd_stage
-  markIfFailed: 1
 --- !u!114 &302794548 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2628973966699043785, guid: 6d0ef08bc6db7ee4599fd60807b8698d, type: 3}
@@ -1597,7 +1595,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 779825459}
   key: kwd_gameScore
-  markIfFailed: 1
 --- !u!1 &843872697
 GameObject:
   m_ObjectHideFlags: 0
@@ -1680,7 +1677,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1241144838}
   m_HandleRect: {fileID: 1241144837}
   m_Direction: 2
-  m_Value: 1.0000001
+  m_Value: 1
   m_Size: 0.6021277
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -1973,7 +1970,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 1054378296}
   key: kwd_highestCombo
-  markIfFailed: 1
 --- !u!114 &1054378296 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5235579365633598, guid: 6d0ef08bc6db7ee4599fd60807b8698d, type: 3}
@@ -2134,7 +2130,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 1071231001}
   key: kwd_gameTime
-  markIfFailed: 1
 --- !u!1001 &1116035113
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2763,8 +2758,8 @@ Camera:
   m_GameObject: {fileID: 1376526268}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -2970,7 +2965,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 1377668119}
   key: kwd_results
-  markIfFailed: 1
 --- !u!114 &1377668122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3482,7 +3476,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 1789164294}
   key: kwd_time
-  markIfFailed: 1
 --- !u!114 &1789164294 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6781860489889349359, guid: 6d0ef08bc6db7ee4599fd60807b8698d, type: 3}
