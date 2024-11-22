@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -111,17 +110,23 @@ namespace RM_MST
                         Vector3 puzzleCamPointerPos = puzzleCam.ViewportToWorldPoint(puzzleCamViewportPos);
                         puzzleCamPointerPos.z = 0; // Makes sure it's at 0 so that the sprite isn't hidden.
 
+                        // The rya to be casted.
                         Ray puzzleCamRay = puzzleCam.ViewportPointToRay(puzzleCamViewportPos);
-
-                        // The hit information.
-                        RaycastHit hitInfo;
+                        Vector2 rayOrigin2D = new Vector2(puzzleCamPointerPos.x, puzzleCamPointerPos.y);
 
                         // the max distance is the far clip plane minus the near clip plane.
                         float maxDist = puzzleCam.farClipPlane - puzzleCam.nearClipPlane;
 
                         // Casts the ray.
-                        bool rayHit = Physics.Raycast(puzzleCamRay, out hitInfo, maxDist);
+                        bool rayHit;
 
+                        // Old calculation (3D cast) - doesn't work.
+                        // RaycastHit hitInfo3D;
+                        // rayHit = Physics.Raycast(puzzleCamRay, out hitInfo3D, maxDist);
+
+                        // 2D cast.
+                        RaycastHit2D hitInfo2D = Physics2D.Raycast(rayOrigin2D, Vector3.forward, maxDist);
+                        rayHit = hitInfo2D.collider != null;
 
                         // 3. Move the Pointer Marker and Check Ray Hit
                         puzzlePointer.transform.position = puzzleCamPointerPos;
@@ -129,8 +134,20 @@ namespace RM_MST
                         // Print the name of the object that got hit.
                         if(rayHit)
                         {
-                            Debug.Log("Ray Hit Object: " + hitInfo.collider.gameObject);
+                            Debug.Log("Ray Hit Object: " + hitInfo2D.collider.gameObject);
                         }
+
+                        //// Checks if the mouse button is down.
+                        //if(Input.GetMouseButtonDown(0))
+                        //{
+                        //    Debug.Log("Mouse Button 0 Down!");
+                        //}
+
+                        //// There are touches, so check for the position. This is the screen positon.
+                        //if(mouseTouchInput.currentTouches.Count > 0)
+                        //{
+                        //    Debug.Log("Touch Position: " + mouseTouchInput.currentTouches[0].position);
+                        //}
                     }
                 }
 
