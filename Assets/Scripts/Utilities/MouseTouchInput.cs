@@ -185,13 +185,13 @@ namespace util
         // MOUSE INPUT //
 
         // Checks to see if the cursor is in the window.
-        public static bool MouseInWindow()
+        public static bool IsMouseInWindow()
         {
-            return MouseInWindow(Camera.main);
+            return IsMouseInWindow(Camera.main);
         }
 
         // Checks to see if the cursor is in the window.
-        public static bool MouseInWindow(Camera cam)
+        public static bool IsMouseInWindow(Camera cam)
         {
             // Checks the x-axis and the y-axis.
             bool inX, inY;
@@ -204,6 +204,21 @@ namespace util
             inY = (viewPos.y >= 0 && viewPos.y <= 1.0);
 
             return (inX && inY);
+        }
+
+        // Checks if the mouse is over the UI.
+        public static bool IsMouseOverUI()
+        {
+            // Checks if the event system exists.
+            if(EventSystem.current != null)
+            {
+                return EventSystem.current.IsPointerOverGameObject();
+            }
+            else
+            {
+                Debug.LogWarning("There is no event system. Returning false by default.");
+                return false;
+            }
         }
 
         // Gets the mouse position in screen space.
@@ -244,6 +259,30 @@ namespace util
             Vector3 camWPos = GetMousePositionInWorldSpace(Camera.main);
             Vector3 target = camWPos - refPos;
             return target;
+        }
+
+        // Returns the mouse UI raycast results.
+        public static List<RaycastResult> GetMouseUIRaycastResults()
+        {
+            PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
+            pointerEventData.position = Input.mousePosition;
+
+            // The list of raycast results.
+            List<RaycastResult> raycastResults = new List<RaycastResult>();
+            
+            // Checks if there is an event system or not.
+            if(EventSystem.current != null)
+            {
+                EventSystem.current.RaycastAll(pointerEventData, raycastResults);
+            }
+            else
+            {
+                // No event system.
+                Debug.LogWarning("There is no event system to raycast with.");
+            }
+
+            // Return the results.
+            return raycastResults;
         }
 
         // MOUSE BUTTONS
