@@ -113,6 +113,12 @@ namespace util
         // The callback for touch began interaction.
         private TouchCallback touchBeganCallback;
 
+        // The callback for touch moved interaction.
+        private TouchCallback touchMovedCallback;
+
+        // The callback for touch stationary interaction.
+        private TouchCallback touchStationaryCallback;
+
         // The callback for touch held interaction.
         private TouchCallback touchHeldCallback;
 
@@ -734,14 +740,18 @@ namespace util
                         OnTouchBeganCallback(touches[i], touchObjects[i]);
                         break;
 
-                    case TouchPhase.Ended: // Touch ended.
-                        OnTouchEndedCallback(touches[i], touchObjects[i]);
+                    case TouchPhase.Moved: // Touch moved and held.
+                        OnTouchMovedCallback(touches[i], touchObjects[i]);
+                        OnTouchHeldCallback(touches[i], touchObjects[i]);
                         break;
 
-
-                    case TouchPhase.Stationary: // Touch held.
-                    case TouchPhase.Moved:
+                    case TouchPhase.Stationary: // Touch stationary and held.
+                        OnTouchStationaryCallback(touches[i], touchObjects[i]);
                         OnTouchHeldCallback(touches[i], touchObjects[i]);
+                        break;
+
+                    case TouchPhase.Ended: // Touch ended.
+                        OnTouchEndedCallback(touches[i], touchObjects[i]);
                         break;
 
                     case TouchPhase.Canceled: // Touch cancelled.
@@ -857,6 +867,46 @@ namespace util
         {
             if (touchBeganCallback != null)
                 touchBeganCallback(touch, hitObject);
+        }
+
+        // TOUCH MOVED
+        // On touch moved add callback.
+        public void AddOnTouchMovedCallback(TouchCallback callback)
+        {
+            touchMovedCallback += callback;
+        }
+
+        // On touch moved remove callback.
+        public void RemoveOnTouchMovedCallback(TouchCallback callback)
+        {
+            touchMovedCallback -= callback;
+        }
+
+        // On touch moved callback.
+        private void OnTouchMovedCallback(Touch touch, GameObject hitObject)
+        {
+            if (touchMovedCallback != null)
+                touchMovedCallback(touch, hitObject);
+        }
+
+        // TOUCH STATIONARY
+        // On touch stationary add callback.
+        public void AddOnTouchStationaryCallback(TouchCallback callback)
+        {
+            touchStationaryCallback += callback;
+        }
+
+        // On touch stationary remove callback.
+        public void RemoveOnTouchStationaryCallback(TouchCallback callback)
+        {
+            touchStationaryCallback -= callback;
+        }
+
+        // On touch stationary callback.
+        private void OnTouchStationaryCallback(Touch touch, GameObject hitObject)
+        {
+            if (touchStationaryCallback != null)
+                touchStationaryCallback(touch, hitObject);
         }
 
         // TOUCH HELD
