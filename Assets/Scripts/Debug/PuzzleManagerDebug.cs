@@ -10,6 +10,12 @@ namespace RM_MST
     // Used to manage debug operations to test for puzzles.
     public class PuzzleManagerDebug : MonoBehaviour
     {
+        [Header("UI")]
+
+        // The test button.
+        public Button testButton;
+
+        [Header("Other")]
         // The puzzle camera.
         public Camera puzzleCam;
 
@@ -42,6 +48,12 @@ namespace RM_MST
             // cameraImage.rectTransform.anchoredPosition = arCurr;
             // 
             // Debug.Log("Screen Marker Pos: " + screenMarker.transform.position.ToString());
+        }
+
+        // Called when a UI button is pressed.
+        public void OnUIButtonPressed()
+        {
+            Debug.Log("Button Pressed!");
         }
 
         // Update is called once per frame
@@ -135,6 +147,8 @@ namespace RM_MST
                         if(rayHit)
                         {
                             Debug.Log("Ray Hit Object: " + hitInfo2D.collider.gameObject);
+
+                            testButton.onClick.Invoke();
                         }
 
                         //// Checks if the mouse button is down.

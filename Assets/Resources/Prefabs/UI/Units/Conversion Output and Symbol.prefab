@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8998301466374296641}
+  - component: {fileID: 6633675782865343754}
   m_Layer: 5
   m_Name: Conversion Output and Symbol
   m_TagString: Untagged
@@ -39,6 +40,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6633675782865343754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3074977891688655843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85dadf5fd771a9041b0a7684dcd2b8e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  symbolImage: {fileID: 2028905103788571582}
+  measurementValueText: {fileID: 6606507614288548800}
+  conversionMultipleText: {fileID: 3413018782498718338}
 --- !u!1 &6408581106020302313
 GameObject:
   m_ObjectHideFlags: 0
