@@ -117,7 +117,7 @@ namespace RM_MST
         // Called on the first update frame of the puzzle UI.
         private void LateStart()
         {
-            calledLateStart = true;
+            calledLateStart = true;     
         }
 
         // Gets the instance.
@@ -280,6 +280,12 @@ namespace RM_MST
                 {
                     // Sets the units button for this display.
                     displays[i].SetInfoFromUnitsButton(unitsButtons[unitsButtonsIndex]);
+
+                    // If there units button is not active, hide this display.
+                    if(!unitsButtons[unitsButtonsIndex].gameObject.activeSelf)
+                    {
+                        displays[i].gameObject.SetActive(false);
+                    }
                 }
                 else // Index is invalid.
                 {
@@ -315,9 +321,10 @@ namespace RM_MST
                 case puzzleType.none:
                 case puzzleType.buttons:
                     
-                    unitButtonsParent.gameObject.SetActive(true);
+                    // Units Buttons
                     ResetUnitButtonsParentPosition();
 
+                    // Puzzle
                     puzzleWindow.SetActive(false);
                     conversionDisplaysParent.gameObject.SetActive(false);
 
@@ -328,9 +335,10 @@ namespace RM_MST
                 case puzzleType.slide:
                 case puzzleType.path:
 
-                    unitButtonsParent.gameObject.SetActive(false);
+                    // Units Buttons
                     MoveUnitButtonsParentToHiddenPosition();
 
+                    // Puzzle
                     puzzleWindow.gameObject.SetActive(true);
                     conversionDisplaysParent.gameObject.SetActive(true);
                     break;

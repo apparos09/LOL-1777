@@ -521,7 +521,7 @@ namespace RM_MST
         }
 
         // Clears the units buttons.
-        public void ClearConversionAndUnitsButtons()
+        public void ClearConversionAndUnitsButtons(bool refreshConvesionDisplays)
         {
             // Conversion
             conversionText.text = "-";
@@ -534,6 +534,18 @@ namespace RM_MST
             unitsButton5.ClearButton();
             unitsButton6.ClearButton();
             unitsButton0.ClearButton();
+
+            // Refreshes the conversion displays to make sure they match the units buttons.
+            if(refreshConvesionDisplays)
+            {
+                stageManager.puzzleManager.puzzleUI.RefreshConversionDisplays();
+            }
+        }
+
+        // Clears the units buttons.
+        public void ClearConversionAndUnitsButtons()
+        {
+            ClearConversionAndUnitsButtons(true);
         }
 
         // Sets all unit buttons to be interactable.

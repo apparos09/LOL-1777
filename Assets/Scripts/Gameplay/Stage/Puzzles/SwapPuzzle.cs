@@ -33,7 +33,7 @@ namespace RM_MST
         {
             // Generate a list of the unit buttons.
             List<UnitsButton> unitsButtons = stageUI.GenerateUnitsButtonsActiveList();
-            List<PuzzleConversionDisplay> displays = puzzleManager.puzzleUI.GenerateConversionDisplayList();
+            List<PuzzleConversionDisplay> displays = puzzleManager.puzzleUI.GenerateActiveConversionDisplayList();
 
             // There are no unit buttons.
             if (unitsButtons.Count < 0 || displays.Count < 0)

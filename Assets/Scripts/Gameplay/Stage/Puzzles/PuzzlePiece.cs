@@ -37,8 +37,11 @@ namespace RM_MST
             // Old - copies sprite from display to piece.
             symbolSpriteRenderer.sprite = conversionDisplay.symbolImage.sprite;
 
-            // Get the colour.
-            pieceSpriteRenderer.color = conversionDisplay.unitsButton.button.image.color;
+            // Get the colour from the units button if it exists.
+            if(conversionDisplay.unitsButton != null)
+            {
+                pieceSpriteRenderer.color = conversionDisplay.unitsButton.button.image.color;
+            }
         }
 
         // Sets the values from the conversion display.
