@@ -10,8 +10,14 @@ namespace RM_MST
         // The stage manager.
         public StageManager stageManager;
 
+        // The stage UI.
+        public StageUI stageUI;
+
         // The puzzle manager.
         public PuzzleManager puzzleManager;
+
+        // The puzzle UI.
+        public PuzzleUI puzzleUI;
 
         // The type of the puzzle.
         protected PuzzleManager.puzzleType puzzleType = PuzzleManager.puzzleType.none;
@@ -32,9 +38,17 @@ namespace RM_MST
             if (stageManager == null)
                 stageManager = StageManager.Instance;
 
+            // Gets the stage UI.
+            if (stageUI == null)
+                stageUI = StageUI.Instance;
+
             // Gets the puzzle manager.
-            if(puzzleManager == null)
+            if (puzzleManager == null)
                 puzzleManager = PuzzleManager.Instance;
+
+            // Gets the puzzle UI.
+            if (puzzleUI == null)
+                puzzleUI = PuzzleUI.Instance;
         }
 
         // Returns this puzzle's type.
@@ -44,7 +58,10 @@ namespace RM_MST
         }
 
         // Initializes the puzzle for when a conversion question starts.
-        public abstract void InitializePuzzle();
+        public abstract void StartPuzzle();
+
+        // Ends a puzzle when a meteor is untargeted.
+        public abstract void EndPuzzle();
 
         // Update is called once per frame
         protected virtual void Update()

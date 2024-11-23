@@ -51,7 +51,7 @@ MonoBehaviour:
   pType: 0
   puzzle: {fileID: 0}
   puzzleParent: {fileID: 1407284197653538967}
-  swapPuzzlePrefab: {fileID: 0}
+  swapPuzzlePrefab: {fileID: 6788003234198845397, guid: 8b33a28bb48f4a94787ecee05f828df4, type: 3}
   slidePuzzlePrefab: {fileID: 0}
   pathPuzzlePrefab: {fileID: 0}
 --- !u!1 &9000443704051080266

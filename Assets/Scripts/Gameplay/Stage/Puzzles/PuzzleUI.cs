@@ -36,10 +36,34 @@ namespace RM_MST
         [Header("Puzzle")]
 
         // The conversion displays.
-        public GameObject conversionDisplays;
+        public GameObject conversionDisplaysParent;
+
+        // Conversion Display 0
+        public PuzzleConversionDisplay conversionDisplay0;
+
+        // Conversion Display 1
+        public PuzzleConversionDisplay conversionDisplay1;
+
+        // Conversion Display 2
+        public PuzzleConversionDisplay conversionDisplay2;
+
+        // Conversion Display 3
+        public PuzzleConversionDisplay conversionDisplay3;
+
+        // Conversion Display 4
+        public PuzzleConversionDisplay conversionDisplay4;
+
+        // Conversion Display 5
+        public PuzzleConversionDisplay conversionDisplay5;
+
+        // Conversion Display 6
+        public PuzzleConversionDisplay conversionDisplay6;
 
         // The puzzle window.
         public GameObject puzzleWindow;
+
+        // An object used to cover the puzzle window when the player shouldn't be able to use it.
+        public GameObject puzzleWindowCover;
 
         // Gets set to 'true' when late start has been called.
         private bool calledLateStart = false;
@@ -141,6 +165,79 @@ namespace RM_MST
             unitButtonsParent.anchoredPosition = unitButtonsHiddenParent.anchoredPosition;
         }
 
+        // Generates a list of conversion displays.
+        public List<PuzzleConversionDisplay> GenerateConversionDisplayList()
+        {
+            // Generates a list of all the displays.
+            List<PuzzleConversionDisplay> displays = new List<PuzzleConversionDisplay>()
+            {
+                conversionDisplay0,
+                conversionDisplay1,
+                conversionDisplay2,
+                conversionDisplay3,
+                conversionDisplay4,
+                conversionDisplay5,
+                conversionDisplay6
+            };
+
+            return displays;
+        }
+
+        // Generates a list of active conversion displays.
+        public List<PuzzleConversionDisplay> GenerateActiveConversionDisplayList()
+        {
+            // The conversion display lists.
+            List<PuzzleConversionDisplay> displayListAll = GenerateConversionDisplayList();
+            List<PuzzleConversionDisplay> displayListActive = new List<PuzzleConversionDisplay>();
+
+            // Goes through all the displays to get which ones are active.
+            for (int i = 0; i < displayListAll.Count; i++)
+            {
+                // The display is active, so add it to the list.
+                if (displayListAll[i].gameObject.activeSelf)
+                {
+                    displayListActive.Add(displayListAll[i]);
+                }
+            }
+
+            // Return the active list.
+            return displayListActive;
+        }
+
+        // Refreshes the conversion displays.
+        public void RefreshConversionDisplays()
+        {
+            // Generates the displays list, and the active units buttons list.
+            List<PuzzleConversionDisplay> displays = GenerateConversionDisplayList();
+            List<UnitsButton> unitsButtons = stageUI.GenerateUnitsButtonsActiveList();
+
+            // The units buttons index.
+            int unitsButtonsIndex = 0;
+
+            // Goes through all the displays and sets them all to specifc units butotns.
+            for(int i = 0; i < displays.Count; i++)
+            {
+                // Turn the display on.
+                displays[i].gameObject.SetActive(true);
+
+                // The index is valid.
+                if(unitsButtonsIndex < unitsButtons.Count)
+                {
+                    // Sets the units button for this display.
+                    displays[i].SetInfoFromUnitsButton(unitsButtons[unitsButtonsIndex]);
+                }
+                else // Index is invalid.
+                {
+                    // Clear the display nad turn it off.
+                    displays[i].Clear();
+                    displays[i].gameObject.SetActive(false);
+                }
+
+                // Increase the index.
+                unitsButtonsIndex++;
+            }
+        }
+
         // Called when a puzzle has been generated.
         public void OnPuzzleGenerated()
         {
@@ -155,7 +252,7 @@ namespace RM_MST
                     ResetUnitButtonsParentPosition();
 
                     puzzleWindow.SetActive(false);
-                    conversionDisplays.gameObject.SetActive(false);
+                    conversionDisplaysParent.gameObject.SetActive(false);
 
                     break;
 
@@ -168,7 +265,7 @@ namespace RM_MST
                     MoveUnitButtonsParentToHiddenPosition();
 
                     puzzleWindow.gameObject.SetActive(true);
-                    conversionDisplays.gameObject.SetActive(true);
+                    conversionDisplaysParent.gameObject.SetActive(true);
                     break;
             }
         }

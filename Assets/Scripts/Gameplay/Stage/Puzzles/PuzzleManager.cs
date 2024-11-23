@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 namespace RM_MST
@@ -182,8 +183,9 @@ namespace RM_MST
             }
             else
             {
-                // Set the puzzle parent.
+                // Set the puzzle parent and reset the local position.
                 puzzle.transform.parent = puzzleParent.transform;
+                puzzle.transform.localPosition = Vector3.zero;
             }
 
             // The puzzle has been generated.
@@ -201,12 +203,53 @@ namespace RM_MST
             GeneratePuzzle();
         }
 
+        // Called when a meteor has been targeted.
+        public void OnMeteorTargeted(Meteor meteor)
+        {
+            // Refreshes the conversion displays.
+            puzzleUI.RefreshConversionDisplays();
+
+            // Starts the puzzle.
+            if(puzzle != null)
+            {
+                puzzle.StartPuzzle();
+            }
+        }
+
+        // Called when the stage has ended.
+        public void OnStageEnd()
+        {
+            // If there is a puzzle, end it and put up the puzzle over.
+            if(puzzle != null)
+            {
+                puzzle.EndPuzzle();
+                puzzleUI.puzzleWindowCover.SetActive(true);
+            }
+        }
+
         // Update is called once per frame
         void Update()
         {
             // Calls LateStart.
             if (!calledLateStart)
                 LateStart();
+
+            // If the game is playing.
+            if(stageManager.IsGamePlaying())
+            {
+                // Gets set to 'true' if the buttons are interactive.
+                bool buttonsInter = stageManager.stageUI.IsAllActiveUnitButtonsInteractable();
+
+                // This isn't efficent, but this is the best you can do without reworking the other systems greatly.
+
+                // If the puzzle cover's active should be changed, change it.
+                // If the buttons are interactable, the cover should be inactive, and vice-versa.
+                if(puzzleUI.puzzleWindowCover.activeSelf == buttonsInter)
+                {
+                    puzzleUI.puzzleWindowCover.SetActive(!buttonsInter);
+                }
+
+            }
         }
 
         // This function is called when the MonoBehaviour will be destroyed.

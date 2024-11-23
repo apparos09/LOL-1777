@@ -36,6 +36,10 @@ namespace RM_MST
         [Tooltip("The colour of the laser that's shot by the units button.")]
         public Color laserColor = Color.white;
 
+        // Automatically sets the laser colour to hte button's colour.
+        [Tooltip("Automatically sets the laser's colour to the button's colour.")]
+        public bool autoSetLaserColor = false;
+
         // Gets set to 'true' when this is the correct value.
         // This is an alternate way to see if this button is the correct one.
         [Tooltip("An alternate way to check that this button is correct. Call related function to auto set.")]
@@ -66,6 +70,12 @@ namespace RM_MST
             // Autoset the text.
             if(measurementValueText == null)
                 measurementValueText = GetComponentInChildren<TMP_Text>();
+
+            // If the laser colour should be automatically set.
+            if (autoSetLaserColor && button != null)
+            {
+                laserColor = button.image.color;
+            }
         }
 
         // Returns the measurement value.

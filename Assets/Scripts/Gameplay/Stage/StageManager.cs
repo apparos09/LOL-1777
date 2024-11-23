@@ -188,6 +188,11 @@ namespace RM_MST
         // This addresses an issue where a meteor behind another meteor gets targeted.
         private bool constClosestMeteorCheck = true;
 
+        [Header("Puzzles")]
+
+        // The puzzle manager for the stage.
+        public PuzzleManager puzzleManager;
+
         [Header("Combo")]
         // The combo for the stage.
         public int combo = 0;
@@ -253,9 +258,13 @@ namespace RM_MST
             if (stageUI == null)
                 stageUI = StageUI.Instance;
 
-            // Gets the audio isntance.
+            // Gets the audio instance.
             if(stageAudio == null)
                 stageAudio = StageAudio.Instance;
+
+            // Gets the puzle manager instance.
+            if (puzzleManager == null)
+                puzzleManager = PuzzleManager.Instance;
 
             // If the gameplay info has been instantiated.
             if (GameplayInfo.Instantiated)
@@ -489,6 +498,9 @@ namespace RM_MST
 
                 // Sets the unit buttons active/inactive by difficulty.
                 stageUI.SetUnitButtonsActiveByDifficulty(difficulty);
+
+                // Makes sure the conversion display count match the number of unit buttons.
+                puzzleManager.puzzleUI.RefreshConversionDisplays();
             }
         }
 
@@ -702,6 +714,27 @@ namespace RM_MST
 
             // Return the meteor.
             return meteor;
+        }
+
+        // Called when a meteor has been targeted.
+        public void OnMeteorTargeted(Meteor meteor)
+        {
+            // Meteor is set.
+            if (meteor != null)
+            {
+                // Conversion is set.
+                if (meteor.conversion != null)
+                {
+                    stageUI.UpdateUnitsTable(meteor.conversion.group);
+                }
+            }
+
+            // Updates the unit buttons with the provied meteor.
+            stageUI.UpdateConversionAndUnitsButtons(meteor);
+
+            // Call the puzzle manager's function.
+            puzzleManager.OnMeteorTargeted(meteor);
+
         }
 
         // Called when a meteor is destroyed.
@@ -1463,6 +1496,9 @@ namespace RM_MST
 
             // Calculate the final score, and add it to the game score.
             CalculateAndSetStageFinalScore();
+
+            // Puzzle manager stage end call.
+            puzzleManager.OnStageEnd();
 
             // UI stage end.
             stageUI.OnStageEnd();

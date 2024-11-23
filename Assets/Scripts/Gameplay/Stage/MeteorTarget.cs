@@ -63,18 +63,8 @@ namespace RM_MST
         // Called when the meteor is targeted.
         private void OnMeteorTargeted()
         {
-            // Meteor is set.
-            if (meteor != null)
-            {
-                // Conversion is set.
-                if(meteor.conversion != null)
-                {
-                    stageManager.stageUI.UpdateUnitsTable(meteor.conversion.group);
-                }
-            }
-
-            // Updates the unit buttons with the provied meteor.
-            stageManager.stageUI.UpdateConversionAndUnitsButtons(meteor);
+            // Calls the stage manager to tell it that a meteor has been targeted.
+            stageManager.OnMeteorTargeted(meteor);
 
             // Plays the animation.
             PlayLockInAnimation();

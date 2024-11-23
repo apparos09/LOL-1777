@@ -12,6 +12,9 @@ namespace RM_MST
         // The symbol image.
         public Image symbolImage;
 
+        // The symbol background image.
+        public Image symbolBgImage;
+
         // The conversion text.
         public TMP_Text measurementValueText;
 
@@ -28,11 +31,16 @@ namespace RM_MST
         }
 
         // Sets the text using a units button.
-        public void SetTextFromUnitsButton(UnitsButton unitsButton)
+        public void SetInfoFromUnitsButton(UnitsButton unitsButton)
         {
             this.unitsButton = unitsButton;
+            
+            // Text
             measurementValueText.text = unitsButton.measurementValueText.text;
             conversionMultipleText.text = unitsButton.conversionMultipleText.text;
+
+            // Colour
+            symbolBgImage.color = unitsButton.button.image.color;
         }
 
         // Clears all elements.

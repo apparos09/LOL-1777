@@ -335,4 +335,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62b6e2a5cce536c4abde573b5e40fd24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitsButton: {fileID: 0}
+  conversionDisplay: {fileID: 0}
+  setDisplayInfoOnStart: 1
+  symbolSpriteRenderer: {fileID: 4968492631606643380}
+  pieceSpriteRenderer: {fileID: 6520277968221243124}

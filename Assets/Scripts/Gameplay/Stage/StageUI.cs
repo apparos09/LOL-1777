@@ -245,10 +245,10 @@ namespace RM_MST
         }
 
         // Generates a list of all the unit buttons.
-        public List<UnitsButton> GenerateUnitButtonsList()
+        public List<UnitsButton> GenerateUnitsButtonsList()
         {
             // Returns the unit buttons list.
-            List<UnitsButton> unitButtons = new List<UnitsButton>
+            List<UnitsButton> unitsButtons = new List<UnitsButton>
             {
                 unitsButton0,
                 unitsButton1,
@@ -259,7 +259,28 @@ namespace RM_MST
                 unitsButton6,
             };
 
-            return unitButtons;
+            return unitsButtons;
+        }
+
+        // Generates a list of all active unit buttons.
+        public List<UnitsButton> GenerateUnitsButtonsActiveList()
+        {
+            // The unit buttons list.
+            List<UnitsButton> unitsButtonsAll = GenerateUnitsButtonsList();
+            List<UnitsButton> unitsButtonsActive = new List<UnitsButton>();
+
+            // Goes through all the unit buttons to get which ones are active.
+            for(int i = 0; i < unitsButtonsAll.Count; i++)
+            {
+                // The units button is active, so add it to the list.
+                if (unitsButtonsAll[i].gameObject.activeSelf)
+                {
+                    unitsButtonsActive.Add(unitsButtonsAll[i]);
+                }
+            }
+
+            // Return the active list.
+            return unitsButtonsActive;
         }
 
         // Set all the unit buttons to be active or inactive.
@@ -275,17 +296,48 @@ namespace RM_MST
         }
 
         // Makes all unit buttons active.
-        public void EnableAllUnitButtons()
+        public void EnableAllUnitsButtons()
         {
             SetAllUnitButtonsActive(true);
         }
 
         // Makes all unit buttons inactive.
-        public void DisableAllUnitButtons()
+        public void DisableAllUnitsButtons()
         {
             SetAllUnitButtonsActive(false);
         }
 
+        // Returns 'true' if all active unit buttons are interactable.
+        public bool IsAllActiveUnitButtonsInteractable()
+        {
+            // Gets a list of all active buttons.
+            List<UnitsButton> activeButtons = GenerateUnitsButtonsActiveList();
+
+            // Checks if all are interactable.
+            bool allInteract = true;
+
+            // There are active buttons.
+            if(activeButtons.Count > 0)
+            {
+                // Goes through all units buttons.
+                foreach (UnitsButton unitsButton in activeButtons)
+                {
+                    // If one button is unintactable, then none of them are.
+                    if(!unitsButton.button.interactable)
+                    {
+                        allInteract = false;
+                        break;
+                    }
+                }
+            }
+            else // No buttons in list, so none are interactable.
+            {
+                allInteract = false;
+            }
+
+            // Returns result.
+            return allInteract;
+        }
 
         // Updates the units buttons.
         public void UpdateConversionAndUnitsButtons(Meteor meteor)

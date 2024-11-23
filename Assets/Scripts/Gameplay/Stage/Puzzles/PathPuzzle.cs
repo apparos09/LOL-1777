@@ -21,7 +21,13 @@ namespace RM_MST
         }
 
         // Initializes the puzzle for when a conversion question starts.
-        public override void InitializePuzzle()
+        public override void StartPuzzle()
+        {
+
+        }
+
+        // Ends a puzzle when a meteor is untargeted.
+        public override void EndPuzzle()
         {
 
         }
