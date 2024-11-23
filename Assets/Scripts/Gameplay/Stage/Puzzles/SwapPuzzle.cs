@@ -28,15 +28,15 @@ namespace RM_MST
             base.Start();
         }
 
-        // Initializes the puzzle for when a conversion question starts.
-        public override void StartPuzzle()
+        // Initializes the puzzle.
+        public override void InitializePuzzle()
         {
             // Generate a list of the unit buttons.
             List<UnitsButton> unitsButtons = stageUI.GenerateUnitsButtonsActiveList();
             List<PuzzleConversionDisplay> displays = puzzleManager.puzzleUI.GenerateConversionDisplayList();
 
             // There are no unit buttons.
-            if(unitsButtons.Count < 0 || displays.Count < 0)
+            if (unitsButtons.Count < 0 || displays.Count < 0)
             {
                 Debug.LogError("No active unit buttons were found! Puzzle will fail to load.");
             }
@@ -46,7 +46,7 @@ namespace RM_MST
 
             // While there are positions to be filled.
             // TODO: loop around if the display index passes the list count.
-            for(int i = 0; i < symbolPositions.Count && displayIndex < displays.Count; i++)
+            for (int i = 0; i < symbolPositions.Count && displayIndex < displays.Count; i++)
             {
                 // Instantiates the piece.
                 PuzzlePiece piece = Instantiate(piecePrefab);
@@ -69,14 +69,26 @@ namespace RM_MST
             }
         }
 
+        // Initializes the puzzle for when a conversion question starts.
+        public override void StartPuzzle()
+        {
+            // ...
+        }
+
+        // Stops the puzzle, which is called when a meteor is untargeted.
+        public override void StopPuzzle()
+        {
+            // ...
+        }
+
         // Ends a puzzle when a meteor is untargeted.
         public override void EndPuzzle()
         {
             // Destroys all the generated pieces.
-            foreach(PuzzlePiece piece in genPieces)
+            foreach (PuzzlePiece piece in genPieces)
             {
                 // Destroys the generated piece.
-                if(piece != null)
+                if (piece != null)
                 {
                     Destroy(piece.gameObject);
                 }
@@ -90,6 +102,16 @@ namespace RM_MST
         protected override void Update()
         {
             base.Update();
+        }
+
+        // This function is called when the MonoBehaviour will be destroyed.
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+
+            // Ends the puzzle.
+            // TODO: this may have already been called.
+            EndPuzzle();
         }
     }
 }

@@ -740,7 +740,8 @@ namespace RM_MST
         // Called when a meteor is destroyed.
         public void OnMeteorKilled(Meteor meteor)
         {
-            stageUI.OnMeteorKilled();
+            stageUI.OnMeteorKilled(meteor);
+            puzzleManager.OnMeteorKilled(meteor);
         }
 
         // Called when a meteor fails to be destroyed.
@@ -1574,6 +1575,9 @@ namespace RM_MST
 
             // Unmute the SFX world audio.
             stageAudio.sfxWorldSource.mute = false;
+
+            // Called to reset the puzzle.
+            puzzleManager.OnStageReset();
 
             // Unpause game and start running.
             UnpauseGame();

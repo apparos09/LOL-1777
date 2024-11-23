@@ -293,6 +293,18 @@ namespace RM_MST
             }
         }
 
+        // Clears the conversion displays.
+        public void ClearConversionDisplays()
+        {
+            conversionDisplay0.Clear();
+            conversionDisplay1.Clear();
+            conversionDisplay2.Clear();
+            conversionDisplay3.Clear();
+            conversionDisplay4.Clear();
+            conversionDisplay5.Clear();
+            conversionDisplay6.Clear();
+        }
+
         // Called when a puzzle has been generated.
         public void OnPuzzleGenerated()
         {
@@ -323,6 +335,9 @@ namespace RM_MST
                     conversionDisplaysParent.gameObject.SetActive(true);
                     break;
             }
+
+            // Refreshes the conversion displays.
+            RefreshConversionDisplays();
         }
 
         // Update is called once per frame

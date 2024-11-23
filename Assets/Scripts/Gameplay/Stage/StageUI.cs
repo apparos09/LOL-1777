@@ -709,7 +709,7 @@ namespace RM_MST
         }
 
         // Called when a meteor has been killed.
-        public void OnMeteorKilled()
+        public void OnMeteorKilled(Meteor meteor)
         {
             // Make the unit buttons uninteractable and clears them since the meteor has been killed.
             MakeUnitButtonsUninteractable();

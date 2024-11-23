@@ -25,6 +25,9 @@ namespace RM_MST
         // The puzzle piece prefabs.
         public PuzzlePiece piecePrefab;
 
+        // If set to 'true', initialize is called onStart for the puzzle.
+        public bool initializeOnStart = true;
+
         // Awake is called when the script instance is being loaded.
         protected virtual void Awake()
         {
@@ -33,6 +36,17 @@ namespace RM_MST
 
         // Start is called before the first frame update
         protected virtual void Start()
+        {
+            // Sets the instances needed for the puzzle to function.
+            SetInstances();
+
+            // Initializes the puzzle.
+            if(initializeOnStart)
+                InitializePuzzle();
+        }
+
+        // Sets the instances.
+        public void SetInstances()
         {
             // Gets the stage manager.
             if (stageManager == null)
@@ -57,16 +71,28 @@ namespace RM_MST
             return puzzleType;
         }
 
-        // Initializes the puzzle for when a conversion question starts.
+        // Initializes the puzzle.
+        public abstract void InitializePuzzle();
+
+        // Starts the puzzle.
         public abstract void StartPuzzle();
 
-        // Ends a puzzle when a meteor is untargeted.
+        // Stops the puzzle, which is called when a meteor is untargeted.
+        public abstract void StopPuzzle();
+
+        // Ends a puzzle when the game finishes.
         public abstract void EndPuzzle();
 
         // Update is called once per frame
         protected virtual void Update()
         {
 
+        }
+
+        // This function is called when the MonoBehaviour will be destroyed.
+        protected virtual void OnDestroy()
+        {
+            // ...
         }
     }
 }

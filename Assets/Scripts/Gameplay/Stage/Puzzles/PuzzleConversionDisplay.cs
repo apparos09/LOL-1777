@@ -30,11 +30,9 @@ namespace RM_MST
             symbolImage.sprite = symbolSprite;
         }
 
-        // Sets the text using a units button.
-        public void SetInfoFromUnitsButton(UnitsButton unitsButton)
+        // Sets the infro from the saved units button.
+        public void SetInfoFromUnitsButton()
         {
-            this.unitsButton = unitsButton;
-            
             // Text
             measurementValueText.text = unitsButton.measurementValueText.text;
             conversionMultipleText.text = unitsButton.conversionMultipleText.text;
@@ -43,10 +41,17 @@ namespace RM_MST
             symbolBgImage.color = unitsButton.button.image.color;
         }
 
+        // Sets the text using a units button.
+        public void SetInfoFromUnitsButton(UnitsButton unitsButton)
+        {
+            this.unitsButton = unitsButton;
+
+            SetInfoFromUnitsButton();
+        }
+
         // Clears all elements.
         public void Clear()
         {
-            symbolImage.sprite = null;
             measurementValueText.text = "-";
             conversionMultipleText.text = "-";
         }

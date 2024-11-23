@@ -20,8 +20,20 @@ namespace RM_MST
             base.Start();
         }
 
+        // Initializes the puzzle.
+        public override void InitializePuzzle()
+        {
+
+        }
+
         // Initializes the puzzle for when a conversion question starts.
         public override void StartPuzzle()
+        {
+
+        }
+
+        // Stops the puzzle, which is called when a meteor is untargeted.
+        public override void StopPuzzle()
         {
 
         }

@@ -2631,6 +2631,7 @@ MonoBehaviour:
   conversionDisplay5: {fileID: 4554105137167952626}
   conversionDisplay6: {fileID: 7564687449402109177}
   puzzleWindow: {fileID: 4366888374956228112}
+  cameraRawImage: {fileID: 1095379597394740994}
   puzzleWindowCover: {fileID: 6641207512389451058}
 --- !u!1 &4939307171146897312
 GameObject:

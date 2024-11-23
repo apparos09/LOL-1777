@@ -37,9 +37,6 @@ namespace RM_MST
             // Old - copies sprite from display to piece.
             symbolSpriteRenderer.sprite = conversionDisplay.symbolImage.sprite;
 
-            // New - gives display this sprite's image.
-            // conversionDisplay.symbolImage.sprite = symbolSpriteRenderer.sprite;
-
             // Get the colour.
             pieceSpriteRenderer.color = conversionDisplay.unitsButton.button.image.color;
         }

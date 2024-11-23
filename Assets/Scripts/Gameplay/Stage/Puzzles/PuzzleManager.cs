@@ -150,6 +150,9 @@ namespace RM_MST
             {
                 // Destroy the object.
                 Destroy(puzzle.gameObject);
+
+                // Clears the displays.
+                puzzleUI.ClearConversionDisplays();
             }
 
             // Generate the puzzle.
@@ -192,6 +195,12 @@ namespace RM_MST
                 // Set the puzzle parent and reset the local position.
                 puzzle.transform.parent = puzzleParent.transform;
                 puzzle.transform.localPosition = Vector3.zero;
+
+                // Initialize the puzzle.
+                // Since the puzzle's been initialized, it shouldn't initialize on start.
+                puzzle.SetInstances();
+                puzzle.InitializePuzzle();
+                puzzle.initializeOnStart = false;
             }
 
             // The puzzle has been generated.
@@ -222,6 +231,21 @@ namespace RM_MST
             }
         }
 
+        // Called when a meteor has been killed.
+        public void OnMeteorKilled(Meteor meteor)
+        {
+            // If there is no meteor targeted, or if the destroyed meteor is the meteor that was destroyed...
+            // ...Call 'stop' for the puzzle.
+            if(!stageManager.meteorTarget.IsMeteorTargeted() || stageManager.meteorTarget.IsMeteorTargeted(meteor))
+            {
+                // There is a puzzle, so tell it to stop.
+                if(puzzle != null)
+                {
+                    puzzle.StopPuzzle();
+                }
+            }
+        }
+
         // Called when the stage has ended.
         public void OnStageEnd()
         {
@@ -233,11 +257,47 @@ namespace RM_MST
             }
         }
 
+        // Called when the stage is being reset.
+        public void OnStageReset()
+        {
+            // Generates the puzzle again.
+            GeneratePuzzle();
+        }
+
         // Updates the puzzle inout.
         public void UpdatePuzzleInput()
         {
-            // If the puzzle window is not active and the pointer is over a UI element.
-            if (!puzzleUI.puzzleWindow.activeSelf && EventSystem.current.IsPointerOverGameObject())
+            // If the puzzle window cover is active, the player's inputs are blocked.
+            // As such, do nothing.
+            if (puzzleUI.puzzleWindowCover.activeSelf)
+                return;
+
+            // The position of the pointer (mouse/touch).
+            Vector2 pointerPos = new Vector2();
+
+            // Gets set to 'true' if the pointer position is set.
+            bool pointerPosSet = false;
+
+            // The mouse button is down, so track it.
+            if(Input.GetMouseButtonDown(0))
+            {
+                // Gets the mouse position.
+                pointerPos = Input.mousePosition;
+                pointerPosSet = true;
+            }
+            else // No mouse down, so check for touches.
+            {
+                // If there are touches, get the position of the first touch.
+                if(Input.touches.GetLength(0) > 0)
+                {
+                    pointerPos = Input.touches[0].position;
+                    pointerPosSet = true;
+                }
+            }
+
+
+            // If the pointer position has been set, and the pointer is over a UI element.
+            if (pointerPosSet && EventSystem.current.IsPointerOverGameObject())
             {
                 // Gets the raycast results.
                 List<RaycastResult> raycastResults = MouseTouchInput.GetMouseUIRaycastResults();
@@ -265,9 +325,6 @@ namespace RM_MST
                 {
                     // 1. Calculate the Pointer Position in the Camera Image
 
-                    // Gets the mouse position.
-                    Vector2 mousePos = Input.mousePosition;
-
                     // The lower and upper bounds.
                     Vector2 camRawImageLower = puzzleUI.CalculateCameraRawImageLowerBounds();
                     Vector2 camRawImageUpper = puzzleUI.CalculateCameraRawImageUpperBounds(); ;
@@ -276,8 +333,8 @@ namespace RM_MST
                     // Treat this as the viewport position of the camera.
                     Vector3 mousePosPercents = new Vector3();
 
-                    mousePosPercents.x = Mathf.InverseLerp(camRawImageLower.x, camRawImageUpper.x, mousePos.x);
-                    mousePosPercents.y = Mathf.InverseLerp(camRawImageLower.y, camRawImageUpper.y, mousePos.y);
+                    mousePosPercents.x = Mathf.InverseLerp(camRawImageLower.x, camRawImageUpper.x, pointerPos.x);
+                    mousePosPercents.y = Mathf.InverseLerp(camRawImageLower.y, camRawImageUpper.y, pointerPos.y);
                     mousePosPercents.z = 1.0F;
 
                     // 2. Calculate the World Position in the Camera Source
@@ -308,7 +365,7 @@ namespace RM_MST
                     PuzzlePiece hitPiece;
 
                     // If the collider piece is not equal to null.
-                    if(hitInfo.collider != null)
+                    if (hitInfo.collider != null)
                     {
                         // Tries to get the hit piece component.
                         if (hitInfo.collider.gameObject.TryGetComponent(out hitPiece))
