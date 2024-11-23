@@ -3517,7 +3517,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5174,6 +5174,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 745033292639658661}
     m_Modifications:
+    - target: {fileID: 2028905103788571582, guid: 20008c364bcdf044a9b73bfcc86ad78d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1977874287, guid: 8acd5d5766d6fbf4d943907ceddbdb7d, type: 3}
     - target: {fileID: 3074977891688655843, guid: 20008c364bcdf044a9b73bfcc86ad78d, type: 3}
       propertyPath: m_Name
       value: Conversion Output and Symbol 1
@@ -6064,6 +6068,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 745033292639658661}
     m_Modifications:
+    - target: {fileID: 2028905103788571582, guid: 20008c364bcdf044a9b73bfcc86ad78d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1216046418, guid: 8acd5d5766d6fbf4d943907ceddbdb7d, type: 3}
     - target: {fileID: 3074977891688655843, guid: 20008c364bcdf044a9b73bfcc86ad78d, type: 3}
       propertyPath: m_Name
       value: Conversion Output and Symbol 2
@@ -6177,6 +6185,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8479841439067631358}
     m_Modifications:
+    - target: {fileID: 2028905103788571582, guid: 20008c364bcdf044a9b73bfcc86ad78d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -289850133, guid: 8acd5d5766d6fbf4d943907ceddbdb7d, type: 3}
     - target: {fileID: 3074977891688655843, guid: 20008c364bcdf044a9b73bfcc86ad78d, type: 3}
       propertyPath: m_Name
       value: Conversion Output and Symbol 4
@@ -6290,6 +6302,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8479841439067631358}
     m_Modifications:
+    - target: {fileID: 2028905103788571582, guid: 20008c364bcdf044a9b73bfcc86ad78d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1051453667, guid: 8acd5d5766d6fbf4d943907ceddbdb7d, type: 3}
     - target: {fileID: 3074977891688655843, guid: 20008c364bcdf044a9b73bfcc86ad78d, type: 3}
       propertyPath: m_Name
       value: Conversion Output and Symbol 6
@@ -6904,6 +6920,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 745033292639658661}
     m_Modifications:
+    - target: {fileID: 2028905103788571582, guid: 20008c364bcdf044a9b73bfcc86ad78d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -921365226, guid: 8acd5d5766d6fbf4d943907ceddbdb7d, type: 3}
     - target: {fileID: 3074977891688655843, guid: 20008c364bcdf044a9b73bfcc86ad78d, type: 3}
       propertyPath: m_Name
       value: Conversion Output and Symbol 3
@@ -7635,6 +7655,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8479841439067631358}
     m_Modifications:
+    - target: {fileID: 2028905103788571582, guid: 20008c364bcdf044a9b73bfcc86ad78d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 806740544, guid: 8acd5d5766d6fbf4d943907ceddbdb7d, type: 3}
     - target: {fileID: 3074977891688655843, guid: 20008c364bcdf044a9b73bfcc86ad78d, type: 3}
       propertyPath: m_Name
       value: Conversion Output and Symbol 5
@@ -7748,6 +7772,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 745033292639658661}
     m_Modifications:
+    - target: {fileID: 2028905103788571582, guid: 20008c364bcdf044a9b73bfcc86ad78d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 809854057, guid: 8acd5d5766d6fbf4d943907ceddbdb7d, type: 3}
     - target: {fileID: 3074977891688655843, guid: 20008c364bcdf044a9b73bfcc86ad78d, type: 3}
       propertyPath: m_Name
       value: Conversion Output and Symbol 0

@@ -52,7 +52,7 @@ namespace RM_MST
         }
 
         // Called when the puzzle piece has been selected.
-        public void OnSelect()
+        public virtual void OnSelect()
         {
             // Trigger the unit button.
             // TODO: check if the button is interactable?

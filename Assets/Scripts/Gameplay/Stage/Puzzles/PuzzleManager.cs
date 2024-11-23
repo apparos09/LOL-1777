@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+using util;
 
 namespace RM_MST
 {
@@ -37,6 +40,9 @@ namespace RM_MST
 
         // The parent object for the puzzle.
         public GameObject puzzleParent;
+
+        // The puzzle camera.
+        public Camera puzzleCamera;
 
         [Header("Puzzles/Prefabs")]
 
@@ -227,6 +233,95 @@ namespace RM_MST
             }
         }
 
+        // Updates the puzzle inout.
+        public void UpdatePuzzleInput()
+        {
+            // If the puzzle window is not active and the pointer is over a UI element.
+            if (!puzzleUI.puzzleWindow.activeSelf && EventSystem.current.IsPointerOverGameObject())
+            {
+                // Gets the raycast results.
+                List<RaycastResult> raycastResults = MouseTouchInput.GetMouseUIRaycastResults();
+
+                // Gets set to 'true' if the player is in the puzzle window.
+                bool inPuzzleWindow = false;
+
+                // The camera raw image.
+                RawImage cameraRawImage = puzzleUI.cameraRawImage;
+
+                // Goes through the raycast results.
+                foreach (RaycastResult raycastResult in raycastResults)
+                {
+                    // If the player is interacting with the camera image, register the movement.
+                    if(raycastResult.gameObject == cameraRawImage.gameObject)
+                    {
+                        inPuzzleWindow = true;
+                    }
+                }
+
+                // TODO: implement touches from touch pad.
+
+                // The player is in the puzzle window.
+                if(inPuzzleWindow)
+                {
+                    // 1. Calculate the Pointer Position in the Camera Image
+
+                    // Gets the mouse position.
+                    Vector2 mousePos = Input.mousePosition;
+
+                    // The lower and upper bounds.
+                    Vector2 camRawImageLower = puzzleUI.CalculateCameraRawImageLowerBounds();
+                    Vector2 camRawImageUpper = puzzleUI.CalculateCameraRawImageUpperBounds(); ;
+
+                    // Get the percentage positions of the pointer over the camera image.
+                    // Treat this as the viewport position of the camera.
+                    Vector3 mousePosPercents = new Vector3();
+
+                    mousePosPercents.x = Mathf.InverseLerp(camRawImageLower.x, camRawImageUpper.x, mousePos.x);
+                    mousePosPercents.y = Mathf.InverseLerp(camRawImageLower.y, camRawImageUpper.y, mousePos.y);
+                    mousePosPercents.z = 1.0F;
+
+                    // 2. Calculate the World Position in the Camera Source
+
+                    // Set the viewport position.
+                    Vector3 puzzleCamViewportPos = new Vector3();
+                    puzzleCamViewportPos.x = mousePosPercents.x;
+                    puzzleCamViewportPos.y = mousePosPercents.y;
+
+                    // Calculate the viewport position as a world pos and as a ray.
+                    Vector3 puzzleCamPointerPos = puzzleCamera.ViewportToWorldPoint(puzzleCamViewportPos);
+                    puzzleCamPointerPos.z = 0; // Makes sure it's at 0 so that the sprite isn't hidden.
+
+                    // 3. Cast the Ray
+                    // The ray origin.
+                    Vector2 rayOrigin2D = new Vector2(puzzleCamPointerPos.x, puzzleCamPointerPos.y);
+
+                    // the max distance is the far clip plane minus the near clip plane.
+                    float maxDist = puzzleCamera.farClipPlane - puzzleCamera.nearClipPlane;
+
+                    // 2D ray cast.
+                    RaycastHit2D hitInfo = Physics2D.Raycast(rayOrigin2D, Vector3.forward, maxDist);
+                    bool rayHit = hitInfo.collider != null;
+
+
+                    // 4. Try to Select the Piece
+                    // The piece that has hit.
+                    PuzzlePiece hitPiece;
+
+                    // If the collider piece is not equal to null.
+                    if(hitInfo.collider != null)
+                    {
+                        // Tries to get the hit piece component.
+                        if (hitInfo.collider.gameObject.TryGetComponent(out hitPiece))
+                        {
+                            // Select the hit piece.
+                            hitPiece.OnSelect();
+                        }
+                    }
+
+                }
+            }
+        }
+
         // Update is called once per frame
         void Update()
         {
@@ -235,7 +330,7 @@ namespace RM_MST
                 LateStart();
 
             // If the game is playing.
-            if(stageManager.IsGamePlaying())
+            if (stageManager.IsGamePlaying())
             {
                 // Gets set to 'true' if the buttons are interactive.
                 bool buttonsInter = stageManager.stageUI.IsAllActiveUnitButtonsInteractable();
@@ -244,11 +339,13 @@ namespace RM_MST
 
                 // If the puzzle cover's active should be changed, change it.
                 // If the buttons are interactable, the cover should be inactive, and vice-versa.
-                if(puzzleUI.puzzleWindowCover.activeSelf == buttonsInter)
+                if (puzzleUI.puzzleWindowCover.activeSelf == buttonsInter)
                 {
                     puzzleUI.puzzleWindowCover.SetActive(!buttonsInter);
                 }
 
+                // Updates the player's puzzle inputs.
+                UpdatePuzzleInput();
             }
         }
 

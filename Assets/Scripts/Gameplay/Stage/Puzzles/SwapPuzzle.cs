@@ -41,9 +41,6 @@ namespace RM_MST
                 Debug.LogError("No active unit buttons were found! Puzzle will fail to load.");
             }
 
-            // Get a list of valid puzzle prefabs.
-            List<PuzzlePiece> validPiecePrefabs = piecePrefabs.GetRange(0, unitsButtons.Count);
-
             // The display index.
             int displayIndex = 0;
 
@@ -52,7 +49,7 @@ namespace RM_MST
             for(int i = 0; i < symbolPositions.Count && displayIndex < displays.Count; i++)
             {
                 // Instantiates the piece.
-                PuzzlePiece piece = Instantiate(validPiecePrefabs[displayIndex]);
+                PuzzlePiece piece = Instantiate(piecePrefab);
 
                 // Set the conversion display.
                 piece.SetPieceFromConversionDisplay(displays[displayIndex]);

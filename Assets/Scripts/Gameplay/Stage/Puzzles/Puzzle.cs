@@ -23,7 +23,7 @@ namespace RM_MST
         protected PuzzleManager.puzzleType puzzleType = PuzzleManager.puzzleType.none;
 
         // The puzzle piece prefabs.
-        public List<PuzzlePiece> piecePrefabs = new List<PuzzlePiece>();
+        public PuzzlePiece piecePrefab;
 
         // Awake is called when the script instance is being loaded.
         protected virtual void Awake()

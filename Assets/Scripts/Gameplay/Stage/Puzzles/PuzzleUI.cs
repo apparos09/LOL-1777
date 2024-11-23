@@ -62,6 +62,9 @@ namespace RM_MST
         // The puzzle window.
         public GameObject puzzleWindow;
 
+        // The raw camera image.
+        public RawImage cameraRawImage;
+
         // An object used to cover the puzzle window when the player shouldn't be able to use it.
         public GameObject puzzleWindowCover;
 
@@ -163,6 +166,58 @@ namespace RM_MST
         public void MoveUnitButtonsParentToHiddenPosition()
         {
             unitButtonsParent.anchoredPosition = unitButtonsHiddenParent.anchoredPosition;
+        }
+
+        // Calculates the lower bounds (in pixels) of the raw camera image.
+        public Vector2 CalculateCameraRawImageLowerBounds()
+        {
+            // The lower bounds.
+            Vector2 camRawImageLower;
+
+            // The xy local scale.
+            Vector2 camRawImageScaleXY = new Vector2();
+            camRawImageScaleXY.x = cameraRawImage.transform.localScale.x;
+            camRawImageScaleXY.y = cameraRawImage.transform.localScale.y;
+
+            // The camera image's anchor point, and the rect size.
+            Vector2 camImageAncPos = cameraRawImage.rectTransform.anchoredPosition;
+            Vector2 camRectSize = cameraRawImage.rectTransform.sizeDelta;
+
+            // Lower Bounds
+            cameraRawImage.rectTransform.anchoredPosition = camImageAncPos - (camRectSize * camRawImageScaleXY) / 2;
+            camRawImageLower = cameraRawImage.transform.position;
+
+            // Reset the anchor position.
+            cameraRawImage.rectTransform.anchoredPosition = camImageAncPos;
+
+            // Returns the lower bounds.
+            return camRawImageLower;
+        }
+
+        // Calculates the upper bounds (in pixels) of the raw camera image.
+        public Vector2 CalculateCameraRawImageUpperBounds()
+        {
+            // The upper bounds.
+            Vector2 camRawImageUpper;
+
+            // The xy local scale.
+            Vector2 camRawImageScaleXY = new Vector2();
+            camRawImageScaleXY.x = cameraRawImage.transform.localScale.x;
+            camRawImageScaleXY.y = cameraRawImage.transform.localScale.y;
+
+            // The camera image's anchor point, and the rect size.
+            Vector2 camImageAncPos = cameraRawImage.rectTransform.anchoredPosition;
+            Vector2 camRectSize = cameraRawImage.rectTransform.sizeDelta;
+
+            // Upper Bounds
+            cameraRawImage.rectTransform.anchoredPosition = camImageAncPos + (camRectSize * camRawImageScaleXY) / 2;
+            camRawImageUpper = cameraRawImage.transform.position;
+
+            // Reset the anchor position.
+            cameraRawImage.rectTransform.anchoredPosition = camImageAncPos;
+
+            // Returns the upper bounds.
+            return camRawImageUpper;
         }
 
         // Generates a list of conversion displays.

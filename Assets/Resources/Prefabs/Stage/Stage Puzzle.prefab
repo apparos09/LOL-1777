@@ -51,7 +51,8 @@ MonoBehaviour:
   pType: 0
   puzzle: {fileID: 0}
   puzzleParent: {fileID: 1407284197653538967}
-  swapPuzzlePrefab: {fileID: 6788003234198845397, guid: 8b33a28bb48f4a94787ecee05f828df4, type: 3}
+  puzzleCamera: {fileID: 6625543475768500919}
+  swapPuzzlePrefab: {fileID: 4540687682338529050, guid: 7955461a6221b0f429714cd0db3aa6a1, type: 3}
   slidePuzzlePrefab: {fileID: 0}
   pathPuzzlePrefab: {fileID: 0}
 --- !u!1 &9000443704051080266
@@ -195,6 +196,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a387883428924374f9a1af8a5f944d2c, type: 3}
+--- !u!20 &6625543475768500919 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 2689814879865611115, guid: a387883428924374f9a1af8a5f944d2c, type: 3}
+  m_PrefabInstance: {fileID: 9126136527626535388}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8493499940011780807 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 826540137173330715, guid: a387883428924374f9a1af8a5f944d2c, type: 3}
