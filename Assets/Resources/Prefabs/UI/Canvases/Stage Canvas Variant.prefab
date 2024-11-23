@@ -257,7 +257,7 @@ RectTransform:
   - {fileID: 2295851773887015865}
   - {fileID: 5193992184841825714}
   - {fileID: 3979573467718569976}
-  m_Father: {fileID: 1665434218371446223}
+  m_Father: {fileID: 8246852398867921488}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1721,6 +1721,43 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &3202319707026824567
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8246852398867921488}
+  m_Layer: 5
+  m_Name: Unit Convert Displays
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &8246852398867921488
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3202319707026824567}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 745033292639658661}
+  - {fileID: 8479841439067631358}
+  m_Father: {fileID: 1665434218371446223}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &3311007121844145623
 GameObject:
   m_ObjectHideFlags: 0
@@ -2192,6 +2229,41 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &3919135913911665540
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1271209861516965385}
+  m_Layer: 5
+  m_Name: Unit Buttons Hidden Position
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1271209861516965385
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3919135913911665540}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2007686777204396092}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 1000}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &4107089401864876454
 GameObject:
   m_ObjectHideFlags: 0
@@ -2282,7 +2354,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5165627652557178281
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2487,6 +2559,7 @@ RectTransform:
   - {fileID: 2459296015238136856}
   - {fileID: 2759973229118390568}
   - {fileID: 3204184629958209204}
+  - {fileID: 1271209861516965385}
   - {fileID: 1665434218371446223}
   m_Father: {fileID: 5475985603228212645}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2504,13 +2577,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1665434218371446223}
+  - component: {fileID: 9141460911123720343}
   m_Layer: 5
-  m_Name: Unit Puzzle
+  m_Name: Units Puzzle UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1665434218371446223
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2523,8 +2597,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 745033292639658661}
-  - {fileID: 8479841439067631358}
+  - {fileID: 8246852398867921488}
   - {fileID: 5165627652557178281}
   m_Father: {fileID: 2007686777204396092}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2533,6 +2606,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &9141460911123720343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4718757889200355750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9076fb812070084281c4c511813a9e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stageUI: {fileID: 8568467190338195159}
+  puzzleManager: {fileID: 0}
+  unitButtonsParent: {fileID: 3204184629958209204}
+  unitButtonsHiddenParent: {fileID: 1271209861516965385}
+  conversionDisplays: {fileID: 3202319707026824567}
+  puzzleWindow: {fileID: 4366888374956228112}
 --- !u!1 &4939307171146897312
 GameObject:
   m_ObjectHideFlags: 0
@@ -3014,7 +3105,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3204184629958209204}
   m_Layer: 5
-  m_Name: Unit Buttons
+  m_Name: Units Buttons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3119,7 +3210,7 @@ RectTransform:
   - {fileID: 7621549847601041055}
   - {fileID: 6328257633003102426}
   - {fileID: 4483018342038272694}
-  m_Father: {fileID: 1665434218371446223}
+  m_Father: {fileID: 8246852398867921488}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

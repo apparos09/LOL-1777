@@ -46,20 +46,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameUI: {fileID: 0}
   gameTime: 0
-  gameScore: 0
   mouseTouch: {fileID: 0}
   tutorials: {fileID: 0}
   gameInfo: {fileID: 0}
   unitsInfo: {fileID: 0}
+  titleScene: TitleScene
+  resultsScene: ResultsScene
   stageUI: {fileID: 0}
+  stageAudio: {fileID: 0}
   stage: {fileID: 0}
   stageName: 
+  bgdNumber: 0
+  bgmNumber: 0
   stageIndex: -1
   difficulty: 0
   baseDifficulty: 0
   losses: 0
   phase: 0
   pointsGoal: 500
+  consecutiveSuccesses: 0
   player: {fileID: 0}
   meteorTarget: {fileID: 0}
   stageSurface: {fileID: 0}
