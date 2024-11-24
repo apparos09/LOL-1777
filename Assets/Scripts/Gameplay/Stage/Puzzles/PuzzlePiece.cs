@@ -102,11 +102,5 @@ namespace RM_MST
             // This is needed to reset the animation.
             PlayEmptyAnimation();
         }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
     }
 }
