@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using util;
 
 namespace RM_MST
 {
@@ -15,6 +16,9 @@ namespace RM_MST
         // The generated pieces.
         protected List<PuzzlePiece> genPieces = new List<PuzzlePiece>();
 
+        // If 'true', pieces are duplicated to remaining spaces.
+        private bool duplicatePieces = true;
+
         // Determines if symbols get swapped.
         // Becomes 'true' when the puzzle starts.
         protected bool swappingEnabled = false;
@@ -23,10 +27,13 @@ namespace RM_MST
         private float swapTimer = 0.0F;
 
         // The maximum time it takes to swap piece positions.
-        public const float SWAP_TIMER_MAX = 3.0F;
+        public const float SWAP_TIMER_MAX = 4.0F;
 
         // The list of positions used for swapping.
         private List<GameObject> swapPosList = new List<GameObject>();
+
+        // The progress bar that represents the swap timer.
+        public ProgressBar swapTimerBar;
 
         // Awake is called when the script instance is being loaded.
         protected override void Awake()
@@ -96,27 +103,32 @@ namespace RM_MST
             // Increases by 1 since the loop is over.
             symbolIndex++;
 
-            // While there are displays left to fill.
-            while(symbolIndex < piecePositions.Count)
+            // If there should be duplicate pieces.
+            if(duplicatePieces)
             {
-                // Gets the original piece, removes it from the queue.
-                PuzzlePiece origPiece = instSymbols.Peek();
-                instSymbols.Dequeue();
-                
-                // Copy the original piece and put it back in the queue.
-                PuzzlePiece copyPiece = Instantiate(origPiece);
-                instSymbols.Enqueue(origPiece);
+                // While there are displays left to fill.
+                while (symbolIndex < piecePositions.Count)
+                {
+                    // Gets the original piece, removes it from the queue.
+                    PuzzlePiece origPiece = instSymbols.Peek();
+                    instSymbols.Dequeue();
 
-                // Change the parent of the copy piece, and set its local position to 0.
-                copyPiece.transform.parent = piecePositions[symbolIndex].transform;
-                copyPiece.transform.localPosition = Vector3.zero;
+                    // Copy the original piece and put it back in the queue.
+                    PuzzlePiece copyPiece = Instantiate(origPiece);
+                    instSymbols.Enqueue(origPiece);
 
-                // Add the copied piece to the generated pieces list.
-                genPieces.Add(copyPiece);
+                    // Change the parent of the copy piece, and set its local position to 0.
+                    copyPiece.transform.parent = piecePositions[symbolIndex].transform;
+                    copyPiece.transform.localPosition = Vector3.zero;
 
-                // Increase the symbol index.
-                symbolIndex++;
+                    // Add the copied piece to the generated pieces list.
+                    genPieces.Add(copyPiece);
+
+                    // Increase the symbol index.
+                    symbolIndex++;
+                }
             }
+            
 
             // Makes the swap position list and resets the timer to start off.
             swapPosList.Clear();
@@ -260,6 +272,32 @@ namespace RM_MST
             swapTimer = SWAP_TIMER_MAX;
         }
 
+        // Updates the swap timer progress bar.
+        public void UpdateSwapTimerProgressBar()
+        {
+            // The percent.
+            float percent;
+
+            // Gets the swap max value.
+            float swapTimerMax = SWAP_TIMER_MAX;
+
+            // Checks that the swap timer max is not 0.
+            if(swapTimerMax > 0)
+            {
+                percent = swapTimer / swapTimerMax;
+            }
+            else // max is 0.
+            {
+                percent = 0.0F;
+            }
+
+            // Clamp into [0.0, 1.0] bounds.
+            percent = Mathf.Clamp01(percent);
+
+            // Sets the value.
+            swapTimerBar.SetValueAsPercentage(percent);
+        }
+
         // Update is called once per frame
         protected override void Update()
         {
@@ -284,6 +322,9 @@ namespace RM_MST
                     SwapPiecePositions();
                     ResetPuzzleSwapTimer();
                 }
+
+                // Updates the progress bar.
+                UpdateSwapTimerProgressBar();
             }
         }
 
