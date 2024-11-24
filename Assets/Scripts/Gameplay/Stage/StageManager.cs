@@ -193,6 +193,9 @@ namespace RM_MST
         // The puzzle manager for the stage.
         public PuzzleManager puzzleManager;
 
+        // The puzzle UI.
+        public PuzzleUI puzzleUI;
+
         [Header("Combo")]
         // The combo for the stage.
         public int combo = 0;
@@ -265,6 +268,11 @@ namespace RM_MST
             // Gets the puzle manager instance.
             if (puzzleManager == null)
                 puzzleManager = PuzzleManager.Instance;
+
+            // Gets the puzle UI instance.
+            if (puzzleUI == null)
+                puzzleUI = PuzzleUI.Instance;
+
 
             // If the gameplay info has been instantiated.
             if (GameplayInfo.Instantiated)
@@ -500,7 +508,7 @@ namespace RM_MST
                 stageUI.SetUnitButtonsActiveByDifficulty(difficulty);
 
                 // Makes sure the conversion display count match the number of unit buttons.
-                puzzleManager.puzzleUI.RefreshConversionDisplays();
+                puzzleUI.RefreshConversionDisplays();
             }
         }
 

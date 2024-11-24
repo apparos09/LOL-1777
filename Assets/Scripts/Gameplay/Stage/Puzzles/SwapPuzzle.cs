@@ -27,10 +27,11 @@ namespace RM_MST
         private float swapTimer = 0.0F;
 
         // The maximum time it takes to swap piece positions.
-        public const float SWAP_TIMER_MAX = 4.0F;
+        public const float SWAP_TIMER_MAX = 4.5F;
 
-        // The list of positions used for swapping.
-        private List<GameObject> swapPosList = new List<GameObject>();
+        // The starting index for swapping positions.
+        // The symbol at this index is being moved forward.
+        private int swapStartIndex = 0;
 
         // The progress bar that represents the swap timer.
         public ProgressBar swapTimerBar;
@@ -130,10 +131,11 @@ namespace RM_MST
             }
             
 
-            // Makes the swap position list and resets the timer to start off.
-            swapPosList.Clear();
-            swapPosList = new List<GameObject>(piecePositions);
+            // Resets the swap timer.
             ResetPuzzleSwapTimer();
+
+            // Reset the start swap index.
+            swapStartIndex = 0;
         }
 
         // Initializes the puzzle for when a conversion question starts.
@@ -149,6 +151,8 @@ namespace RM_MST
         // Stops the puzzle, which is called when a meteor is untargeted.
         public override void StopPuzzle()
         {
+            // This is commented out so that the puzzle doesn't...
+            // Constantly reset.
             // Resets the piece positions.
             // ResetPiecePositions();
 
@@ -187,58 +191,39 @@ namespace RM_MST
         // Swaps the symbol positions.
         public void SwapPiecePositions()
         {
-            // Makes a queue out of the piece list and the positions list.
-            // Pieces
-            Queue<PuzzlePiece> pieceQueue = new Queue<PuzzlePiece>(genPieces);
-            
-            // Positions
-            Queue<GameObject> posQueue;
+            // Clamps the sawp start index.
+            swapStartIndex = Mathf.Clamp(swapStartIndex, 0, piecePositions.Count - 1);
 
-            // If the lists are not same length, reset the swap position list.
-            if (swapPosList.Count != genPieces.Count)
-            {
-                swapPosList.Clear();
-                swapPosList = new List<GameObject>(piecePositions);
-            }
+            // Increases the index.
+            swapStartIndex++;
 
-            // Make a queue out of the swap position list.
-            posQueue = new Queue<GameObject>(swapPosList);
+            // Loops around back to the start.
+            if(swapStartIndex >= piecePositions.Count)
+                swapStartIndex = 0;
 
-            // There are no pieces, or no positions.
-            if (pieceQueue.Count <= 0 || posQueue.Count <= 0)
-            {
-                Debug.LogWarning("There are either no pieces or no positions.");
-                return;
-            }
+            // Set the pos index, and shifts it over by one.
+            int posIndex = swapStartIndex;
 
-            // Moves the first position to the end of the list so...
-            // That positions can be swapped.
-            GameObject tempObject = posQueue.Peek();
-            posQueue.Dequeue();
-            posQueue.Enqueue(tempObject);
-
-            // The list of new positions.
-            List<GameObject> newPosList = new List<GameObject>();
-
-            // While there are pieces and positions.
-            while(pieceQueue.Count > 0 && posQueue.Count > 0)
+            // Goes through all the pieces.
+            for(int i = 0; i < genPieces.Count; i++)
             {
                 // Grabs the new position.
-                GameObject newPos = posQueue.Peek();
-                posQueue.Dequeue();
+                GameObject newPos = piecePositions[posIndex];
 
-                // Adds the position to the new pos list.
-                newPosList.Add(newPos);
+                // Grabs the piece from the piece list.
+                PuzzlePiece piece = genPieces[i];
 
-                // Grabs the piece, change it's parent, and reset it's local position.
-                PuzzlePiece piece = pieceQueue.Dequeue();
+                // Changes the piece's parent and transform.
                 piece.transform.parent = newPos.transform;
                 piece.transform.localPosition = Vector3.zero;
-            }
 
-            // Replace the old swap pos list with the new pos list.
-            swapPosList.Clear();
-            swapPosList = new List<GameObject>(newPosList);
+                // Increases the index.
+                posIndex++;
+
+                // Loop around to 0 if it reaches the end. 
+                if (posIndex >= piecePositions.Count)
+                    posIndex = 0;
+            }
         }
 
         // Resets the piece positions.
@@ -247,10 +232,6 @@ namespace RM_MST
             // Makes a queue out of the generated pieces and the piece positions.
             Queue<PuzzlePiece> pieceQueue = new Queue<PuzzlePiece>(genPieces);
             Queue<GameObject> posQueue = new Queue<GameObject>(piecePositions);
-
-            // Clear the sawp position list, and make a new one with the piece position order.
-            swapPosList.Clear();
-            swapPosList = new List<GameObject>(piecePositions);
 
             // While there are pieces and positions.
             while (pieceQueue.Count > 0 && posQueue.Count > 0)
@@ -264,6 +245,9 @@ namespace RM_MST
                 piece.transform.parent = newPos.transform;
                 piece.transform.localPosition = Vector3.zero;
             }
+
+            // Resets the swapping start index.
+            swapStartIndex = 0;
         }
 
         // Resets the puzzle swap timer.
