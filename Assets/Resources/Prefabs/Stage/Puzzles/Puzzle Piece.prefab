@@ -262,6 +262,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3369022537944123517}
   - component: {fileID: 2305245662612285912}
+  - component: {fileID: 2674448685149577755}
   - component: {fileID: 1107550176496082464}
   m_Layer: 0
   m_Name: Puzzle Piece
@@ -323,6 +324,27 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.3
+--- !u!95 &2674448685149577755
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6011648872855695669}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 189d0f6dad7ab3742abfcc6290cb1475, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &1107550176496082464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -339,3 +361,6 @@ MonoBehaviour:
   setDisplayInfoOnStart: 1
   symbolSpriteRenderer: {fileID: 4968492631606643380}
   pieceSpriteRenderer: {fileID: 6520277968221243124}
+  animator: {fileID: 2674448685149577755}
+  emptyAnim: Empty Animation
+  selectAnim: Puzzle Piece - Select Animation

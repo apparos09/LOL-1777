@@ -21,9 +21,24 @@ namespace RM_MST
         // The main piece sprite.
         public SpriteRenderer pieceSpriteRenderer;
 
+        [Header("Animation")]
+
+        // The animator for the puzzle piece.
+        public Animator animator;
+
+        // An empty animation that's used as a reset point.
+        public string emptyAnim = "Empty Animation";
+
+        // The select animation.
+        public string selectAnim = "Puzzle Piece - Select Animation";
+
         // Start is called before the first frame update
         void Start()
         {
+            // Tries to get the animator if it isn't set.
+            if(animator == null)
+                animator = GetComponent<Animator>();
+
             // Checks if the information should be set on start.
             if(setDisplayInfoOnStart)
             {
@@ -57,6 +72,35 @@ namespace RM_MST
             // Trigger the unit button.
             // TODO: check if the button is interactable?
             conversionDisplay.unitsButton.button.onClick.Invoke();
+
+            // Plays the select animation.
+            PlaySelectAnimation();
+        }
+
+        // Animation
+        // Plays the empty animation.
+        public void PlayEmptyAnimation()
+        {
+            animator.Play(emptyAnim);
+        }
+
+        // Plays the select animation.
+        public void PlaySelectAnimation()
+        {
+            animator.Play(selectAnim);
+        }
+
+        // Called when the select animation has started.
+        public void OnSelectAnimationStart()
+        {
+            // ...
+        }
+
+        // Called when the select animation has ended.
+        public void OnSelectAnimationEnd()
+        {
+            // This is needed to reset the animation.
+            PlayEmptyAnimation();
         }
 
         // Update is called once per frame
