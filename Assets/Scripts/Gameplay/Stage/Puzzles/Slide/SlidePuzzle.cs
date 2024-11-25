@@ -21,7 +21,7 @@ namespace RM_MST
         public float pieceSpawnTimeMax = 2.25F;
 
         // The speed of the slide puzzle.
-        public float speed = 3.0F;
+        public float speed = 2.75F;
 
         // Gets set to 'true' when sliders should be run.
         protected bool runSliders = false;

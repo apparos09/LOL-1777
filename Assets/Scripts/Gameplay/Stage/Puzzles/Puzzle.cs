@@ -84,11 +84,11 @@ namespace RM_MST
             // Checks if only active unit buttons and conversion displays should be used.
             if(activeOnly)
             {
-                displays = puzzleManager.puzzleUI.GenerateConversionDisplayList();
+                displays = puzzleManager.puzzleUI.GenerateActiveConversionDisplayList(); 
             }
             else
             {
-                displays = puzzleManager.puzzleUI.GenerateActiveConversionDisplayList();
+                displays = puzzleManager.puzzleUI.GenerateConversionDisplayList();
             }
 
             // There are no unit buttons.

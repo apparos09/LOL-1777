@@ -28,7 +28,7 @@ namespace RM_MST
         public Queue<PuzzlePiece> piecePool = new Queue<PuzzlePiece>();
 
         // The index of the piece to be generated if the pool is empty (see base piece list).
-        [Tooltip("The index of the base pieces list. This is used to know which next piece to generate.")]
+        [Tooltip("The index of the next piece to be generated from the basePieces list if needed.")]
         public int basePiecesIndex = 0;
 
         // The list of active pieces.
@@ -53,8 +53,104 @@ namespace RM_MST
             // Clamps the index.
             basePiecesIndex = Mathf.Clamp(basePiecesIndex, 0, slidePuzzle.basePieces.Count - 1);
 
-            // Instantiates the new piece and makes the object active.
+            // If 'true', the program tries to calculate what the next piece will be (new method).
+            // If false, it just goes off of the base index (old method)
+            bool trySolveNextPiece = false;
+
+            // 1. Check the next pice that's expected to be generated.
+            // If 'true', the program tries to solve for the next piece to be generated.
+            // If 'false', the program just goes by base index.
+            if(trySolveNextPiece)
+            {
+                // TODO: this solution doesn't seem to generate the intended piece, or perhaps there's some oversight.
+                // Either way, this method has been abandoned unless it is fixed.
+
+
+                // 1.1 Use the piece farthest from the end point as a reference point for what piece to generate next.
+                // The game is set up this way so that the next piece in the list is always the one generated.
+
+                // Gets the destination point.
+                GameObject destPoint = (reversed) ? startPoint : endPoint;
+
+                // The farthest piece from the end point.
+                PuzzlePiece farthestPiece = null;
+
+                // The distance of the farthest piece from the end point.
+                float farthestPieceDist = -1;
+
+                // Looks for the farthest piece from the end point.
+                for (int i = activePieces.Count - 1; i >= 0; i--)
+                {
+                    // Active piece does not exist, so move on.
+                    if (activePieces[i] == null)
+                    {
+                        activePieces.RemoveAt(i);
+                        continue;
+                    }
+
+                    // If there is no farthiest piece, so select the current one.
+                    if (farthestPiece == null)
+                    {
+                        farthestPiece = activePieces[i];
+                        farthestPieceDist = Vector3.Distance(farthestPiece.transform.position, destPoint.transform.position);
+                    }
+                    else
+                    {
+                        // Gets distance 1 and distance 2.
+                        float dist1 = farthestPieceDist;
+                        float dist2 = Vector3.Distance(activePieces[i].transform.position, destPoint.transform.position);
+
+                        // Since the list is being checked in reverse, priotize the currently set piece.
+                        // The current farthest piece is actually closer.
+                        if (dist1 < dist2)
+                        {
+                            // Save the new piece as the farthest piece.
+                            farthestPiece = activePieces[i];
+                            farthestPieceDist = dist2;
+                        }
+                        else // The newly found piece is farther.
+                        {
+                            // Keep the piece that's already set.
+                        }
+                    }
+                }
+
+                // If the farthest piece has been found, so generate the next piece in line.
+                if (farthestPiece != null)
+                {
+                    // The index of the found piece.
+                    int foundIndex = -1;
+
+                    // Finds the piece the farthest piece is a copy of.
+                    for (int i = 0; i < slidePuzzle.basePieces.Count; i++)
+                    {
+                        // If the original piece has been found, track this index.
+                        if (slidePuzzle.basePieces[i].conversionDisplay == farthestPiece.conversionDisplay)
+                        {
+                            foundIndex = i;
+                            break;
+                        }
+                    }
+
+                    // Increase the found index to move onto the next piece.
+                    foundIndex++;
+
+                    // Return to the start.
+                    if (foundIndex >= slidePuzzle.basePieces.Count)
+                        foundIndex = 0;
+
+                    // Set the found index to the base pieces index.
+                    basePiecesIndex = foundIndex;
+                }
+            }
+
+            // If the farthest piece could not be found, just generate a new piece based on the basePiecesIndex.
+
+            // 2. Generate the new piece based on the provided index.
+            // Instantiate the new piece.
             PuzzlePiece newPiece = Instantiate(slidePuzzle.basePieces[basePiecesIndex]);
+
+            // Activate the new piece.
             newPiece.gameObject.SetActive(true);
 
             // Make this piece have this slider as a parent, and reset the local position.
@@ -75,7 +171,6 @@ namespace RM_MST
 
             // Returns the new piece.
             return newPiece;
-
         }
 
         // Spawns a puzzle piece.
