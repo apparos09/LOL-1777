@@ -48,9 +48,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5950340945232264232, guid: 1745a4b99f2491c4493ea81cc0733f3e, type: 3}
+      propertyPath: slidePuzzle
+      value: 
+      objectReference: {fileID: 441276171031325631}
     - target: {fileID: 6935181681349954078, guid: 1745a4b99f2491c4493ea81cc0733f3e, type: 3}
       propertyPath: m_Name
-      value: Slide Puzzle Line 6
+      value: Slide Puzzle Slider 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -121,9 +125,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5950340945232264232, guid: 1745a4b99f2491c4493ea81cc0733f3e, type: 3}
+      propertyPath: slidePuzzle
+      value: 
+      objectReference: {fileID: 441276171031325631}
     - target: {fileID: 6935181681349954078, guid: 1745a4b99f2491c4493ea81cc0733f3e, type: 3}
       propertyPath: m_Name
-      value: Slide Puzzle Line 2
+      value: Slide Puzzle Slider 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -194,9 +202,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5950340945232264232, guid: 1745a4b99f2491c4493ea81cc0733f3e, type: 3}
+      propertyPath: slidePuzzle
+      value: 
+      objectReference: {fileID: 441276171031325631}
     - target: {fileID: 6935181681349954078, guid: 1745a4b99f2491c4493ea81cc0733f3e, type: 3}
       propertyPath: m_Name
-      value: Slide Puzzle Line 0
+      value: Slide Puzzle Slider 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -267,9 +279,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5950340945232264232, guid: 1745a4b99f2491c4493ea81cc0733f3e, type: 3}
+      propertyPath: slidePuzzle
+      value: 
+      objectReference: {fileID: 441276171031325631}
     - target: {fileID: 6935181681349954078, guid: 1745a4b99f2491c4493ea81cc0733f3e, type: 3}
       propertyPath: m_Name
-      value: Slide Puzzle Line 4
+      value: Slide Puzzle Slider 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -396,7 +412,7 @@ MonoBehaviour:
   puzzleUI: {fileID: 0}
   piecePrefab: {fileID: 1107550176496082464, guid: 12799e7c1dc6ae646bc38c8801ebc46e, type: 3}
   initializeOnStart: 1
-  lines:
+  sliders:
   - {fileID: 7013147799033133813}
   - {fileID: 3049516679150320360}
   - {fileID: 6079639708738133570}
@@ -404,6 +420,9 @@ MonoBehaviour:
   - {fileID: 29301740475863885}
   - {fileID: 778488673645524203}
   - {fileID: 5779844365220429695}
+  basePieces: []
+  pieceSpawnTimeMax: 2.25
+  speed: 3
 --- !u!4 &5213625996771497662 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2039377665978873391, guid: 8b33a28bb48f4a94787ecee05f828df4, type: 3}
@@ -457,9 +476,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5950340945232264232, guid: 1745a4b99f2491c4493ea81cc0733f3e, type: 3}
+      propertyPath: slidePuzzle
+      value: 
+      objectReference: {fileID: 441276171031325631}
     - target: {fileID: 6935181681349954078, guid: 1745a4b99f2491c4493ea81cc0733f3e, type: 3}
       propertyPath: m_Name
-      value: Slide Puzzle Line 5
+      value: Slide Puzzle Slider 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -530,9 +553,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5950340945232264232, guid: 1745a4b99f2491c4493ea81cc0733f3e, type: 3}
+      propertyPath: slidePuzzle
+      value: 
+      objectReference: {fileID: 441276171031325631}
     - target: {fileID: 6935181681349954078, guid: 1745a4b99f2491c4493ea81cc0733f3e, type: 3}
       propertyPath: m_Name
-      value: Slide Puzzle Line 3
+      value: Slide Puzzle Slider 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -603,9 +630,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5950340945232264232, guid: 1745a4b99f2491c4493ea81cc0733f3e, type: 3}
+      propertyPath: slidePuzzle
+      value: 
+      objectReference: {fileID: 441276171031325631}
     - target: {fileID: 6935181681349954078, guid: 1745a4b99f2491c4493ea81cc0733f3e, type: 3}
       propertyPath: m_Name
-      value: Slide Puzzle Line 1
+      value: Slide Puzzle Slider 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

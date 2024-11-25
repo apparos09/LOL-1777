@@ -24,6 +24,20 @@ namespace RM_MST
         // The units button this conversion display corresponds to.
         public UnitsButton unitsButton;
 
+        // Checks if the units button info should be gotten on start.
+        public bool getUnitsButtonInfoOnStart = true;
+
+        // Start is called before the first frame update
+        void Start()
+        {
+            // If the info should be set by the units button on start...
+            // And there is a units button, set it.
+            if(getUnitsButtonInfoOnStart && unitsButton != null)
+            {
+                SetInfoFromUnitsButton();
+            }
+        }
+
         // Sets the symbol sprite.
         public void SetSymbolSprite(Sprite symbolSprite)
         {

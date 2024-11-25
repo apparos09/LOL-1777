@@ -47,13 +47,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageManager: {fileID: 0}
+  stageUI: {fileID: 0}
   puzzleUI: {fileID: 0}
   pType: 0
   puzzle: {fileID: 0}
   puzzleParent: {fileID: 1407284197653538967}
   puzzleCamera: {fileID: 6625543475768500919}
   swapPuzzlePrefab: {fileID: 4540687682338529050, guid: 7955461a6221b0f429714cd0db3aa6a1, type: 3}
-  slidePuzzlePrefab: {fileID: 0}
+  slidePuzzlePrefab: {fileID: 441276171031325631, guid: 05d144cd2c7ef0844955258d5ef82192, type: 3}
   pathPuzzlePrefab: {fileID: 0}
 --- !u!1 &9000443704051080266
 GameObject:

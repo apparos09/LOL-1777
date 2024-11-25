@@ -136,6 +136,9 @@ namespace RM_MST
 
             // Reset the start swap index.
             swapStartIndex = 0;
+
+            // Calls base function.
+            base.InitializePuzzle();
         }
 
         // Initializes the puzzle for when a conversion question starts.
@@ -178,6 +181,9 @@ namespace RM_MST
 
             // Clears out the list.
             genPieces.Clear();
+
+            // Calls the base function.
+            base.EndPuzzle();
         }
 
         // Swapping
@@ -287,8 +293,8 @@ namespace RM_MST
         {
             base.Update();
 
-            // If swapping is enabled and the game is being played.
-            if(swappingEnabled && stageManager.IsGamePlaying())
+            // If swapping is enabled, the puzzle has been initalized, and the game is being played.
+            if(swappingEnabled && IsPuzzleInitializedAndIsGamePlaying())
             {
                 // Reduce the timer.
                 swapTimer -= Time.unscaledDeltaTime;
@@ -310,16 +316,6 @@ namespace RM_MST
                 // Updates the progress bar.
                 UpdateSwapTimerProgressBar();
             }
-        }
-
-        // This function is called when the MonoBehaviour will be destroyed.
-        protected override void OnDestroy()
-        {
-            base.OnDestroy();
-
-            // Ends the puzzle.
-            // TODO: this may have already been called.
-            EndPuzzle();
         }
     }
 }

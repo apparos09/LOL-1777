@@ -259,7 +259,7 @@ namespace RM_MST
             return displayListActive;
         }
 
-        // Refreshes the conversion displays.
+        // Refreshes the conversion displays. This overwrites any unit buttons that are saved to the displays.
         public void RefreshConversionDisplays()
         {
             // Generates the displays list, and the active units buttons list.

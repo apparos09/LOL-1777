@@ -23,7 +23,7 @@ namespace RM_MST
         // Initializes the puzzle.
         public override void InitializePuzzle()
         {
-
+            base.InitializePuzzle();
         }
 
         // Initializes the puzzle for when a conversion question starts.
@@ -41,7 +41,7 @@ namespace RM_MST
         // Ends a puzzle when a meteor is untargeted.
         public override void EndPuzzle()
         {
-
+            base.EndPuzzle();
         }
 
         // Update is called once per frame

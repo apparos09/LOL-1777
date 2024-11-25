@@ -23,6 +23,9 @@ namespace RM_MST
         // The stage manager.
         public StageManager stageManager;
 
+        // The stage UI.
+        public StageUI stageUI;
+
         // The puzzle UI.
         public PuzzleUI puzzleUI;
 
@@ -90,6 +93,10 @@ namespace RM_MST
             // Gets the stage manager.
             if (stageManager == null)
                 stageManager = StageManager.Instance;
+
+            // Gets the stage UI.
+            if (stageUI == null)
+                stageUI = StageUI.Instance;
 
             // Gets the puzzle UI.
             if (puzzleUI == null)
@@ -215,6 +222,20 @@ namespace RM_MST
 
             // Generate the puzzle.
             GeneratePuzzle();
+        }
+
+        // Checks if the puzzle is interactable.
+        public bool IsPuzzleInteractable()
+        {
+            // If it's a buttons puzzle, check if the units buttons are interactable.
+            if(pType == puzzleType.none ||  pType == puzzleType.buttons)
+            {
+                return stageUI.IsAllActiveUnitButtonsInteractable();
+            }
+            else // Check if the puzzle cover is active.
+            {
+                return puzzleCamera.gameObject.activeSelf;
+            }
         }
 
         // Called when a meteor has been targeted.
