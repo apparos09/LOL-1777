@@ -7,6 +7,11 @@ namespace RM_MST
     // Slides puzzle symbols across the screen.
     public class SlidePuzzle : Puzzle
     {
+        [Header("SlidePuzzle")]
+
+        // Lines for the pieces to travel across.
+        public List<SlidePuzzleLine> lines = new List<SlidePuzzleLine>();
+
         // Awake is called when the script instance is being loaded.
         protected override void Awake()
         {
