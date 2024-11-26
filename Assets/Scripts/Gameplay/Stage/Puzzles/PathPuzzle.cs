@@ -59,11 +59,11 @@ namespace RM_MST
         public GameObject pieceParent = null;
 
         // The speed of the path.
-        public float speed = 0.25F;
+        public float speed = 0.30F;
 
         // The amount of space between the pieces (based on time-T)
         [Tooltip("The amount of space between the pieces based on time (t) for interpolation.")]
-        public float pieceSpacingT = 0.5F;
+        public float pieceSpacingT = 0.75F;
 
         // If 'true', the path is being run.
         protected bool runPath = false;
@@ -139,19 +139,12 @@ namespace RM_MST
                 // The starting index.
                 int startIndex, endIndex;
 
-                // Checks to the finalT and pieceT to figure out the start and end points.
-                if(finalT >= 1.0F) // If greater than 1...
-                {
-                    // Reduces by 1 since this calculation would put the piece one path ahead otherwise.
-                    startIndex = Mathf.FloorToInt(finalT) - 1;
-                }
-                else // Less than 1.
-                {
-                    startIndex = Mathf.FloorToInt(finalT);
-                }
+                // Uses modulus to see where the piece should be.
+                startIndex = Mathf.FloorToInt(pieceT) % pathPoints.Count;
+
+                
 
                 // Does modulus to recalculate the start index in the proper bounds. Also does a bounds check.
-                startIndex = startIndex % pathPoints.Count;
                 startIndex = Mathf.Clamp(startIndex, 0, pathPoints.Count - 1);
 
                 // Calculates the endIndex.
@@ -164,6 +157,8 @@ namespace RM_MST
                 // Sets the start point and the end point for the path pieces.
                 pathPieces[i].startPoint = pathPoints[startIndex];
                 pathPieces[i].endPoint = pathPoints[endIndex];
+
+                // Debug.Log("Start Index: " + startIndex.ToString() + " | End Index: " + endIndex.ToString() + " | T: " + finalT.ToString());
 
                 // Runs the path for the pieces. Since this functions adds to the t-value, the t-value is pre-emptively reduced.
                 pathPieces[i].t -= CalculateAdjustedSpeed();

@@ -264,6 +264,7 @@ GameObject:
   - component: {fileID: 2305245662612285912}
   - component: {fileID: 2674448685149577755}
   - component: {fileID: 1107550176496082464}
+  - component: {fileID: 4959137715360412733}
   m_Layer: 0
   m_Name: Puzzle Piece
   m_TagString: Untagged
@@ -364,3 +365,15 @@ MonoBehaviour:
   animator: {fileID: 2674448685149577755}
   emptyAnim: Empty Animation
   selectAnim: Puzzle Piece - Select Animation
+--- !u!210 &4959137715360412733
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6011648872855695669}
+  m_Enabled: 1
+  m_SortingLayerID: -1589969025
+  m_SortingLayer: 2
+  m_SortingOrder: 1
+  m_SortAtRoot: 0
