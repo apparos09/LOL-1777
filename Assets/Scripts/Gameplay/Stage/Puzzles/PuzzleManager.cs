@@ -108,6 +108,9 @@ namespace RM_MST
         {
             calledLateStart = true;
 
+            // The puzzle cover window is on by default.
+            puzzleUI.puzzleWindowCover.SetActive(true);
+
             // Generates the puzzle.
             GeneratePuzzle();
         }
