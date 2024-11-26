@@ -47,6 +47,9 @@ namespace RM_MST
         // The units types for the stage.
         public List<UnitsInfo.unitGroups> unitGroups = new List<UnitsInfo.unitGroups>();
 
+        // The puzzle type for the stage world.
+        public PuzzleManager.puzzleType puzzleType = PuzzleManager.puzzleType.unknown;
+
         // The background number for the stage.
         [Tooltip("The background number of the stage.")]
         public int bgdNumber = 0;
@@ -421,11 +424,14 @@ namespace RM_MST
             // The stage start info.
             GameplayInfo.StageStartInfo stageStartInfo = new GameplayInfo.StageStartInfo();
 
-            // Sets the name, units groups, bgm number, difficulty, and losses.
+            // Sets the name, units groups, puzzle type, bgm number, difficulty, and losses.
             stageStartInfo.name = stageName;
             stageStartInfo.stageUnitGroups = unitGroups;
+            stageStartInfo.stagePuzzleType = puzzleType;
+
             stageStartInfo.bgdNumber = bgdNumber;
             stageStartInfo.bgmNumber = bgmNumber;
+            
             stageStartInfo.difficulty = difficulty;
             stageStartInfo.losses = losses;
 

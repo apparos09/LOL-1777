@@ -11,7 +11,7 @@ namespace RM_MST
     public class PuzzleManager : MonoBehaviour
     {
         // The puzzle types.
-        public enum puzzleType { none, buttons, swap, slide, path }
+        public enum puzzleType { unknown, buttons, swap, slide, path }
 
         // the instance of the class.
         private static PuzzleManager instance;
@@ -35,7 +35,7 @@ namespace RM_MST
         [Header("Puzzles")]
 
         // The type of puzzle being generated.
-        public puzzleType pType = puzzleType.none;
+        public puzzleType pType = puzzleType.unknown;
 
         // The puzzle being used.
         public Puzzle puzzle;
@@ -165,7 +165,7 @@ namespace RM_MST
             switch (pType)
             {
                 // The none and buttons puzzle type produce the same result.
-                case puzzleType.none:
+                case puzzleType.unknown:
                 case puzzleType.buttons:
                     // No changes.
                     break;
@@ -190,10 +190,10 @@ namespace RM_MST
             if(puzzle == null)
             {
                 // The puzzle tpye is not set to none or buttons.
-                if(pType != puzzleType.none && pType != puzzleType.buttons)
+                if(pType != puzzleType.unknown && pType != puzzleType.buttons)
                 {
                     Debug.LogError("Puzzle was not instantiated. The puzzleType was reset to 'none'.");
-                    pType = puzzleType.none;
+                    pType = puzzleType.unknown;
                 }                
             }
             else
@@ -228,7 +228,7 @@ namespace RM_MST
         public bool IsPuzzleInteractable()
         {
             // If it's a buttons puzzle, check if the units buttons are interactable.
-            if(pType == puzzleType.none ||  pType == puzzleType.buttons)
+            if(pType == puzzleType.unknown ||  pType == puzzleType.buttons)
             {
                 return stageUI.IsAllActiveUnitButtonsInteractable();
             }

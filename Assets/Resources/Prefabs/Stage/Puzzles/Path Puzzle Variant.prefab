@@ -504,7 +504,7 @@ MonoBehaviour:
   - {fileID: 170397748326425249}
   - {fileID: 2082288520659934883}
   pieceParent: {fileID: 6068456369233071171}
-  speed: 0.3
+  speed: 0.25
   pieceSpacingT: 0.75
 --- !u!4 &6779068383745165735 stripped
 Transform:

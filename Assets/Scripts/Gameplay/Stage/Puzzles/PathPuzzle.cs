@@ -59,7 +59,7 @@ namespace RM_MST
         public GameObject pieceParent = null;
 
         // The speed of the path.
-        public float speed = 0.30F;
+        public float speed = 0.25F;
 
         // The amount of space between the pieces (based on time-T)
         [Tooltip("The amount of space between the pieces based on time (t) for interpolation.")]

@@ -23,7 +23,7 @@ namespace RM_MST
         public PuzzleUI puzzleUI;
 
         // The type of the puzzle.
-        protected PuzzleManager.puzzleType puzzleType = PuzzleManager.puzzleType.none;
+        protected PuzzleManager.puzzleType puzzleType = PuzzleManager.puzzleType.unknown;
 
         // The puzzle piece prefabs.
         public PuzzlePiece piecePrefab;

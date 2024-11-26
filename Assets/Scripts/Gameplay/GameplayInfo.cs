@@ -19,6 +19,9 @@ namespace RM_MST
             // Unit Groups
             public List<UnitsInfo.unitGroups> stageUnitGroups;
 
+            // Puzzle Type
+            public PuzzleManager.puzzleType stagePuzzleType;
+
             // Background Number
             public int bgdNumber;
 

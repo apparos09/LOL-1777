@@ -405,9 +405,13 @@ namespace RM_MST
             if(stageStartInfo.valid)
             {
                 stageName = stageStartInfo.name;
+
                 stageUnitGroups = stageStartInfo.stageUnitGroups;
+                puzzleManager.pType = stageStartInfo.stagePuzzleType;
+
                 bgdNumber = stageStartInfo.bgdNumber;
                 bgmNumber = stageStartInfo.bgmNumber;
+                
                 difficulty = stageStartInfo.difficulty;
                 losses = stageStartInfo.losses;
                 stageIndex = stageStartInfo.index;

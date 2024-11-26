@@ -318,7 +318,7 @@ namespace RM_MST
             switch (puzzleManager.pType)
             {
                 // Show the unit buttons, and hide the puzzle UI.
-                case puzzleType.none:
+                case puzzleType.unknown:
                 case puzzleType.buttons:
                     
                     // Units Buttons
