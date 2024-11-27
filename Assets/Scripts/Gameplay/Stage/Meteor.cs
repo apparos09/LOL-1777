@@ -531,6 +531,10 @@ namespace RM_MST
                     stageManager.comboDisplay.PlayComboAnimationAtPosition(transform.position);
                 }
 
+                // Plays the blue screen effect.
+                if(stageManager.stageUI.UseScreenEffects)
+                    stageManager.stageUI.screenEffects.PlayEdgeGlowGreenAnimation();
+
                 // Kill the meteor.
                 Kill();
             }

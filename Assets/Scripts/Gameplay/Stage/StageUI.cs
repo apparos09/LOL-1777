@@ -72,6 +72,9 @@ namespace RM_MST
         // The stage screen effects.
         public ScreenEffects screenEffects;
 
+        // Enables screen effects if true.
+        private bool useScreenEffects = true;
+
         [Header("End Windows")]
 
         // The game win window.
@@ -746,7 +749,18 @@ namespace RM_MST
             PlayPartnersAnimation(CharacterIcon.charIconAnim.sad);
 
             // Play a red edge glow animation.
-            screenEffects.PlayEdgeGlowRedAnimation();
+            if(UseScreenEffects)
+                screenEffects.PlayEdgeGlowRedAnimation();
+        }
+
+        // SCREEN EFFECTS
+        // Returns 'true' if screen effects should be used.
+        public bool UseScreenEffects
+        {
+            get
+            {
+                return useScreenEffects;
+            }
         }
 
         // STAGE END

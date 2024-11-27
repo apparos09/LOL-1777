@@ -116,7 +116,7 @@ MonoBehaviour:
   stageManager: {fileID: 0}
   spriteRenderer: {fileID: 2121794509328006473}
   collider: {fileID: 2404120556112063925}
-  health: 1
+  health: 3
   maxHealth: 3
   maxHealthColor: {r: 0, g: 1, b: 0, a: 1}
   halfHealthColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}

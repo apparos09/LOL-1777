@@ -139,6 +139,12 @@ namespace RM_MST
             return runSliders && IsPuzzleInitializedAndIsGamePlaying();
         }
 
+        // Calculates and returns the max speed of the sliders adjusted by unscaled delta time.
+        public float CalculateAdjustedSliderSpeed()
+        {
+            return speed * Time.unscaledDeltaTime;
+        }
+
         // Update is called once per frame
         protected override void Update()
         {

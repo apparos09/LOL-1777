@@ -23,6 +23,9 @@ namespace RM_MST
         // The maximum health of the surface.
         public float maxHealth = 1.0F;
 
+        // If true, the health is set to max on start.
+        public bool setToMaxHealthOnStart = true;
+
         [Header("Colors")]
 
         // The color at maximum health.
@@ -72,7 +75,8 @@ namespace RM_MST
             animator.enabled = useAnimations;
 
             // Set the health to max.
-            SetHealthToMax();
+            if(setToMaxHealthOnStart)
+                SetHealthToMax();
         }
 
         // Gets the health.

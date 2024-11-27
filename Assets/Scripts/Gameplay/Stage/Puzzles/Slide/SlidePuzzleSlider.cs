@@ -271,8 +271,8 @@ namespace RM_MST
             // If going in the reverse direction, go from end to start.
             GameObject destPoint = (reversed) ? startPoint : endPoint;
 
-            // Calculates the movement speed.s
-            float moveSpeed = slidePuzzle.speed * Time.deltaTime;
+            // Calculates the movement speed.
+            float moveSpeed = slidePuzzle.CalculateAdjustedSliderSpeed();
 
             // Goes from end to start, updating the active pieces.
             for(int i = activePieces.Count - 1; i >= 0; i--)

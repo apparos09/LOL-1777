@@ -17,8 +17,14 @@ namespace RM_MST
         // Used to reset animations ofr the screen effects.
         public string emptyAnim = "Empty State";
 
-        // An animation to make the edges glow red.
+        // An animation to make the screen edges glow red.
         public string edgeGlowRedAnim = "Screen Effect - Edge Glow - Red Animation";
+
+        // An animation to make the screen edges glow blue.
+        public string edgeGlowBlueAnim = "Screen Effect - Edge Glow - Blue Animation";
+
+        // An animation to make the screen edges glow green.
+        public string edgeGlowGreenAnim = "Screen Effect - Edge Glow - Green Animation";
 
         // Start is called before the first frame update
         void Start()
@@ -44,10 +50,18 @@ namespace RM_MST
             animator.Play(edgeGlowRedAnim);
         }
 
-        // Update is called once per frame
-        void Update()
+        // Plays the edge glow animation in green.
+        public void PlayEdgeGlowGreenAnimation()
         {
-
+            animator.Play(edgeGlowGreenAnim);
         }
+
+
+        // Plays the edge glow animation in blue.
+        public void PlayEdgeGlowBlueAnimation()
+        {
+            animator.Play(edgeGlowBlueAnim);
+        }
+
     }
 }

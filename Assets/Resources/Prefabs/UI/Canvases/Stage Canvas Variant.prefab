@@ -350,7 +350,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 926b9f27ef16a534bb655d9cf02233a0, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -375,6 +375,8 @@ MonoBehaviour:
   animator: {fileID: 6267099179869144140}
   emptyAnim: Empty State
   edgeGlowRedAnim: Screen Effect - Edge Glow - Red Animation
+  edgeGlowBlueAnim: Screen Effect - Edge Glow - Blue Animation
+  edgeGlowGreenAnim: Screen Effect - Edge Glow - Green Animation
 --- !u!1 &371118220740711583
 GameObject:
   m_ObjectHideFlags: 0

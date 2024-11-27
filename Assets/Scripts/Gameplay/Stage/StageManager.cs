@@ -670,6 +670,7 @@ namespace RM_MST
                 // If the barrier exists, restore it.
                 if(barrier != null)
                 {
+                    // Restore the barrier.
                     barrier.RestoreBarrier();
                 }
             }
