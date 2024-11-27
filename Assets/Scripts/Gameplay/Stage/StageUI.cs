@@ -67,6 +67,11 @@ namespace RM_MST
         // Randomizes the unit button values if set to 'true'.
         private bool randomizeUnitButtons = true;
 
+        [Header("Screen Effects")]
+
+        // The stage screen effects.
+        public ScreenEffects screenEffects;
+
         [Header("End Windows")]
 
         // The game win window.
@@ -737,7 +742,11 @@ namespace RM_MST
         // Called when the surface has been damaged.
         public void OnSurfaceDamaged()
         {
+            // Play the partner animation.
             PlayPartnersAnimation(CharacterIcon.charIconAnim.sad);
+
+            // Play a red edge glow animation.
+            screenEffects.PlayEdgeGlowRedAnimation();
         }
 
         // STAGE END
