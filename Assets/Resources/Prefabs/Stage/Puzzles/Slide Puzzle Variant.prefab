@@ -422,7 +422,7 @@ MonoBehaviour:
   - {fileID: 5779844365220429695}
   basePieces: []
   pieceSpawnTimeMax: 2.25
-  speed: 2.75
+  speed: 1.75
 --- !u!4 &5213625996771497662 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2039377665978873391, guid: 8b33a28bb48f4a94787ecee05f828df4, type: 3}
