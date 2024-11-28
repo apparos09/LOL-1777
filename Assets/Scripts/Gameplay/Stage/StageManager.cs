@@ -100,6 +100,10 @@ namespace RM_MST
         // The timer for the stage.
         public float stageTime = 0.0F;
 
+        // If 'true', the time display is optimized to only updated when it should be changed.
+        // If 'false', the time display is updated every frame, even if the display string won't be changed.
+        private bool optimizeTimeDisplayUpdate = true;
+
         // The normal game time scale.
         private float NORMAL_GAME_TIME_SCALE = 1.0F;
 
@@ -1752,10 +1756,27 @@ namespace RM_MST
             // If the game is playing (ignores application waiting), update the timer.
             if(IsGamePlaying(true))
             {
-                // Add to the stage timer and updates the time text.
-                // TODO: maybe don't update every frame?
+                // Gets the stage before it's updated.
+                float oldStageTime = stageTime;
+
+                // Updates the stage time.
                 stageTime += Time.unscaledDeltaTime;
-                stageUI.UpdateTimeText();
+
+                // If the time display's update is optimized.
+                if(optimizeTimeDisplayUpdate)
+                {
+                    // If the stage time rounded down is 1 greater than the old stage time rounded down...
+                    // That means a whole second has passed. 
+                    // If so, update the time display text.
+                    if(Mathf.Floor(stageTime) > Mathf.Floor(oldStageTime))
+                    {
+                        stageUI.UpdateTimeText();
+                    }
+                }
+                else // No optimization, so update every frame.
+                {
+                    stageUI.UpdateTimeText();
+                }
             }
 
             // Runs updates if the game is playing (takes into account if the application is paused).
