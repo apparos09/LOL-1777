@@ -1635,7 +1635,8 @@ namespace RM_MST
         // Returns 'true' if the game is playing.
         // This returns 'false' if the game is paused, the game is not running, a tutorial has frozen the game...
         // Or if the game is loading.
-        public bool IsGamePlaying()
+        // If 'ignoreAppWaiting' is false, the game registers as being played even if the window isn't in focus.
+        public bool IsGamePlaying(bool ignoreAppWaiting = false)
         {
             // Checks if a loading animation is playing.
             bool loadingAnimPlaying = false;
@@ -1650,7 +1651,18 @@ namespace RM_MST
                 loadingAnimPlaying = lsc.IsAnimationPlaying();
             }
 
-            return runningGame && !IsGamePaused() && !IsTutorialRunning() && !loadingAnimPlaying;
+            // Checks if the game is running, if the game is paused, if the tutorial is running...
+            // And if the loading animation is playing.
+            // It takes into account if the app is waiting or not based on this parameter.
+            if (ignoreAppWaiting) // Ignore if the app is waiting or not.
+            {
+                return runningGame && !IsGamePaused() && !IsTutorialRunning() && !loadingAnimPlaying;
+            }
+            else // Register the game as paused if the app is waiting.
+            {
+                return runningGame && !IsGamePausedOrApplicationWaiting() && !IsTutorialRunning() && !loadingAnimPlaying;
+            }
+           
         }
 
         // Returns 'true' if the stage is running.
@@ -1737,14 +1749,18 @@ namespace RM_MST
         {
             base.Update();
 
-            // If the game is running, the game isn't paused, a tutorial isn't running, and the loading animation isn't playing.
-            if(IsGamePlaying())
+            // If the game is playing (ignores application waiting), update the timer.
+            if(IsGamePlaying(true))
             {
                 // Add to the stage timer and updates the time text.
                 // TODO: maybe don't update every frame?
                 stageTime += Time.unscaledDeltaTime;
                 stageUI.UpdateTimeText();
+            }
 
+            // Runs updates if the game is playing (takes into account if the application is paused).
+            if(IsGamePlaying())
+            { 
                 // Run the game.
                 RunGame();
 

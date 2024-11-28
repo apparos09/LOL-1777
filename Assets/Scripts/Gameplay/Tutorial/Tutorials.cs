@@ -229,7 +229,7 @@ namespace RM_MST
             Time.timeScale = 0.0F;
         }
 
-        // Called when a tutorail ends.
+        // Called when a tutorial ends.
         public void OnTutorialEnd()
         {
             // UI end function.

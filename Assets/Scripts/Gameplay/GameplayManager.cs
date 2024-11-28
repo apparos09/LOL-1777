@@ -23,6 +23,10 @@ namespace RM_MST
         // Pauses the timer if true.
         private bool gamePaused = false;
 
+        // The number of frames the game waits when the app is unpaused.
+        // This is done to ignore the delta time that has been built up from the app being paused.
+        private int appUnpausedWaitFrames = 0;
+
         // The mouse touch object.
         public MouseTouchInput mouseTouch;
 
@@ -101,6 +105,18 @@ namespace RM_MST
         protected virtual void LateStart()
         {
             calledLateStart = true;
+        }
+
+        // Sent to all game objects when the player pauses.
+        private void OnApplicationPause(bool pause)
+        {
+            // If the app has been paused, set the number of wait frames.
+            if (pause)
+            {
+                // In the event that some updates are still called when the app is unpaused...
+                // The game waits 2 frames instead of 1.
+                appUnpausedWaitFrames = 2;
+            }
         }
 
 
@@ -183,12 +199,16 @@ namespace RM_MST
             return gameTimeScale == 1.0F;
         }
 
-
-
         // Returns 'true' if the game is paused.
         public bool IsGamePaused()
         {
             return gamePaused;
+        }
+
+        // Returns 'true' if the game is paused or if the application is waiting.
+        public bool IsGamePausedOrApplicationWaiting()
+        {
+            return IsGamePaused() || IsApplicationWaiting();
         }
 
         // Sets if the game should be paused.
@@ -241,6 +261,12 @@ namespace RM_MST
         public virtual void TogglePausedGame()
         {
             SetGamePaused(!gamePaused);
+        }
+
+        // Returns 'true' if the application is waiting (happens when the app is paused).
+        public bool IsApplicationWaiting()
+        {
+            return appUnpausedWaitFrames > 0;
         }
 
         // TUTORIAL //
@@ -413,9 +439,24 @@ namespace RM_MST
             }
 
             // The game isn't paused.
-            if (!gamePaused)
+            if (!IsGamePaused())
             {
                 gameTime += Time.unscaledDeltaTime;
+            }
+        }
+
+        // LateUpdate is called every frame if a Behaviour is enabled.
+        protected virtual void LateUpdate()
+        {
+            // Now that this update has happened, reset the check for the app being made out of focus.
+            if(appUnpausedWaitFrames > 0)
+            {
+                appUnpausedWaitFrames--;
+            }
+            // If the app has negative wait frames, cap it at 0.
+            else if(appUnpausedWaitFrames < 0)
+            {
+                appUnpausedWaitFrames = 0;
             }
         }
 

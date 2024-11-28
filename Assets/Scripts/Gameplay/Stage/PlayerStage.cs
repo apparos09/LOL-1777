@@ -329,8 +329,8 @@ namespace RM_MST
         // Update is called once per frame
         void Update()
         {
-            // If the player stun timer is running, and the game is not paused.
-            if(playerStunTimer > 0.0F && !stageManager.IsGamePaused())
+            // If the player stun timer is running, and the game is playing.
+            if(playerStunTimer > 0.0F && stageManager.IsGamePlaying())
             {
                 // Reduce by unscaled delta time.
                 playerStunTimer -= Time.unscaledDeltaTime;
