@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -28,10 +29,7 @@ namespace RM_MST
 
         // The units info.
         public UnitsInfo unitsInfo;
-
-        // The units table.
-        public UnitsTable unitsTable;
-
+        
         // The group name.
         public TMP_Text groupName;
 
@@ -44,10 +42,6 @@ namespace RM_MST
         // The entry index.
         public int entryIndex = 0;
 
-        // The previous and next buttons.
-        public Button prevButton;
-        public Button nextButton;
-
         // Loads the entries on enable if true.
         // This is false by default so that it's called from Start() first.
         private bool loadEntriesOnEnable = false;
@@ -57,6 +51,30 @@ namespace RM_MST
 
         // Set to true when late start is called.
         private bool calledLateStart = false;
+
+        [Header("Buttons")]
+
+        // Previous Page Button
+        public Button prevButton;
+
+        // Next Page Button
+        public Button nextButton;
+
+        [Header("Table View")]
+
+        // The units table view.
+        public GameObject tableView;
+
+        // The units table.
+        public UnitsTable unitsTable;
+
+        [Header("Comparison View")]
+
+        // The comparison view.
+        public GameObject comparsionView;
+
+        // The comparison bars for the comparsion view.
+        public List<UnitsComparisonBar> comparsionBars = new List<UnitsComparisonBar>();
 
         [Header("Groups")]
         // Measurement groups
@@ -85,6 +103,9 @@ namespace RM_MST
 
             // Load entries on enable.
             loadEntriesOnEnable = true;
+
+            // Shows the table view on start.
+            ShowTableView();
         }
 
         // Called on the first update frame.
@@ -316,8 +337,11 @@ namespace RM_MST
             groupName.text = entry.groupName;
             groupDesc.text = entry.groupDesc;
 
-            // Update the table.
+            // Updates the table.
             unitsTable.SetGroup(entry.group);
+
+            // Updates the comparison bars.
+            UpdateComparsionBars();
 
             // If the LOL Manager has been instantiated.
             if(GameSettings.Instance.UseTextToSpeech && LOLManager.IsInstantiatedAndIsLOLSDKInitialized() && allowTTS)
@@ -331,6 +355,87 @@ namespace RM_MST
                 if (entry.groupDescKey != "")
                     lolManager.SpeakText(entry.groupDescKey);
 
+            }
+        }
+
+        // COMPARISON BARS
+        // Updates the comparison bars.
+        public void UpdateComparsionBars()
+        {
+            // Goes through each comparsion bar.
+            for(int i = 0; i < comparsionBars.Count; i++)
+            {
+                // Get set to 'true' if the bar is updated.
+                bool updated;
+
+                // There is an entry in the units table.
+                if(i < unitsTable.entries.Count)
+                {
+                    // If the entry is active, and the conversion exists.
+                    if (unitsTable.entries[i].gameObject.activeSelf && unitsTable.entries[i].conversion != null)
+                    {
+                        // Loads the comparison info.
+                        comparsionBars[i].LoadConversionInfo(unitsTable.entries[i].conversion);
+                        updated = true;
+                    }
+                    else // Entry is off, so clear the bar.
+                    {
+                        updated = false;
+                    }
+                }
+                else // No entry, so clear the bar.
+                {
+                    updated = false;
+                }
+
+                // If the bar wasn't updated, clear it.
+                if(!updated)
+                {
+                    comparsionBars[i].ClearConversionInfo();
+                }
+            }
+        }
+
+        // VIEWS
+        // Shows the provided view.
+        public void ShowView(GameObject view)
+        {
+            // Turns off both views.
+            tableView.SetActive(false);
+            comparsionView.SetActive(false);
+
+            // Turns on the provided view.
+            view.SetActive(true);
+        }
+
+        // Shows the table view.
+        public void ShowTableView()
+        {
+            ShowView(tableView);
+        }
+
+        // Shows the comparison view.
+        public void ShowComparsionView()
+        {
+            ShowView(comparsionView);
+        }
+
+        // Swaps the table view and comparison view.
+        public void SwapViews()
+        {
+            // If the table view is active, activate the comparison view.
+            if(tableView.activeSelf)
+            {
+                ShowComparsionView();
+            }
+            // If the comparsion view is active, activate the table view.
+            else if(comparsionView.activeSelf)
+            {
+                ShowTableView();
+            }
+            else // Show table view by default.
+            {
+                ShowTableView();
             }
         }
 

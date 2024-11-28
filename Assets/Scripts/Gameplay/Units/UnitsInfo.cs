@@ -66,6 +66,13 @@ namespace RM_MST
 
             // Returns the symbol for the output units.
             public abstract string GetOutputSymbol();
+            
+            // Converts the conversion to a string.
+            public new string ToString()
+            {
+                return inputValue.ToString() + " " + GetInputSymbol() + " = " + 
+                    GetConvertedValue().ToString() + " " + GetOutputSymbol();
+            }
         }
 
         // A class for weight conversions.
