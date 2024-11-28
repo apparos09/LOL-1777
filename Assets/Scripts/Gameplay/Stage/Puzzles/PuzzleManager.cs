@@ -302,7 +302,7 @@ namespace RM_MST
             bool pointerPosSet = false;
 
             // The mouse button is down, so track it.
-            if(Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0))
             {
                 // Gets the mouse position.
                 pointerPos = Input.mousePosition;
@@ -311,10 +311,16 @@ namespace RM_MST
             else // No mouse down, so check for touches.
             {
                 // If there are touches, get the position of the first touch.
-                if(Input.touches.GetLength(0) > 0)
+                if (Input.touches.GetLength(0) > 0)
                 {
-                    pointerPos = Input.touches[0].position;
-                    pointerPosSet = true;
+                    // If the touch is in the "began" phase, register it. This means the touch just happened.
+                    // This is the touch equivalent of 'GetMouseButtonDown()'.
+                    if (Input.touches[0].phase == TouchPhase.Began)
+                    {
+                        pointerPos = Input.touches[0].position;
+                        pointerPosSet = true;
+                    }
+
                 }
             }
 

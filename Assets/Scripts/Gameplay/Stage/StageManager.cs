@@ -212,7 +212,7 @@ namespace RM_MST
 
         // The maximum time for the combo (in seconds).
         // Raised from 7 seconds to 16 seconds to account for multiplier fade-ins.
-        private const float COMBO_TIMER_MAX = 16.0F; 
+        private const float COMBO_TIMER_MAX = 16.0F;
 
         // The combo display.
         public ComboDisplay comboDisplay;
@@ -266,7 +266,7 @@ namespace RM_MST
                 stageUI = StageUI.Instance;
 
             // Gets the audio instance.
-            if(stageAudio == null)
+            if (stageAudio == null)
                 stageAudio = StageAudio.Instance;
 
             // Gets the puzle manager instance.
@@ -287,7 +287,7 @@ namespace RM_MST
             else
             {
                 // If there are no stage units, generate the group list.
-                if(stageUnitGroups.Count == 0)
+                if (stageUnitGroups.Count == 0)
                     stageUnitGroups = UnitsInfo.GenerateUnitGroupsList();
             }
 
@@ -306,7 +306,7 @@ namespace RM_MST
             SetPhase(phase);
 
             // If the difficulty should be dynamically adjusted.
-            if(dynamicDifficulty)
+            if (dynamicDifficulty)
                 AdjustDifficultyByLosses();
 
             // Sets the stage background and surface.
@@ -334,7 +334,7 @@ namespace RM_MST
             foreach (UnitsInfo.unitGroups group in stageUnitGroups)
             {
                 // If the group hasn't been used yet, get the group.
-                if(!usedGroups.Contains(group))
+                if (!usedGroups.Contains(group))
                 {
                     conversions.AddRange(UnitsInfo.Instance.GetGroupConversionListCopy(group));
                     usedGroups.Add(group);
@@ -346,24 +346,24 @@ namespace RM_MST
             stageUI.ClearConversionAndUnitsButtons();
 
             // Delays the first meteor to give time for the game to begin.
-            if(delayFirstMeteorSpawn)
+            if (delayFirstMeteorSpawn)
             {
                 meteorSpawnTimer = 2.5F; // Starting wait time.
             }
-            
+
             // The game is now running.
             runningGame = true;
 
             // Tutorial check.
-            if(IsUsingTutorial())
+            if (IsUsingTutorial())
             {
                 // If the first stage tutorial has not been cleared, load it.
-                if(!tutorials.clearedFirstStageTutorial)
+                if (!tutorials.clearedFirstStageTutorial)
                 {
                     tutorials.LoadFirstStageTutorial();
                 }
             }
-            
+
         }
 
         // Gets the instance.
@@ -406,7 +406,7 @@ namespace RM_MST
         public void ApplyStageStartInfo(GameplayInfo.StageStartInfo stageStartInfo)
         {
             // If the information is valid.
-            if(stageStartInfo.valid)
+            if (stageStartInfo.valid)
             {
                 stageName = stageStartInfo.name;
 
@@ -415,7 +415,7 @@ namespace RM_MST
 
                 bgdNumber = stageStartInfo.bgdNumber;
                 bgmNumber = stageStartInfo.bgmNumber;
-                
+
                 difficulty = stageStartInfo.difficulty;
                 losses = stageStartInfo.losses;
                 stageIndex = stageStartInfo.index;
@@ -426,7 +426,7 @@ namespace RM_MST
             }
 
             // If the stage units list is empty, generate a list of all types.
-            if(stageUnitGroups.Count <= 0)
+            if (stageUnitGroups.Count <= 0)
                 stageUnitGroups = UnitsInfo.GenerateUnitGroupsList();
 
             // Sets the difficulty using the proper function.
@@ -444,13 +444,13 @@ namespace RM_MST
         {
             // Sets the difficulty.
             difficulty = Mathf.Clamp(difficultyLevel, 1, DIFFICULTY_MAX);
-            
+
             // If the base difficulty should be set, set it.
-            if(setBaseDifficulty)
+            if (setBaseDifficulty)
                 baseDifficulty = difficulty;
 
             // If the difficulty changes should be applied.
-            if(applyDifficultyChanges)
+            if (applyDifficultyChanges)
             {
                 // Changes parameters based on the difficulty.
                 // TODO: implement.
@@ -563,15 +563,15 @@ namespace RM_MST
             float percent = GetPlayerPointsProgress();
 
             // Checks the percent.
-            if(percent > 0.75F) // Phase 4
+            if (percent > 0.75F) // Phase 4
             {
                 SetPhase(4);
             }
-            else if(percent > 0.50F) // Phase 3
+            else if (percent > 0.50F) // Phase 3
             {
                 SetPhase(3);
             }
-            else if(percent > 0.25F) // Phase 3
+            else if (percent > 0.25F) // Phase 3
             {
                 SetPhase(2);
             }
@@ -624,14 +624,14 @@ namespace RM_MST
 
                 // Play the phase sound effect if the phase has changed.
                 // Don't play it if it's phase 1.
-                if(phase > 1)
+                if (phase > 1)
                 {
                     stageAudio.PlayPhaseSfx();
                 }
             }
 
             // If a barrier should be restored on a phase change.
-            if(restoreBarrierOnPhaseChange)
+            if (restoreBarrierOnPhaseChange)
             {
                 // Lists of dead barriers and damaged barriers.
                 List<Barrier> deadBarriers = new List<Barrier>();
@@ -661,18 +661,18 @@ namespace RM_MST
 
                 // Gets a random barrier - prioritize dead barriers for restoration.
                 // Dead
-                if(deadBarriers.Count > 0)
+                if (deadBarriers.Count > 0)
                 {
                     barrier = deadBarriers[Random.Range(0, deadBarriers.Count)];
                 }
                 // Damage
-                else if(damagedBarriers.Count > 0)
+                else if (damagedBarriers.Count > 0)
                 {
                     barrier = damagedBarriers[Random.Range(0, damagedBarriers.Count)];
                 }
 
                 // If the barrier exists, restore it.
-                if(barrier != null)
+                if (barrier != null)
                 {
                     // Restore the barrier.
                     barrier.RestoreBarrier();
@@ -690,7 +690,7 @@ namespace RM_MST
         public Meteor SpawnMeteor()
         {
             // No meteor prefabs.
-            if(meteorPrefabs.Count == 0)
+            if (meteorPrefabs.Count == 0)
             {
                 Debug.LogError("No meteor prefabs available.");
                 return null;
@@ -717,7 +717,7 @@ namespace RM_MST
             unitsInfo.gameObject.SetActive(true);
 
             // Set the parent.
-            if(stage.meteorParent != null)
+            if (stage.meteorParent != null)
                 meteor.transform.parent = stage.meteorParent.transform;
 
             // Generate the spawn point.
@@ -797,7 +797,7 @@ namespace RM_MST
                 else // Check the position.
                 {
                     // If there is no meteor, track it by default.
-                    if(meteor == null)
+                    if (meteor == null)
                     {
                         // Get the meteor and the distance.
                         meteor = meteorsActive[i];
@@ -828,13 +828,13 @@ namespace RM_MST
                         float m2Dist = Vector3.Distance(m2AdjustPos, stageSurface.gameObject.transform.position);
 
                         // Meteor 1 is Closer
-                        if(m1Dist < m2Dist)
+                        if (m1Dist < m2Dist)
                         {
                             meteor = m1;
                             meteorDist = m1Dist;
                         }
                         // Meteor 2 is Closer
-                        else if(m1Dist > m2Dist)
+                        else if (m1Dist > m2Dist)
                         {
                             meteor = m2;
                             meteorDist = m2Dist;
@@ -866,7 +866,7 @@ namespace RM_MST
             Meteor[] meteors = FindObjectsOfType<Meteor>(true);
 
             // Kills all the meteors.
-            foreach(Meteor meteor in meteors)
+            foreach (Meteor meteor in meteors)
             {
                 meteor.Kill();
             }
@@ -882,7 +882,7 @@ namespace RM_MST
             UnitsInfo.unitGroups group = (UnitsInfo.unitGroups)Random.Range(0, UnitsInfo.UNIT_GROUPS_COUNT);
 
             // The group.
-            switch(group)
+            switch (group)
             {
                 default:
                 case UnitsInfo.unitGroups.none:
@@ -902,7 +902,7 @@ namespace RM_MST
                 case UnitsInfo.unitGroups.time: // Time
                     conversion = new UnitsInfo.TimeConversion();
                     break;
-                
+
                 case UnitsInfo.unitGroups.capacity: // Capacity
                     conversion = new UnitsInfo.CapacityConversion();
                     break;
@@ -933,19 +933,19 @@ namespace RM_MST
                 UnitsInfo.UnitsConversion origConvert = conversions[Random.Range(0, conversions.Count)];
 
                 // Checks the conversion type.
-                if(origConvert is UnitsInfo.WeightConversion) // Weight
+                if (origConvert is UnitsInfo.WeightConversion) // Weight
                 {
                     conversion = new UnitsInfo.WeightConversion((UnitsInfo.WeightConversion)origConvert);
                 }
-                else if(origConvert is UnitsInfo.LengthConversion) // Length
+                else if (origConvert is UnitsInfo.LengthConversion) // Length
                 {
                     conversion = new UnitsInfo.LengthConversion((UnitsInfo.LengthConversion)origConvert);
                 }
-                else if(origConvert is UnitsInfo.TimeConversion) // Time
+                else if (origConvert is UnitsInfo.TimeConversion) // Time
                 {
                     conversion = new UnitsInfo.TimeConversion((UnitsInfo.TimeConversion)origConvert);
                 }
-                else if(origConvert is UnitsInfo.CapacityConversion) // Capacity
+                else if (origConvert is UnitsInfo.CapacityConversion) // Capacity
                 {
                     conversion = new UnitsInfo.CapacityConversion((UnitsInfo.CapacityConversion)origConvert);
                 }
@@ -970,7 +970,7 @@ namespace RM_MST
         public float SetRandomConversionInputValue(UnitsInfo.UnitsConversion conversion)
         {
             // The conversion object doesn't exist.
-            if(conversion == null)
+            if (conversion == null)
             {
                 Debug.LogWarning("The conversion object is null. Returning 0.");
                 return 0.0F;
@@ -983,14 +983,14 @@ namespace RM_MST
             value = util.CustomMath.Round(value, UNITS_DECIMAL_PLACES);
 
             // If random values cannot be decimals, round up to the nearest value.
-            if(!allowRandomInputDecimals)
+            if (!allowRandomInputDecimals)
                 value = Mathf.Ceil(value);
 
             // If random unit inputs should be limited.
-            if(limitRandomUnitInputs)
+            if (limitRandomUnitInputs)
             {
                 // If these are not metric units, round up to a whole number.
-                if(!UnitsInfo.IsMetricUnits(conversion.group))
+                if (!UnitsInfo.IsMetricUnits(conversion.group))
                 {
                     value = Mathf.Ceil(value);
                 }
@@ -1022,10 +1022,10 @@ namespace RM_MST
             }
 
             // The whole part and the decimal part of the value.
-            double wholePart, decimalPart; 
-            
+            double wholePart, decimalPart;
+
             // Tries to get the whole part of the value.
-            if(!double.TryParse(valueStr.Substring(0, valueStr.IndexOf(".")), out wholePart))
+            if (!double.TryParse(valueStr.Substring(0, valueStr.IndexOf(".")), out wholePart))
             {
                 Debug.LogWarning("Conversion failure finding the whole portion of the value.");
             }
@@ -1063,7 +1063,7 @@ namespace RM_MST
             float mod;
 
             // Checks the speed for the spawn rate modifier.
-            switch(phase)
+            switch (phase)
             {
                 default:
                 case 1:
@@ -1142,7 +1142,7 @@ namespace RM_MST
             SetGameTimeScale(timeScale);
 
             // If the audio speed should be adjusted.
-            if(adjustAudioSpeed)
+            if (adjustAudioSpeed)
             {
                 // The new pitch.
                 float newPitch;
@@ -1203,7 +1203,7 @@ namespace RM_MST
         {
             // If the game time scale is normal, set to fast.
             // If the game time scale is fast,set it to normal.
-            if(IsGameTimeScaleNormal())
+            if (IsGameTimeScaleNormal())
             {
                 SetToFastSpeed();
             }
@@ -1255,7 +1255,7 @@ namespace RM_MST
             string result = string.Empty;
 
             // If 'true', fractions can be tried.
-            bool tryFractions = UnitsInfo.IsMetricUnits(meteor.conversion.group) && 
+            bool tryFractions = UnitsInfo.IsMetricUnits(meteor.conversion.group) &&
                 meteor.conversion.inputValue < 1.0F && meteor.conversion.inputValue >= 0.0F;
 
             // If fractions can be used, try to generate a fraction.
@@ -1265,7 +1265,7 @@ namespace RM_MST
                 float randValue = Random.Range(0.0F, 1.0F);
 
                 // Fraction display change.
-                if(randValue <= FRACTION_DISPLAY_CHANCE)
+                if (randValue <= FRACTION_DISPLAY_CHANCE)
                 {
                     // Variables to be used to set up the string.
                     float inputValue = meteor.conversion.inputValue;
@@ -1273,14 +1273,14 @@ namespace RM_MST
                     int decimalPlaces = 0;
 
                     // If there is a decimal place, use it to get the amount of decimal places.
-                    if(inputValueString.Contains("."))
+                    if (inputValueString.Contains("."))
                     {
                         // Calculates the number of decimal places to know what to display.
                         decimalPlaces = inputValueString.Length - (inputValueString.IndexOf(".") + 1);
                     }
 
                     // There are decimal places, generate the result string.
-                    if(decimalPlaces > 0)
+                    if (decimalPlaces > 0)
                     {
                         float mult = Mathf.Pow(10, decimalPlaces);
                         result = (inputValue * mult).ToString() + "/" + mult.ToString() + " " +
@@ -1291,7 +1291,7 @@ namespace RM_MST
             }
 
             // Result wasn't set, so use the default format.
-            if(result == "")
+            if (result == "")
                 result = meteor.conversion.inputValue.ToString() + " " + meteor.conversion.GetInputSymbol() + " = ?";
 
             return result;
@@ -1302,7 +1302,7 @@ namespace RM_MST
         {
             // The points to be returned.
             float points = 0;
-            
+
             // Base amount, combo bonus, and difficulty bonus.
             points += 20;
             points += 10 * combo;
@@ -1311,7 +1311,7 @@ namespace RM_MST
             // Returns the points.
             return points;
         }
-        
+
         // Returns 'true' if the points goal has been reached.
         public bool IsPointsGoalReached(float points)
         {
@@ -1380,7 +1380,7 @@ namespace RM_MST
             const float SPEED_CHANGE_POINTS_MAX = 150.0F;
 
             // If the slow stage time is less than 1 minute.
-            if(slowStageTime < SPEED_CHANGE_TIME_BOUND)
+            if (slowStageTime < SPEED_CHANGE_TIME_BOUND)
             {
                 float percent = Mathf.Clamp(slowStageTime, 0.0F, SPEED_CHANGE_TIME_BOUND);
                 percent = 1.0F - (percent / SPEED_CHANGE_TIME_BOUND); // Reverses the percent.
@@ -1530,7 +1530,7 @@ namespace RM_MST
 
             // The stage has been cleared.
             cleared = true;
-            
+
             // gameScore += stageFinalScore; // Not needed.
 
             // Stage won.
@@ -1666,7 +1666,7 @@ namespace RM_MST
             {
                 return runningGame && !IsGamePausedOrApplicationWaiting() && !IsTutorialRunning() && !loadingAnimPlaying;
             }
-           
+
         }
 
         // Returns 'true' if the stage is running.
@@ -1682,12 +1682,12 @@ namespace RM_MST
             meteorSpawnTimer -= Time.deltaTime;
 
             // Cap timer.
-            if(meteorSpawnTimer <= 0)
+            if (meteorSpawnTimer <= 0)
                 meteorSpawnTimer = 0;
 
 
             // Spawn a meteor.
-            if(meteorSpawnTimer <= 0)
+            if (meteorSpawnTimer <= 0)
             {
                 SpawnMeteor();
 
@@ -1699,7 +1699,7 @@ namespace RM_MST
             bool newTarget = false;
 
             // If there is no meteor being target.
-            if(!meteorTarget.HasMeteor())
+            if (!meteorTarget.HasMeteor())
             {
                 // Gets the closest meteor, and move towards it.
                 meteorTarget.SetTarget(GetClosestMeteor());
@@ -1709,10 +1709,10 @@ namespace RM_MST
             {
                 // If the closest meteor should be constantly searched for...
                 // And there are meteors to be targeted.
-                if(constClosestMeteorCheck)
+                if (constClosestMeteorCheck)
                 {
                     // If the active meteor count is greater than 0, then there are meteors to find.
-                    if(Meteor.GetMeteorsActiveCount() > 0)
+                    if (Meteor.GetMeteorsActiveCount() > 0)
                     {
                         // Gets the closest meteor.
                         Meteor closestMeteor = GetClosestMeteor();
@@ -1726,7 +1726,7 @@ namespace RM_MST
                             newTarget = true;
                         }
                     }
-                    
+
                 }
             }
 
@@ -1754,7 +1754,7 @@ namespace RM_MST
             base.Update();
 
             // If the game is playing (ignores application waiting), update the timer.
-            if(IsGamePlaying(true))
+            if (IsGamePlaying(true))
             {
                 // Gets the stage before it's updated.
                 float oldStageTime = stageTime;
@@ -1763,12 +1763,12 @@ namespace RM_MST
                 stageTime += Time.unscaledDeltaTime;
 
                 // If the time display's update is optimized.
-                if(optimizeTimeDisplayUpdate)
+                if (optimizeTimeDisplayUpdate)
                 {
                     // If the stage time rounded down is 1 greater than the old stage time rounded down...
                     // That means a whole second has passed. 
                     // If so, update the time display text.
-                    if(Mathf.Floor(stageTime) > Mathf.Floor(oldStageTime))
+                    if (Mathf.Floor(stageTime) > Mathf.Floor(oldStageTime))
                     {
                         stageUI.UpdateTimeText();
                     }
@@ -1780,20 +1780,20 @@ namespace RM_MST
             }
 
             // Runs updates if the game is playing (takes into account if the application is paused).
-            if(IsGamePlaying())
-            { 
+            if (IsGamePlaying())
+            {
                 // Run the game.
                 RunGame();
 
                 // If the combo timer is greater than 0, and a meteor is targeted.
                 // If the player has fired a laser shot, don't run the timer.
-                if(comboTimer > 0.0F && meteorTarget.GetMeteor() != null && player.laserShotActive == null)
+                if (comboTimer > 0.0F && meteorTarget.GetMeteor() != null && player.laserShotActive == null)
                 {
                     // Reduce the timer.
                     comboTimer -= Time.unscaledDeltaTime; // Uses unscaled delta time.
 
                     // Reset the combo if the timer has run out.
-                    if(comboTimer <= 0.0F)
+                    if (comboTimer <= 0.0F)
                     {
                         ResetCombo(false);
                     }
@@ -1801,12 +1801,12 @@ namespace RM_MST
 
                 // Fast and Slow Speed Time - times how long both are in effect.
                 float gameSpeed = GetGameSpeed();
-                if(gameSpeed > 1.0F) // Fast
+                if (gameSpeed > 1.0F) // Fast
                 {
                     fastStageTime += Time.unscaledDeltaTime;
                 }
 
-                if(gameSpeed < 1.0F) // Slow
+                if (gameSpeed < 1.0F) // Slow
                 {
                     slowStageTime += Time.unscaledDeltaTime;
                 }
