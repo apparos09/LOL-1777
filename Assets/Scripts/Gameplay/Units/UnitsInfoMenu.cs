@@ -365,6 +365,9 @@ namespace RM_MST
             // Goes through each comparsion bar.
             for(int i = 0; i < comparsionBars.Count; i++)
             {
+                // Activate the bar.
+                comparsionBars[i].gameObject.SetActive(true);
+
                 // Get set to 'true' if the bar is updated.
                 bool updated;
 
@@ -391,7 +394,11 @@ namespace RM_MST
                 // If the bar wasn't updated, clear it.
                 if(!updated)
                 {
+                    // Clear the info.
                     comparsionBars[i].ClearConversionInfo();
+
+                    // Disable the bar.
+                    comparsionBars[i].gameObject.SetActive(false);
                 }
             }
         }

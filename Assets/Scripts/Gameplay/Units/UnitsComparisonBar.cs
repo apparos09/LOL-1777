@@ -12,6 +12,10 @@ namespace RM_MST
         // The progress bar for the units comparison.
         public ProgressBar progressBar;
 
+        // If 'true', the bar has a transition for showing the comparison.
+        [Tooltip("If 'true', changes to the progress bar was gradual rather than instant.")]
+        public bool barTransition = false;
+
         // The comparison for this units bar.
         public UnitsInfo.UnitsConversion conversion;
 
@@ -49,7 +53,7 @@ namespace RM_MST
 
             // Sets the progress bar amount.
             progressBar.bar.interactable = true;
-            progressBar.SetValueAsPercentage(percent);
+            progressBar.SetValueAsPercentage(percent, barTransition);
 
             // Gets the fraction and conversion strings.
             string fractionStr = conversion.inputValue.ToString() + " / " + conversion.GetConvertedValue().ToString();
@@ -75,7 +79,7 @@ namespace RM_MST
 
             // Bars
             progressBar.bar.interactable = true;
-            progressBar.SetValueAsPercentage(0.0F);
+            progressBar.SetValueAsPercentage(0.0F, barTransition);
             progressBar.bar.interactable = false;
 
             // Text
