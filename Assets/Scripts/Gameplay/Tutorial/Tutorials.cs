@@ -368,10 +368,9 @@ namespace RM_MST
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new MST_Page("Welcome to the Meteor Strike Team (MST)! Our job is to track down meteors and destroy them before they hit the Earth's surface! But to destroy meteors, we need to solve measurement conversions. I'm Reteor...", "trl_intro_00"),
-                new MST_Page("And I'm Astrite! We'll be your partners and guides for this game. This is the world area, which is where you can change the settings, save your game, view the units info, and select a stage. The game automatically saves after every completed stage, but manual saving is done via the 'save button'.", "trl_intro_01"),
-                new MST_Page("When a stage is selected, the stage's measurement units are displayed. Once introduced to a unit group, its conversion information is added to the units info screen, which is accessed with the 'units info button'. Notably, you'll only be asked to convert from larger units to smaller units.", "trl_intro_02"),
-                new MST_Page("With all that explained, please select the available stage to start destroying meteors!", "trl_intro_03")
+                new MST_Page("Welcome to the Meteor Strike Team (MST)! Our job is to track down and destroy meteors before they hit the Earth's surface, which we do by converting larger measurement units to smaller measurement units. I'm Reteor...", "trl_intro_00"),
+                new MST_Page("And I'm Astrite!  This is the world area, which is where you select stages, view unit information, change the game settings, and save your game. When you select a stage, the relevant measurement information is shown. Once you get said information, it can be viewed again by selecting the 'units info' button.", "trl_intro_01"),
+                new MST_Page("With all that explained, please select the available stage to start destroying meteors!", "trl_intro_02"),
             };
 
             // Change the display image when certain pages are opened using callbacks.
@@ -379,8 +378,7 @@ namespace RM_MST
 
             pages[0].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerA);
             pages[1].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerB);
-            pages[2].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerA);
-            pages[3].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerB);
+            pages[2].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerB);
 
             // If the world manager UI is instantiated.
             if(WorldUI.Instantiated)
@@ -402,21 +400,21 @@ namespace RM_MST
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new MST_Page("Welcome to the stage area! This is where you'll shoot down meteors with unit conversions! The meteor closest to the Earth's surface is automatically targeted, so all you must do is shoot at it by solving the conversion equation. If the meteor is successfully destroyed, you'll get points, which will fill up the points bar to the left. Once the points bar is filled, the stage is complete!", "trl_firstStage_00"),
-                new MST_Page("To answer a conversion question, you must select one of the unit buttons at the bottom of the screen. A unit button shows its output, and the multiplier that was used to get it. If you select the correct unit button, the targeted meteor is destroyed, and the other meteors get pushed back. If you choose the wrong unit button, the targeted meteor is knocked back, but it's not destroyed. All other meteors remain unaffected when you answer a conversion question incorrectly.", "trl_firstStage_01"),
-                new MST_Page("If a meteor hits one of the barriers, the meteor will be destroyed, but you will get no points for it, and the barrier will take damage. If a barrier takes too much damage, it will disappear, which will leave an opening for the meteors to reach the Earth's surface. If the Earth's surface takes too much damage, the stage is lost.", "trl_firstStage_02"),
-                new MST_Page("If you answer enough conversion questions correctly in a row, the conversion multipliers on the unit buttons will disappear. They will come back a few seconds after the question has been given, but waiting for this to happen will give the meteors more time to reach the Earth's surface. Wait for the multipliers to appear or try to answer the question without them, it's up to you!", "trl_firstStage_03"),
-                new MST_Page("On the left are the time, the points, the points bar, and the surface's health bar. On the right are the settings button, the world button, the units table, and the speed button. The units table shows all the conversions for the current unit group you're dealing with, and the speed button allows you to change the game's speed. With all that said, time to start the stage!", "trl_firstStage_04"),
+                new MST_Page("Welcome to the stage area! This is where you'll shoot down meteors using unit conversions! The meteor closest to the Earth's surface is automatically targeted, so all you must do is solve the conversions presented to you. You get points for performing successful conversions, and once you get enough points, the stage is completed. But if the Earth's surface takes too damage, the stage is lost.", "trl_firstStage_00"),
+                new MST_Page("When a meteor is targeted, you are presented with different conversion outputs and the multipliers that were used to get them. The way you choose an output will vary by stage, but it will always involve pressing an output button or selecting an output's corresponding symbol. For this stage, the symbols change places when the puzzle bar fully depletes, so be careful!", "trl_firstStage_01"),
+                new MST_Page("If you've selected the correct output, the targeted meteor is destroyed, and the rest of the meteors are pushed back. If you've selected an incorrect output, only the targeted meteor is knocked back, and said meteor is not destroyed. If a meteor hits a barrier, said barrier will take damage. If a barrier takes too much damage, it'll be destroyed, leaving an opening for meteors to hit the Earth's surface and damage it. Once you get enough points, a barrier is restored.", "trl_firstStage_02"),
+                new MST_Page("If you answer enough conversion questions correctly in a row, the conversion multipliers will disappear. They will come back a few seconds after a conversion question is given, but this will give more time for meteors to reach the Earth's surface. If you get a conversion wrong, the multipliers will start showing up instantly like before, unless you get enough consecutive correct answers again.", "trl_firstStage_03"),
+                new MST_Page("On the left are the time, the points, the points bar, and the surface's health bar. On the right are the settings button, the world button, the speed button, and the unit conversion table. Feel free to change the game's speed using the speed button if things are going too fast. With all that said, time to start the stage!", "trl_firstStage_04"),
             };
 
             // Change the display image when certain pages are opened using callbacks.
             pages[0].OnPageOpenedAddCallback(tutorialsUI.textBox.ShowCharacterImage);
 
-            pages[0].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerA);
-            pages[1].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerA);
+            pages[0].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerB);
+            pages[1].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerB);
             pages[2].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerA);
-            pages[3].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerB);
-            pages[4].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerB);
+            pages[3].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerA);
+            pages[4].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerA);
 
 
             // Sets the bool and loads the tutorial.
