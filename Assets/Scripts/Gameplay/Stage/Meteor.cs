@@ -581,7 +581,16 @@ namespace RM_MST
         // Damage the barrier.
         public void ApplyDamageToBarrier(Barrier barrier)
         {
+            // Applies damage.
             barrier.ApplyDamage(1.0F);
+
+            // If screen effects are enabled, play an orange flash if a barrier is damaged.
+            if(stageManager.stageUI.UseScreenEffects)
+            {
+                stageManager.stageUI.screenEffects.PlayEdgeGlowOrangeAnimation();
+            }
+
+            // Kills the meteor.
             Kill();
         }
 
