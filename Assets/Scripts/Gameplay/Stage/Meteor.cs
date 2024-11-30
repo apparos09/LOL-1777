@@ -98,11 +98,11 @@ namespace RM_MST
                 stageManager = StageManager.Instance;
 
             // If the collider is not set, try to set it.
-            if(collider == null)
+            if (collider == null)
                 collider = GetComponent<Collider2D>();
 
             // If the rigidbody is not set, try to set it.
-            if(rigidbody == null)
+            if (rigidbody == null)
                 rigidbody = GetComponent<Rigidbody2D>();
 
             // Sets if animations are being used.
@@ -233,7 +233,7 @@ namespace RM_MST
         public void OnSpawn()
         {
             // If the sprite should be randomized.
-            if(randomSpriteOnSpawn)
+            if (randomSpriteOnSpawn)
             {
                 RandomizeSprite();
             }
@@ -249,14 +249,14 @@ namespace RM_MST
         public void RandomizeSprite()
         {
             // There are sprites.
-            if(meteorSprites.Count > 0)
+            if (meteorSprites.Count > 0)
             {
                 // Gets a random index and a sprite.
                 int randIndex = Random.Range(0, meteorSprites.Count);
                 Sprite sprite = meteorSprites[randIndex];
 
                 // The sprite is not null, so use it.
-                if(sprite != null)
+                if (sprite != null)
                 {
                     meteorSpriteRenderer.sprite = sprite;
                 }
@@ -294,7 +294,7 @@ namespace RM_MST
         public float GetConvertedValue()
         {
             // Checks if conversion is set to get the value.
-            if(conversion != null)
+            if (conversion != null)
             {
                 return conversion.GetConvertedValue();
             }
@@ -317,7 +317,7 @@ namespace RM_MST
                 case UnitsInfo.unitGroups.lengthImperial:
                 case UnitsInfo.unitGroups.weightImperial:
                 case UnitsInfo.unitGroups.time:
-                   
+
                     // Factors
                     // 3, 6, 12, 16, 24, 30, 60
                     outputMults[0] = 3.0F;
@@ -398,7 +398,7 @@ namespace RM_MST
             // Checks if the possible output is set.
             // It's done this way instead of using System.Array.IndexOf()...
             // Because of floating point impreicision
-            for(int i = 0; i < possibleOutputs.Length; i++)
+            for (int i = 0; i < possibleOutputs.Length; i++)
             {
                 // If these values are approximately the same...
                 // Then the correct value has been set.
@@ -420,7 +420,7 @@ namespace RM_MST
             {
                 // Generate a random index.
                 int randIndex = Random.Range(0, possibleOutputs.Length);
-                
+
                 // Save the values.
                 possibleOutputs[randIndex] = trueOutputValue;
                 possibleOutputMults[randIndex] = conversion.GetsConverisonMultiplier();
@@ -429,7 +429,7 @@ namespace RM_MST
         }
 
         // HEALTH/DAMAGE
-        
+
         // Returns 'true 'if the meteor is alive.
         public bool IsAlive()
         {
@@ -468,7 +468,7 @@ namespace RM_MST
             Meteor m1 = stageManager.GetClosestMeteor();
 
             // If a meteor was found.
-            if(m1 != null)
+            if (m1 != null)
             {
                 // Returns 'true' if this the closest meteor is this meteor.
                 return m1 == this;
@@ -515,7 +515,7 @@ namespace RM_MST
             ApplyKnockbackForce(forceDirec, laserShot.meteorHitForce, true);
 
             // If the laser shot was a success, kill the meteor.
-            if(success)
+            if (success)
             {
                 stageManager.IncreaseCombo(); // Increase the combo.
                 stageManager.player.CalculateAndGivePoints(this); // Give the player points.                                                                  // Kill the laser shot.
@@ -532,7 +532,7 @@ namespace RM_MST
                 }
 
                 // Plays the blue screen effect.
-                if(stageManager.stageUI.UseScreenEffects)
+                if (stageManager.stageUI.UseScreenEffects)
                     stageManager.stageUI.screenEffects.PlayEdgeGlowGreenAnimation();
 
                 // Kill the meteor.
@@ -546,15 +546,15 @@ namespace RM_MST
                 stageManager.ResetConsecutiveSuccessesCount();
                 stageManager.stageUI.EndUnitButtonMultipleReveals();
                 stageManager.ResetCombo(false); // Reset the combo.
-                
-                
+
+
                 laserShot.Kill(success); // Kill the laser.
                 stageManager.OnMeteorSurivived(this);
 
                 // Plays the sound effect.
                 PlayDestroyFailureSfx();
             }
-            
+
 
             // Returns the success value.
             return success;
@@ -585,7 +585,7 @@ namespace RM_MST
             barrier.ApplyDamage(1.0F);
 
             // If screen effects are enabled, play an orange flash if a barrier is damaged.
-            if(stageManager.stageUI.UseScreenEffects)
+            if (stageManager.stageUI.UseScreenEffects)
             {
                 stageManager.stageUI.screenEffects.PlayEdgeGlowOrangeAnimation();
             }
@@ -669,19 +669,19 @@ namespace RM_MST
                 LateStart();
 
             // If the meteor is moving downwards, cap the velocity.
-            if(rigidbody.velocity.y < 0)
+            if (rigidbody.velocity.y < 0)
             {
                 // The meteor was experiencing knockback.
-                if(inKnockback)
+                if (inKnockback)
                 {
                     // Look for a target again to see if another meteor has gotten closer.
                     // Only do this if this was the meteor being targeted...
                     // And this meteor should be untargeted when the knockback ends.
                     // Checks first if this is the meteor being targeted.
-                    if(stageManager.meteorTarget.IsMeteorTargeted(this))
+                    if (stageManager.meteorTarget.IsMeteorTargeted(this))
                     {
                         // Remove the meteor from the target if it should be untargeted.
-                        if(untargetOnKnockbackEnd)
+                        if (untargetOnKnockbackEnd)
                         {
                             stageManager.meteorTarget.RemoveTarget();
                         }
@@ -689,7 +689,7 @@ namespace RM_MST
                         {
                             // Check to make sure that it's still the closest meteor.
                             // If it isn't the closest meteor, remove it from the target.
-                            if(!IsClosestMeteor())
+                            if (!IsClosestMeteor())
                             {
                                 stageManager.meteorTarget.RemoveTarget();
                             }
@@ -710,7 +710,7 @@ namespace RM_MST
             }
 
             // Not in game area, so kill it.
-            if(!stageManager.stage.InGameArea(gameObject))
+            if (!stageManager.stage.InGameArea(gameObject))
             {
                 Kill();
             }

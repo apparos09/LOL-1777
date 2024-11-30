@@ -198,7 +198,7 @@
 
     "kwd_back": "Back",
 
-    "mnu_instructions_dsc": "This game has you destroy meteors by answering unit conversion questions correctly. To interact with game elements use either the mouse or touch controls. You select stages in the world by clicking on/touching them, and you answer conversion questions by selecting one of the unit buttons.",
+    "mnu_instructions_dsc": "This game has you destroy meteors by answering unit conversion questions correctly. To interact with game elements use either the mouse or touch controls. You choose stages in the world area and select unit conversion outputs in the stage area.",
 
     "kwd_volume": "Volume",
     "kwd_bgmVolume": "Background Music (BGM) Volume",
@@ -336,19 +336,19 @@
     "trl_firstStage_04": "On the left are the time, the points, the points bar, and the surface's health bar. On the right are the settings button, the world button, the speed button, and the unit conversion table. Feel free to change the game's speed using the speed button if things are going too fast. With all that said, time to start the stage!",
 
     "trl_firstWin_00": "You've completed the first stage, which has unlocked even more stages! The more stages you beat, the more stages you'll unlock. Of the stages available, you can clear them in any order, but you must beat all the stages to complete the game.",
-    
+
     "trl_mixStage_00": "This is a mix stage. Mix stages have you deal with multiple unit groups at once. You'll only deal with a mix stage after you've experienced all relevant unit groups.",
 
     "trl_lengthImperial_00": "These units are used to measure how long something is. 1 yard (yd) is equal to 3 feet (ft), and 1 foot (ft) is equal to 12 inches (in).",
-    
+
     "trl_weightImperial_00": "These units are used to measure how heavy someone or something is. 1 pound (lb) is equal to 16 ounces (oz).",
-    
+
     "trl_time_00": "These units are used to measure lengths of time. 1 hour (hrs) is equal to 60 minutes (mins), and 1 minute (mins) is equal to 60 seconds (secs).",
-    
+
     "trl_lengthMetric_00": "These units are used to measure how long something is. 1 kilometer (km) is equal to 1000 meters (m), 1 meter is equal to 100 centimeters (cm) and 1000 millimeters (mm), 1 decimeter (dm) is equal to 10 centimeters (cm), and 1 centimeter (cm) is equal to 10 millimeters (mm).",
-    
+
     "trl_weightMetric_00": "These units are used to measure how heavy someone or something is. 1 kilogram (kg) is equal to 1000 grams (g), and 1 gram (g) is equal to 1000 milligrams (mg).",
-    
+
     "trl_capacity_00": "These units are used to measure the volume of a container. 1 liter (l) is equal to 1000 millilitres (mL).",
 
 
