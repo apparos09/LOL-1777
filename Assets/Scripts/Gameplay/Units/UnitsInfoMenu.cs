@@ -349,11 +349,30 @@ namespace RM_MST
                 // The LOL Manager
                 LOLManager lolManager = LOLManager.Instance;
 
-                // TODO: read the group name instead of the group description.
+                // The speak key to be used.
+                string speakKey = "";
 
-                // If there is a description key, read it.
-                if (entry.groupDescKey != "")
-                    lolManager.SpeakText(entry.groupDescKey);
+                // If the table view is active, read the description.
+                // If the comparison view is active, read the group.
+                if(IsTableViewActive())
+                {
+                    // Use the group key.
+                    speakKey = entry.groupDescKey;
+                }
+                else if(IsComparisonViewActive())
+                {
+                    // Use the group name key.
+                    speakKey = entry.groupNameKey;
+                }
+                else
+                {
+                    // Just use the description key.
+                    speakKey = entry.groupDescKey;
+                }
+
+                // If there's a speak key, use it.
+                if (speakKey != "")
+                    lolManager.SpeakText(speakKey);
 
             }
         }
@@ -404,6 +423,18 @@ namespace RM_MST
         }
 
         // VIEWS
+        // Checks if the table view is visible.
+        public bool IsTableViewActive()
+        {
+            return tableView.activeSelf;
+        }
+
+        // Checks if the comparison view is active.
+        public bool IsComparisonViewActive()
+        {
+            return comparsionView.activeSelf;
+        }
+
         // Shows the provided view.
         public void ShowView(GameObject view)
         {

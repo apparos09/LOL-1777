@@ -55,8 +55,15 @@ namespace RM_MST
             progressBar.bar.interactable = true;
             progressBar.SetValueAsPercentage(percent, barTransition);
 
-            // Gets the fraction and conversion strings.
-            string fractionStr = conversion.inputValue.ToString() + " / " + conversion.GetConvertedValue().ToString();
+            // Creates the fraction and converison strings.
+            // Fraction String
+            // This now includes the input unit symbol.
+            string fractionStr = 
+                conversion.inputValue.ToString() + "/" + 
+                conversion.GetConvertedValue().ToString() + " " +
+                conversion.GetInputSymbol();
+
+            // Conversion String
             string conversionStr = conversion.ToString();
 
             // Sets the text.
