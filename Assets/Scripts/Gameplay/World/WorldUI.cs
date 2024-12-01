@@ -41,9 +41,6 @@ namespace RM_MST
         // The save button.
         public Button saveButton;
 
-        // The save window.
-        public GameObject saveWindow;
-
         // Constructor
         private WorldUI()
         {
@@ -87,6 +84,9 @@ namespace RM_MST
             if (tutorialUI == null)
                 tutorialUI = TutorialUI.Instance;
 
+            // A variable that checks if saving is possible.
+            bool savingPossible;
+
             // If the save system has been instantiated...
             if (SaveSystem.Instantiated)
             {
@@ -94,7 +94,31 @@ namespace RM_MST
                 // Set the save text.
                 SaveSystem.Instance.feedbackText = saveText;
                 saveText.text = string.Empty;
+
+                // Saving is possible.
+                savingPossible = true;
             }
+            else // Save system doesn't exist.
+            {
+                // Saving not possible.
+                savingPossible = false;
+            }
+
+            // If saving is possible, check if the LOL SDK is initialized.
+            // If it isn't, then saving isn't possible.
+            if(savingPossible)
+            {
+                // If the LOL manager is not instantiated, or if the LOL SDK is not initialized.
+                // Since saving is done through the LOL SDK, if that isn't initialized, saving isn't possible.
+                if(!LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
+                {
+                    savingPossible = false;
+                }
+            }
+
+            // If saving is possible, then keep the save button interactable.
+            // If saving is not possible, then disable the save button.
+            saveButton.interactable = savingPossible;
 
             // Not needed anymore.
             // Open the units info window. This is done so that the units info menu gets initialized.
@@ -158,7 +182,6 @@ namespace RM_MST
             {
                 gameSettingsUI.gameObject,
                 unitsInfoMenu.gameObject,
-                saveWindow.gameObject,
                 stageWorldUI.gameObject,
                 gameCompleteUI.gameObject,
             };
@@ -187,7 +210,6 @@ namespace RM_MST
         {
             // Close windows.
             unitsInfoMenu.gameObject.SetActive(false);
-            saveWindow.SetActive(false);
             stageWorldUI.gameObject.SetActive(false);
             gameCompleteUI.SetActive(false);
 
