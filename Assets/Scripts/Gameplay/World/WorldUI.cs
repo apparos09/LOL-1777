@@ -90,13 +90,15 @@ namespace RM_MST
             // If the save system has been instantiated...
             if (SaveSystem.Instantiated)
             {
-                // TODO: properly implement the save text.
+                // Gets the save system instance.
+                SaveSystem saveSystem = SaveSystem.Instance;
+
                 // Set the save text.
-                SaveSystem.Instance.feedbackText = saveText;
+                saveSystem.feedbackText = saveText;
                 saveText.text = string.Empty;
 
-                // Saving is possible.
-                savingPossible = true;
+                // Checks if saving is possible.
+                savingPossible = saveSystem.SavingLoadingEnabled;
             }
             else // Save system doesn't exist.
             {
@@ -105,7 +107,7 @@ namespace RM_MST
             }
 
             // If saving is possible, check if the LOL SDK is initialized.
-            // If it isn't, then saving isn't possible.
+            // If it isn't, then saving isn't possible no matter what, since it's done through the LOL SDK.
             if(savingPossible)
             {
                 // If the LOL manager is not instantiated, or if the LOL SDK is not initialized.
@@ -118,7 +120,7 @@ namespace RM_MST
 
             // If saving is possible, then keep the save button interactable.
             // If saving is not possible, then disable the save button.
-            saveButton.interactable = savingPossible;
+            SetSaveButtonInteractable(savingPossible);
 
             // Not needed anymore.
             // Open the units info window. This is done so that the units info menu gets initialized.
