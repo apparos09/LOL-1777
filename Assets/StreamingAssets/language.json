@@ -326,7 +326,7 @@
 
 
     "trl_intro_00": "Welcome to the Meteor Strike Team (MST)! Our job is to track down and destroy meteors before they hit the Earth's surface, which we do by converting larger measurement units into smaller measurement units. I'm Reteor...",
-    "trl_intro_01": "And I'm Astrite!  This is the world area, which is where you select stages, view unit information, change the game settings, and save your game. When you select a stage, the relevant measurement information is shown. Once you get said information, it can be viewed again by selecting the 'units info' button.",
+    "trl_intro_01": "And I'm Astrite! This is the world area, which is where you select stages, view unit information, change the game settings, and save your game. When you select a stage, the relevant measurement information is shown. Once you get said information, it can be viewed again by selecting the 'units info' button.",
     "trl_intro_02": "With all that explained, please select the available stage to start destroying meteors!",
 
     "trl_firstStage_00": "Welcome to the stage area! This is where you'll shoot down meteors using unit conversions! The meteor closest to the Earth's surface is automatically targeted, so all you must do is solve the conversions presented to you. You get points for performing successful conversions, and once you get enough points, the stage is completed. But if the Earth's surface takes too much damage, the stage is lost.",

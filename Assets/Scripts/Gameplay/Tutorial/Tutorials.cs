@@ -369,7 +369,7 @@ namespace RM_MST
             {
                 // Load the pages.
                 new MST_Page("Welcome to the Meteor Strike Team (MST)! Our job is to track down and destroy meteors before they hit the Earth's surface, which we do by converting larger measurement units into smaller measurement units. I'm Reteor...", "trl_intro_00"),
-                new MST_Page("And I'm Astrite!  This is the world area, which is where you select stages, view unit information, change the game settings, and save your game. When you select a stage, the relevant measurement information is shown. Once you get said information, it can be viewed again by selecting the 'units info' button.", "trl_intro_01"),
+                new MST_Page("And I'm Astrite! This is the world area, which is where you select stages, view unit information, change the game settings, and save your game. When you select a stage, the relevant measurement information is shown. Once you get said information, it can be viewed again by selecting the 'units info' button.", "trl_intro_01"),
                 new MST_Page("With all that explained, please select the available stage to start destroying meteors!", "trl_intro_02"),
             };
 
