@@ -13,6 +13,15 @@ namespace RM_MST
         {
             public bool clearedIntroTutorial;
             public bool clearedFirstStageTutorial;
+
+            public bool clearedHiddenMultiples;
+            public bool clearedBarriers;
+
+            public bool clearedPuzzleButtonsTutorial;
+            public bool clearedPuzzleSwapTutorial;
+            public bool clearedPuzzleSlideTutorial;
+            public bool clearedPathTutorial;
+
             public bool clearedFirstWinTutorial;
             public bool clearedMixStageTutorial;
 
@@ -58,6 +67,15 @@ namespace RM_MST
 
         public bool clearedIntroTutorial;
         public bool clearedFirstStageTutorial;
+
+        public bool clearedHiddenMultiples;
+        public bool clearedBarriers;
+
+        public bool clearedPuzzleButtonsTutorial;
+        public bool clearedPuzzleSwapTutorial;
+        public bool clearedPuzzleSlideTutorial;
+        public bool clearedPathTutorial;
+
         public bool clearedFirstWinTutorial;
         public bool clearedMixStageTutorial;
 
@@ -265,6 +283,14 @@ namespace RM_MST
             data.clearedIntroTutorial = clearedIntroTutorial;
             data.clearedFirstStageTutorial = clearedFirstStageTutorial;
 
+            data.clearedHiddenMultiples = clearedHiddenMultiples;
+            data.clearedBarriers = clearedBarriers;
+
+            data.clearedPuzzleButtonsTutorial = clearedPuzzleButtonsTutorial;
+            data.clearedPuzzleSwapTutorial = clearedPuzzleSwapTutorial;
+            data.clearedPuzzleSlideTutorial = clearedPuzzleSlideTutorial;
+            data.clearedPathTutorial = clearedPathTutorial;
+
             data.clearedFirstWinTutorial = clearedFirstWinTutorial;
             data.clearedMixStageTutorial = clearedMixStageTutorial;
 
@@ -284,6 +310,15 @@ namespace RM_MST
         {
             clearedIntroTutorial = data.clearedIntroTutorial;
             clearedFirstStageTutorial = data.clearedFirstStageTutorial;
+
+            clearedHiddenMultiples = data.clearedHiddenMultiples;
+            clearedBarriers = data.clearedBarriers;
+
+            clearedPuzzleButtonsTutorial = data.clearedPuzzleButtonsTutorial;
+            clearedPuzzleSwapTutorial = data.clearedPuzzleSwapTutorial;
+            clearedPuzzleSlideTutorial = data.clearedPuzzleSlideTutorial;
+            clearedPathTutorial = data.clearedPathTutorial;
+
             clearedFirstWinTutorial = data.clearedFirstWinTutorial;
             clearedMixStageTutorial = data.clearedMixStageTutorial;
 
@@ -400,21 +435,19 @@ namespace RM_MST
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new MST_Page("Welcome to the stage area! This is where you'll shoot down meteors using unit conversions! The meteor closest to the Earth's surface is automatically targeted, so all you must do is solve the conversions presented to you. You get points for performing successful conversions, and once you get enough points, the stage is completed. But if the Earth's surface takes too much damage, the stage is lost.", "trl_firstStage_00"),
-                new MST_Page("When a meteor is targeted, you are presented with different conversion outputs and the multipliers that were used to get them. The way you choose an output will vary by stage, but it will always involve pressing an output button or selecting an output's corresponding symbol. For this stage, the symbols change places when the puzzle bar fully depletes, so be careful!", "trl_firstStage_01"),
-                new MST_Page("If you've selected the correct output, the targeted meteor is destroyed, and the rest of the meteors are pushed back. If you've selected an incorrect output, only the targeted meteor is knocked back, and said meteor is not destroyed. If a meteor hits a barrier, said barrier will take damage. If a barrier takes too much damage, it'll be destroyed, leaving an opening for meteors to hit the Earth's surface and damage it. Once you get enough points, a barrier is restored.", "trl_firstStage_02"),
-                new MST_Page("If you answer enough conversion questions correctly in a row, the conversion multipliers will disappear. They will come back a few seconds after a conversion question is given, but this will give more time for meteors to reach the Earth's surface. If you get a conversion wrong, the multipliers will start showing up instantly like before, unless you get enough consecutive correct answers again.", "trl_firstStage_03"),
-                new MST_Page("On the left are the time, the points, the points bar, and the surface's health bar. On the right are the settings button, the world button, the speed button, and the unit conversion table. Feel free to change the game's speed using the speed button if you want more time to do unit conversions. With all that said, time to start the stage!", "trl_firstStage_04"),
+                new MST_Page("Welcome to the stage area, which is where you'll shoot down meteors. The meteor closest to the Earth's surface is automatically targeted, so all you must do is solve the conversions presented to you. You get points for performing successful conversions, and once you get enough points, the stage is completed. But if the Earth's surface takes too much damage, the stage is lost.", "trl_firstStage_00"),
+                new MST_Page("When a meteor is targeted, you are presented with different conversion outputs and the multipliers that were used to get them. Once you select an output, a laser shot is fired at the targeted meteor. The method for choosing an output will vary by stage.", "trl_firstStage_01"),
+                new MST_Page("If you've selected the correct output, the targeted meteor is destroyed, and the rest of the meteors are pushed back. If you've selected an incorrect output, only the targeted meteor is knocked back, and said meteor is not destroyed. You will also be briefly stunned if you choose a wrong output.", "trl_firstStage_02"),
+                new MST_Page("On the left are the time, the points, the points bar, and the surface's health bar. On the right are the settings button, the world button, the speed button, and the unit conversion table. Feel free to change the game's speed using the speed button if you want more time to do unit conversions. With all that said, time to start the stage!", "trl_firstStage_03"),
             };
 
             // Change the display image when certain pages are opened using callbacks.
             pages[0].OnPageOpenedAddCallback(tutorialsUI.textBox.ShowCharacterImage);
 
-            pages[0].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerB);
+            pages[0].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerA);
             pages[1].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerB);
-            pages[2].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerA);
+            pages[2].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerB);
             pages[3].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerA);
-            pages[4].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerA);
 
 
             // Sets the bool and loads the tutorial.
