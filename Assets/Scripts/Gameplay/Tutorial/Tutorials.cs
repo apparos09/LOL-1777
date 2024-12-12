@@ -14,13 +14,13 @@ namespace RM_MST
             public bool clearedIntroTutorial;
             public bool clearedFirstStageTutorial;
 
-            public bool clearedHiddenMultiples;
-            public bool clearedBarriers;
+            public bool clearedHiddenMultiplesTutorial;
+            public bool clearedBarriersTutorial;
 
             public bool clearedPuzzleButtonsTutorial;
             public bool clearedPuzzleSwapTutorial;
             public bool clearedPuzzleSlideTutorial;
-            public bool clearedPathTutorial;
+            public bool clearedPuzzlePathTutorial;
 
             public bool clearedFirstWinTutorial;
             public bool clearedMixStageTutorial;
@@ -68,13 +68,13 @@ namespace RM_MST
         public bool clearedIntroTutorial;
         public bool clearedFirstStageTutorial;
 
-        public bool clearedHiddenMultiples;
-        public bool clearedBarriers;
+        public bool clearedHiddenMultiplesTutorial;
+        public bool clearedBarrierTutorial;
 
         public bool clearedPuzzleButtonsTutorial;
         public bool clearedPuzzleSwapTutorial;
         public bool clearedPuzzleSlideTutorial;
-        public bool clearedPathTutorial;
+        public bool clearedPuzzlePathTutorial;
 
         public bool clearedFirstWinTutorial;
         public bool clearedMixStageTutorial;
@@ -283,13 +283,13 @@ namespace RM_MST
             data.clearedIntroTutorial = clearedIntroTutorial;
             data.clearedFirstStageTutorial = clearedFirstStageTutorial;
 
-            data.clearedHiddenMultiples = clearedHiddenMultiples;
-            data.clearedBarriers = clearedBarriers;
+            data.clearedHiddenMultiplesTutorial = clearedHiddenMultiplesTutorial;
+            data.clearedBarriersTutorial = clearedBarrierTutorial;
 
             data.clearedPuzzleButtonsTutorial = clearedPuzzleButtonsTutorial;
             data.clearedPuzzleSwapTutorial = clearedPuzzleSwapTutorial;
             data.clearedPuzzleSlideTutorial = clearedPuzzleSlideTutorial;
-            data.clearedPathTutorial = clearedPathTutorial;
+            data.clearedPuzzlePathTutorial = clearedPuzzlePathTutorial;
 
             data.clearedFirstWinTutorial = clearedFirstWinTutorial;
             data.clearedMixStageTutorial = clearedMixStageTutorial;
@@ -311,13 +311,13 @@ namespace RM_MST
             clearedIntroTutorial = data.clearedIntroTutorial;
             clearedFirstStageTutorial = data.clearedFirstStageTutorial;
 
-            clearedHiddenMultiples = data.clearedHiddenMultiples;
-            clearedBarriers = data.clearedBarriers;
+            clearedHiddenMultiplesTutorial = data.clearedHiddenMultiplesTutorial;
+            clearedBarrierTutorial = data.clearedBarriersTutorial;
 
             clearedPuzzleButtonsTutorial = data.clearedPuzzleButtonsTutorial;
             clearedPuzzleSwapTutorial = data.clearedPuzzleSwapTutorial;
             clearedPuzzleSlideTutorial = data.clearedPuzzleSlideTutorial;
-            clearedPathTutorial = data.clearedPathTutorial;
+            clearedPuzzlePathTutorial = data.clearedPuzzlePathTutorial;
 
             clearedFirstWinTutorial = data.clearedFirstWinTutorial;
             clearedMixStageTutorial = data.clearedMixStageTutorial;
@@ -455,6 +455,124 @@ namespace RM_MST
             LoadTutorial(ref pages, startTutorial);
         }
 
+        // Loads the hidden mutliples tutorial.
+        public void LoadHiddenMultiplesTutorial(bool startTutorial = true)
+        {
+            // Create the pages list.
+            List<Page> pages = new List<Page>
+            {
+                // Load the pages.
+                new MST_Page("The multipliers have become hidden! If you perform enough conversions correctly in a row, the conversion multipliers will disappear. They will come back a few seconds after a conversion question is given, but this will give more time for meteors to reach the Earth's surface. If you get a conversion wrong, the multipliers will start showing up instantly like before, unless you get enough consecutive correct answers again.", "trl_hiddenMultiples_00")
+            };
+
+            // Change the display image when certain pages are opened using callbacks.
+            pages[0].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerA);
+            pages[0].OnPageOpenedAddCallback(tutorialsUI.textBox.ShowCharacterImage);
+
+            // Sets the bool and loads the tutorial.
+            clearedHiddenMultiplesTutorial = true;
+            LoadTutorial(ref pages, startTutorial);
+        }
+
+        // Loads the barriers tutorial.
+        public void LoadBarrierTutorial(bool startTutorial = true)
+        {
+            // Create the pages list.
+            List<Page> pages = new List<Page>
+            {
+                // Load the pages.
+                new MST_Page("A barrier has been hit! When a meteor hits a barrier, the meteor is destroyed, but the barrier takes damage. If a barrier takes too much damage, it'll be destroyed, leaving an opening for meteors to hit the Earth's surface and damage it. Once you get enough points, a barrier is restored.", "trl_barrier_00")
+            };
+
+            // Change the display image when certain pages are opened using callbacks.
+            pages[0].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerB);
+            pages[0].OnPageOpenedAddCallback(tutorialsUI.textBox.ShowCharacterImage);
+
+            // Sets the bool and loads the tutorial.
+            clearedBarrierTutorial = true;
+            LoadTutorial(ref pages, startTutorial);
+        }
+
+
+        // Puzzles
+        // Loads the puzzle - unit buttons tutorial.
+        public void LoadPuzzleUnitsButtonsTutorial(bool startTutorial = true)
+        {
+            // Create the pages list.
+            List<Page> pages = new List<Page>
+            {
+                // Load the pages.
+                new MST_Page("This is a units buttons puzzle! Submit an output by selecting the button its attached to.", "trl_pzl_buttons")
+            };
+
+            // Change the display image when certain pages are opened using callbacks.
+            pages[0].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerA);
+            pages[0].OnPageOpenedAddCallback(tutorialsUI.textBox.ShowCharacterImage);
+
+            // Sets the bool and loads the tutorial.
+            clearedPuzzleButtonsTutorial = true;
+            LoadTutorial(ref pages, startTutorial);
+        }
+
+        // Loads the puzzle - swap tutorial.
+        public void LoadPuzzleSwapTutorial(bool startTutorial = true)
+        {
+            // Create the pages list.
+            List<Page> pages = new List<Page>
+            {
+                // Load the pages.
+                new MST_Page("This is a swap puzzle! Symbols switch places when the time bar in the puzzle area fully depletes. Select an output using one of its corresponding symbols in the puzzle area.", "trl_pzl_swap")
+            };
+
+            // Change the display image when certain pages are opened using callbacks.
+            pages[0].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerB);
+            pages[0].OnPageOpenedAddCallback(tutorialsUI.textBox.ShowCharacterImage);
+
+            // Sets the bool and loads the tutorial.
+            clearedPuzzleSwapTutorial = true;
+            LoadTutorial(ref pages, startTutorial);
+        }
+
+        // Loads the puzzle - slide tutorial.
+        public void LoadPuzzleSlideTutorial(bool startTutorial = true)
+        {
+            // Create the pages list.
+            List<Page> pages = new List<Page>
+            {
+                // Load the pages.
+                new MST_Page("This is a slide puzzle! Symbols slide across the puzzle area while a meteor is targeted. Select an output using one of its corresponding symbols in the puzzle area.", "trl_pzl_slide")
+            };
+
+            // Change the display image when certain pages are opened using callbacks.
+            pages[0].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerA);
+            pages[0].OnPageOpenedAddCallback(tutorialsUI.textBox.ShowCharacterImage);
+
+            // Sets the bool and loads the tutorial.
+            clearedPuzzleSlideTutorial = true;
+            LoadTutorial(ref pages, startTutorial);
+        }
+
+        // Loads the puzzle - path tutorial.
+        public void LoadPuzzlePathTutorial(bool startTutorial = true)
+        {
+            // Create the pages list.
+            List<Page> pages = new List<Page>
+            {
+                // Load the pages.
+                new MST_Page("This is a path puzzle! Symbols move along the path in the puzzle area while a meteor is targeted. Select an output using its corresponding symbol in the puzzle area.", "trl_pzl_path")
+            };
+
+            // Change the display image when certain pages are opened using callbacks.
+            pages[0].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerB);
+            pages[0].OnPageOpenedAddCallback(tutorialsUI.textBox.ShowCharacterImage);
+
+            // Sets the bool and loads the tutorial.
+            clearedPuzzlePathTutorial = true;
+            LoadTutorial(ref pages, startTutorial);
+        }
+
+
+        // First Win and Mix
         // Loads the first win tutorial.
         public void LoadFirstWinTutorial(bool startTutorial = true)
         {
@@ -493,6 +611,7 @@ namespace RM_MST
             clearedMixStageTutorial = true;
             LoadTutorial(ref pages, startTutorial);
         }
+
 
         // Measurement Groups
         // Loads the length (imperial) tutorial.
