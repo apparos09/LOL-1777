@@ -209,5 +209,5 @@ MonoBehaviour:
   rigidbody: {fileID: 3309157949649501107}
   spriteRenderer: {fileID: 5726859174762021250}
   maxSpeed: 100
-  meteorHitForce: 9
+  meteorHitForce: 10
   applyForce: 1

@@ -29,7 +29,7 @@ namespace RM_MST
         public Vector3 moveDirec = Vector3.up;
 
         // The force for the laser shot when it hits the meteor. 
-        public float meteorHitForce = 10.0F;
+        public float meteorHitForce = 7.5F;
 
         // Gets set to 'true' when force should be applied.
         public bool applyForce = true;

@@ -26,7 +26,7 @@ namespace RM_MST
         public float maxSpeed = 100.0F;
 
         // The force for the laser shot when it hits the meteor. 
-        public float meteorHitForce = 9.0F;
+        public float meteorHitForce = 10.0F;
 
         // The meteors that have been hit by the wave.
         private List<Meteor> hitMeteors = new List<Meteor>();

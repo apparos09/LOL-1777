@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -146,6 +147,9 @@ namespace RM_MST
 
         // The maximum units input value.
         public const float UNITS_INPUT_VALUE_MAX = 100.0F;
+
+        // Changes the max units input value by the game's difficulty.
+        private bool setUnitsInputMaxByDifficulty = true;
 
         // If 'true', random inputs can be decimal values.
         private bool allowRandomInputDecimals = true;
@@ -966,6 +970,74 @@ namespace RM_MST
             return conversion;
         }
 
+        // Gets the minimum conversion input value.
+        public float GetMinimumConversionInputValue()
+        {
+            return UNITS_INPUT_VALUE_MIN;
+        }
+
+        public float GetMaximumConversionInputValue()
+        {
+            // The value to be returned.
+            float value;
+
+            // If the units input max value should depend on the difficulty. 
+            if(setUnitsInputMaxByDifficulty)
+            {
+                // Gets the difficulty.
+                switch(GetDifficulty())
+                {
+                    default:
+                        // Sets to the max value by default if one isn't set for this difficulty.
+                        value = UNITS_INPUT_VALUE_MAX;
+                        break;
+
+                    case 1:
+                        value = 15.0F;
+                        break;
+
+                    case 2:
+                        value = 20.0F;
+                        break;
+
+                    case 3:
+                        value = 40.0F;
+                        break;
+
+                    case 4:
+                        value = 60.0F;
+                        break;
+
+                    case 5:
+                        value = 80.0F;
+                        break;
+
+                    case 6: // Highest difficulty used by the game.
+                        value = 100.0F;
+                        break;
+
+                    case 7:
+                        value = 100.0F;
+                        break;
+
+                    case 8:
+                        value = 100.0F;
+                        break;
+
+                    case 9:
+                        value = 100.0F;
+                        break;
+                }
+            }
+            else
+            {
+                // Sets to the max value.
+                value = UNITS_INPUT_VALUE_MAX;
+            }
+
+            return value;
+        }
+
         // Generates a random input value for the conversion.
         public float SetRandomConversionInputValue(UnitsInfo.UnitsConversion conversion)
         {
@@ -976,8 +1048,9 @@ namespace RM_MST
                 return 0.0F;
             }
 
-            // Generates the value, and gets the factor for the number of decimal palces.
-            float value = Random.Range(UNITS_INPUT_VALUE_MIN, UNITS_INPUT_VALUE_MAX);
+            // Generates the value, and gets the factor for the number of decimal places.
+            // This now calls a function that changes the maximum value based on the game's difficulty.
+            float value = Random.Range(UNITS_INPUT_VALUE_MIN, GetMaximumConversionInputValue());
 
             // Round the value, and cap it at 3 decimal places.
             value = util.CustomMath.Round(value, UNITS_DECIMAL_PLACES);
