@@ -404,8 +404,7 @@ namespace RM_MST
             {
                 // Load the pages.
                 new MST_Page("Welcome to the Meteor Strike Team (MST)! Our job is to track down and destroy meteors before they hit the Earth's surface, which we do by converting larger measurement units into smaller measurement units. I'm Reteor...", "trl_intro_00"),
-                new MST_Page("And I'm Astrite! This is the world area, which is where you select stages, view unit information, change the game settings, and save your game. When you select a stage, the relevant measurement information is shown. Once you get said information, it can be viewed again by selecting the 'units info' button.", "trl_intro_01"),
-                new MST_Page("With all that explained, please select the available stage to start destroying meteors!", "trl_intro_02"),
+                new MST_Page("And I'm Astrite! This is the world area, which is where you select stages, view unit information, change the game settings, and save your game. When you select a stage, the relevant measurement information is shown. Once you get said information, it can be viewed again by selecting the 'units info' button. With all that explained, please select the available stage to start destroying meteors!", "trl_intro_01"),
             };
 
             // Change the display image when certain pages are opened using callbacks.
@@ -413,7 +412,6 @@ namespace RM_MST
 
             pages[0].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerA);
             pages[1].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerB);
-            pages[2].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerB);
 
             // If the world manager UI is instantiated.
             if(WorldUI.Instantiated)
