@@ -358,13 +358,17 @@ namespace RM_MST
             // The game is now running.
             runningGame = true;
 
-            // Tutorial check.
+            // Checks if tutorials are enabled.
             if (IsUsingTutorial())
             {
-                // If the first stage tutorial has not been cleared, load it.
-                if (!tutorials.clearedFirstStageTutorial)
+                // Checks that there is no tutorial running.
+                if(!IsTutorialRunning())
                 {
-                    tutorials.LoadFirstStageTutorial();
+                    // If the first stage tutorial has not been cleared, load it.
+                    if (!tutorials.clearedFirstStageTutorial)
+                    {
+                        tutorials.LoadFirstStageTutorial();
+                    }
                 }
             }
 
@@ -1547,6 +1551,20 @@ namespace RM_MST
         public void OnBarrierDamaged()
         {
             stageUI.OnBarrierDamaged();
+
+            // If tutorials are being used.
+            if(IsUsingTutorial())
+            {
+                // If there is no tutorial running.
+                if (!IsTutorialRunning())
+                {
+                    // If the barrier tutorial has not been triggered yet, trigger it.
+                    if (!tutorials.clearedBarrierTutorial)
+                    {
+                        tutorials.LoadBarrierTutorial();
+                    }
+                }
+            }
         }
 
         // Restores all barriers.
@@ -1814,6 +1832,21 @@ namespace RM_MST
                     if (newTarget && consecutiveSuccesses >= MULT_REVEAL_EFFECT_THRESHOLD)
                     {
                         stageUI.StartUnitButtonMultipleReveals();
+
+                        // If tutorials are being used.
+                        if (IsUsingTutorial())
+                        {
+                            // If a tutorial is not running.
+                            if (!IsTutorialRunning())
+                            {
+                                // Run the mults hidden tutorial if it hasn't been run yet.
+                                if (!tutorials.clearedHiddenMultiplesTutorial)
+                                {
+                                    tutorials.LoadHiddenMultiplesTutorial();
+                                }
+                            }
+                        }
+
                     }
                 }
             }

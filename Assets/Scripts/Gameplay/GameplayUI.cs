@@ -106,6 +106,8 @@ namespace RM_MST
                 // Checks if the tutorial UI is not set to null.
                 if (tutorialUI != null)
                 {
+                    // The tutorials object has a dedicated function for seeing if it's running...
+                    // You don't know why you did a seperate set up for this, but you're leaving it as is.
                     return IsTutorialTextBoxOpen();
                 }
                 else // No tutorial UI, so the tutorial cannot run.

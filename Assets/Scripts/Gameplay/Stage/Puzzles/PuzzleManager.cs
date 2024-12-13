@@ -29,6 +29,8 @@ namespace RM_MST
         // The puzzle UI.
         public PuzzleUI puzzleUI;
 
+        // TODO: implement variable that's used to determine when a tutorial has already been checked for.
+
         // Gets set to 'true' when late start has been called.
         private bool calledLateStart = false;
 
@@ -225,6 +227,49 @@ namespace RM_MST
 
             // Generate the puzzle.
             GeneratePuzzle();
+        }
+        
+        // Tries to load a puzzle tutorial.
+        public bool TryLoadPuzzleTutorial()
+        {
+            //// No puzzle set, so do nothing.
+            //if (puzzle == null)
+            //{
+            //    // Debug.LogWarning("No puzzle exists, so no tutorial can be run.");
+            //    return false;
+            //}
+
+            //// Gets set to 'true' if a tutorial has been run.
+            //bool result = true;
+
+            //// TODO: implement.
+            //// If there is no tutorial running...
+            //if(!stageManager.tutorials.IsTutorialRunning())
+            //{
+            //    switch(puzzle.GetPuzzleType())
+            //    {
+            //        // Do nothing.
+            //        default:
+            //        case puzzleType.unknown:
+            //            result = false;
+            //            break;
+
+            //        case puzzleType.buttons:
+            //            break;
+
+            //        case puzzleType.swap:
+            //            break;
+
+            //        case puzzleType.slide:
+            //            break;
+
+            //        case puzzleType.path:
+            //            break;
+            //    }
+            //}
+
+            //return result;
+            return false;
         }
 
         // Checks if the puzzle is interactable.
@@ -432,6 +477,17 @@ namespace RM_MST
 
                 // Updates the player's puzzle inputs.
                 UpdatePuzzleInput();
+            }
+
+            // If the tutorials are being used.
+            if(stageManager.IsUsingTutorial())
+            {
+                // If there is no tutorial running, and the first stage tutorial has been cleared.
+                if(!stageManager.IsTutorialRunning() && stageManager.tutorials.clearedFirstStageTutorial)
+                {
+                    // Tries to load a puzzle tutorial.
+                    TryLoadPuzzleTutorial();
+                }
             }
         }
 
