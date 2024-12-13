@@ -18,6 +18,9 @@ namespace RM_MST
         // Manager
         public StageManager manager;
 
+        // The audio source for the warning sound.
+        public AudioSource warningSfxSource;
+
         [Header("Stage/BGMs")]
         // The stage BGMs. BGM 0 is the debug BGM.
         public AudioClip stageBgm00;
@@ -177,6 +180,24 @@ namespace RM_MST
         public void PlayPhaseSfx()
         {
             PlaySoundEffectWorld(phaseSfx);
+        }
+
+        // Plays the warning sound effect on loop.
+        public void PlayWarningSfx()
+        {
+            warningSfxSource.Play();
+        }
+
+        // Stops playing the warning sound effect.
+        public void StopWarningSfx()
+        {
+            warningSfxSource.Stop();
+        }
+
+        // Returns true if the SFX is playing (it's set to loop).
+        public bool IsWarningSfxPlaying()
+        {
+            return warningSfxSource.isPlaying;
         }
 
         // This function is called when the MonoBehaviour will be destroyed.

@@ -20,7 +20,7 @@ namespace RM_MST
         private float playerStunTimer = 0.0F;
 
         // Player stun timer max.
-        public const float PLAYER_STUN_TIMER_MAX = 1.25F; // Originally 0.8F
+        public const float PLAYER_STUN_TIMER_MAX = 1.30F; // Originally 0.8F
 
         [Header("Laser Shot, Wave")]
         // The laser prefab.

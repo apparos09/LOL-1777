@@ -154,6 +154,12 @@ namespace RM_MST
             }
         }
 
+        // Returns the puzzle type.
+        public puzzleType GetPuzzleType()
+        {
+            return pType;
+        }
+
         // Generates the puzzle with the set type.
         public void GeneratePuzzle()
         {
@@ -236,13 +242,6 @@ namespace RM_MST
         // Tries to load a puzzle tutorial.
         public bool TryLoadPuzzleTutorial()
         {
-            // No puzzle set, so do nothing.
-            if (puzzle == null)
-            {
-                // Debug.LogWarning("No puzzle exists, so no tutorial can be run.");
-                return false;
-            }
-
             // Gets set to 'true' if a tutorial has been run. False if no tutorial is being run.
             // False by default.
             bool result = false;
@@ -252,7 +251,7 @@ namespace RM_MST
             if(!stageManager.tutorials.IsTutorialRunning())
             {
                 // Checks the puzzle type.
-                switch(puzzle.GetPuzzleType())
+                switch(pType)
                 {
                     // Do nothing.
                     default:

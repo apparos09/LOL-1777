@@ -196,6 +196,12 @@ namespace RM_MST
         // This addresses an issue where a meteor behind another meteor gets targeted.
         private bool constClosestMeteorCheck = true;
 
+        // The maximum distance for the warning sound to play for a meteor approaching the Earth's surface.
+        protected const float METEOR_WARNING_SFX_MAX_DIST = 3.75F;
+
+        // Plays the meteor warning sound effect when a meteor is too close to the surface.
+        private bool useMeteorWarningSfx = true;
+
         [Header("Puzzles")]
 
         // The puzzle manager for the stage.
@@ -1606,6 +1612,16 @@ namespace RM_MST
             // Calculate the final score, and add it to the game score.
             CalculateAndSetStageFinalScore();
 
+            // If the warning sound effect is being played, stop playing it.
+            if(useMeteorWarningSfx)
+            {
+                // If the warning is playing, stop it.
+                if (stageAudio.IsWarningSfxPlaying())
+                {
+                    stageAudio.StopWarningSfx();
+                }
+            }
+
             // Puzzle manager stage end call.
             puzzleManager.OnStageEnd();
 
@@ -1847,6 +1863,47 @@ namespace RM_MST
                             }
                         }
 
+                    }
+                }
+
+                // Checks if the warning sound effect should be used.
+                if (useMeteorWarningSfx)
+                {
+                    // Gets the meteor Y and the surface Y.
+                    float meteorY = meteorTarget.GetMeteor().transform.position.y;
+                    float surfaceY = stage.surface.transform.position.y;
+
+                    // Calculates the distance.
+                    float dist = Mathf.Abs(meteorY - surfaceY);
+
+                    // If the meteor is too close to the surface, play the warning sound.
+                    if(dist <= METEOR_WARNING_SFX_MAX_DIST)
+                    {
+                        // play the warning sound if it isn't already playing.
+                        if (!stageAudio.IsWarningSfxPlaying())
+                        {
+                            stageAudio.PlayWarningSfx();
+                        }
+                    }
+                    else
+                    {
+                        // Stop the warning sound.
+                        if(stageAudio.IsWarningSfxPlaying())
+                        {
+                            stageAudio.StopWarningSfx();
+                        }
+                    }
+                }
+            }
+            else
+            {
+                // If the metoer warning sound effect is being used.
+                if(useMeteorWarningSfx)
+                {
+                    // If the warning sound is playing, stop it.
+                    if(stageAudio.IsWarningSfxPlaying())
+                    {
+                        stageAudio.StopWarningSfx();
                     }
                 }
             }

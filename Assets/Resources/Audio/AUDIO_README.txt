@@ -180,6 +180,7 @@ Mike Koenig
 Licensed under Creative Commons: By Attribution 3.0 License
 https://creativecommons.org/licenses/by/3.0/
 
+
 ## Stage - Meteor - Destroy Success
 - Walking in Snow 1 - Unknown Artist (GameSounds.xyz)
 	- Link: https://gamesounds.xyz/?dir=Sound%20Effects
@@ -191,6 +192,14 @@ https://creativecommons.org/licenses/by/3.0/
 ## Stage - Meteor - Destroy Fail
 - Walking in Snow 1 - Unknown Artist (GameSounds.xyz)
 	- Link: https://gamesounds.xyz/?dir=Sound%20Effects
+
+### Copyright
+- Confirmed to be copyright free by GameSounds.xyz.
+
+
+## Stage - Meteor - Close to Surface
+- Phone Off Hook 1 - Unknown Artist (GameSounds.xyz)
+	- Link: https://gamesounds.xyz/?dir=Sound%20Effects/Phone
 
 ### Copyright
 - Confirmed to be copyright free by GameSounds.xyz.
