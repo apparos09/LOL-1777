@@ -29,7 +29,8 @@ namespace RM_MST
         // The puzzle UI.
         public PuzzleUI puzzleUI;
 
-        // TODO: implement variable that's used to determine when a tutorial has already been checked for.
+        // Gets set to 'true' if the puzzle manager has checked for a tutorial.
+        protected bool checkedForTutorial = false;
 
         // Gets set to 'true' when late start has been called.
         private bool calledLateStart = false;
@@ -214,6 +215,9 @@ namespace RM_MST
                 puzzle.initializeOnStart = false;
             }
 
+            // Check for tutorials now that a puzzle has been generated.
+            checkedForTutorial = false;
+
             // The puzzle has been generated.
             puzzleUI.OnPuzzleGenerated();
 
@@ -232,44 +236,77 @@ namespace RM_MST
         // Tries to load a puzzle tutorial.
         public bool TryLoadPuzzleTutorial()
         {
-            //// No puzzle set, so do nothing.
-            //if (puzzle == null)
-            //{
-            //    // Debug.LogWarning("No puzzle exists, so no tutorial can be run.");
-            //    return false;
-            //}
+            // No puzzle set, so do nothing.
+            if (puzzle == null)
+            {
+                // Debug.LogWarning("No puzzle exists, so no tutorial can be run.");
+                return false;
+            }
 
-            //// Gets set to 'true' if a tutorial has been run.
-            //bool result = true;
+            // Gets set to 'true' if a tutorial has been run. False if no tutorial is being run.
+            // False by default.
+            bool result = false;
 
-            //// TODO: implement.
-            //// If there is no tutorial running...
-            //if(!stageManager.tutorials.IsTutorialRunning())
-            //{
-            //    switch(puzzle.GetPuzzleType())
-            //    {
-            //        // Do nothing.
-            //        default:
-            //        case puzzleType.unknown:
-            //            result = false;
-            //            break;
+            // TODO: implement.
+            // If there is no tutorial running...
+            if(!stageManager.tutorials.IsTutorialRunning())
+            {
+                // Checks the puzzle type.
+                switch(puzzle.GetPuzzleType())
+                {
+                    // Do nothing.
+                    default:
+                    case puzzleType.unknown:
+                        result = false;
+                        break;
 
-            //        case puzzleType.buttons:
-            //            break;
+                    case puzzleType.buttons:
+                        
+                        // Load the tutorial if it hasn't been used yet.
+                        if(!stageManager.tutorials.clearedPuzzleButtonsTutorial)
+                        {
+                            stageManager.tutorials.LoadPuzzleButtonsTutorial();
+                            result = true;
+                        }
 
-            //        case puzzleType.swap:
-            //            break;
+                        break;
 
-            //        case puzzleType.slide:
-            //            break;
+                    case puzzleType.swap:
 
-            //        case puzzleType.path:
-            //            break;
-            //    }
-            //}
+                        // Load the tutorial if it hasn't been used yet.
+                        if (!stageManager.tutorials.clearedPuzzleSwapTutorial)
+                        {
+                            stageManager.tutorials.LoadPuzzleSwapTutorial();
+                            result = true;
+                        }
 
-            //return result;
-            return false;
+                        break;
+
+                    case puzzleType.slide:
+
+                        // Load the tutorial if it hasn't been used yet.
+                        if (!stageManager.tutorials.clearedPuzzleSlideTutorial)
+                        {
+                            stageManager.tutorials.LoadPuzzleSlideTutorial();
+                            result = true;
+                        }
+
+                        break;
+
+                    case puzzleType.path:
+
+                        // Load the tutorial if it hasn't been used yet.
+                        if (!stageManager.tutorials.clearedPuzzlePathTutorial)
+                        {
+                            stageManager.tutorials.LoadPuzzlePathTutorial();
+                            result = true;
+                        }
+
+                        break;
+                }
+            }
+
+            return result;
         }
 
         // Checks if the puzzle is interactable.
@@ -479,14 +516,21 @@ namespace RM_MST
                 UpdatePuzzleInput();
             }
 
-            // If the tutorials are being used.
-            if(stageManager.IsUsingTutorial())
+            // If a tutorial has not been checked for yet.
+            if(!checkedForTutorial)
             {
-                // If there is no tutorial running, and the first stage tutorial has been cleared.
-                if(!stageManager.IsTutorialRunning() && stageManager.tutorials.clearedFirstStageTutorial)
+                // If the tutorials are being used.
+                if (stageManager.IsUsingTutorial())
                 {
-                    // Tries to load a puzzle tutorial.
-                    TryLoadPuzzleTutorial();
+                    // If there is no tutorial running, and the first stage tutorial has been cleared.
+                    if (!stageManager.IsTutorialRunning() && stageManager.tutorials.clearedFirstStageTutorial)
+                    {
+                        // Tries to load a puzzle tutorial.
+                        TryLoadPuzzleTutorial();
+
+                        // A tutorial has been checked for.
+                        checkedForTutorial = true;
+                    }
                 }
             }
         }

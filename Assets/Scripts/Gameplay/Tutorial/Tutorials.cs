@@ -496,7 +496,7 @@ namespace RM_MST
 
         // Puzzles
         // Loads the puzzle - unit buttons tutorial.
-        public void LoadPuzzleUnitsButtonsTutorial(bool startTutorial = true)
+        public void LoadPuzzleButtonsTutorial(bool startTutorial = true)
         {
             // Create the pages list.
             List<Page> pages = new List<Page>
