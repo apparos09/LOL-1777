@@ -1003,7 +1003,7 @@ namespace RM_MST
                         break;
 
                     case 1:
-                        value = 15.0F;
+                        value = 10.0F;
                         break;
 
                     case 2:
