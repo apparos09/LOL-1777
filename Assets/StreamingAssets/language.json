@@ -349,7 +349,7 @@
 
     "trl_pzl_buttons": "This is a units buttons puzzle! Submit an output by selecting the button its attached to.",
 
-    "trl_pzl_swap": "This is a swap puzzle! Symbols switch places when the time bar in the puzzle area fully depletes. Select an output using one of its corresponding symbols in the puzzle area.",
+    "trl_pzl_swap": "This is a swap puzzle! Symbols in the puzzle area switch places when the time bar in the puzzle area fully depletes. Select an output using one of its corresponding symbols in the puzzle area.",
 
     "trl_pzl_slide": "This is a slide puzzle! Symbols slide across the puzzle area while a meteor is targeted. Select an output using one of its corresponding symbols in the puzzle area.",
 

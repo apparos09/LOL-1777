@@ -519,7 +519,7 @@ namespace RM_MST
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new MST_Page("This is a swap puzzle! Symbols switch places when the time bar in the puzzle area fully depletes. Select an output using one of its corresponding symbols in the puzzle area.", "trl_pzl_swap")
+                new MST_Page("This is a swap puzzle! Symbols in the puzzle area switch places when the time bar in the puzzle area fully depletes. Select an output using one of its corresponding symbols in the puzzle area.", "trl_pzl_swap")
             };
 
             // Change the display image when certain pages are opened using callbacks.
