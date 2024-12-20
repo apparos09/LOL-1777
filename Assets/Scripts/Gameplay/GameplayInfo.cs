@@ -51,6 +51,9 @@ namespace RM_MST
         // The game score - no longer needed.
         // public float gameScore = 0;
 
+        // Game Mode
+        public GameplayManager.gameMode gameMode;
+
         [Header("WorldInfo")]
 
         // If the class has world info.
@@ -152,6 +155,7 @@ namespace RM_MST
         {
             gameTime = gameManager.gameTime;
             // gameScore = gameManager.gameScore;
+            gameMode = gameManager.gameplayMode;
         }
 
         // Loads game info into the game manager.
@@ -159,6 +163,7 @@ namespace RM_MST
         {
             gameManager.gameTime = gameTime;
             // gameManager.gameScore = gameScore;
+            gameManager.gameplayMode = gameMode;
         }
 
 

@@ -8,6 +8,13 @@ namespace RM_MST
     // The gameplay manager.
     public class GameplayManager : MonoBehaviour
     {
+        /*
+         * Game Mode:
+         *** focus: meteors only move when hit with a failed unit conversion.
+         *** rush: meteors fall gradually towards the Earth as the stage goes on.
+         */
+        public enum gameMode { focus, rush };
+
         // The game UI.
         public GameplayUI gameUI;
 
@@ -38,6 +45,9 @@ namespace RM_MST
 
         // The units info.
         public UnitsInfo unitsInfo;
+
+        // The gameplay mode for the game.
+        public gameMode gameplayMode = gameMode.focus;
 
         // Set to 'true' when the late start function has been called.
         private bool calledLateStart = false;
@@ -118,7 +128,6 @@ namespace RM_MST
                 appUnpausedWaitFrames = 2;
             }
         }
-
 
         // GAME SCORE //
         // Returns the game score.

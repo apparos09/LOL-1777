@@ -14,8 +14,6 @@ namespace RM_MST
     [System.Serializable]
     public class MST_GameData
     {
-        // TODO: add in marker to show that the game is over.
-
         // Shows if the game data is valid.
         public bool valid = false;
 
@@ -31,11 +29,14 @@ namespace RM_MST
         // The player's overall score.
         public float gameScore = 0;
 
-        // TODO: implement values.
+        // The stage data.
         public StageData[] stageDatas = new StageData[WorldManager.STAGE_COUNT];
 
         // Tutorial Clears
         public Tutorials.TutorialsData tutorialData;
+
+        // Game Mode
+        public GameplayManager.gameMode gameMode;
     }
 
     // Used to save the game.

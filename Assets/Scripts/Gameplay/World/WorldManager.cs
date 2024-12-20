@@ -100,6 +100,13 @@ namespace RM_MST
             {
                 Debug.LogWarning("The stage list length does not match the expected stage count.");
             }
+
+            // If the game settings exist.
+            if(GameSettings.Instantiated)
+            {
+                // Gets the game mode from the game settings. This will be overwritten by gameplay info if it exists.
+                gameplayMode = GameSettings.Instance.gameMode;
+            }
         }
 
         // The function called after the start function.
@@ -297,6 +304,9 @@ namespace RM_MST
             // Sets the tutorials data.
             data.tutorialData = Tutorials.Instance.GenerateTutorialsData();
 
+            // Saves the gameplay mode.
+            data.gameMode = gameplayMode;
+
             // Saves if the game is completed.
             data.complete = IsGameComplete();
 
@@ -421,6 +431,9 @@ namespace RM_MST
 
             // Sets the tutorials data.
             Tutorials.Instance.LoadTutorialsData(loadedData.tutorialData);
+
+            // Loads the gameplay mode.
+            gameplayMode = loadedData.gameMode;
 
             // Save the world info.
             gameInfo.SaveWorldInfo(this);

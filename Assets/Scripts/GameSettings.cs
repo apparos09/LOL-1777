@@ -61,6 +61,10 @@ namespace RM_MST
         // The volume for the TTS.
         private float ttsVolume = 1.0F;
 
+        // The gameplay mode. This is used to set the game mode at the start of the game.
+        [HideInInspector]
+        public GameplayManager.gameMode gameMode = GameplayManager.gameMode.focus;
+
         // the constructor.
         private GameSettings()
         {

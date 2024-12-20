@@ -211,6 +211,8 @@ namespace RM_MST
             // Clear out the loaded data and last save if the LOLSDK has been initialized.
             LOLManager.Instance.saveSystem.ClearLoadedAndLastSaveData();
 
+            // TODO: set game mode.
+
             // Start the game.
             StartGame();
         }
