@@ -16,6 +16,9 @@ namespace RM_MST
         // The rigidbody for the meteor.
         public new Rigidbody2D rigidbody;
 
+        // The rigidbody's base gravity scale.
+        private float baseGravityScale = 1;
+
         // The meteor's spawn point.
         public Vector3 spawnPoint = new Vector3();
 
@@ -87,7 +90,18 @@ namespace RM_MST
         // Awake is called when the script instance is being loaded
         private void Awake()
         {
+            // Adds the meteor to the active list.
             AddMeteorToMeteorsActiveList(this);
+
+            // Tries to get the rigidbody to try and set the meteor's base gravity scale.
+            if (rigidbody == null)
+                rigidbody = GetComponent<Rigidbody2D>();
+
+            // Saves the rigidbody's gravity scale.
+            if (rigidbody != null)
+            {
+                baseGravityScale = rigidbody.gravityScale;
+            }
         }
 
         // Start is called before the first frame update
@@ -101,6 +115,7 @@ namespace RM_MST
             if (collider == null)
                 collider = GetComponent<Collider2D>();
 
+            // Already checked in awake, but this check is kept in just to be safe.
             // If the rigidbody is not set, try to set it.
             if (rigidbody == null)
                 rigidbody = GetComponent<Rigidbody2D>();

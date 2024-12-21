@@ -23,6 +23,14 @@ namespace RM_MST
         // The saving text.
         public TMP_Text saveText;
 
+        [Header("WorldUI/Game Mode")]
+
+        // The game mode display.
+        public GameObject gameModeDisplay;
+
+        // The game mode text.
+        public TMP_Text gameModeText;
+
         [Header("WorldUI/Prompts")]
         // The stage world UI.
         public StageWorldUI stageWorldUI;
@@ -125,6 +133,15 @@ namespace RM_MST
             // Not needed anymore.
             // Open the units info window. This is done so that the units info menu gets initialized.
             // OpenWindow(unitsInfoMenu.gameObject);
+
+            // Updates the game mode text by default (this will likely get overwritten when data is loaded in).
+            gameModeText.text = worldManager.GetGameplayModeAsString();
+
+            // Hide the display if it won't be used.
+            if (LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
+            {
+                gameModeDisplay.gameObject.SetActive(false);
+            }
         }
 
         // The late start function.

@@ -161,6 +161,9 @@ namespace RM_MST
                 }
             }
 
+            // Update the game mode display.
+            worldUI.gameModeText.text = GetGameplayModeAsString();
+
             // The game complete event is set.
             if (gameCompleteEvent != null)
             {

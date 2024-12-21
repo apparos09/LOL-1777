@@ -129,6 +129,44 @@ namespace RM_MST
             }
         }
 
+        // Gameplay Mode
+        // // Gets the gameplay mode.
+        // public gameMode GetGameplayMode()
+        // {
+        //     return gameplayMode;
+        // }
+
+        // Gets the gameplay mode as a string.
+        public static string GetGameplayModeAsString(GameplayManager.gameMode mode)
+        {
+            // The result to be returned.
+            string result;
+
+            switch(mode)
+            {
+                default:
+                    result = "";
+                    break;
+
+                case gameMode.focus:
+                    result = "Focus Mode";
+                    break;
+
+                case gameMode.rush:
+                    result = "Rush Mode";
+                    break;
+            }
+
+            // Returns the result.
+            return result;
+        }
+
+        // Returns the gameplay mode as a string.
+        public string GetGameplayModeAsString()
+        {
+            return GetGameplayModeAsString(gameplayMode);
+        }
+
         // GAME SCORE //
         // Returns the game score.
         public float CalculateGameScore()

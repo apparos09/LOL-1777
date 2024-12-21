@@ -643,6 +643,12 @@ MonoBehaviour:
   tutorialsUI: {fileID: 0}
   clearedIntroTutorial: 0
   clearedFirstStageTutorial: 0
+  clearedHiddenMultiplesTutorial: 0
+  clearedBarrierTutorial: 0
+  clearedPuzzleButtonsTutorial: 0
+  clearedPuzzleSwapTutorial: 0
+  clearedPuzzleSlideTutorial: 0
+  clearedPuzzlePathTutorial: 0
   clearedFirstWinTutorial: 0
   clearedMixStageTutorial: 0
   clearedLengthImperialTutorial: 0
