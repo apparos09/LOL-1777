@@ -81,6 +81,23 @@ namespace RM_MST
                 // Apply the data.
                 resultsEntries[i].ApplyStageData(data.stageDatas[i]);
             }
+
+            // If the LOL manager isn't being used, show the mode in the title text.
+            if (!LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
+            {
+                // Looks at the game mode and checks what to display.
+                switch(data.gameMode)
+                {
+                    case GameplayManager.gameMode.focus:
+                        titleText.text = "Results - Focus Mode";
+                        break;
+
+                    case GameplayManager.gameMode.rush:
+                        titleText.text = "Results - Rush Mode";
+                        break;
+                }
+            }
+
         }
 
         // Goes to the title scene.

@@ -570,6 +570,9 @@ namespace RM_MST
                 resultsData.stageDatas[i] = gameInfo.worldStages[i];
             }
 
+            // Sets the gameplay mode for the results data.
+            resultsData.gameMode = gameplayMode;
+
             // Saves the game.
             SaveGame();
 

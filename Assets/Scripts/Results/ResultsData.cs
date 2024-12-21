@@ -15,5 +15,8 @@ namespace RM_MST
 
         // The stage data.
         public StageData[] stageDatas = new StageData[WorldManager.STAGE_COUNT];
+
+        // The game mode.
+        public GameplayManager.gameMode gameMode = GameplayManager.gameMode.focus;
     }
 }
