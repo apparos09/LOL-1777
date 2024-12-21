@@ -17,8 +17,9 @@ namespace RM_MST
 
         [Header("Buttons")]
 
-        // The new game button and continue button.
+        // The new game button, new game (with mode), and continue button.
         public Button newGameButton;
+        public Button newGameModeButton;
         public Button continueButton;
 
         // The instructions, settings, and licenses.
@@ -32,6 +33,9 @@ namespace RM_MST
         [Header("Windows")]
         // The title window.
         public GameObject titleWindow;
+
+        // The mode window for the game.
+        public GameObject modeWindow;
 
         // The instructions, settings, and credits windows.
         public GameObject instructionsWindow;
@@ -75,8 +79,17 @@ namespace RM_MST
                 {
                     LOLManager.Instance.saveSystem.feedbackText = saveText;
                 }
+
+                // Show the new game button and hide the mode button.
+                newGameButton.gameObject.SetActive(true);
+                newGameModeButton.gameObject.SetActive(false);
             }
-                
+            else
+            {
+                // Hide the new game button and show the mode button.
+                newGameButton.gameObject.SetActive(false);
+                newGameModeButton.gameObject.SetActive(true);
+            }   
 
             // Opens the title window at the start.
             OpenWindow(titleWindow);
@@ -86,6 +99,35 @@ namespace RM_MST
         public void StartNewGame()
         {
             manager.StartNewGame();
+        }
+
+        // Starts a new game with the provided mode.
+        // If the game is operating in LOL, this mode is ignored.
+        private void StartNewGameWithMode(GameplayManager.gameMode gameplayMode)
+        {
+            // The game settings are instantiated, so set the mode.
+            if (GameSettings.Instantiated)
+            {
+                GameSettings.Instance.gameMode = gameplayMode;
+            }
+            else // No settings exists.
+            {
+                Debug.LogWarning("Game settings does not exist. Game mode could not be set.");
+            }
+
+            StartNewGame();
+        }
+
+        // Starts a new focus game.
+        public void StartNewFocusGame()
+        {
+            StartNewGameWithMode(GameplayManager.gameMode.focus);
+        }
+
+        // Starts a new rush game.
+        public void StartNewRushGame()
+        {
+            StartNewGameWithMode(GameplayManager.gameMode.rush);
         }
 
         // Continues the game.
@@ -117,9 +159,11 @@ namespace RM_MST
             instructionsWindow.SetActive(false);
             settingsWindow.gameObject.SetActive(false);
             licensesWindow.gameObject.SetActive(false);
+            modeWindow.gameObject.SetActive(false);
         }
 
         // Other
+
         // Quits the game.
         public void QuitGame()
         {

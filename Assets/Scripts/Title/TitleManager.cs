@@ -211,7 +211,11 @@ namespace RM_MST
             // Clear out the loaded data and last save if the LOLSDK has been initialized.
             LOLManager.Instance.saveSystem.ClearLoadedAndLastSaveData();
 
-            // TODO: set game mode.
+            // If this is the LOL version, set it to focus mode by default.
+            if(LOLManager.IsInstantiatedAndIsLOLSDKInitialized() && GameSettings.Instantiated)
+            {
+                GameSettings.Instance.gameMode = GameplayManager.gameMode.focus;
+            }
 
             // Start the game.
             StartGame();

@@ -439,6 +439,8 @@ namespace RM_MST
                 new MST_Page("On the left are the time, the points, the points bar, and the surface's health bar. On the right are the settings button, the world button, the speed button, and the unit conversion table. Feel free to change the game's speed using the speed button if you want more time to do unit conversions. With all that said, time to start the stage!", "trl_firstStage_03"),
             };
 
+            // TODO: check game mode.
+
             // Change the display image when certain pages are opened using callbacks.
             pages[0].OnPageOpenedAddCallback(tutorialsUI.textBox.ShowCharacterImage);
 
