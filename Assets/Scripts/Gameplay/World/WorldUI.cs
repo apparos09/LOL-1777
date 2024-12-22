@@ -138,7 +138,12 @@ namespace RM_MST
             gameModeText.text = worldManager.GetGameplayModeAsString();
 
             // Hide the display if it won't be used.
-            if (LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
+            // If the player is playing in the LOL build, there is only one mode.
+            if (GameSettings.Instance.allowPlayerSelectMode)
+            {
+                gameModeDisplay.gameObject.SetActive(true);
+            }
+            else
             {
                 gameModeDisplay.gameObject.SetActive(false);
             }

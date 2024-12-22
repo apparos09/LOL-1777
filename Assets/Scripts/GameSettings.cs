@@ -65,6 +65,10 @@ namespace RM_MST
         [HideInInspector]
         public GameplayManager.gameMode gameMode = GameplayManager.gameMode.focus;
 
+        // If 'true', the player can select the mode. If false, the game is forced into focus mode.
+        [HideInInspector]        
+        public bool allowPlayerSelectMode = true;
+
         // the constructor.
         private GameSettings()
         {

@@ -39,6 +39,9 @@ namespace RM_MST
 
             // Removes TMP_Text marking since this is the promo build, as the LOL SDK won't be initialized.
             TMP_TextTranslator.markIfFailed = false;
+
+            // Aloow the player to select the game mode.
+            GameSettings.Instance.allowPlayerSelectMode = true;
         }
 
         // Update is called once per frame

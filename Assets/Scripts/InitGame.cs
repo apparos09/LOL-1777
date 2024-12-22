@@ -119,6 +119,9 @@ namespace RM_MST
 
             // Makes the TMP text get marked if translation failed.
             TMP_TextTranslator.markIfFailed = true;
+
+            // Don't allow the player to select the game mode.
+            GameSettings.Instance.allowPlayerSelectMode = false;
         }
 
         private void OnDestroy()

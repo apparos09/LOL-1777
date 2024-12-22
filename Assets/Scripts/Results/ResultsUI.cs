@@ -82,19 +82,23 @@ namespace RM_MST
                 resultsEntries[i].ApplyStageData(data.stageDatas[i]);
             }
 
-            // If the LOL manager isn't being used, show the mode in the title text.
-            if (!LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
+            // If the game settings exist.
+            if(GameSettings.Instantiated)
             {
-                // Looks at the game mode and checks what to display.
-                switch(data.gameMode)
+                // If the player can select the mode, show what mode they selected.
+                if (GameSettings.Instance.allowPlayerSelectMode)
                 {
-                    case GameplayManager.gameMode.focus:
-                        titleText.text = "Results - Focus Mode";
-                        break;
+                    // Looks at the game mode and checks what to display.
+                    switch (data.gameMode)
+                    {
+                        case GameplayManager.gameMode.focus:
+                            titleText.text = "Results - Focus Mode";
+                            break;
 
-                    case GameplayManager.gameMode.rush:
-                        titleText.text = "Results - Rush Mode";
-                        break;
+                        case GameplayManager.gameMode.rush:
+                            titleText.text = "Results - Rush Mode";
+                            break;
+                    }
                 }
             }
 
