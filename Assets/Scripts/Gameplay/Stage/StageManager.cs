@@ -269,6 +269,12 @@ namespace RM_MST
         // Start is called before the first frame update
         protected override void Start()
         {
+            // Checks if the default mode should be kept by seeing if gameplay info exists.
+            // This is used to avoid the mode being changed to the default in the debug scene.
+            bool overwriteMode = !GameplayInfo.Instantiated;
+            gameMode tempMode = gameplayMode;
+
+            // Call base start.
             base.Start();
 
             // Gets the UI instance.
@@ -288,9 +294,24 @@ namespace RM_MST
                 puzzleUI = PuzzleUI.Instance;
 
 
+
+            // Restore the intented mode.
+            if(overwriteMode)
+            {
+                gameplayMode = tempMode;
+            }
+
             // If the gameplay info has been instantiated.
             if (GameplayInfo.Instantiated)
             {
+                // If the mode should be overwritten.
+                if (overwriteMode)
+                {
+                    // Overwrite gameplay info and the default gameplay mode.
+                    gameInfo.gameMode = tempMode;
+                    gameplayMode = tempMode;
+                }
+
                 // Load the stage information.
                 gameInfo.LoadStageInfo(this);
             }
@@ -445,6 +466,18 @@ namespace RM_MST
 
             // Sets the difficulty using the proper function.
             SetDifficulty(difficulty, true);
+        }
+
+        // Returns 'true' if the game is in focus mode.
+        public bool UsingFocusMode()
+        {
+            return gameplayMode == gameMode.focus;
+        }
+
+        // Returns 'true' if the game is in rush mode.
+        public bool UsingRushMode()
+        {
+            return gameplayMode == gameMode.rush;
         }
 
         // Gets the difficulty.
@@ -1785,21 +1818,70 @@ namespace RM_MST
         // Called to run the game mechanics.
         public void RunGame()
         {
-            // Reduce the spawn timer.
-            meteorSpawnTimer -= Time.deltaTime;
-
-            // Cap timer.
-            if (meteorSpawnTimer <= 0)
-                meteorSpawnTimer = 0;
-
-
-            // Spawn a meteor.
-            if (meteorSpawnTimer <= 0)
+            // Checks the gameplay mode.
+            switch(gameplayMode)
             {
-                SpawnMeteor();
+                // Focus Mode
+                case gameMode.focus:
 
-                // Sets the timer to the spawn rate.
-                meteorSpawnTimer = GetModifiedMeteorSpawnRate();
+                    // If there are no meteors, spawn new ones.
+                    if(Meteor.GetMeteorsActiveCount() <= 0)
+                    {
+                        // The meteor list.
+                        List<Meteor> meteors = new List<Meteor>();
+
+                        // While meteors are being spawned.
+                        while(Meteor.GetMeteorsActiveCount() < ACTIVE_METEORS_COUNT_MAX)
+                        {
+                            // Spawns a meteor and adds it the list.
+                            meteors.Add(SpawnMeteor());
+                        }
+
+                        // Gets the minimum and maximum spawn positions for the meteors.
+                        Vector3 spawnMin = stage.meteorSpawnPointMin.transform.position;
+                        Vector3 spawnMax = stage.meteorSpawnPointMax.transform.position;
+
+                        // Calculates the x-spacing for the meteors.
+                        float xSpacing = (spawnMax.x - spawnMin.x) / meteors.Count;
+
+                        // Goes through all the meteors to position them and turn gravity off.
+                        for(int i = 0; i < meteors.Count; i++)
+                        {
+                            // Meteor rigidbody
+                            meteors[i].rigidbody.velocity = Vector2.zero;
+                            // meteors[i].rigidbody.gravityScale = 0;
+
+                            // Calculates the new position.
+                            Vector3 newPos = meteors[i].transform.position;
+                            newPos.x = spawnMin.x  + xSpacing / 2.0F + xSpacing * i;
+                            newPos.y = spawnMin.y;
+
+                            // Sets the meteor's new position.
+                            meteors[i].transform.position = newPos;
+                        }
+                    }
+
+                    break;
+
+                    // Rush Mode
+                case gameMode.rush:
+                    // Reduce the spawn timer.
+                    meteorSpawnTimer -= Time.deltaTime;
+
+                    // Cap timer.
+                    if (meteorSpawnTimer <= 0)
+                        meteorSpawnTimer = 0;
+
+
+                    // Spawn a meteor.
+                    if (meteorSpawnTimer <= 0)
+                    {
+                        SpawnMeteor();
+
+                        // Sets the timer to the spawn rate.
+                        meteorSpawnTimer = GetModifiedMeteorSpawnRate();
+                    }
+                    break;
             }
 
             // Gets set to 'true' if there is a new meteor being targeted.

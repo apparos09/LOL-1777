@@ -45,10 +45,16 @@ namespace RM_MST
         // This value gets set to 0 when the meteor dies. This is just used to check if it's dead.
         private float health = 1.0F;
 
-        // Gets set to 'true' when the meteor is suffering from knockback.
+        // Gets set to 'true' when the meteor should move towards its end point (focus mode).
+        private bool moveTowardsEndPoint = false;
+
+        // The move end point (focus mode).
+        private Vector3 moveEndPoint = Vector3.zero;
+
+        // Gets set to 'true' when the meteor is suffering from knockback (rush mode).
         private bool inKnockback = false;
 
-        // If 'true', the target on the meteor is released upon knockback wearing off.
+        // If 'true', the target on the meteor is released upon knockback wearing off (rush mode).
         private bool untargetOnKnockbackEnd = true;
 
         // Called the late start.
@@ -100,7 +106,9 @@ namespace RM_MST
             // Saves the rigidbody's gravity scale.
             if (rigidbody != null)
             {
-                baseGravityScale = rigidbody.gravityScale;
+                // If the gravity scale isn't 0, save what it's set to.
+                if(rigidbody.gravityScale != 0)
+                    baseGravityScale = rigidbody.gravityScale;
             }
         }
 
