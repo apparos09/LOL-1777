@@ -933,7 +933,7 @@ namespace RM_MST
         // Returns 'true' if the player can manually target meteors.
         public bool IsManualMeteorTargetingEnabled()
         {
-            return allowManualMeteorTargeting && gameplayMode == gameMode.focus;
+            return allowManualMeteorTargeting;
         }
 
         // Refreshes the meteors active list to remove null values.
@@ -1313,6 +1313,13 @@ namespace RM_MST
                     break;
 
             }
+
+            // Get the time it took to give an answer.
+            float answerTime = stageTime - meteorTarget.GetStageTimeOfTargeting();
+
+            // Ignore negative values.
+            if (answerTime <= 0.0F)
+                answerTime = 0.0F;
 
             // Generate the result.
             float result = meteorMoveDist * mod;

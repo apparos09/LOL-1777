@@ -46,7 +46,8 @@ namespace RM_MST
         private float health = 1.0F;
 
         // Gets set to 'true' when the meteor should move towards its end point (focus mode).
-        private bool moveTowardsEndPoint = false;
+        // The game worked without this. When you tried to implement it, it broke the game, so you took it out.
+        // private bool moveTowardsEndPoint = false;
 
         // The move end point (focus mode).
         private Vector3 moveEndPoint = Vector3.zero;
@@ -59,6 +60,9 @@ namespace RM_MST
 
         // The meteor's position when it was last hit.
         private Vector3 lastHitPos;
+
+        // The amount of time it took for the player to provide an answer for this meteor's conversion last time.
+        private float lastAnswerLength = 0.0F;
 
         // Called the late start.
         private bool calledLateStart = false;
@@ -172,14 +176,18 @@ namespace RM_MST
         private void OnMouseDown()
         {
             // Checks if the player can manually target meteors.
-            // This function checks if the correct mode is being used, and if this function is enabled.
+            // This function checks if the function is enabled.
             if(stageManager.IsManualMeteorTargetingEnabled())
             {
-                // If the player isn't stunned, and this meteor isn't being targeted, target this meteor.
-                if(!stageManager.player.IsPlayerStunned() && !stageManager.meteorTarget.IsMeteorTargeted(this))
+                // If the game is in focus mode.
+                if(stageManager.UsingFocusMode())
                 {
-                    stageManager.meteorTarget.RemoveTarget();
-                    stageManager.meteorTarget.SetTarget(this);
+                    // If the player isn't stunned, and this meteor isn't being targeted, target this meteor.
+                    if (!stageManager.player.IsPlayerStunned() && !stageManager.meteorTarget.IsMeteorTargeted(this))
+                    {
+                        stageManager.meteorTarget.RemoveTarget();
+                        stageManager.meteorTarget.SetTarget(this);
+                    }
                 }
             }
         }
@@ -324,6 +332,12 @@ namespace RM_MST
         {
             transform.position = spawnPoint;
             lastHitPos = transform.position; // Save last hit position as spawn position.
+            
+            // // The meteor should move towards its end point. This only concerns focus mode.
+            // if(stageManager.UsingFocusMode())
+            // {
+            //     moveTowardsEndPoint = true;
+            // }
         }
 
         // Resets the meteor's velocity.
@@ -600,6 +614,16 @@ namespace RM_MST
                     stageManager.comboDisplay.PlayComboAnimationAtPosition(transform.position);
                 }
 
+                // // In focus mode.
+                // if (stageManager.UsingFocusMode())
+                // {
+                //     // Don't move towards the end point (not necessary, but eh.)
+                //     if (moveTowardsEndPoint)
+                //     {
+                //         moveTowardsEndPoint = false;
+                //     }
+                // }
+
                 // Plays the green screen effect.
                 if (stageManager.stageUI.UseScreenEffects)
                     stageManager.stageUI.screenEffects.PlayEdgeGlowGreenAnimation();
@@ -627,6 +651,9 @@ namespace RM_MST
 
                     // Remove the meteor from the targeting system.
                     stageManager.meteorTarget.RemoveTarget();
+
+                    // Start movign towards the end point.
+                    // moveTowardsEndPoint = true;
                 }
 
                 // Call related function.
@@ -818,6 +845,8 @@ namespace RM_MST
                 // If using focus mode.
                 if(stageManager.UsingFocusMode())
                 {
+                    // Originally checked 'moveTowardsEndPoint'.
+
                     // The position distance and the movement distance.
                     float posDist = Vector3.Distance(lastHitPos, transform.position);
                     float moveDist = stageManager.GetModifiedMeteorMoveDistance();
@@ -828,6 +857,7 @@ namespace RM_MST
                     {
                         rigidbody.gravityScale = 0;
                         rigidbody.velocity = Vector2.zero;
+                        // moveTowardsEndPoint = false;
                     }
                 }
             }

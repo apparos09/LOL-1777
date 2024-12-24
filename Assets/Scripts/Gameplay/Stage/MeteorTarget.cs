@@ -20,6 +20,9 @@ namespace RM_MST
         // If 'true', the exact meteor position is tracked.
         private bool trackExactPos = false;
 
+        // The stage time when the meteor is targeted.
+        private float timeOfTargeting = -1.0F;
+
         [Header("Animation")]
 
         // Animator
@@ -93,8 +96,12 @@ namespace RM_MST
         // Sets the meteor.
         public void SetTarget(Meteor newMeteor)
         {
+            // Sets the meteor and tracking information.
             meteor = newMeteor;
             trackExactPos = false;
+
+            // Sets the time of targeting.
+            timeOfTargeting = stageManager.stageTime;
 
             // Plays the lock out animation.
             PlayLockOutAnimation();
@@ -111,6 +118,9 @@ namespace RM_MST
             stageManager.stageUI.ClearConversionAndUnitsButtons();
             stageManager.stageUI.EndUnitButtonMultipleReveals();
 
+            // The target has been removed, so the time of targeting is now -1.
+            timeOfTargeting = -1.0F;
+
             // Plays teh animation.
             PlayLockOutAnimation();
         }
@@ -125,6 +135,20 @@ namespace RM_MST
         public void SetTargetToRandomMeteor()
         {
             SetTarget(stageManager.GetRandomMeteor());
+        }
+
+        // Gets the stage time when the meteor was targeted. If no meteor is being targeted, then it returns -1.
+        public float GetStageTimeOfTargeting()
+        {
+            // Checks if a meteor is being targeted.
+            if(IsMeteorTargeted())
+            {
+                return timeOfTargeting;
+            }
+            else
+            {
+                return -1;
+            }
         }
 
         // ANIMATION
