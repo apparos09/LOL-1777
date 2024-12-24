@@ -168,9 +168,8 @@ namespace RM_MST
         public const float FRACTION_DISPLAY_CHANCE = 0.5F;
 
         [Header("Meteors")]
-        // TODO: make private.
-        // The meteor spawn rate.
-        public float meteorSpawnRate = 1.0F;
+        // The meteor spawn rate. Changes with difficulty.
+        private float meteorSpawnRate = 1.0F;
 
         // If 'true', the first meteor spawn is delayed when the stage starts.
         private bool delayFirstMeteorSpawn = true;
@@ -178,9 +177,11 @@ namespace RM_MST
         // The timer used for spawning meteors.
         private float meteorSpawnTimer = 0.0F;
 
-        // TODO: make private.
-        // The meteor fall speed factor.
-        public float meteorSpeedMax = 1.0F;
+        // The meteor fall speed factor. Changes with difficulty.
+        private float meteorSpeedMax = 1.0F;
+
+        // The move distance from the point where it was hit (focus mode only). Changes based on answer time.
+        private float meteorMoveDist = 3.0F;
 
         // The meteor prefabs.
         public List<Meteor> meteorPrefabs = new List<Meteor>();
@@ -466,6 +467,12 @@ namespace RM_MST
 
             // Sets the difficulty using the proper function.
             SetDifficulty(difficulty, true);
+        }
+
+        // Returns the game mode.
+        public gameMode GetGameMode()
+        {
+            return gameplayMode;
         }
 
         // Returns 'true' if the game is in focus mode.
@@ -1236,12 +1243,49 @@ namespace RM_MST
 
             }
 
-            // Get the result.
+            // Generate the result.
             float result = meteorSpeedMax * mod;
 
             // Return the result.
             return result;
         }
+
+        // Gets the modified meteor movement distance from its hit position.
+        // This is for focus mode only.
+        public float GetModifiedMeteorMoveDistance()
+        {
+            // The modifier value.
+            float mod;
+
+            // Checks the phase to see what speed to use.
+            switch (phase)
+            {
+                default:
+                case 1:
+                    mod = 1.0F;
+                    break;
+
+                case 2:
+                    mod = 1.05F;
+                    break;
+
+                case 3:
+                    mod = 1.10F;
+                    break;
+
+                case 4:
+                    mod = 1.15F;
+                    break;
+
+            }
+
+            // Generate the result.
+            float result = meteorMoveDist * mod;
+
+            // Return the result.
+            return result;
+        }
+
 
         // SPEED
         // Gets the game speed.
@@ -1849,6 +1893,9 @@ namespace RM_MST
                         {
                             // Meteor rigidbody
                             meteors[i].rigidbody.velocity = Vector2.zero;
+                            
+                            // The gravity scale is not turned off so that the meteor moves onto screen...
+                            // Before being stopped.
                             // meteors[i].rigidbody.gravityScale = 0;
 
                             // Calculates the new position.
@@ -1856,8 +1903,8 @@ namespace RM_MST
                             newPos.x = spawnMin.x  + xSpacing / 2.0F + xSpacing * i;
                             newPos.y = spawnMin.y;
 
-                            // Sets the meteor's new position.
-                            meteors[i].transform.position = newPos;
+                            // Sets the meteor's new position using the spawn point function.
+                            meteors[i].SetSpawnPoint(newPos, true);
                         }
                     }
 

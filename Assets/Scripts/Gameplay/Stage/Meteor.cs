@@ -57,6 +57,9 @@ namespace RM_MST
         // If 'true', the target on the meteor is released upon knockback wearing off (rush mode).
         private bool untargetOnKnockbackEnd = true;
 
+        // The meteor's position when it was last hit.
+        private Vector3 lastHitPos;
+
         // Called the late start.
         private bool calledLateStart = false;
 
@@ -286,10 +289,25 @@ namespace RM_MST
             }
         }
 
+
+        // Sets the spawn point.
+        public void SetSpawnPoint(Vector3 newSpawnPoint, bool resetToSpawn)
+        {
+            // Change spawn point.
+            spawnPoint = newSpawnPoint;
+            
+            // Sets the meteor to the spawn point.
+            if(resetToSpawn)
+            {
+                SetMeteorToSpawnPoint();
+            }
+        }
+
         // Sets the meteor to its spawn point.
         public void SetMeteorToSpawnPoint()
         {
             transform.position = spawnPoint;
+            lastHitPos = transform.position; // Save last hit position as spawn position.
         }
 
         // Resets the meteor's velocity.
@@ -514,6 +532,9 @@ namespace RM_MST
             // The conversion output value.
             float outputValue = conversion.GetConvertedValue();
 
+            // Save this as the last hit position.
+            lastHitPos = transform.position;
+
             // If the values match, the laser shot was a success.
             // Now uses an approximate check in case the vales are slightly off.
             if (Mathf.Approximately(laserShot.outputValue, outputValue))
@@ -527,15 +548,24 @@ namespace RM_MST
 
             // Give the player points.
 
-            // Knock back the meteor and kill the laser.
-            Vector3 forceDirec = laserShot.moveDirec;
-
-            // If the force direction is 0, set it to the forward of the laser shot.
-            if (forceDirec == Vector3.zero)
-                forceDirec = laserShot.transform.forward;
-
             // Add force for knockback.
-            ApplyKnockbackForce(forceDirec, laserShot.meteorHitForce, true);
+            if(UsingKnockbackForce())
+            {
+                // Knock back the meteor and kill the laser.
+                Vector3 forceDirec = laserShot.moveDirec;
+
+                // If the force direction is 0, set it to the forward of the laser shot.
+                if (forceDirec == Vector3.zero)
+                    forceDirec = laserShot.transform.forward;
+
+                // Apply the knockback force.
+                ApplyKnockbackForce(forceDirec, laserShot.meteorHitForce, true);
+            }
+            else
+            {
+                // Don't move the meteor.
+                rigidbody.velocity = Vector2.zero;
+            }
 
             // If the laser shot was a success, kill the meteor.
             if (success)
@@ -570,8 +600,17 @@ namespace RM_MST
                 stageManager.stageUI.EndUnitButtonMultipleReveals();
                 stageManager.ResetCombo(false); // Reset the combo.
 
+                // Kill the laser.
+                laserShot.Kill(success);
 
-                laserShot.Kill(success); // Kill the laser.
+                // If the game is in focus mode, turn on the gravity for the meteor.
+                if(stageManager.UsingFocusMode())
+                {
+                    // Trigger the metoer falling.
+                    rigidbody.gravityScale = baseGravityScale;
+                }
+
+                // Call related function.
                 stageManager.OnMeteorSurivived(this);
 
                 // Plays the sound effect.
@@ -581,6 +620,28 @@ namespace RM_MST
 
             // Returns the success value.
             return success;
+        }
+
+        // Checks if the meteor is using the knockback mechanic.
+        public bool UsingKnockbackForce()
+        {
+            bool result;
+
+            // Checks the gameplay mode.
+            switch(stageManager.gameplayMode)
+            {
+                default:
+                case GameplayManager.gameMode.focus:
+                    result = false;
+                    break;
+
+                case GameplayManager.gameMode.rush:
+                    result = true; 
+                    break;
+            }
+
+            // Returns the result.
+            return result;
         }
 
         // Applies knockback force to the meteor.
@@ -730,6 +791,22 @@ namespace RM_MST
 
                 // Set the velocity.
                 rigidbody.velocity = velocity;
+
+                // If using focus mode.
+                if(stageManager.UsingFocusMode())
+                {
+                    // The position distance and the movement distance.
+                    float posDist = Vector3.Distance(lastHitPos, transform.position);
+                    float moveDist = stageManager.GetModifiedMeteorMoveDistance();
+
+                    // If the meteor has moved far enough from where it was hit...
+                    // Stop moving. This happens when the postDist is over the moveDist.
+                    if (posDist >= moveDist)
+                    {
+                        rigidbody.gravityScale = 0;
+                        rigidbody.velocity = Vector2.zero;
+                    }
+                }
             }
 
             // Not in game area, so kill it.

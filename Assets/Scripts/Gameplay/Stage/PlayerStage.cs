@@ -172,7 +172,32 @@ namespace RM_MST
         // Returns 'true' if the laser wave is used.
         public bool IsUsingLaserWave()
         {
-            return useLaserWave;
+            // The result to be returned.
+            bool result;
+
+            // If the stage manager is set.
+            if(stageManager != null)
+            {
+                // Checks the gameplay mode.
+                switch(stageManager.gameplayMode)
+                {
+                    // If in focus mode, the laser wave will not be used no matter what.
+                    default:
+                    case GameplayManager.gameMode.focus:
+                        result = false;
+                        break;
+
+                    case GameplayManager.gameMode.rush:
+                        result = useLaserWave;
+                        break;
+                }
+            }
+            else
+            {
+                result = useLaserWave;
+            }
+
+            return result;
         }
 
         // Shoots a laser wave.

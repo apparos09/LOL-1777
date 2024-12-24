@@ -131,7 +131,10 @@ namespace RM_MST
         public void HitMeteor(Meteor meteor)
         {
             // Don't untarget a meteor if it gets targeted while being effected by a wave.
-            meteor.ApplyKnockbackForce(Vector2.up, meteorHitForce, false);
+            if(meteor.UsingKnockbackForce())
+            {
+                meteor.ApplyKnockbackForce(Vector2.up, meteorHitForce, false);
+            }
 
             // Add the meteor to the hit list.
             hitMeteors.Add(meteor);
