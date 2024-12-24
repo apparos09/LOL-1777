@@ -584,7 +584,7 @@ namespace RM_MST
                     stageManager.comboDisplay.PlayComboAnimationAtPosition(transform.position);
                 }
 
-                // Plays the blue screen effect.
+                // Plays the green screen effect.
                 if (stageManager.stageUI.UseScreenEffects)
                     stageManager.stageUI.screenEffects.PlayEdgeGlowGreenAnimation();
 
@@ -618,6 +618,10 @@ namespace RM_MST
 
                 // Plays the sound effect.
                 PlayDestroyFailureSfx();
+
+                // Plays the blue screen effect.
+                if (stageManager.stageUI.UseScreenEffects)
+                    stageManager.stageUI.screenEffects.PlayEdgeGlowBlueAnimation();
             }
 
 
