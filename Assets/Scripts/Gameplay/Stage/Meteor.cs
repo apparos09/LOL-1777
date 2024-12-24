@@ -168,6 +168,22 @@ namespace RM_MST
             OnCollisionEvent(collision.gameObject);
         }
 
+        // Called with mouse down.
+        private void OnMouseDown()
+        {
+            // Checks if the player can manually target meteors.
+            // This function checks if the correct mode is being used, and if this function is enabled.
+            if(stageManager.IsManualMeteorTargetingEnabled())
+            {
+                // If the player isn't stunned, and this meteor isn't being targeted, target this meteor.
+                if(!stageManager.player.IsPlayerStunned() && !stageManager.meteorTarget.IsMeteorTargeted(this))
+                {
+                    stageManager.meteorTarget.RemoveTarget();
+                    stageManager.meteorTarget.SetTarget(this);
+                }
+            }
+        }
+
         // Called on a collision event.
         private void OnCollisionEvent(GameObject other)
         {

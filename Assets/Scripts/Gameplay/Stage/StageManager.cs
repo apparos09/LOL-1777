@@ -203,6 +203,9 @@ namespace RM_MST
         // The maximum distance for the warning sound to play for a meteor approaching the Earth's surface.
         protected const float METEOR_WARNING_SFX_MAX_DIST = 3.75F;
 
+        // If 'true', the player can manually target meteors (focus mode only).
+        private bool allowManualMeteorTargeting = true;
+
         // Plays the meteor warning sound effect when a meteor is too close to the surface.
         private bool useMeteorWarningSfx = true;
 
@@ -925,6 +928,12 @@ namespace RM_MST
             }
 
             return meteor;
+        }
+
+        // Returns 'true' if the player can manually target meteors.
+        public bool IsManualMeteorTargetingEnabled()
+        {
+            return allowManualMeteorTargeting && gameplayMode == gameMode.focus;
         }
 
         // Refreshes the meteors active list to remove null values.
