@@ -115,6 +115,18 @@ namespace RM_MST
             PlayLockOutAnimation();
         }
 
+        // Targets the closest meteor to the Earth's surface.
+        public void SetTargetToClosestMeteor()
+        {
+            SetTarget(stageManager.GetClosestMeteor());
+        }
+
+        // Targets a random meteor.
+        public void SetTargetToRandomMeteor()
+        {
+            SetTarget(stageManager.GetRandomMeteor());
+        }
+
         // ANIMATION
         // Plays the lock in aniamtion.
         protected void PlayLockInAnimation()

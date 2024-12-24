@@ -193,6 +193,9 @@ namespace RM_MST
         // The total number of meteors that can be active at once.
         private int ACTIVE_METEORS_COUNT_MAX = 12;
 
+        // The total number of meteors that can be used for focus mode.
+        private int METEORS_FOCUS_MODE_MAX = 10;
+
         // If 'true', the closest meteor is constantly checked for potential retargeting.
         // This addresses an issue where a meteor behind another meteor gets targeted.
         private bool constClosestMeteorCheck = true;
@@ -898,6 +901,29 @@ namespace RM_MST
             }
 
             // Returns the meteor.
+            return meteor;
+        }
+
+        // Returns a random meteor.
+        public Meteor GetRandomMeteor()
+        {
+            // Gets a list of active meteors.
+            List<Meteor> meteors = Meteor.GetMeteorsActiveListCopy();
+
+            // The meteor to be returned.
+            Meteor meteor;
+
+            // If there are meteors, pick a random one.
+            if(meteors.Count > 0)
+            {
+                int index = Random.Range(0, meteors.Count);
+                meteor = meteors[index];
+            }
+            else // No meteors, so return none.
+            {
+                meteor = null;
+            }
+
             return meteor;
         }
 
@@ -1874,8 +1900,16 @@ namespace RM_MST
                         // The meteor list.
                         List<Meteor> meteors = new List<Meteor>();
 
+                        // Calculates the maximum amount of meteors to make.
+                        int maxMeteors = Mathf.Min(ACTIVE_METEORS_COUNT_MAX, METEORS_FOCUS_MODE_MAX);
+
+                        // If 0 or less, set to the active meteor max count.
+                        if (maxMeteors <= 0)
+                            maxMeteors = ACTIVE_METEORS_COUNT_MAX;
+
                         // While meteors are being spawned.
-                        while(Meteor.GetMeteorsActiveCount() < ACTIVE_METEORS_COUNT_MAX)
+                        // This can work by checking the active list or the local meteor list.
+                        while(meteors.Count < maxMeteors)
                         {
                             // Spawns a meteor and adds it the list.
                             meteors.Add(SpawnMeteor());
@@ -1934,37 +1968,59 @@ namespace RM_MST
             // Gets set to 'true' if there is a new meteor being targeted.
             bool newTarget = false;
 
-            // If there is no meteor being target.
-            if (!meteorTarget.HasMeteor())
+            // Checks the game mode to know how to handle meteor targeting.
+            switch(gameplayMode)
             {
-                // Gets the closest meteor, and move towards it.
-                meteorTarget.SetTarget(GetClosestMeteor());
-                newTarget = true;
-            }
-            else // There's already a meteor being targeted.
-            {
-                // If the closest meteor should be constantly searched for...
-                // And there are meteors to be targeted.
-                if (constClosestMeteorCheck)
-                {
-                    // If the active meteor count is greater than 0, then there are meteors to find.
-                    if (Meteor.GetMeteorsActiveCount() > 0)
+                case gameMode.focus:
+                    
+                    // The meteor has a target, so no new target is set.
+                    if(meteorTarget.HasMeteor())
                     {
-                        // Gets the closest meteor.
-                        Meteor closestMeteor = GetClosestMeteor();
-
-                        // If the targeted meteor is not the closest meteor...
-                        // Target the closest meteor.
-                        if (meteorTarget.GetMeteor() != closestMeteor)
-                        {
-                            // Target the closest meteor.
-                            meteorTarget.SetTarget(closestMeteor);
-                            newTarget = true;
-                        }
+                        newTarget = false;
+                    }
+                    else // No target, so set a random target.
+                    {
+                        meteorTarget.SetTargetToRandomMeteor();
+                        newTarget = true;
                     }
 
-                }
+                    break;
+
+                case gameMode.rush:
+                    // If there is no meteor being target.
+                    if (!meteorTarget.HasMeteor())
+                    {
+                        // Gets the closest meteor, and move towards it.
+                        meteorTarget.SetTarget(GetClosestMeteor());
+                        newTarget = true;
+                    }
+                    else // There's already a meteor being targeted.
+                    {
+                        // If the closest meteor should be constantly searched for...
+                        // And there are meteors to be targeted.
+                        if (constClosestMeteorCheck)
+                        {
+                            // If the active meteor count is greater than 0, then there are meteors to find.
+                            if (Meteor.GetMeteorsActiveCount() > 0)
+                            {
+                                // Gets the closest meteor.
+                                Meteor closestMeteor = GetClosestMeteor();
+
+                                // If the targeted meteor is not the closest meteor...
+                                // Target the closest meteor.
+                                if (meteorTarget.GetMeteor() != closestMeteor)
+                                {
+                                    // Target the closest meteor.
+                                    meteorTarget.SetTarget(closestMeteor);
+                                    newTarget = true;
+                                }
+                            }
+
+                        }
+                    }
+                    break;
             }
+
 
             // If a meteor is being targeted...
             if (meteorTarget.IsMeteorTargeted())
@@ -2008,11 +2064,27 @@ namespace RM_MST
                     // If the meteor is too close to the surface, play the warning sound.
                     if(dist <= METEOR_WARNING_SFX_MAX_DIST)
                     {
-                        // play the warning sound if it isn't already playing.
-                        if (!stageAudio.IsWarningSfxPlaying())
+                        // Checks the gameplay mode.
+                        switch(gameplayMode)
                         {
-                            stageAudio.PlayWarningSfx();
+                            default:
+                            case gameMode.focus: // Focus
+                                
+                                // TODO: test if you want this in.
+                                // Not sure if the warning sound will be used, so it's been left out for now.
+                                // Only play the sound briefly if in focus mode.
+                                // stageAudio.PlayWarningSfxOneShot();
+                                break;
+
+                            case gameMode.rush: // Rush
+                                // play the warning sound if it isn't already playing.
+                                if (!stageAudio.IsWarningSfxPlaying())
+                                {
+                                    stageAudio.PlayWarningSfx();
+                                }
+                                break;
                         }
+
                     }
                     else
                     {

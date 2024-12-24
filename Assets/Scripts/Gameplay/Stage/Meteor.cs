@@ -608,6 +608,9 @@ namespace RM_MST
                 {
                     // Trigger the metoer falling.
                     rigidbody.gravityScale = baseGravityScale;
+
+                    // Remove the meteor from the targeting system.
+                    stageManager.meteorTarget.RemoveTarget();
                 }
 
                 // Call related function.

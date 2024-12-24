@@ -36,6 +36,9 @@ namespace RM_MST
         // The phase change sound effect.
         public AudioClip phaseSfx;
 
+        // The warning sound effect for meteors getting close to the Earth's surface.
+        public AudioClip warningSfx;
+
         [Header("Stage/JNGs")]
 
         // The stage cleared jingle.
@@ -186,6 +189,12 @@ namespace RM_MST
         public void PlayWarningSfx()
         {
             warningSfxSource.Play();
+        }
+
+        // Plays the warning sound effect as a one shot.
+        public void PlayWarningSfxOneShot()
+        {
+            warningSfxSource.PlayOneShot(warningSfx);
         }
 
         // Stops playing the warning sound effect.
