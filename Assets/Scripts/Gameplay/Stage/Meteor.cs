@@ -62,7 +62,7 @@ namespace RM_MST
         private Vector3 lastHitPos;
 
         // The amount of time it took for the player to provide an answer for this meteor's conversion last time.
-        private float lastAnswerLength = 0.0F;
+        private float recentAnswerLength = 0.0F;
 
         // Called the late start.
         private bool calledLateStart = false;
@@ -292,7 +292,10 @@ namespace RM_MST
             SetHealthToMax();
             ResetVelocity();
             SetMeteorToSpawnPoint();
-            RandomizeAngularVelocity();
+            SetRandomizeAngularVelocity();
+
+            // The recent answer length is set to 0.
+            recentAnswerLength = 0;
         }
 
         // Randomizes the meteor's sprite.
@@ -348,7 +351,7 @@ namespace RM_MST
         }
 
         // Randomzies the angular velocity.
-        public void RandomizeAngularVelocity()
+        public void SetRandomizeAngularVelocity()
         {
             // The min and max for the rotation.
             float rotMin = 30;
@@ -596,6 +599,13 @@ namespace RM_MST
                 // Don't move the meteor.
                 rigidbody.velocity = Vector2.zero;
             }
+
+            // Calculates the time it took to give the most recent answer.
+            recentAnswerLength = stageManager.stageTime - stageManager.meteorTarget.GetStageTimeOfTargeting();
+
+            // Bounds check for the answer length.
+            if(recentAnswerLength <= 0.0F)
+                recentAnswerLength = 0.0F;
 
             // If the laser shot was a success, kill the meteor.
             if (success)
@@ -849,7 +859,7 @@ namespace RM_MST
 
                     // The position distance and the movement distance.
                     float posDist = Vector3.Distance(lastHitPos, transform.position);
-                    float moveDist = stageManager.GetModifiedMeteorMoveDistance();
+                    float moveDist = stageManager.GetModifiedMeteorMoveDistance(recentAnswerLength);
 
                     // If the meteor has moved far enough from where it was hit...
                     // Stop moving. This happens when the postDist is over the moveDist.

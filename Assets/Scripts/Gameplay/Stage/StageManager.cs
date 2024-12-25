@@ -1287,45 +1287,78 @@ namespace RM_MST
 
         // Gets the modified meteor movement distance from its hit position.
         // This is for focus mode only.
-        public float GetModifiedMeteorMoveDistance()
+        public float GetModifiedMeteorMoveDistance(float answerTime)
         {
-            // The modifier value.
-            float mod;
+            // The modifier value from the phase.
+            float phaseMod;
 
             // Checks the phase to see what speed to use.
             switch (phase)
             {
                 default:
                 case 1:
-                    mod = 1.0F;
+                    phaseMod = 1.0F;
                     break;
 
                 case 2:
-                    mod = 1.05F;
+                    phaseMod = 1.05F;
                     break;
 
                 case 3:
-                    mod = 1.10F;
+                    phaseMod = 1.10F;
                     break;
 
                 case 4:
-                    mod = 1.15F;
+                    phaseMod = 1.15F;
                     break;
 
             }
-
-            // Get the time it took to give an answer.
-            float answerTime = stageTime - meteorTarget.GetStageTimeOfTargeting();
 
             // Ignore negative values.
             if (answerTime <= 0.0F)
                 answerTime = 0.0F;
 
+            // The time based modifier.
+            float timeMod;
+
+            // Checks what to set the modifier to based on the answer time.
+            if (answerTime >= 10.0F) // 10 seconds or more.
+            {
+                timeMod = 1.60F;
+            }
+            else if (answerTime >= 8.0F) // 8 seconds or more.
+            {
+                timeMod = 1.48F;
+            }
+            else if(answerTime >= 6.0F) // 6 seconds or more.
+            {
+                timeMod = 1.36F;
+            }
+            else if(answerTime >= 4.0F) // 4 seconds or more.
+            {
+                timeMod = 1.24F;
+            }
+            else if(answerTime >= 2.0F) // 2 seconds or more.
+            {
+                timeMod = 1.12F;
+            }
+            else // Less than 2 seconds.
+            {
+                timeMod = 1.0F;
+            }
+
             // Generate the result.
-            float result = meteorMoveDist * mod;
+            float result = meteorMoveDist * phaseMod * timeMod;
 
             // Return the result.
             return result;
+        }
+
+        // Gets the modified meteor move distance by auto-calculating the answer time using the meteor target script.
+        public float GetModifiedMeteorMoveDistance()
+        {
+            float answerTime = stageTime - meteorTarget.GetStageTimeOfTargeting();
+            return GetModifiedMeteorMoveDistance(answerTime);
         }
 
 
