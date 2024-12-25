@@ -28,9 +28,6 @@ namespace RM_MST
         // The partner B icon.
         public CharacterIcon partnerBIcon;
 
-        // The speed change button.
-        public SpeedButton speedButton;
-
         [Header("Text")]
 
         // The stage name text.
@@ -49,6 +46,18 @@ namespace RM_MST
 
         // The damage bar.
         public ProgressBar surfaceHealthBar;
+
+        [Header("Mode Buttons")]
+
+        // The buttons for the focus mode.
+        public GameObject buttonsFocusMode;
+
+        // The buttons for the rush mode.
+        public GameObject buttonsRushMode;
+
+        // The speed change button. This is only available in rush mode.
+        public SpeedButton speedButton;
+
 
         [Header("PlayerUI")]
 
@@ -120,6 +129,9 @@ namespace RM_MST
             // Gets the instance.
             if (stageManager == null)
                 stageManager = StageManager.Instance;
+
+            // Updates the mode buttons.
+            UpdateModeButtons();
         }
 
         // Late start is called on the first frame update.
@@ -129,6 +141,9 @@ namespace RM_MST
 
             // Set the name.
             stageNameText.text = stageManager.stageName;
+
+            // Updates the mode buttons.
+            UpdateModeButtons();
 
             // Updates all the UI.
             UpdateHUD();
@@ -167,6 +182,25 @@ namespace RM_MST
             get
             {
                 return instanced;
+            }
+        }
+
+        // Mode Buttons
+        // Updates the mode buttons to show/hide the correct buttons based on the game mode.
+        public void UpdateModeButtons()
+        {
+            // Checks the gameplay mode.
+            switch(stageManager.gameplayMode)
+            {
+                case GameplayManager.gameMode.focus: // Focus
+                    buttonsFocusMode.gameObject.SetActive(true);
+                    buttonsRushMode.gameObject.SetActive(false);
+                    break;
+
+                case GameplayManager.gameMode.rush: // Rush
+                    buttonsFocusMode.gameObject.SetActive(false);
+                    buttonsRushMode.gameObject.SetActive(true);
+                    break;
             }
         }
 
