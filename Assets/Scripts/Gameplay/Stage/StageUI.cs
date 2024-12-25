@@ -699,7 +699,11 @@ namespace RM_MST
         // Shoots the laser with the value from the provided value.
         public void ShootLaserShot(float value)
         {
-            stageManager.player.ShootLaserShot(value);
+            // If the player can shoot a laser shot, allow them to shoot.
+            if(stageManager.CanPlayerShootLaserShot())
+            {
+                stageManager.player.ShootLaserShot(value);
+            }
         }
 
         // Shoots the laser with the value from the provided units button.
@@ -711,15 +715,25 @@ namespace RM_MST
                 // Gets the meteor.
                 Meteor meteor = stageManager.meteorTarget.GetMeteor();
 
-                // Use meteor's value if true. Use button's value if false.
-                if (meteor != null)
-                    stageManager.player.ShootLaserShot(meteor.GetConvertedValue(), unitsButton.laserColor);
-                else
-                    stageManager.player.ShootLaserShot(unitsButton.GetMeasurementValue(), unitsButton.laserColor);
+                // If the player can shoot a laser shot, allow them to shoot.
+                if (stageManager.CanPlayerShootLaserShot())
+                {
+                    // Use meteor's value if true. Use button's value if false.
+                    if (meteor != null)
+                        stageManager.player.ShootLaserShot(meteor.GetConvertedValue(), unitsButton.laserColor);
+                    else
+                        stageManager.player.ShootLaserShot(unitsButton.GetMeasurementValue(), unitsButton.laserColor);
+                }
+
             }
             else // Button is not automatically correct.
             {
-                stageManager.player.ShootLaserShot(unitsButton.GetMeasurementValue(), unitsButton.laserColor);
+                // If the player can shoot, allow them to shoot.
+                if (stageManager.CanPlayerShootLaserShot())
+                {
+                    stageManager.player.ShootLaserShot(unitsButton.GetMeasurementValue(), unitsButton.laserColor);
+                }
+                
             }
             
         }

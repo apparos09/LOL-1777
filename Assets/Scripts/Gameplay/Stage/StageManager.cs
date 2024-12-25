@@ -88,6 +88,9 @@ namespace RM_MST
         // The target for the meteor.
         public MeteorTarget meteorTarget;
 
+        // If 'true', the player can only shoot when a meteor is being targeted exactly.
+        private bool shootOnExactTargetOnly = true;
+
         // The stage surface.
         public StageSurface stageSurface;
 
@@ -1358,6 +1361,38 @@ namespace RM_MST
         {
             float answerTime = stageTime - meteorTarget.GetStageTimeOfTargeting();
             return GetModifiedMeteorMoveDistance(answerTime);
+        }
+
+        // Laser Shot
+
+        // Returns 'true' if the player can shoot.
+        public bool CanPlayerShootLaserShot()
+        {
+            // The result to be returned.
+            bool result;
+            
+            // First check if a meteor is being targeted and if the player is not stunned.
+            result = meteorTarget.IsMeteorTargeted() && !player.IsPlayerStunned();
+
+            // Meteor is being targeted.
+            if(result)
+            {
+                // If the meteor isn't being targeted exactly, and the player shouldn't be able to shoot under said conditions...
+                // Don't allow them to fire.
+                if (CanShootOnExactTargetOnly() && !meteorTarget.IsMeteorTargetedExactly())
+                {
+                    result = false;
+                }
+            }
+
+            // Returns the result.
+            return result;
+        }
+
+        // If 'true', the player can only shoot a laser shot when a meteor is being targeted exactly.
+        public bool CanShootOnExactTargetOnly()
+        {
+            return shootOnExactTargetOnly;
         }
 
 
