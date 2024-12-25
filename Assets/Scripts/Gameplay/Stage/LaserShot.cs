@@ -39,6 +39,11 @@ namespace RM_MST
         [Tooltip("The output value attached to this laser shot. If it matches that of the meteor's, it is correct.")]
         public float outputValue = 0;
 
+        // The units button this laser shot is attached to. If this units button is marked as correct, it will trigger a...
+        // Successful hit regardless of the value comparison.
+        [Tooltip("The units button that was used to fire this laser shot. If null, then no button is attached to this shot.")]
+        public UnitsButton unitsButton = null;
+
         // Gets set to 'true' when start has been called.
         private bool startCalled = false;
 
@@ -244,6 +249,9 @@ namespace RM_MST
         // Called when the laser shot has died.
         protected virtual void OnDeath()
         {
+            // Clear out the units button since the button is dead.
+            unitsButton = null;
+
             // If the player has been set.
             if(player != null)
             {
@@ -274,6 +282,9 @@ namespace RM_MST
 
             // Resets the velocity.
             ResetVelocity();
+
+            // Clears the units button.
+            unitsButton = null;
         }
 
         // ANIMATION

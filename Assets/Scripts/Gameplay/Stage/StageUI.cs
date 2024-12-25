@@ -709,6 +709,9 @@ namespace RM_MST
         // Shoots the laser with the value from the provided units button.
         public void ShootLaserShot(UnitsButton unitsButton)
         {
+            // The laser shot.
+            LaserShot laserShot = null;
+
             // If the button is automatically correct, pull the exact value.
             if(unitsButton.correctValue)
             {
@@ -720,9 +723,9 @@ namespace RM_MST
                 {
                     // Use meteor's value if true. Use button's value if false.
                     if (meteor != null)
-                        stageManager.player.ShootLaserShot(meteor.GetConvertedValue(), unitsButton.laserColor);
+                        laserShot = stageManager.player.ShootLaserShot(meteor.GetConvertedValue(), unitsButton.laserColor);
                     else
-                        stageManager.player.ShootLaserShot(unitsButton.GetMeasurementValue(), unitsButton.laserColor);
+                        laserShot = stageManager.player.ShootLaserShot(unitsButton.GetMeasurementValue(), unitsButton.laserColor);
                 }
 
             }
@@ -731,9 +734,14 @@ namespace RM_MST
                 // If the player can shoot, allow them to shoot.
                 if (stageManager.CanPlayerShootLaserShot())
                 {
-                    stageManager.player.ShootLaserShot(unitsButton.GetMeasurementValue(), unitsButton.laserColor);
+                    laserShot = stageManager.player.ShootLaserShot(unitsButton.GetMeasurementValue(), unitsButton.laserColor);
                 }
-                
+            }
+
+            // If a laser shot was fired, save the units button to it.
+            if(laserShot != null)
+            {
+                laserShot.unitsButton = unitsButton;
             }
             
         }

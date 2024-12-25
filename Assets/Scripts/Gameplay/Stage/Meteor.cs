@@ -579,6 +579,15 @@ namespace RM_MST
                 success = false;
             }
 
+            // If the shot was not a success, check the shot's units button.
+            if(!success && laserShot.unitsButton != null)
+            {
+                // If the laser shot's units button is supposed to be the correct value...
+                // Override 'success' to register as true.
+                if (laserShot.unitsButton.correctValue)
+                    success = true;
+            }
+
             // Give the player points.
 
             // Add force for knockback.
