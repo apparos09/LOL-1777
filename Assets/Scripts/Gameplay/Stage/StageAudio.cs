@@ -194,7 +194,9 @@ namespace RM_MST
         // Plays the warning sound effect as a one shot.
         public void PlayWarningSfxOneShot()
         {
-            warningSfxSource.PlayOneShot(warningSfx);
+            // This has to use the world source because it will trigger the looped sound on...
+            // The dedicated warning sound SFX player if that audio source is used.
+            sfxWorldSource.PlayOneShot(warningSfx);
         }
 
         // Stops playing the warning sound effect.

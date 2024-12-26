@@ -874,8 +874,17 @@ namespace RM_MST
                     // Stop moving. This happens when the postDist is over the moveDist.
                     if (posDist >= moveDist)
                     {
+                        // Saves the angular velocity.
+                        float angVelo = rigidbody.angularVelocity;
+
+                        // Stops the meteor from falling.
                         rigidbody.gravityScale = 0;
                         rigidbody.velocity = Vector2.zero;
+
+                        // Restore the angular velocity.
+                        rigidbody.angularVelocity = angVelo;
+
+                        // Not needed/broke the game when you tried to implement it.
                         // moveTowardsEndPoint = false;
                     }
                 }

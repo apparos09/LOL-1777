@@ -1291,30 +1291,35 @@ namespace RM_MST
         // This is for focus mode only.
         public float GetModifiedMeteorMoveDistance(float answerTime)
         {
-            // The modifier value from the phase.
-            float phaseMod;
+            // The difficulty mode.
+            float diffMod;
 
-            // Checks the phase to see what speed to use.
-            switch (phase)
+            // Gets the difficulty to check what the difficulty mod should be.
+            switch (GetDifficulty())
             {
                 default:
                 case 1:
-                    phaseMod = 1.0F;
-                    break;
-
                 case 2:
-                    phaseMod = 1.05F;
+                    diffMod = 1.0F;
                     break;
 
                 case 3:
-                    phaseMod = 1.10F;
-                    break;
-
                 case 4:
-                    phaseMod = 1.15F;
+                    diffMod = 1.05F;
                     break;
 
+                case 5:
+                case 6:
+                    diffMod = 1.10F;
+                    break;
+
+                case 7:
+                case 8:
+                case 9:
+                    diffMod = 1.15F;
+                    break;
             }
+
 
             // Ignore negative values.
             if (answerTime <= 0.0F)
@@ -1349,8 +1354,9 @@ namespace RM_MST
                 timeMod = 1.0F;
             }
 
+
             // Generate the result.
-            float result = meteorMoveDist * phaseMod * timeMod;
+            float result = meteorMoveDist * diffMod * timeMod;
 
             // Return the result.
             return result;
@@ -2167,9 +2173,11 @@ namespace RM_MST
                             default:
                             case gameMode.focus: // Focus
                                 
-                                // TODO: test if you want this in.
-                                // Not sure if the warning sound will be used, so it's been left out for now.
-                                // Only play the sound briefly if in focus mode.
+                                // The warning sound is NOT used.
+                                // It only gets triggered with the targeted meteor, and ended up...
+                                // Causing a looped sound when it shouldn't. Using one shot...
+                                // Still triggered the loop somehow, and overlayed another play of the sound.
+                                // So this is not being used.
                                 // stageAudio.PlayWarningSfxOneShot();
                                 break;
 
