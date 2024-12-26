@@ -126,6 +126,7 @@ MonoBehaviour:
   stageDesc: 
   stageDescKey: 
   unitGroups: 
+  puzzleType: 0
   bgdNumber: 0
   bgmNumber: 0
   difficulty: 0
@@ -154,7 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24021d64cf3c11545b7ea4ebdb6f3794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventName: 
+  eventName: World Stage - Unlock Event
   eventNumber: 0
   eventTag: 
   cleared: 0

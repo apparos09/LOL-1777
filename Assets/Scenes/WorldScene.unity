@@ -307,7 +307,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6622377654606349290, guid: db4b37199e3470e49a5c2ff2ef80e384, type: 3}
       propertyPath: difficulty
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6622377654606349290, guid: db4b37199e3470e49a5c2ff2ef80e384, type: 3}
       propertyPath: puzzleType
@@ -645,6 +645,7 @@ MonoBehaviour:
   clearedFirstStageTutorial: 0
   clearedHiddenMultiplesTutorial: 0
   clearedBarrierTutorial: 0
+  clearedSurfaceTutorial: 0
   clearedPuzzleButtonsTutorial: 0
   clearedPuzzleSwapTutorial: 0
   clearedPuzzleSlideTutorial: 0

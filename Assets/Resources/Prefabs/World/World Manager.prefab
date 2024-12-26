@@ -47,9 +47,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameUI: {fileID: 0}
   gameTime: 0
-  gameScore: 0
   mouseTouch: {fileID: 0}
+  tutorials: {fileID: 0}
+  gameInfo: {fileID: 0}
+  unitsInfo: {fileID: 0}
+  gameplayMode: 0
+  titleScene: TitleScene
+  resultsScene: ResultsScene
   worldUI: {fileID: 0}
+  worldAudio: {fileID: 0}
   playerWorld: {fileID: 0}
   worldArea: {fileID: 0}
   gameCompleteEvent: {fileID: 4480479725136455016}
@@ -67,7 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9da5906c849cae1419a7498798896fad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventName: 
+  eventName: World - Game Complete Event
   eventNumber: 0
   eventTag: 
   cleared: 0
