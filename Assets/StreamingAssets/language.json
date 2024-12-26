@@ -156,12 +156,14 @@
 
       "trl_barrier_00": 500,
 
+      "trl_surface_00": 500,
+
       "trl_pzl_buttons": 500,
 
       "trl_pzl_swap": 500,
-      
+
       "trl_pzl_slide": 500,
-      
+
       "trl_pzl_path": 500,
 
       "trl_firstWin_00": 500,
@@ -346,6 +348,8 @@
     "trl_hiddenMultiples_00": "The multipliers have become hidden! If you perform enough conversions correctly in a row, the conversion multipliers will disappear. They will come back a few seconds after a conversion question is given, but this will give more time for meteors to reach the Earth's surface. If you get a conversion wrong, the multipliers will start showing up instantly like before, unless you get enough consecutive correct answers again.",
 
     "trl_barrier_00": "A barrier has been hit! When a meteor hits a barrier, the meteor is destroyed, but the barrier takes damage. If a barrier takes too much damage, it'll be destroyed, leaving an opening for meteors to hit the Earth's surface and damage it. Once you get enough points, a barrier is restored.",
+
+    "trl_surface_00": "The Earth's surface has taken damage. When the surface takes damage, the screen flashes red. Remember: if the surface takes too much damage, the stage is lost.",
 
     "trl_pzl_buttons": "This is a units buttons puzzle! Submit an output by selecting the button its attached to.",
 

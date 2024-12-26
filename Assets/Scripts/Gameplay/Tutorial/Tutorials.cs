@@ -16,6 +16,7 @@ namespace RM_MST
 
             public bool clearedHiddenMultiplesTutorial;
             public bool clearedBarriersTutorial;
+            public bool clearedSurfaceTutorial;
 
             public bool clearedPuzzleButtonsTutorial;
             public bool clearedPuzzleSwapTutorial;
@@ -70,6 +71,7 @@ namespace RM_MST
 
         public bool clearedHiddenMultiplesTutorial;
         public bool clearedBarrierTutorial;
+        public bool clearedSurfaceTutorial;
 
         public bool clearedPuzzleButtonsTutorial;
         public bool clearedPuzzleSwapTutorial;
@@ -285,6 +287,7 @@ namespace RM_MST
 
             data.clearedHiddenMultiplesTutorial = clearedHiddenMultiplesTutorial;
             data.clearedBarriersTutorial = clearedBarrierTutorial;
+            data.clearedSurfaceTutorial = clearedSurfaceTutorial;
 
             data.clearedPuzzleButtonsTutorial = clearedPuzzleButtonsTutorial;
             data.clearedPuzzleSwapTutorial = clearedPuzzleSwapTutorial;
@@ -313,6 +316,7 @@ namespace RM_MST
 
             clearedHiddenMultiplesTutorial = data.clearedHiddenMultiplesTutorial;
             clearedBarrierTutorial = data.clearedBarriersTutorial;
+            clearedSurfaceTutorial = data.clearedSurfaceTutorial;
 
             clearedPuzzleButtonsTutorial = data.clearedPuzzleButtonsTutorial;
             clearedPuzzleSwapTutorial = data.clearedPuzzleSwapTutorial;
@@ -531,6 +535,25 @@ namespace RM_MST
 
             // Sets the bool and loads the tutorial.
             clearedBarrierTutorial = true;
+            LoadTutorial(ref pages, startTutorial);
+        }
+
+        // Loads the surface tutorial.
+        public void LoadSurfaceTutorial(bool startTutorial = true)
+        {
+            // Create the pages list.
+            List<Page> pages = new List<Page>
+            {
+                // Load the pages.
+                new MST_Page("The Earth's surface has taken damage. When the surface takes damage, the screen flashes red. Remember: if the surface takes too much damage, the stage is lost.", "trl_surface_00")
+            };
+
+            // Change the display image when certain pages are opened using callbacks.
+            pages[0].OnPageOpenedAddCallback(tutorialsUI.SetCharacterToPartnerB);
+            pages[0].OnPageOpenedAddCallback(tutorialsUI.textBox.ShowCharacterImage);
+
+            // Sets the bool and loads the tutorial.
+            clearedSurfaceTutorial = true;
             LoadTutorial(ref pages, startTutorial);
         }
 

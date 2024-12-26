@@ -1775,6 +1775,20 @@ namespace RM_MST
         public void OnSurfaceDamaged()
         {
             stageUI.OnSurfaceDamaged();
+
+            // If tutorials are being used.
+            if (IsUsingTutorial())
+            {
+                // If there is no tutorial running.
+                if (!IsTutorialRunning())
+                {
+                    // If the surface tutorial has not been triggered yet, trigger it.
+                    if (!tutorials.clearedSurfaceTutorial)
+                    {
+                        tutorials.LoadSurfaceTutorial();
+                    }
+                }
+            }
         }
 
         // ENDING
