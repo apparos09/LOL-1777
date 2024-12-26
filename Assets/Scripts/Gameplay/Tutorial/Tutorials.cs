@@ -450,10 +450,10 @@ namespace RM_MST
                         pages = new List<Page>
                         {
                             // Load the pages.
-                            new Page("Welcome to the stage area - focus mode, which is where you'll shoot down meteors. The meteor closest to the Earth's surface is automatically targeted, so all you must do is solve the conversions presented to you. You get points for performing successful conversions, and once you get enough points, the stage is completed. But if the Earth's surface takes too much damage, the stage is lost."),
-                            new Page("When a meteor is targeted, you are presented with different conversion outputs and the multipliers that were used to get them. Once you select an output, a laser shot is fired at the targeted meteor. The method for choosing an output will vary by stage."),
-                            new Page("If you've selected the correct output, the targeted meteor is destroyed, and the rest of the meteors are pushed back. If you've selected an incorrect output, only the targeted meteor is knocked back, and said meteor is not destroyed. You will also be briefly stunned if you choose a wrong output."),
-                            new Page("On the left are the time, the points, the points bar, and the surface's health bar. On the right are the settings button, the world button, the speed button, and the unit conversion table. Feel free to change the game's speed using the speed button if you want more time to do unit conversions. With all that said, time to start the stage!"),
+                            new Page("Welcome to the stage area (focus mode), which is where you'll shoot down meteors. When a meteor is targeted, you are presented with a conversion to solve. If the conversion is successful, you get points, and once you get enough points, the stage is completed. But if the Earth's surface takes too much damage, the stage is lost."),
+                            new Page("Meteors are automatically targeted, but you can also manually target a meteor by clicking on/touching it. When a meteor is targeted, you are presented with different conversion outputs and the multipliers that were used to get them. Once you select an output (the method of doing so varies by stage), a laser shot is fired at the targeted meteor."),
+                            new Page("If you've selected the correct output, the targeted meteor is destroyed and the screen flashes green. If you've selected an incorrect output, the targeted meteor moves closer to the Earth's surface, you're briefly stunned, and the screen flashes blue. Notably, once a meteor appears, it only moves when hit by a laser shot that fails to destroy it."),
+                            new Page("On the left are the time, the points, the points bar, and the surface's health bar. On the right are the settings button, the world button, and the unit conversion table. With all that said, time to start the stage!"),
                         };
 
                         break;
@@ -464,9 +464,9 @@ namespace RM_MST
                         pages = new List<Page>
                         {
                             // Load the pages.
-                            new Page("Welcome to the stage area - rush mode, which is where you'll shoot down meteors. The meteor closest to the Earth's surface is automatically targeted, so all you must do is solve the conversions presented to you. You get points for performing successful conversions, and once you get enough points, the stage is completed. But if the Earth's surface takes too much damage, the stage is lost."),
-                            new Page("When a meteor is targeted, you are presented with different conversion outputs and the multipliers that were used to get them. Once you select an output, a laser shot is fired at the targeted meteor. The method for choosing an output will vary by stage."),
-                            new Page("If you've selected the correct output, the targeted meteor is destroyed, and the rest of the meteors are pushed back. If you've selected an incorrect output, only the targeted meteor is knocked back, and said meteor is not destroyed. You will also be briefly stunned if you choose a wrong output."),
+                            new Page("Welcome to the stage area (rush mode), which is where you'll shoot down meteors. The meteor closest to the Earth's surface is automatically targeted, so all you must do is solve the conversions presented to you. You get points for performing successful conversions, and once you get enough points, the stage is completed. But if the Earth's surface takes too much damage, the stage is lost."),
+                            new Page("When a meteor is targeted, you are presented with different conversion outputs and the multipliers that were used to get them. Once you select an output (the method of doing so varies by stage), a laser shot is fired at the targeted meteor."),
+                            new Page("If you've selected the correct output, the targeted meteor is destroyed, the rest of the meteors are pushed back, and the screen flashes green. If you've selected an incorrect output, only the targeted meteor is knocked back, the targeted meteor is not destroyed, and the screen flashes blue. You're also briefly stunned if you choose a wrong output."),
                             new Page("On the left are the time, the points, the points bar, and the surface's health bar. On the right are the settings button, the world button, the speed button, and the unit conversion table. Feel free to change the game's speed using the speed button if you want more time to do unit conversions. With all that said, time to start the stage!"),
                         };
 
@@ -479,10 +479,10 @@ namespace RM_MST
                 pages = new List<Page>
                 {
                     // Load the pages.
-                    new MST_Page("Welcome to the stage area, which is where you'll shoot down meteors. The meteor closest to the Earth's surface is automatically targeted, so all you must do is solve the conversions presented to you. You get points for performing successful conversions, and once you get enough points, the stage is completed. But if the Earth's surface takes too much damage, the stage is lost.", "trl_firstStage_00"),
-                    new MST_Page("When a meteor is targeted, you are presented with different conversion outputs and the multipliers that were used to get them. Once you select an output, a laser shot is fired at the targeted meteor. The method for choosing an output will vary by stage.", "trl_firstStage_01"),
-                    new MST_Page("If you've selected the correct output, the targeted meteor is destroyed, and the rest of the meteors are pushed back. If you've selected an incorrect output, only the targeted meteor is knocked back, and said meteor is not destroyed. You will also be briefly stunned if you choose a wrong output.", "trl_firstStage_02"),
-                    new MST_Page("On the left are the time, the points, the points bar, and the surface's health bar. On the right are the settings button, the world button, the speed button, and the unit conversion table. Feel free to change the game's speed using the speed button if you want more time to do unit conversions. With all that said, time to start the stage!", "trl_firstStage_03"),
+                    new MST_Page("Welcome to the stage area, which is where you'll shoot down meteors. When a meteor is targeted, you are presented with a conversion to solve. If the conversion is successful, you get points, and once you get enough points, the stage is completed. But if the Earth's surface takes too much damage, the stage is lost.", "trl_firstStage_00"),
+                    new MST_Page("Meteors are automatically targeted, but you can also manually target a meteor by clicking on/touching it. When a meteor is targeted, you are presented with different conversion outputs and the multipliers that were used to get them. Once you select an output (the method of doing so varies by stage), a laser shot is fired at the targeted meteor.", "trl_firstStage_01"),
+                    new MST_Page("If you've selected the correct output, the targeted meteor is destroyed and the screen flashes green. If you've selected an incorrect output, the targeted meteor moves closer to the Earth's surface, you're briefly stunned, and the screen flashes blue. Notably, once a meteor appears, it only moves when hit by a laser shot that fails to destroy it.", "trl_firstStage_02"),
+                    new MST_Page("On the left are the time, the points, the points bar, and the surface's health bar. On the right are the settings button, the world button, and the unit conversion table. With all that said, time to start the stage!", "trl_firstStage_03"),
                 };
             }
 
@@ -545,7 +545,7 @@ namespace RM_MST
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new MST_Page("The Earth's surface has taken damage. When the surface takes damage, the screen flashes red. Remember: if the surface takes too much damage, the stage is lost.", "trl_surface_00")
+                new MST_Page("The Earth's surface has taken damage! When the surface takes damage, the screen flashes red. Remember: if the surface takes too much damage, the stage is lost.", "trl_surface_00")
             };
 
             // Change the display image when certain pages are opened using callbacks.
