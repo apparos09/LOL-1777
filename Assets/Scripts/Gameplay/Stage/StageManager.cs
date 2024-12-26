@@ -1305,18 +1305,18 @@ namespace RM_MST
 
                 case 3:
                 case 4:
-                    diffMod = 1.05F;
+                    diffMod = 1.125F;
                     break;
 
                 case 5:
                 case 6:
-                    diffMod = 1.10F;
+                    diffMod = 1.250F;
                     break;
 
                 case 7:
                 case 8:
                 case 9:
-                    diffMod = 1.15F;
+                    diffMod = 1.50F;
                     break;
             }
 
@@ -1331,23 +1331,23 @@ namespace RM_MST
             // Checks what to set the modifier to based on the answer time.
             if (answerTime >= 10.0F) // 10 seconds or more.
             {
-                timeMod = 1.60F;
+                timeMod = 1.75F;
             }
             else if (answerTime >= 8.0F) // 8 seconds or more.
             {
-                timeMod = 1.48F;
+                timeMod = 1.60F;
             }
             else if(answerTime >= 6.0F) // 6 seconds or more.
             {
-                timeMod = 1.36F;
+                timeMod = 1.45F;
             }
             else if(answerTime >= 4.0F) // 4 seconds or more.
             {
-                timeMod = 1.24F;
+                timeMod = 1.30F;
             }
             else if(answerTime >= 2.0F) // 2 seconds or more.
             {
-                timeMod = 1.12F;
+                timeMod = 1.15F;
             }
             else // Less than 2 seconds.
             {
