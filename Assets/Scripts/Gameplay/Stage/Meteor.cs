@@ -49,8 +49,8 @@ namespace RM_MST
         // The game worked without this. When you tried to implement it, it broke the game, so you took it out.
         // private bool moveTowardsEndPoint = false;
 
-        // The move end point (focus mode).
-        private Vector3 moveEndPoint = Vector3.zero;
+        // Gets set to 'true' when the meteor is moving towards an end point.
+        private bool movingTowardsEndPoint = false;
 
         // Gets set to 'true' when the meteor is suffering from knockback (rush mode).
         private bool inKnockback = false;
@@ -99,6 +99,9 @@ namespace RM_MST
 
         // The failed destruction sfx.
         public AudioClip meteorDestroyFailSfx;
+
+        // A sound that plays when the player can't select the meteor.
+        public AudioClip meteorSelectFailSfx;
 
         // Awake is called when the script instance is being loaded
         private void Awake()
@@ -182,11 +185,23 @@ namespace RM_MST
                 // If the game is in focus mode.
                 if(stageManager.UsingFocusMode())
                 {
-                    // If the player isn't stunned, and this meteor isn't being targeted, target this meteor.
-                    if (!stageManager.player.IsPlayerStunned() && !stageManager.meteorTarget.IsMeteorTargeted(this))
+                    // If the meteor is effected by gravity, it shouldn't be manually selectable...
+                    if(IsGravityEnabled()) // Can't be manually selected.
                     {
-                        stageManager.meteorTarget.RemoveTarget();
-                        stageManager.meteorTarget.SetTarget(this);
+                        // Play the selection failure sound if this isn't the meteor that's being targeted.
+                        if(!stageManager.meteorTarget.IsMeteorTargeted(this))
+                        {
+                            PlaySelectFailureSfx();
+                        }
+                    }
+                    else // Can be manaully selected.
+                    {
+                        // If the player isn't stunned, and this meteor isn't being targeted, target this meteor.
+                        if (!stageManager.player.IsPlayerStunned() && !stageManager.meteorTarget.IsMeteorTargeted(this))
+                        {
+                            stageManager.meteorTarget.RemoveTarget();
+                            stageManager.meteorTarget.SetTarget(this);
+                        }
                     }
                 }
             }
@@ -360,6 +375,12 @@ namespace RM_MST
             // Randomizes the velocity and the rotation direction.
             rigidbody.angularVelocity = Random.Range(rotMin, rotMax);
             rigidbody.angularVelocity *= (Random.Range(0, 2) == 0) ? 1 : -1;
+        }
+
+        // If the meteor is effected by gravity, it returns true.
+        public bool IsGravityEnabled()
+        {
+            return rigidbody.gravityScale != 0.0F;
         }
 
         // CONVERSIONS
@@ -812,6 +833,13 @@ namespace RM_MST
         {
             stageManager.stageAudio.PlaySoundEffectWorld(meteorDestroyFailSfx);
         }
+
+        // Plays the select fail SFX.
+        public void PlaySelectFailureSfx()
+        {
+            stageManager.stageAudio.PlaySoundEffectWorld(meteorSelectFailSfx);
+        }
+
 
 
         // Update is called once per frame

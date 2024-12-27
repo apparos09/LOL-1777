@@ -205,6 +205,13 @@ https://creativecommons.org/licenses/by/3.0/
 - Confirmed to be copyright free by GameSounds.xyz.
 
 
+## Meteor Select Fail SFX
+- Question - Incorrect Answer - Original (Battle Bot Training Simulation)
+
+### Copyright
+- Original creation from Battle Bot Training Simulation. This asset has been modified for use in this project.
+
+
 ## Stage - Barrier - Destroyed
 - Power Failure - Mike Koenig
 	- Link: https://soundbible.com/1610-Power-Failure.html

@@ -344,3 +344,4 @@ MonoBehaviour:
   deathAnim: Meteor - Death Animation
   meteorDestroySuccessSfx: {fileID: 8300000, guid: f822081f3f6339f489a9d64654518aad, type: 3}
   meteorDestroyFailSfx: {fileID: 8300000, guid: 3fd1f9040cee5e842815d849b43bd798, type: 3}
+  meteorSelectFailSfx: {fileID: 8300000, guid: d2838ff9b10246d41a67a4726c7ce94f, type: 3}
