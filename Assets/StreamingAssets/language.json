@@ -345,13 +345,13 @@
     "trl_firstStage_02": "If you've selected the correct output, the targeted meteor is destroyed and the screen flashes green. If you've selected an incorrect output, the targeted meteor moves closer to the Earth's surface, you're briefly stunned, and the screen flashes blue. Notably, once a meteor appears, it only moves when hit by a laser shot that fails to destroy it.",
     "trl_firstStage_03": "On the left are the time, the points, the points bar, and the surface's health bar. On the right are the settings button, the world button, and the unit conversion table. With all that said, time to start the stage!",
 
-    "trl_hiddenMultiples_00": "The multipliers have become hidden! If you perform enough conversions correctly in a row, the conversion multipliers will disappear. They will come back a few seconds after a conversion question is given, but this will give more time for meteors to reach the Earth's surface. If you get a conversion wrong, the multipliers will start showing up instantly like before, unless you get enough consecutive correct answers again.",
+    "trl_hiddenMultiples_00": "The multipliers have become hidden! If you perform enough conversions correctly in a row, the conversion multipliers will disappear. They will become visible again in a short while, but waiting for this to happen makes the stage take longer. If you get a conversion wrong, the multipliers will start showing up instantly like before, unless you get enough consecutive correct answers again.",
 
     "trl_barrier_00": "A barrier has been hit! When a meteor hits a barrier, the meteor is destroyed, the barrier takes damage, and the screen flashes yellow. If a barrier takes too much damage, it'll be destroyed, leaving an opening for meteors to hit the Earth's surface and damage it. Once you get enough points, a barrier is restored.",
 
     "trl_surface_00": "The Earth's surface has taken damage! When the surface takes damage, the screen flashes red. Remember: if the surface takes too much damage, the stage is lost.",
 
-    "trl_pzl_buttons": "This is a units buttons puzzle! Submit an output by selecting the button its attached to.",
+    "trl_pzl_buttons": "This is a units buttons puzzle! Submit an output by selecting the button it's attached to.",
 
     "trl_pzl_swap": "This is a swap puzzle! Symbols in the puzzle area switch places when the time bar in the puzzle area fully depletes. Select an output using one of its corresponding symbols in the puzzle area.",
 

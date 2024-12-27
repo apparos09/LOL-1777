@@ -507,7 +507,7 @@ namespace RM_MST
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new MST_Page("The multipliers have become hidden! If you perform enough conversions correctly in a row, the conversion multipliers will disappear. They will come back a few seconds after a conversion question is given, but this will give more time for meteors to reach the Earth's surface. If you get a conversion wrong, the multipliers will start showing up instantly like before, unless you get enough consecutive correct answers again.", "trl_hiddenMultiples_00")
+                new MST_Page("The multipliers have become hidden! If you perform enough conversions correctly in a row, the conversion multipliers will disappear. They will become visible again in a short while, but waiting for this to happen makes the stage take longer. If you get a conversion wrong, the multipliers will start showing up instantly like before, unless you get enough consecutive correct answers again.", "trl_hiddenMultiples_00")
             };
 
             // Change the display image when certain pages are opened using callbacks.
@@ -566,7 +566,7 @@ namespace RM_MST
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new MST_Page("This is a units buttons puzzle! Submit an output by selecting the button its attached to.", "trl_pzl_buttons")
+                new MST_Page("This is a units buttons puzzle! Submit an output by selecting the button it's attached to.", "trl_pzl_buttons")
             };
 
             // Change the display image when certain pages are opened using callbacks.
