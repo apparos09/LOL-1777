@@ -45,13 +45,6 @@ namespace RM_MST
         // This value gets set to 0 when the meteor dies. This is just used to check if it's dead.
         private float health = 1.0F;
 
-        // Gets set to 'true' when the meteor should move towards its end point (focus mode).
-        // The game worked without this. When you tried to implement it, it broke the game, so you took it out.
-        // private bool moveTowardsEndPoint = false;
-
-        // Gets set to 'true' when the meteor is moving towards an end point.
-        private bool movingTowardsEndPoint = false;
-
         // Gets set to 'true' when the meteor is suffering from knockback (rush mode).
         private bool inKnockback = false;
 
@@ -350,12 +343,6 @@ namespace RM_MST
         {
             transform.position = spawnPoint;
             lastHitPos = transform.position; // Save last hit position as spawn position.
-            
-            // // The meteor should move towards its end point. This only concerns focus mode.
-            // if(stageManager.UsingFocusMode())
-            // {
-            //     moveTowardsEndPoint = true;
-            // }
         }
 
         // Resets the meteor's velocity.
@@ -654,16 +641,6 @@ namespace RM_MST
                     stageManager.comboDisplay.PlayComboAnimationAtPosition(transform.position);
                 }
 
-                // // In focus mode.
-                // if (stageManager.UsingFocusMode())
-                // {
-                //     // Don't move towards the end point (not necessary, but eh.)
-                //     if (moveTowardsEndPoint)
-                //     {
-                //         moveTowardsEndPoint = false;
-                //     }
-                // }
-
                 // Plays the green screen effect.
                 if (stageManager.stageUI.UseScreenEffects)
                     stageManager.stageUI.screenEffects.PlayEdgeGlowGreenAnimation();
@@ -691,9 +668,6 @@ namespace RM_MST
 
                     // Remove the meteor from the targeting system.
                     stageManager.meteorTarget.RemoveTarget();
-
-                    // Start movign towards the end point.
-                    // moveTowardsEndPoint = true;
                 }
 
                 // Call related function.
@@ -892,8 +866,6 @@ namespace RM_MST
                 // If using focus mode.
                 if(stageManager.UsingFocusMode())
                 {
-                    // Originally checked 'moveTowardsEndPoint'.
-
                     // The position distance and the movement distance.
                     float posDist = Vector3.Distance(lastHitPos, transform.position);
                     float moveDist = stageManager.GetModifiedMeteorMoveDistance(recentAnswerLength);
@@ -911,9 +883,6 @@ namespace RM_MST
 
                         // Restore the angular velocity.
                         rigidbody.angularVelocity = angVelo;
-
-                        // Not needed/broke the game when you tried to implement it.
-                        // moveTowardsEndPoint = false;
                     }
                 }
             }

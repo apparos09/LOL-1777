@@ -526,7 +526,7 @@ namespace RM_MST
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new MST_Page("A barrier has been hit! When a meteor hits a barrier, the meteor is destroyed, the barrier takes damage, and the screen flashes yellow. If a barrier takes too much damage, it'll be destroyed, leaving an opening for meteors to hit the Earth's surface and damage it. Once you get enough points, a barrier is restored.", "trl_barrier_00")
+                new MST_Page("A barrier has been hit! When a meteor hits a barrier, the meteor is destroyed, the barrier takes damage, and the screen flashes orange. If a barrier takes too much damage, it'll be destroyed, leaving an opening for meteors to hit the Earth's surface and damage it. Once you get enough points, a barrier is restored.", "trl_barrier_00")
             };
 
             // Change the display image when certain pages are opened using callbacks.
