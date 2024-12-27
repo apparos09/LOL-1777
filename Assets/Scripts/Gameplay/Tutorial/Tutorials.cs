@@ -451,7 +451,7 @@ namespace RM_MST
                         {
                             // Load the pages.
                             new Page("Welcome to the stage area (focus mode), which is where you'll shoot down meteors. When a meteor is targeted, you are presented with a conversion to solve. If the conversion is successful, you get points, and once you get enough points, the stage is completed. But if the Earth's surface takes too much damage, the stage is lost."),
-                            new Page("Meteors are automatically targeted, but you can also manually target a meteor by clicking on/touching it. When a meteor is targeted, you are presented with different conversion outputs and the multipliers that were used to get them. Once you select an output (the method of doing so varies by stage), a laser shot is fired at the targeted meteor."),
+                            new Page("Meteors are automatically targeted, but you can also manually target non-moving meteors by clicking on/touching them. When a meteor is targeted, you are presented with different conversion outputs and the multipliers that were used to get them. Once you select an output (the method of doing so varies by stage), a laser shot is fired at the targeted meteor."),
                             new Page("If you've selected the correct output, the targeted meteor is destroyed and the screen flashes green. If you've selected an incorrect output, the targeted meteor moves closer to the Earth's surface, you're briefly stunned, and the screen flashes blue. Notably, once a meteor appears, it only moves when hit by a laser shot that fails to destroy it."),
                             new Page("On the left are the time, the points, the points bar, and the surface's health bar. On the right are the settings button, the world button, and the unit conversion table. With all that said, time to start the stage!"),
                         };
@@ -480,7 +480,7 @@ namespace RM_MST
                 {
                     // Load the pages.
                     new MST_Page("Welcome to the stage area, which is where you'll shoot down meteors. When a meteor is targeted, you are presented with a conversion to solve. If the conversion is successful, you get points, and once you get enough points, the stage is completed. But if the Earth's surface takes too much damage, the stage is lost.", "trl_firstStage_00"),
-                    new MST_Page("Meteors are automatically targeted, but you can also manually target a meteor by clicking on/touching it. When a meteor is targeted, you are presented with different conversion outputs and the multipliers that were used to get them. Once you select an output (the method of doing so varies by stage), a laser shot is fired at the targeted meteor.", "trl_firstStage_01"),
+                    new MST_Page("Meteors are automatically targeted, but you can also manually target non-moving meteors by clicking on/touching them. When a meteor is targeted, you are presented with different conversion outputs and the multipliers that were used to get them. Once you select an output (the method of doing so varies by stage), a laser shot is fired at the targeted meteor.", "trl_firstStage_01"),
                     new MST_Page("If you've selected the correct output, the targeted meteor is destroyed and the screen flashes green. If you've selected an incorrect output, the targeted meteor moves closer to the Earth's surface, you're briefly stunned, and the screen flashes blue. Notably, once a meteor appears, it only moves when hit by a laser shot that fails to destroy it.", "trl_firstStage_02"),
                     new MST_Page("On the left are the time, the points, the points bar, and the surface's health bar. On the right are the settings button, the world button, and the unit conversion table. With all that said, time to start the stage!", "trl_firstStage_03"),
                 };
@@ -526,7 +526,7 @@ namespace RM_MST
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new MST_Page("A barrier has been hit! When a meteor hits a barrier, the meteor is destroyed, but the barrier takes damage. If a barrier takes too much damage, it'll be destroyed, leaving an opening for meteors to hit the Earth's surface and damage it. Once you get enough points, a barrier is restored.", "trl_barrier_00")
+                new MST_Page("A barrier has been hit! When a meteor hits a barrier, the meteor is destroyed, the barrier takes damage, and the screen flashes yellow. If a barrier takes too much damage, it'll be destroyed, leaving an opening for meteors to hit the Earth's surface and damage it. Once you get enough points, a barrier is restored.", "trl_barrier_00")
             };
 
             // Change the display image when certain pages are opened using callbacks.
