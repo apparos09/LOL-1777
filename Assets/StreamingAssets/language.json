@@ -347,7 +347,7 @@
 
     "trl_hiddenMultiples_00": "The multipliers have become hidden! If you perform enough conversions correctly in a row, the conversion multipliers will disappear. They will become visible again in a short while, but waiting for this to happen makes the stage take longer. If you get a conversion wrong, the multipliers will start showing up instantly like before, unless you get enough consecutive correct answers again.",
 
-    "trl_barrier_00": "A barrier has been hit! When a meteor hits a barrier, the meteor is destroyed, the barrier takes damage, and the screen flashes orange. If a barrier takes too much damage, it'll be destroyed, leaving an opening for meteors to hit the Earth's surface and damage it. Once you get enough points, a barrier is restored.",
+    "trl_barrier_00": "A barrier has been hit! When a meteor hits a barrier, the meteor is destroyed. The barrier takes damage, and the screen flashes orange. If a barrier takes too much damage, it'll be destroyed, leaving an opening for meteors to hit the Earth's surface and damage it. Once you get enough points, a barrier is restored.",
 
     "trl_surface_00": "The Earth's surface has taken damage! When the surface takes damage, the screen flashes red. Remember: if the surface takes too much damage, the stage is lost.",
 
