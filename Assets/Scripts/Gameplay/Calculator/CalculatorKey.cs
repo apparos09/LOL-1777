@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace RM_MST
 {
@@ -10,6 +11,9 @@ namespace RM_MST
     {
         // The calculator this key is attached to.
         public Calculator calculator;
+
+        // The button for this calculator key.
+        public Button button;
 
         // The key text.
         public TMP_Text keyText;
@@ -20,19 +24,25 @@ namespace RM_MST
         // Start is called before the first frame update
         void Start()
         {
+            // Tries to get the calculator in the parent component if it hasn't been set.
+            if(calculator == null)
+                calculator = GetComponentInParent<Calculator>();
 
+            // Tries to get the calculator button.
+            if (button == null)
+                button = GetComponent<Button>();
         }
 
         // Called when the key has been pressed.
         public virtual void OnKeyPressed()
         {
-            calculator.AddKeyCharacter(keyChar);
+            calculator.AddCharacterToEquation(keyChar);
         }
 
-        // Update is called once per frame
-        void Update()
+        // Adds the character to the equation.
+        public void AddCharacterToEquation()
         {
-
+            calculator.AddCharacterToEquation(keyChar);
         }
     }
 }

@@ -107,6 +107,24 @@
       "kwd_output": 28,
       "kwd_switch": 28,
 
+      "kwd_one": 28,
+      "kwd_two": 28,
+      "kwd_three": 28,
+      "kwd_four": 28,
+      "kwd_five": 28,
+
+      "kwd_six": 28,
+      "kwd_seven": 28,
+      "kwd_eight": 28,
+      "kwd_nine": 28,
+      "kwd_zero": 28,
+
+      "kwd_decimalPoint": 28,
+      "kwd_multiply": 28,
+      "kwd_divide": 28,
+      "kwd_equals": 28,
+      "kwd_clear": 28,
+
 
       "kwd_world": 28,
       "kwd_stageSelect": 28,
@@ -299,6 +317,25 @@
     "kwd_input": "Input",
     "kwd_output": "Output",
     "kwd_switch": "Switch",
+
+
+    "kwd_one": "One",
+    "kwd_two": "Two",
+    "kwd_three": "Three",
+    "kwd_four": "Four",
+    "kwd_five": "Five",
+
+    "kwd_six": "Six",
+    "kwd_seven": "Seven",
+    "kwd_eight": "Eight",
+    "kwd_nine": "Nine",
+    "kwd_zero": "Zero",
+
+    "kwd_decimalPoint": "Decimal Point",
+    "kwd_multiply": "Multiply",
+    "kwd_divide": "Divide",
+    "kwd_equals": "Equals",
+    "kwd_clear": "Clear",
 
 
     "kwd_world": "World",
