@@ -154,7 +154,7 @@ namespace RM_MST
         private bool setUnitsInputMaxByDifficulty = true;
 
         // If 'true', random inputs can be decimal values.
-        private bool allowRandomInputDecimals = true;
+        private bool allowRandomInputDecimals = false; // Set to false from feedback.
 
         // The number of decimal places for the units.
         // TODO: maybe limit to 2 decimal places.
