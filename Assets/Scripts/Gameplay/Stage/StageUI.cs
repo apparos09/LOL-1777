@@ -28,6 +28,9 @@ namespace RM_MST
         // The partner B icon.
         public CharacterIcon partnerBIcon;
 
+        // The event text display.
+        public EventTextDisplay eventTextDisplay;
+
         [Header("Text")]
 
         // The stage name text.

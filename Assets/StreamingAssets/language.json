@@ -151,6 +151,11 @@
       "kwd_restart": 28,
       "kwd_speed": 28,
 
+
+      "kwd_correct": 28,
+      "kwd_incorrect": 28,
+
+
       "kwd_stageEnd": 70,
       "kwd_stageClear": 70,
       "kwd_stageWon": 70,
@@ -362,6 +367,11 @@
     "kwd_highestCombo": "Highest Combo",
     "kwd_restart": "Restart",
     "kwd_speed": "Speed",
+
+
+    "kwd_correct": "Correct!",
+    "kwd_incorrect": "Incorrect!",
+
 
     "kwd_stageEnd": "Stage End",
     "kwd_stageClear": "Stage Clear",

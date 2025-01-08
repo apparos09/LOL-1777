@@ -645,6 +645,9 @@ namespace RM_MST
                 if (stageManager.stageUI.UseScreenEffects)
                     stageManager.stageUI.screenEffects.PlayEdgeGlowGreenAnimation();
 
+                // Plays the event text animation (correct).
+                stageManager.stageUI.eventTextDisplay.PlayDisplayCorrectAnimation();
+
                 // Kill the meteor.
                 Kill();
             }
@@ -679,6 +682,9 @@ namespace RM_MST
                 // Plays the blue screen effect.
                 if (stageManager.stageUI.UseScreenEffects)
                     stageManager.stageUI.screenEffects.PlayEdgeGlowBlueAnimation();
+
+                // Plays the event text animation (incorrect).
+                stageManager.stageUI.eventTextDisplay.PlayDisplayIncorrectAnimation();
             }
 
 
