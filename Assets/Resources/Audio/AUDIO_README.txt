@@ -103,6 +103,14 @@ https://creativecommons.org/licenses/by/3.0/
 - Confirmed to be copyright free by GameSounds.xyz.
 
 
+## Calculator - Key Press
+- Computer Keyboard 2 - Unknown Artist (GameSounds.xyz)
+	- Link: https://gamesounds.xyz/?dir=Sound%20Effects/Tools
+
+### Copyright
+- Confirmed to be copyright free by GameSounds.xyz.
+
+
 ## World - Stage Select
 - Text Message Alert 5 - Daniel Simon
 	- Link: https://soundbible.com/2158-Text-Message-Alert-5.html
@@ -123,6 +131,7 @@ https://creativecommons.org/licenses/by/3.0/
 Daniel Simon
 Licensed under Creative Commons: By Attribution 3.0 License
 https://creativecommons.org/licenses/by/3.0/
+
 
 ## World - Stage Select - Decline
 - Text Message Alert 1 - Daniel Simon
