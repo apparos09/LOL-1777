@@ -685,7 +685,7 @@ namespace RM_MST
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new MST_Page("These units are used to measure how long something is. 1 yard (yd) is equal to 3 feet (ft), and 1 foot (ft) is equal to 12 inches (in).", "trl_lengthImperial_00"),
+                new MST_Page("These units are used to measure how long something is.", "trl_lengthImperial_00"),
             };
 
             // Change the display image when certain pages are opened using callbacks.
@@ -704,7 +704,7 @@ namespace RM_MST
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new MST_Page("These units are used to measure how heavy someone or something is. 1 pound (lb) is equal to 16 ounces (oz).", "trl_weightImperial_00"),
+                new MST_Page("These units are used to measure how heavy something is.", "trl_weightImperial_00"),
             };
 
             // Change the display image when certain pages are opened using callbacks.
@@ -734,7 +734,7 @@ namespace RM_MST
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new MST_Page("These units are used to measure lengths of time. 1 hour (hrs) is equal to 60 minutes (mins), and 1 minute (mins) is equal to 60 seconds (secs).", "trl_time_00"),
+                new MST_Page("These units are used to measure lengths of time.", "trl_time_00"),
             };
 
             // Change the display image when certain pages are opened using callbacks.
@@ -753,7 +753,7 @@ namespace RM_MST
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new MST_Page("These units are used to measure how long something is. 1 kilometer (km) is equal to 1000 meters (m), 1 meter is equal to 100 centimeters (cm) and 1000 millimeters (mm), 1 decimeter (dm) is equal to 10 centimeters (cm), and 1 centimeter (cm) is equal to 10 millimeters (mm).", "trl_lengthMetric_00"),
+                new MST_Page("These units are used to measure how long something is.", "trl_lengthMetric_00"),
             };
 
             // Change the display image when certain pages are opened using callbacks.
@@ -772,7 +772,7 @@ namespace RM_MST
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new MST_Page("These units are used to measure how heavy someone or something is. 1 kilogram (kg) is equal to 1000 grams (g), and 1 gram (g) is equal to 1000 milligrams (mg).", "trl_weightMetric_00"),
+                new MST_Page("These units are used to measure how heavy something is.", "trl_weightMetric_00"),
             };
 
             // Change the display image when certain pages are opened using callbacks.
@@ -791,7 +791,7 @@ namespace RM_MST
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new MST_Page("These units are used to measure the volume of a container. 1 liter (l) is equal to 1000 millilitres (mL).", "trl_capacity_00"),
+                new MST_Page("These units are used to measure how much liquid a container can hold.", "trl_capacity_00"),
             };
 
             // Change the display image when certain pages are opened using callbacks.

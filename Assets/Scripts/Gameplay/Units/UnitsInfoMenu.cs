@@ -25,6 +25,10 @@ namespace RM_MST
             // Description and Speak Key
             public string groupDesc;
             public string groupDescKey;
+
+            // Meaning and Speak Key (reuses tutorial text).
+            public string groupMeaning;
+            public string groupMeaningKey;
         }
 
         // The units info.
@@ -35,6 +39,9 @@ namespace RM_MST
 
         // The group description.
         public TMP_Text groupDesc;
+
+        // The group/units meaning.
+        public TMP_Text groupMeaning;
 
         // The list of entries.
         public List<UnitsInfoEntry> entries = new List<UnitsInfoEntry>();
@@ -162,12 +169,17 @@ namespace RM_MST
             // Set the group.
             newEntry.group = group;
 
+            // Name
             newEntry.groupName = unitsInfo.GetUnitsGroupName(group);
             newEntry.groupNameKey = UnitsInfo.GetUnitsGroupNameKey(group);
 
             // Description
             newEntry.groupDesc = unitsInfo.GetUnitsGroupDescription(group);
             newEntry.groupDescKey = UnitsInfo.GetUnitsGroupDescriptionKey(group);
+
+            // Meaning
+            newEntry.groupMeaning = unitsInfo.GetUnitsGroupMeaning(group);
+            newEntry.groupMeaningKey = UnitsInfo.GetUnitsGroupMeaningKey(group);
 
             return newEntry;
         }
@@ -336,6 +348,7 @@ namespace RM_MST
             // Set the text.
             groupName.text = entry.groupName;
             groupDesc.text = entry.groupDesc;
+            groupMeaning.text = entry.groupMeaning;
 
             // Updates the table.
             unitsTable.SetGroup(entry.group);

@@ -354,36 +354,48 @@ namespace RM_MST
         public const string LENGTH_IMPERIAL_NAME_KEY = "unt_lengthImperial_nme";
         private string lengthImperialDesc = "Inches (in), Feet (ft), Yards (yd)";
         public const string LENGTH_IMPERIAL_DESC_KEY = "unt_lengthImperial_dsc";
+        public string lengthImperialMeaning = "These units are used to measure how long something is.";
+        public const string LENGTH_IMPERIAL_MEANING_KEY = "trl_lengthImperial_00";
 
         // Weight Imperial
         private string weightImperialName = "Weight (Imperial)";
         public const string WEIGHT_IMPERIAL_NAME_KEY = "unt_weightImperial_nme";
         private string weightImperialDesc = "Pounds (lb), Ounces (oz)";
         public const string WEIGHT_IMPERIAL_DESC_KEY = "unt_weightImperial_dsc";
+        public string weightImperialMeaning = "These units are used to measure how heavy something is.";
+        public const string WEIGHT_IMPERIAL_MEANING_KEY = "trl_weightImperial_00";
 
         // Time
         private string timeName = "Time";
         public const string TIME_NAME_KEY = "unt_time_nme";
         private string timeDesc = "Seconds (secs), Minutes (mins), Hours (hrs)";
         public const string TIME_DESC_KEY = "unt_time_dsc";
+        public string timeMeaning = "These units are used to measure lengths of time.";
+        public const string TIME_MEANING_KEY = "trl_time_00";
 
         // Length Metric
         private string lengthMetricName = "Length (Metric)";
         public const string LENGTH_METRIC_NAME_KEY = "unt_lengthMetric_nme";
         private string lengthMetricDesc = "Millimeters (mm), Centimeters (cm), Decimeters (dm), Meters (m), Kilometers (km)";
         public const string LENGTH_METRIC_DESC_KEY = "unt_lengthMetric_dsc";
+        public string lengthMetricMeaning = "These units are used to measure how long something is.";
+        public const string LENGTH_METRIC_MEANING_KEY = "trl_lengthMetric_00";
 
         // Weight Metric
         private string weightMetricName = "Weight (Metric)";
         public const string WEIGHT_METRIC_NAME_KEY = "unt_weightMetric_nme";
         private string weightMetricDesc = "Milligrams (mg), Grams (g) Kilograms (kg)";
         public const string WEIGHT_METRIC_DESC_KEY = "unt_weightMetric_dsc";
+        public string weightMetricMeaning = "These units are used to measure how heavy something is.";
+        public const string WEIGHT_METRIC_MEANING_KEY = "trl_weightImperial_00";
 
         // Capacity
         private string capacityName = "Capacity (Metric)";
         public const string CAPACITY_NAME_KEY = "unt_capacity_nme";
         private string capacityDesc = "Liters (l), Milliliters (mL)";
         public const string CAPACITY_DESC_KEY = "unt_capacity_dsc";
+        public string capacityMeaning = "These units are used to measure how much liquid a container can hold.";
+        public const string CAPACITY_MEANING_KEY = "trl_capacity_00";
 
 
         // Units names and symbols
@@ -613,27 +625,32 @@ namespace RM_MST
                 // Length Imperial
                 lengthImperialName = lolManager.GetLanguageText(LENGTH_IMPERIAL_NAME_KEY);
                 lengthImperialDesc = lolManager.GetLanguageText(LENGTH_IMPERIAL_DESC_KEY);
+                lengthImperialMeaning = lolManager.GetLanguageText(LENGTH_IMPERIAL_MEANING_KEY);
 
                 // Weight Imperial
                 weightImperialName = lolManager.GetLanguageText(WEIGHT_IMPERIAL_NAME_KEY);
                 weightImperialDesc = lolManager.GetLanguageText(WEIGHT_IMPERIAL_DESC_KEY);
+                weightImperialMeaning = lolManager.GetLanguageText(WEIGHT_IMPERIAL_MEANING_KEY);
 
                 // Time
                 timeName = lolManager.GetLanguageText(TIME_NAME_KEY);
                 timeDesc = lolManager.GetLanguageText(TIME_DESC_KEY);
+                timeMeaning = lolManager.GetLanguageText(TIME_MEANING_KEY);
 
                 // Length Metric
                 lengthMetricName = lolManager.GetLanguageText(LENGTH_METRIC_NAME_KEY);
                 lengthMetricDesc = lolManager.GetLanguageText(LENGTH_METRIC_DESC_KEY);
+                lengthMetricMeaning = lolManager.GetLanguageText(LENGTH_METRIC_MEANING_KEY);
 
                 // Weight Metric
                 weightMetricName = lolManager.GetLanguageText(WEIGHT_METRIC_NAME_KEY);
                 weightMetricDesc = lolManager.GetLanguageText(WEIGHT_METRIC_DESC_KEY);
+                weightMetricMeaning = lolManager.GetLanguageText(WEIGHT_METRIC_MEANING_KEY);
 
                 // Capacity
                 capacityName = lolManager.GetLanguageText(CAPACITY_NAME_KEY);
                 capacityDesc = lolManager.GetLanguageText(CAPACITY_DESC_KEY);
-
+                capacityMeaning = lolManager.GetLanguageText(CAPACITY_MEANING_KEY);
 
 
                 // Unit Names and Smybols
@@ -832,7 +849,7 @@ namespace RM_MST
             return result;
         }
 
-        // Gets the units group name.
+        // Gets the units group description.
         public string GetUnitsGroupDescription(unitGroups unitsType)
         {
             // The result.
@@ -908,6 +925,85 @@ namespace RM_MST
             return result;
         }
 
+        // Gets the units group meaning
+        public string GetUnitsGroupMeaning(unitGroups unitsType)
+        {
+            // The result.
+            string result = "";
+
+            // Checks the units type.
+            switch (unitsType)
+            {
+                case unitGroups.weightImperial: // Weight Imperial
+                    result = weightImperialMeaning;
+                    break;
+
+                case unitGroups.lengthImperial: // Length Imperial
+                    result = lengthImperialMeaning;
+                    break;
+
+                case unitGroups.time: // Time
+                    result = timeMeaning;
+                    break;
+
+                case unitGroups.lengthMetric: // Metric
+                    result = lengthMetricMeaning;
+                    break;
+
+                case unitGroups.weightMetric: // Weight
+                    result = weightMetricMeaning;
+                    break;
+
+                case unitGroups.capacity: // Capacity
+                    result = capacityMeaning;
+                    break;
+            }
+
+            // Returns the result.
+            return result;
+        }
+
+        // Gets the units group meaning key.
+        public static string GetUnitsGroupMeaningKey(unitGroups unitsType)
+        {
+            // The result.
+            string result = "";
+
+            // Checks the units type.
+            switch (unitsType)
+            {
+                case unitGroups.weightImperial: // Weight Imperial
+                    result = WEIGHT_IMPERIAL_MEANING_KEY;
+                    break;
+
+                case unitGroups.lengthImperial: // Length Imperial
+                    result = LENGTH_IMPERIAL_MEANING_KEY;
+                    break;
+
+                case unitGroups.time: // Time
+                    result = TIME_MEANING_KEY;
+                    break;
+
+                case unitGroups.lengthMetric: // Metric
+                    result = LENGTH_METRIC_MEANING_KEY;
+                    break;
+
+                case unitGroups.weightMetric: // Weight
+                    result = WEIGHT_METRIC_MEANING_KEY;
+                    break;
+
+                case unitGroups.capacity: // Capacity
+                    result = CAPACITY_MEANING_KEY;
+                    break;
+            }
+
+            // Returns the result.
+            return result;
+        }
+
+
+
+        // SPECIFIC GROUPS
         // Gets the length unit name.
         public string GetLengthUnitName(lengthUnits length)
         {
