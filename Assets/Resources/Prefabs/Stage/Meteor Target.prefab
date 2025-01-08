@@ -157,4 +157,4 @@ MonoBehaviour:
   lockInAnim: Target - Lock In Animation
   lockOutAnim: Target - Lock Out Animation
   lockInSfx: {fileID: 8300000, guid: 7f6d3c51ae2382049be29aed3f883b55, type: 3}
-  lockOutSfx: {fileID: 8300000, guid: 1bb2d4bf98104db41829a4cad6e810f9, type: 3}
+  lockOutSfx: {fileID: 8300000, guid: 7f6d3c51ae2382049be29aed3f883b55, type: 3}
