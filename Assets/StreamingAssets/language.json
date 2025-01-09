@@ -125,6 +125,8 @@
       "kwd_equals": 28,
       "kwd_clear": 28,
 
+      "kwd_error": 28,
+
 
       "kwd_world": 28,
       "kwd_stageSelect": 28,
@@ -341,6 +343,8 @@
     "kwd_divide": "Divide",
     "kwd_equals": "Equals",
     "kwd_clear": "Clear",
+
+    "kwd_error": "Error",
 
 
     "kwd_world": "World",

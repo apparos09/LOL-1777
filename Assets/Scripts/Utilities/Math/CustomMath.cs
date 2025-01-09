@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace util
@@ -219,6 +220,273 @@ namespace util
             mx.SetRow(3, new Vector4(value * m.m30, value * m.m31, value * m.m32, value * m.m33));
 
             return mx;
+        }
+
+
+        // STRING MATH CALCULATION
+        // Performs a BEDMAS calculation on a string. If an empty string is returned, the calculation failed.
+        public static string CalculateMathString(string equation)
+        {
+            /*
+             * Rules/Checks:
+             * Decimal Point: 
+             *  - A number can only have one decimal point. If there's a decimal point at the end of a number...
+             *  - Treat it as the number ending it as a zero.
+             * Brackets (B):
+             *  - A quick check can be done with the number of left brackets and right brackets to see if an equation might be valid.
+             *  - You can check the bracket count to catch brackets that are placed within brackets.
+             *  - A bracket next to a number counts as multiplication (e.g., (4)3 is 4 x 3).
+             * Exponents (E):
+             *  - Represented by "^".
+             * Division (D):
+             *  - Represented by the "/" symbol.
+             *  - If the user attempts to divide by 0 (x / 0), then return an empty string by default.
+             * Multiplication (M):
+             *  - Represented by the "*" symbol.
+             * Addition (A):
+             *  - A plus sign (+) may be used to indicate that a number is positive.
+             * Subtraction (S):
+             *  - A minus sign (-) may be used to indicate that a number is negative.
+             * Other:
+             *  - Return an empty string if the operation is invalid.
+             */
+
+            // First, remove all the spaces.
+            string equationAdjusted = equation.Replace(" ", "");
+
+            // Second, check that the number of left and right brackets are equal.
+            {
+                int leftBrackets = StringHelper.GetSubstringCount(equation, "(");
+                int rightBrackets = StringHelper.GetSubstringCount(equation, ")");
+
+                // The bracket counts don't match, meaning the equation is invalid.
+                // Return an empty string.
+                if(leftBrackets != rightBrackets)
+                {
+                    return "";
+                }
+            }
+
+            // TODO: add in multiplication symbols in cases where a bracket is next to a number.
+            // Also check for decimals with no numbers after the decimal point.
+
+            // equation.Count()
+
+            // Run the recursive caculation.
+            string result = RunStringMathCalculationRecursive(equation);
+
+            // Return the result.
+            return result;
+        }
+
+        // A recursion string.
+        private static string RunStringMathCalculationRecursive(string equation)
+        {
+            // If the string is empty, return an empty string.
+            if (equation == "")
+                return string.Empty;
+
+            // Checks if the equation contains a math operation.
+            if(ContainsMathOperationSymbol(equation)) // Has operations.
+            {
+                // The operation that will be performed.
+                string operation = "";
+
+                // TODO: account for brackets.
+
+                // Checks what operation to use.
+                if(equation.Contains("^")) // Exponent
+                {
+                    operation = "^";
+                }
+                else if(equation.Contains("/")) // Division
+                {
+                    operation = "/";
+                }
+                else if(equation.Contains("*")) // Multiplication
+                {
+                    operation = "*";
+                }
+                else if(equation.Contains("+")) // Addition
+                {
+                    operation = "+";
+                }
+                else if(equation.Contains("-")) // Subtraction
+                {
+                    operation = "-";
+                }
+
+                // Gets the index of the operation.
+                int opIndex = equation.IndexOf(operation);
+
+                // This shouldn't happen, but if it does, just return a blank string.
+                if(opIndex == -1)
+                {
+                    return "";
+                }
+
+                // TODO: does not handle multiple operations in one equation correctly.
+
+                // LEFT SIDE
+                // Gets the left side of the equation.
+                string leftSide;
+
+                // If the operation is at the start of the string.
+                if(opIndex > 0) // Valid operation.
+                {
+                    // Gets the left side.
+                    leftSide = equation.Substring(0, opIndex);
+                }
+                else
+                {
+                    // If the operation is positive or negative, then it's valid (e.g., +12, -3).
+                    // Just put a 0 on the left side.
+                    if(operation == "+" || operation == "-")
+                    {
+                        leftSide = "0";
+                    }
+                    else // Invalid, so leave left side blank.
+                    {
+                        leftSide = "";
+                    }
+                }
+
+                // RIGHT SIDE
+                // Gets the right side of the equation.
+                string rightSide;
+
+                // If the operation is at the end of the string.
+                if (opIndex < equation.Length) // Valid operation.
+                {
+                    // Gets the right side after the operation.
+                    rightSide = equation.Substring(opIndex + 1);
+                }
+                else
+                {
+                    // If the operation is at the end of the string, it is invalid.
+                    rightSide = "";
+                }
+
+                // If either of the strings are empty, then the equation is invalid.
+                if(leftSide == string.Empty || rightSide == string.Empty)
+                {
+                    // Return an empty string.
+                    return string.Empty;
+                }
+                else // Equation may be valid.
+                {
+                    // Recursively call the function to see if the numbers are valid.
+                    leftSide = RunStringMathCalculationRecursive(leftSide);
+                    rightSide = RunStringMathCalculationRecursive(rightSide);
+
+                    // If both are valid, perform the calculation and return the result.
+                    if(leftSide != string.Empty && rightSide != string.Empty)
+                    {
+                        // The values.
+                        float value1;
+                        float value2;
+
+                        // Tries to parse both values.
+                        if(float.TryParse(leftSide, out value1) && float.TryParse(rightSide, out value2))
+                        {
+                            // Converts the operation to a char for ease of checking.
+                            char opChar = operation[0];
+
+                            // The result to be saved.
+                            float result = 0;
+
+                            // Checks the operation character.
+                            switch(opChar)
+                            {
+                                case '^': // Exponent
+                                    result = Mathf.Pow(value1, value2);
+                                    break;
+
+                                case '/': // Division
+                                    // If this would result in division by 0, return an empty string.
+                                    if(value2 == 0)
+                                    {
+                                        result = 0;
+                                        return string.Empty;
+                                    }
+                                    else
+                                    {
+                                        // Safe division.
+                                        result = value1 / value2;
+                                    }
+
+                                    break;
+
+                                case '*': // Multiplication
+                                    result = value1 * value2;
+                                    break;
+
+                                case '+': // Addition
+                                    result = value1 + value2;
+                                    break;
+
+                                case '-': // Subtraction
+                                    result = value1 - value2;
+                                    break;
+                            }
+
+                            // Returns the result as a string.
+                            string resultStr = result.ToString();
+                            return resultStr;
+                        }
+                        else // Parsing failed.
+                        {
+                            return string.Empty;
+                        }
+                    }
+                    else // At least one of them are invalid, so return the empty string.
+                    {
+                        return string.Empty;
+                    }
+                }
+            }
+            else // No operations.
+            {
+                // The value that's gotten by parsing.
+                float value;
+
+                // The value string.
+                string valueStr;
+
+                // Tries to turn the equation into a float.
+                if(float.TryParse(equation, out value)) // Success
+                {
+                    valueStr = value.ToString();
+                }
+                else // Failure
+                {
+                    valueStr = string.Empty; // Empty string.
+                }
+
+                // Returns the string.
+                return valueStr;
+            }
+        }
+
+        // Checks if the provided string contains one of the operation symbols.
+        private static bool ContainsMathOperationSymbol(string str)
+        {
+            // The result.
+            bool result;
+
+            // Checks for BEDMAS symbols.
+            if (str.Contains("(") || str.Contains(")") || str.Contains("^") || 
+                str.Contains("/") || str.Contains("*") || str.Contains("+") || str.Contains("-"))
+
+            {
+                result = true;
+            }
+            else
+            {
+                result = false;
+            }
+
+            return result;
         }
     }
 }
