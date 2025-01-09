@@ -53,11 +53,8 @@ namespace RM_MST
         // Adds the key's character.
         public void AddCharacterToEquation(char keyChar)
         {
-            // If the display text is the error string, clear it.
-            if(displayText.text == errorStr)
-            {
-                Clear();
-            }
+            // Tries to clear the error.
+            TryClearError();
 
             // Checks what kind of character has been sent.
             switch(keyChar)
@@ -140,6 +137,21 @@ namespace RM_MST
         public void Clear()
         {
             displayText.text = "";
+        }
+
+        // Tries to clear the error from the calculator.
+        public bool TryClearError()
+        {
+            // If the display text is the error string, clear it.
+            if (displayText.text == errorStr)
+            {
+                Clear();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         // Sets if the calculator is interactable or not.

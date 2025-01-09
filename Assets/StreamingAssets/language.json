@@ -123,7 +123,11 @@
       "kwd_multiply": 28,
       "kwd_divide": 28,
       "kwd_equals": 28,
+
+      "kwd_backspace": 28,
+      "kwd_delete": 28,
       "kwd_clear": 28,
+      "kwd_clear_sbl": 1,
 
       "kwd_error": 28,
 
@@ -342,7 +346,11 @@
     "kwd_multiply": "Multiply",
     "kwd_divide": "Divide",
     "kwd_equals": "Equals",
+
+    "kwd_backspace": "Backspace",
+    "kwd_delete": "Delete",
     "kwd_clear": "Clear",
+    "kwd_clear_sbl": "C",
 
     "kwd_error": "Error",
 

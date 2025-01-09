@@ -10,6 +10,7 @@ namespace RM_MST
         // Called when the key has been pressed.
         public override void OnKeyPressed()
         {
+            calculator.TryClearError();
             calculator.Clear();
         }
     }

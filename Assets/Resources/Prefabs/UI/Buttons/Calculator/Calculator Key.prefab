@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: audioClip
       value: 
       objectReference: {fileID: 8300000, guid: b7076d5a09a14a548834af514071c720, type: 3}
+    - target: {fileID: 1676024968858972032, guid: 7ac5f482d8c02194ea2037388464b887, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2857826364104247522, guid: 7ac5f482d8c02194ea2037388464b887, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -110,7 +114,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7642170662651753125, guid: 7ac5f482d8c02194ea2037388464b887, type: 3}
       propertyPath: m_Name
-      value: Calculator Key (Single) Variant
+      value: Calculator Key
       objectReference: {fileID: 0}
     - target: {fileID: 7777235050298758275, guid: 7ac5f482d8c02194ea2037388464b887, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -164,8 +168,7 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1676024968858972032, guid: 7ac5f482d8c02194ea2037388464b887, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
