@@ -114,6 +114,18 @@ namespace RM_MST
             else // Not valid, so set the display text as an error.
             {
                 displayText.text = errorStr;
+
+                // This gets overwritten by other TTS calls, so it was removed.
+                // // If the game settings and the LOL Manager is usable.
+                // if(LOLManager.IsInstantiatedAndIsLOLSDKInitialized() && GameSettings.Instantiated)
+                // {
+                //     // If TTS is enabled.
+                //     if(GameSettings.Instance.UseTextToSpeech)
+                //     {
+                //         // Read out 'error'.
+                //         LOLManager.Instance.SpeakText(ERROR_STR_KEY);
+                //     }
+                // }
             }
 
             // Returns valid.
