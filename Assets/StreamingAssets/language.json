@@ -43,22 +43,22 @@
 
 
       "unt_lengthImperial_nme": 28,
-      "unt_lengthImperial_dsc": 200,
+      "unt_lengthImperial_dsc": 145,
 
       "unt_weightImperial_nme": 28,
-      "unt_weightImperial_dsc": 200,
+      "unt_weightImperial_dsc": 145,
 
       "unt_time_nme": 28,
-      "unt_time_dsc": 200,
+      "unt_time_dsc": 145,
 
       "unt_lengthMetric_nme": 28,
-      "unt_lengthMetric_dsc": 200,
+      "unt_lengthMetric_dsc": 145,
 
       "unt_weightMetric_nme": 28,
-      "unt_weightMetric_dsc": 200,
+      "unt_weightMetric_dsc": 145,
 
       "unt_capacity_nme": 28,
-      "unt_capacity_dsc": 200,
+      "unt_capacity_dsc": 145,
 
 
       "unt_inches_nme": 28,
@@ -199,17 +199,17 @@
 
       "trl_mixStage_00": 500,
 
-      "trl_lengthImperial_00": 500,
+      "trl_lengthImperial_00": 95,
 
-      "trl_weightImperial_00": 500,
+      "trl_weightImperial_00": 95,
 
-      "trl_time_00": 500,
+      "trl_time_00": 95,
 
-      "trl_lengthMetric_00": 500,
+      "trl_lengthMetric_00": 95,
 
-      "trl_weightMetric_00": 500,
+      "trl_weightMetric_00": 95,
 
-      "trl_capacity_00": 500,
+      "trl_capacity_00": 95,
 
 
       "kwd_gameComplete": 70,
