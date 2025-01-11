@@ -12,7 +12,7 @@ namespace RM_MST
         public TMP_Text displayText;
 
         // The maximum number of characters for the calculator display.
-        public const int DISPLAY_CHAR_MAX = 40;
+        public const int DISPLAY_CHAR_MAX = 35;
 
         // If 'true', the character limit is used.
         private bool useCharLimit = true;
