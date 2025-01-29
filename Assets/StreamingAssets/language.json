@@ -443,5 +443,227 @@
     "kwd_gameScore": "Game Score",
     "kwd_finish": "Finish"
 
+  },
+  "es": {
+    "_stop_": "",
+
+    "gameTitle": "Equipo Meteor Strike",
+    "gameTitleShort": "MST",
+
+    "kwd_title": "Título",
+    "kwd_start": "Comenzar",
+    "kwd_newGame": "Juego nuevo",
+    "kwd_continue": "Continuar",
+    "kwd_instructions": "Instrucciones",
+    "kwd_settings": "Ajustes",
+    "kwd_licenses": "Licencias",
+    "kwd_quit": "Renunciar",
+
+    "kwd_back": "Atrás",
+
+    "mnu_instructions_dsc": "Este juego te permite destruir meteoros respondiendo correctamente a las preguntas de conversión de unidades. Para interactuar con los elementos del juego, usa el mouse o los controles táctiles. Tú eliges escenarios en el área del mundo y seleccionas las salidas de conversión de unidades en el área del escenario.",
+
+    "kwd_volume": "Volumen",
+    "kwd_bgmVolume": "Volumen de música de fondo (BGM)",
+    "kwd_sfxVolume": "Volumen de efectos de sonido (SFX)",
+    "kwd_ttsVolume": "Volumen de conversión de texto a voz (TTS)",
+    "kwd_mute": "Silenciar",
+    "kwd_textToSpeech": "Conversión de texto a voz",
+    "kwd_tutorial": "Tutorial",
+    "kwd_tutorials": "Tutoriales",
+
+    "mnu_licenses_dsc": "Los recursos de origen se han modificado para su uso en este juego.",
+    "kwd_bgms": "BGMs",
+    "kwd_sfxs": "SFX",
+    "kwd_fonts": "Fuentes",
+
+
+    "kwd_units": "Unidades",
+    "kwd_unitsInfo": "Información de unidades",
+
+
+    "kwd_save": "Guardar",
+    "sve_msg_savingGame": "Ahorrando...",
+
+
+    "unt_lengthImperial_nme": "Longitud (imperial)",
+    "unt_lengthImperial_dsc": "Pulgadas (pulg), pies (pcs), yardas (yd)",
+
+    "unt_weightImperial_nme": "Peso (imperial)",
+    "unt_weightImperial_dsc": "Libras (lbs), onzas (oz)",
+
+    "unt_time_nme": "Hora",
+    "unt_time_dsc": "Segundos (s), minutos (min , horas (h)",
+
+    "unt_lengthMetric_nme": "Longitud (métrica)",
+    "unt_lengthMetric_dsc": "Milímetros (mm), centímetros (cm), decímetros (dm), metros (m), kilómetros (km)",
+
+    "unt_weightMetric_nme": "Peso (métrico)",
+    "unt_weightMetric_dsc": "Miligramos (mg), gramos (g) Kilogramos (kg)",
+
+    "unt_capacity_nme": "Capacidad (métrica)",
+    "unt_capacity_dsc": "Litros (l), mililitros (ml)",
+
+
+    "unt_inches_nme": "Pulgadas",
+    "unt_inches_sbl": "pulg",
+    "unt_feet_nme": "Pies",
+    "unt_feet_sbl": "pies",
+    "unt_yards_nme": "Yardas",
+    "unt_yards_sbl": "yd",
+
+    "unt_millimeters_nme": "Milímetros",
+    "unt_millimeters_sbl": "mm",
+    "unt_centimeters_nme": "Centímetros",
+    "unt_centimeters_sbl": "cm",
+    "unt_decimeters_nme": "Decímetros",
+    "unt_decimeters_sbl": "dm",
+    "unt_meters_nme": "Metros",
+    "unt_meters_sbl": "m",
+    "unt_kilometers_nme": "Kilómetros",
+    "unt_kilometers_sbl": "km",
+
+    "unt_pounds_nme": "Libras",
+    "unt_pounds_sbl": "lbs",
+    "unt_ounces_nme": "Onzas",
+    "unt_ounces_sbl": "oz",
+    "unt_milligrams_nme": "Miligramos",
+    "unt_milligrams_sbl": "mg",
+    "unt_grams_nme": "Gramos",
+    "unt_grams_sbl": "g",
+    "unt_kilograms_nme": "Kilogramos",
+    "unt_kilograms_sbl": "kg",
+
+    "unt_seconds_nme": "segundos",
+    "unt_seconds_sbl": "s ",
+    "unt_minutes_nme": "Minutos",
+    "unt_minutes_sbl": "min ",
+    "unt_hours_nme": "Horas",
+    "unt_hours_sbl": "hrs",
+
+    "unt_milliliters_nme": "Mililétros",
+    "unt_milliliters_sbl": "mL",
+    "unt_liters_nme": "Litros",
+    "unt_liters_sbl": "L",
+
+
+    "kwd_input": "Entrada",
+    "kwd_output": "Salida",
+    "kwd_switch": "Interruptor",
+
+
+    "kwd_one": "Uno",
+    "kwd_two": "Dos",
+    "kwd_three": "Tres",
+    "kwd_four": "Cuatro",
+    "kwd_five": "Cinco",
+
+    "kwd_six": "Seis",
+    "kwd_seven": "Siete",
+    "kwd_eight": "Ocho",
+    "kwd_nine": "Nueve",
+    "kwd_zero": "Cero",
+
+    "kwd_decimalPoint": "Punto decimal",
+    "kwd_multiply": "Multiplicar",
+    "kwd_divide": "Dividir",
+    "kwd_equals": "Iguales",
+
+    "kwd_backspace": "Retroceso",
+    "kwd_delete": "Borrar",
+    "kwd_clear": "Borrar",
+    "kwd_clear_sbl": "C",
+
+    "kwd_error": "Error",
+
+
+    "kwd_world": "Mundo",
+    "kwd_stageSelect": "Selección de escenario",
+    "kwd_stage": "Escenario",
+
+    "kwd_all": "Todas",
+    "kwd_none": "Ninguna",
+
+    "stg_mix1_nme": "Mezcla 1",
+    "stg_mix1_dsc": "Longitud (imperial), peso (imperial), hora",
+
+    "stg_mix2_nme": "Mezcla 2",
+    "stg_mix2_dsc": "Longitud (métrica), peso (métrica), capacidad (métrica)",
+
+    "stg_mix3_nme": "Mezcla 3",
+    "stg_mix3_dsc": "Todas",
+
+
+    "kwd_time": "Hora",
+    "kwd_score": "Puntuación",
+    "kwd_points": "Puntos",
+    "kwd_combo": "Combo",
+    "kwd_highestCombo": "Combinación más alta",
+    "kwd_restart": "Reiniciar",
+    "kwd_speed": "Velocidad",
+
+
+    "kwd_correct": "¡Correcto!",
+    "kwd_incorrect": "¡Incorrecto!",
+
+
+    "kwd_stageEnd": "Fin de etapa",
+    "kwd_stageClear": "Escenario despejado",
+    "kwd_stageWon": "Etapa ganada",
+    "kwd_stageFailed": "Etapa fallida",
+    "kwd_stageLost": "Etapa perdida",
+
+
+    "chr_partnerA_nme": "Retirado",
+    "chr_partnerB_nme": "Astrite",
+
+
+    "trl_intro_00": "¡Bienvenido al Meteor Strike Team (MST)! Localizamos los meteoros y los destruimos antes de que lleguen a la superficie terrestre, lo que hacemos convirtiendo las unidades de medida más grandes en unidades de medida más pequeñas. Esta es el área mundial, donde puedes seleccionar etapas, ver la información de las unidades, cambiar la configuración del juego y guardar la partida. Soy Reteor...",
+    "trl_intro_01": "¡Y soy Astrite! Cuando selecciones un escenario, se mostrarán las unidades con las que trabajarás. Una vez que se proporciona esta información, se añade al «menú de información de unidades», que se puede ver con el «botón de información de unidades». Con todo esto explicado, ¡seleccionad el escenario disponible para empezar a destruir meteoros!",
+
+    "trl_firstStage_00": "Bienvenido al área del escenario, donde derribarás meteoros. Cuando se apunta a un meteoro, se te presenta una conversión para resolver. Si la conversión es exitosa, obtienes puntos y, una vez que obtengas suficientes puntos, la etapa se completa. Pero si la superficie terrestre sufre demasiados daños, se pierde el escenario.",
+    "trl_firstStage_01": "Los meteoros se seleccionan automáticamente, pero también puedes apuntar manualmente a los meteoros que no se mueven haciendo clic o tocándolos. Cuando se apunta a un meteoro, se muestran diferentes resultados de conversión y los multiplicadores que se utilizaron para obtenerlos. Una vez que seleccionas una salida (el método para hacerlo varía según la etapa), se dispara un láser al meteoro objetivo.",
+    "trl_firstStage_02": "Si has seleccionado la salida correcta, el meteoro objetivo se destruye, la pantalla parpadea en verde y dice «¡Correcto!» el texto aparece en la parte inferior de la ventana del escenario. Si has seleccionado una salida incorrecta, el meteoro objetivo se acerca a la superficie terrestre, te quedas aturdido brevemente, la pantalla parpadea en azul y dice «¡Incorrecto!» el texto aparece en la parte inferior de la ventana del escenario. Cabe destacar que, una vez que aparece un meteoro, solo se mueve cuando es alcanzado por un disparo láser que no logra destruirlo.",
+    "trl_firstStage_03": "A la izquierda está la barra de puntos, la barra de salud de la superficie y la calculadora. A la derecha está el botón de configuración, el botón del mundo y la tabla de conversión de unidades. La «tabla de conversión de unidades» muestra todas las conversiones de unidades del grupo de unidades actual. Si tiene problemas para encontrar la salida correcta, intente usar la calculadora para resolver la ecuación. Dicho todo esto, ¡es hora de empezar la etapa!",
+
+    "trl_hiddenMultiples_00": "¡Los multiplicadores se han ocultado! Si realizas suficientes conversiones correctamente de forma consecutiva, los multiplicadores de conversión desaparecerán. Volverán a ser visibles en poco tiempo, pero esperar a que esto suceda hará que la etapa dure más. Si te equivocas en la conversión, los multiplicadores empezarán a aparecer al instante como antes, a menos que vuelvas a obtener suficientes respuestas correctas consecutivas.",
+
+    "trl_barrier_00": "¡Se ha alcanzado una barrera! Cuando un meteoro choca contra una barrera, el meteoro es destruido. La barrera recibe daños y la pantalla parpadea en naranja. Si una barrera recibe demasiado daño, será destruida, dejando una oportunidad para que los meteoros choquen contra la superficie terrestre y la dañen. Cuando consigas puntos suficientes, se restaurará una barrera.",
+
+    "trl_surface_00": "¡La superficie de la Tierra ha sufrido daños! Cuando la superficie sufre daños, la pantalla parpadea en rojo. Recuerda: si la superficie sufre demasiados daños, se pierde el escenario.",
+
+    "trl_pzl_buttons": "¡Este es un rompecabezas de unidades y botones! Envía una salida seleccionando el botón al que está adjunta.",
+
+    "trl_pzl_swap": "¡Este es un rompecabezas de intercambio! Los símbolos del área del rompecabezas cambian de lugar cuando la barra de tiempo del área del rompecabezas se agota por completo. Seleccione una salida utilizando uno de sus símbolos correspondientes en el área del rompecabezas.",
+
+    "trl_pzl_slide": "¡Este es un rompecabezas de diapositivas! Los símbolos se deslizan por el área del rompecabezas mientras se apunta a un meteoro. Seleccione una salida utilizando uno de sus símbolos correspondientes en el área del rompecabezas.",
+
+    "trl_pzl_path": "¡Este es un rompecabezas! Los símbolos se mueven a lo largo del camino en la zona del rompecabezas mientras se apunta a un meteoro. Seleccione una salida utilizando su símbolo correspondiente en el área del rompecabezas.",
+
+    "trl_firstWin_00": "¡Has completado la primera etapa, que ha desbloqueado aún más etapas! Cuantas más etapas superes, más etapas desbloquearás. De las etapas disponibles, puedes eliminarlas en cualquier orden, pero debes superar todas las etapas para completar el juego.",
+
+    "trl_mixStage_00": "Esta es una fase de mezcla. Las etapas de mezcla hacen que te enfrentes a varios grupos de unidades a la vez. Solo te enfrentarás a una fase de mezcla después de haber experimentado todos los grupos de unidades relevantes.",
+
+    "trl_lengthImperial_00": "Estas unidades se utilizan para medir la longitud de algo.",
+
+    "trl_weightImperial_00": "Estas unidades se utilizan para medir el peso de algo.",
+
+    "trl_time_00": "Estas unidades se utilizan para medir períodos de tiempo.",
+
+    "trl_lengthMetric_00": "Estas unidades se utilizan para medir la longitud de algo.",
+
+    "trl_weightMetric_00": "Estas unidades se utilizan para medir el peso de algo.",
+
+    "trl_capacity_00": "Estas unidades se utilizan para medir la cantidad de líquido que puede contener un recipiente.",
+
+
+    "kwd_gameComplete": "¡Juego completo!",
+
+    "kwd_results": "Resultados",
+
+    "kwd_gameTime": "Tiempo de juego",
+    "kwd_gameScore": "Puntuación del juego",
+    "kwd_finish": "Finalizar"
+
   }
 }
