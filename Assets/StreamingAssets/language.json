@@ -493,7 +493,7 @@
     "unt_weightImperial_dsc": "Libras (lbs), onzas (oz)",
 
     "unt_time_nme": "Hora",
-    "unt_time_dsc": "Segundos (s), minutos (min , horas (h)",
+    "unt_time_dsc": "Segundos (s), minutos (min), horas (h)",
 
     "unt_lengthMetric_nme": "Longitud (métrica)",
     "unt_lengthMetric_dsc": "Milímetros (mm), centímetros (cm), decímetros (dm), metros (m), kilómetros (km)",
